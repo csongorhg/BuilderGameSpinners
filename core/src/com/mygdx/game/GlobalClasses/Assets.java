@@ -47,6 +47,8 @@ public class Assets {
 	//TEXTURE
 	public static final AssetDescriptor<Texture> TEST_TEXTURE
 			= new AssetDescriptor<Texture>("TestImg/ratyitutu.png", Texture.class);
+	public static final AssetDescriptor<Texture> BACKGROUND
+			= new AssetDescriptor<Texture>("Menu/background.png", Texture.class);
 
 
 
@@ -56,17 +58,32 @@ public class Assets {
 	}
 
 	public static void load() {
+
 		FileHandleResolver resolver = new InternalFileHandleResolver();
+
 		manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
 		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(resolver));
 
-		manager.load(TEST_TEXTURE);
 
+
+		//TEXTURA
+		manager.load(TEST_TEXTURE);
+		manager.load(BACKGROUND);
+
+
+
+		//ATLAS
 		manager.load(EXPLOSION_TEXTUREATLAS);
 
+
+
+		//ZENE
 		manager.load(EXTREMEACTION);
 
+
+
+		//BETÜ
 		manager.load(ACMEREGULAR_FONT);
 	}
 

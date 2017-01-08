@@ -28,6 +28,7 @@ public class MenuStage extends MyStage {
 
         addBackEventStackListener();
 
+        setCameraResetToCenterOfScreen();
 
 
         textButton = new MyButton("Play", game.getTextButtonStyle());
@@ -41,6 +42,7 @@ public class MenuStage extends MyStage {
 
         textButton.setPosition(0,0);
         addActor(textButton);
+
     }
 
 
