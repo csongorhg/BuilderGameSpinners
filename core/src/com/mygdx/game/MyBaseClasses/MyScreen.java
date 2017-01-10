@@ -29,6 +29,7 @@ abstract public class MyScreen implements Screen, InitableInterface {
     public MyScreen(MyGdxGame game) {
         this.game = game;
         init();
+
     }
 
     @Override

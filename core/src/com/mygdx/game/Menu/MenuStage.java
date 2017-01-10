@@ -1,5 +1,6 @@
 package com.mygdx.game.Menu;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -15,7 +16,7 @@ import com.mygdx.game.MyGdxGame;
  */
 public class MenuStage extends MyStage {
 
-    private TextButton textButton, textButton2, textButton3, textButton4;
+    private TextButton playTextButton, mapTextButton, quitTextButton;
     private TextButton.TextButtonStyle textButtonStyle;
 
     public MenuStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -28,11 +29,9 @@ public class MenuStage extends MyStage {
 
         addBackEventStackListener();
 
-        setCameraResetToCenterOfScreen();
 
-
-        textButton = new MyButton("Play", game.getTextButtonStyle());
-        textButton.addListener(new ClickListener(){
+        playTextButton = new MyButton("Play", game.getTextButtonStyle());
+        playTextButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -40,9 +39,36 @@ public class MenuStage extends MyStage {
             }
         });
 
-        textButton.setPosition(0,0);
-        addActor(textButton);
+        playTextButton.setPosition(-getWidth(),0);
+        addActor(playTextButton);
 
+
+
+        mapTextButton = new MyButton("Play", game.getTextButtonStyle());
+        mapTextButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreen(new OtherScreen(game));
+            }
+        });
+
+        mapTextButton.setPosition(-getWidth(),0);
+        addActor(playTextButton);
+
+
+
+        quitTextButton = new MyButton("Play", game.getTextButtonStyle());
+        quitTextButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreen(new OtherScreen(game));
+            }
+        });
+
+        quitTextButton.setPosition(-getWidth(),0);
+        addActor(quitTextButton);
     }
 
 

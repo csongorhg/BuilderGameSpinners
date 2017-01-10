@@ -16,7 +16,7 @@ import com.mygdx.game.MyGdxGame;
 public class MenuScreen extends MyScreen {
 
     protected MenuStage menuStage;
-    protected MyStage bgStage;
+    private MyStage bgStage;
 
     public MenuScreen(MyGdxGame game) {
         super(game);
@@ -33,7 +33,6 @@ public class MenuScreen extends MyScreen {
 
         menuStage.act(delta);
         menuStage.draw();
-
 
     }
 
@@ -56,17 +55,24 @@ public class MenuScreen extends MyScreen {
         menuStage = new MenuStage(new ExtendViewport(1280, 720, orthographicCamera), spriteBatch, game);
         Gdx.input.setInputProcessor(menuStage);
 
-        //háttér
-        bgStage = new MyStage(new StretchViewport(90, 160, new OrthographicCamera(90, 160)), spriteBatch, game) {
 
+
+        //háttér
+        bgStage = new MyStage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())), spriteBatch, game) {
+
+            public OneSpriteStaticActor getBackGroudActor() {
+                return backGroudActor;
+            }
 
             private OneSpriteStaticActor backGroudActor;
 
             @Override
             public void init() {
                 backGroudActor = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND));
-                backGroudActor.setRotation(90);
-                setCameraZoomXY(backGroudActor.getWidth()/2, backGroudActor.getHeight()/2, 0.5f);
+                backGroudActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                setCameraZoomXY(backGroudActor.getWidth() / 2, backGroudActor.getHeight() / 2, 75);
+                setCameraMoveToXY(backGroudActor.getWidth() / 2
+                        , backGroudActor.getHeight() / 2, 1, 75);
                 addActor(backGroudActor);
             }
 
@@ -81,7 +87,6 @@ public class MenuScreen extends MyScreen {
             }
         };
         //háttér vége
-
-
     }
+
 }
