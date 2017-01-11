@@ -68,11 +68,14 @@ public class MenuScreen extends MyScreen {
 
             @Override
             public void init() {
+                r = 1;
+                g = 1;
+                b = 1;
                 backGroudActor = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND));
                 backGroudActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-                setCameraZoomXY(backGroudActor.getWidth() / 2, backGroudActor.getHeight() / 2, 75);
+                setCameraZoomXY(backGroudActor.getWidth() / 2, backGroudActor.getHeight() / 2, 40);
                 setCameraMoveToXY(backGroudActor.getWidth() / 2
-                        , backGroudActor.getHeight() / 2, 1, 75);
+                        , backGroudActor.getHeight() / 2, 1, 80);
                 addActor(backGroudActor);
             }
 

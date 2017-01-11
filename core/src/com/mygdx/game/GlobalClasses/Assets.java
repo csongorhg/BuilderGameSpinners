@@ -44,6 +44,8 @@ public class Assets {
 	//ATLAS
 	public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS
 			= new AssetDescriptor<TextureAtlas>("Explosion/explosion.atlas", TextureAtlas.class);
+	public static final AssetDescriptor<TextureAtlas> GATE_TEXTUREATLAS
+			= new AssetDescriptor<TextureAtlas>("Menu/gate.atlas", TextureAtlas.class);
 
 
 
@@ -52,6 +54,10 @@ public class Assets {
 			= new AssetDescriptor<Texture>("TestImg/ratyitutu.png", Texture.class);
 	public static final AssetDescriptor<Texture> BACKGROUND
 			= new AssetDescriptor<Texture>("Menu/background.png", Texture.class);
+	public static final AssetDescriptor<Texture> SOUND
+			= new AssetDescriptor<Texture>("Menu/sound.png", Texture.class);
+	public static final AssetDescriptor<Texture> NOSOUND
+			= new AssetDescriptor<Texture>("Menu/nosound.png", Texture.class);
 
 
 
@@ -73,11 +79,14 @@ public class Assets {
 		//TEXTURA
 		manager.load(TEST_TEXTURE);
 		manager.load(BACKGROUND);
+		manager.load(SOUND);
+		manager.load(NOSOUND);
 
 
 
 		//ATLAS
 		manager.load(EXPLOSION_TEXTUREATLAS);
+		manager.load(GATE_TEXTUREATLAS);
 
 
 
