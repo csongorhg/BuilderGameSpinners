@@ -50,9 +50,9 @@ public class MenuScreen extends MyScreen {
 
     @Override
     public void init() {
-        OrthographicCamera orthographicCamera = new OrthographicCamera(1280, 720);
-        orthographicCamera.setToOrtho(true);
-        menuStage = new MenuStage(new ExtendViewport(1280, 720, orthographicCamera), spriteBatch, game);
+        /*OrthographicCamera orthographicCamera = new OrthographicCamera(1280, 720);
+        orthographicCamera.setToOrtho(true);*/
+        menuStage = new MenuStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game);
         Gdx.input.setInputProcessor(menuStage);
 
 
