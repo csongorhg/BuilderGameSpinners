@@ -2,6 +2,7 @@ package com.mygdx.game.Loading;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Menu.MenuScreen;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.GlobalClasses.*;
 import com.mygdx.game.MyBaseClasses.OneSpriteAnimatedActor;
@@ -58,6 +59,9 @@ public class LoadingScreen extends MyScreen {
 
 		if (elapsedTime > 4.0 && Assets.manager.update()) {
 			Assets.afterLoaded();
+			MenuStage.music = Assets.manager.get(Assets.RELAXING);
+			MenuStage.music.play();
+			MenuStage.playing = true;
 			game.setScreen(new MenuScreen(game));
 		}
 

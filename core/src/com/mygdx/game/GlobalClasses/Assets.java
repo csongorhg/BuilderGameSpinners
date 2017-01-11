@@ -33,8 +33,11 @@ public class Assets {
 
 
 	//MUSIC
-	public static final AssetDescriptor<Music> EXTREMEACTION
+	//http://www.bensound.com/royalty-free-music/track/relaxing
+	public static final AssetDescriptor<Music> HAPPYROCK
 			= new AssetDescriptor<Music>("Music/bensound-happyrock.mp3", Music.class);
+	public static final AssetDescriptor<Music> RELAXING
+			= new AssetDescriptor<Music>("Music/bensound-relaxing.mp3", Music.class);
 
 
 
@@ -79,8 +82,8 @@ public class Assets {
 
 
 		//ZENE
-		manager.load(EXTREMEACTION);
-
+		manager.load(RELAXING);
+		manager.load(HAPPYROCK);
 
 
 		//BETÜ

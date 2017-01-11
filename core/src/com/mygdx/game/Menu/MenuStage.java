@@ -1,5 +1,6 @@
 package com.mygdx.game.Menu;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -18,6 +19,10 @@ public class MenuStage extends MyStage {
 
     private TextButton playTextButton, mapTextButton, quitTextButton;
     private TextButton.TextButtonStyle textButtonStyle;
+    private MyButton musicButton;
+
+    public static Music music;
+    public static boolean playing;
 
     public MenuStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -26,9 +31,7 @@ public class MenuStage extends MyStage {
 
     public void init()
     {
-
         addBackEventStackListener();
-
 
         playTextButton = new MyButton("Play", game.getTextButtonStyle());
         playTextButton.addListener(new ClickListener(){
@@ -69,12 +72,43 @@ public class MenuStage extends MyStage {
 
         quitTextButton.setPosition(-getWidth(),0);
         addActor(quitTextButton);
+
+        musicOnOff();
+
+    }
+
+    void musicOnOff(){
+        musicButton = new MyButton(music.getVolume()>=0.9f?"Zene ki":"Zene be", game.getTextButtonStyle());
+        musicButton.setPosition(getViewport().getWorldWidth()-musicButton.getWidth(),getViewport().getWorldHeight()-musicButton.getHeight());
+        addActor(musicButton);
+        musicButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                musicButton.remove();
+                if(music.getVolume()>0.9f){
+                    playing = false;
+                    music.setVolume(0f);
+                }
+                else{
+                    playing = true;
+                    music.setVolume(1f);
+                }
+                musicOnOff();
+            }
+        });
     }
 
 
     @Override
     public void act(float delta) {
         super.act(delta);
+        if(playing){
+            if(!music.isPlaying()){
+                music.stop();
+                music.play();
+            }
+        }
     }
 
     @Override
