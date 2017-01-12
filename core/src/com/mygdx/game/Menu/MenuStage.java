@@ -2,12 +2,10 @@ package com.mygdx.game.Menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyButton;
@@ -16,7 +14,6 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.OtherScr.OtherScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.WorldGenerate.Generator;
-import com.sun.org.apache.xerces.internal.impl.io.ASCIIReader;
 
 /**
  * Created by tuskeb on 2016. 09. 30..
@@ -34,8 +31,8 @@ public class MenuStage extends MyStage {
     public static boolean playing;
 
 
-    private GateAtlas gateAtlas;
-
+    private OneSpriteStaticActor gate;
+    private OneSpriteStaticActor grid;
 
     private clickedButton enumButton;
     private boolean readyToChangeStage;
@@ -59,14 +56,23 @@ public class MenuStage extends MyStage {
 
 
 
+        //rács
+        grid = new OneSpriteStaticActor(Assets.manager.get(Assets.GRID));
+        grid.setWidth(grid.getWidth()*(getViewport().getWorldHeight()/ grid.getHeight()));
+        grid.setHeight(getViewport().getWorldHeight());
+        grid.setPosition(getViewport().getWorldWidth()/2 - grid.getWidth()/2,
+                getViewport().getWorldHeight()/2 - grid.getHeight()/2);
+        addActor(grid);
+
+
+
         //időmérő gombnyomásnál
-        gateAtlas = new GateAtlas();
-        gateAtlas.setWidth(gateAtlas.getWidth()*(getViewport().getWorldHeight()/gateAtlas.getHeight()));
-        gateAtlas.setHeight(getViewport().getWorldHeight());
-        gateAtlas.setPosition(getViewport().getWorldWidth()/2 - gateAtlas.getWidth()/2,
-                getViewport().getWorldHeight()/2 - gateAtlas.getHeight()/2);
-        gateAtlas.setFps(0);
-        addActor(gateAtlas);
+        gate = new OneSpriteStaticActor(Assets.manager.get(Assets.GATE));
+        gate.setWidth(gate.getWidth()*(getViewport().getWorldHeight()/ gate.getHeight()));
+        gate.setHeight(getViewport().getWorldHeight());
+        gate.setPosition(getViewport().getWorldWidth()/2 - gate.getWidth()/2,
+                getViewport().getWorldHeight()/2 - gate.getHeight()/2);
+        addActor(gate);
 
 
 
@@ -76,10 +82,7 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                readyToChangeStage = true;
-                gateAtlas.setFps(5);
-                buttontimer = 0.5f;
-                enumButton = clickedButton.MAPS;
+                setParamsForNewStage(clickedButton.MAPS);
             }
         });
         mapTextButton.setWidth(getViewport().getWorldWidth()/4);
@@ -95,10 +98,7 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                readyToChangeStage = true;
-                gateAtlas.setFps(5);
-                buttontimer = 0.5f;
-                enumButton = clickedButton.PLAY;
+                setParamsForNewStage(clickedButton.PLAY);
             }
         });
         playTextButton.setWidth(getViewport().getWorldWidth()/4);
@@ -114,10 +114,7 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                readyToChangeStage = true;
-                gateAtlas.setFps(5);
-                buttontimer = 0.5f;
-                enumButton = clickedButton.QUIT;
+                setParamsForNewStage(clickedButton.QUIT);
             }
         });
         quitTextButton.setWidth(getViewport().getWorldWidth()/4);
@@ -146,7 +143,7 @@ public class MenuStage extends MyStage {
         musicIsPlaying();
 
         //új menü
-        newStageTimer();
+        newStage();
 
     }
 
@@ -155,7 +152,7 @@ public class MenuStage extends MyStage {
         super.dispose();
     }
 
-
+    //Gombok beúszása
     private void textButtonCenter() {
         if (!isButtonCenteredX(playTextButton)
                 || !isButtonCenteredX(mapTextButton)
@@ -176,9 +173,11 @@ public class MenuStage extends MyStage {
     private boolean isButtonCenteredX(TextButton myButton) {
         return myButton.getX() + myButton.getWidth()/2 >= getViewport().getWorldWidth()/2;
     }
+    //Gombok beúszása
 
 
 
+    //Zene
     private void musicOnOff(){
 
         musicButton = new OneSpriteStaticActor( music.getVolume() >= 0.9f ?
@@ -218,12 +217,27 @@ public class MenuStage extends MyStage {
             }
         }
     }
+    //Zene
 
-    private void newStageTimer() {
 
 
+    //Új stage előtt az időzitök
+
+    private void setParamsForNewStage(clickedButton clickedButton) {
+
+        readyToChangeStage = true;
+        buttontimer = 1;
+        enumButton = clickedButton;
+
+    }
+
+
+
+    private void newStage() {
 
         if (readyToChangeStage) {
+
+            grid.setY(grid.getY()+8);
 
              //mennyi idő elteltével váltson
             if (0 >= buttontimer) {
@@ -244,4 +258,5 @@ public class MenuStage extends MyStage {
         MAPS,
         QUIT;
     }
+    //Új stage előtt az időzitök
 }
