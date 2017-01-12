@@ -15,6 +15,7 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.OtherScr.OtherScreen;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.WorldGenerate.Generator;
 import com.sun.org.apache.xerces.internal.impl.io.ASCIIReader;
 
 /**
@@ -52,7 +53,7 @@ public class MenuStage extends MyStage {
 
         addBackEventStackListener();
 
-
+        System.out.println(new Generator(100,100).toString());
 
         readyToChangeStage = false;
 
