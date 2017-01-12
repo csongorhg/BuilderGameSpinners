@@ -73,9 +73,22 @@ public class Generator {
         }
     }
 
+    private void kavics(){
+        int kezdox, kezdoy;
+        int kavicsszam = vel(5,10);
+        for(int i = 0; i < kavicsszam; i++) {
+            do {
+                kezdox = vel(0, WORLD.length - 1);
+                kezdoy = vel(0, WORLD[0].length - 1);
+            } while (WORLD[kezdox][kezdoy] != 0);
+            kit(kezdox, kezdoy, 7, 3);
+        }
+    }
+
     private void generalo(){
         folyo();
         erdo();
+        kavics();
     }
 
 
