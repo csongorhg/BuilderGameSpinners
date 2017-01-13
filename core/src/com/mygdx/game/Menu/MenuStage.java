@@ -67,8 +67,8 @@ public class MenuStage extends MyStage {
 
 
         //időmérő gombnyomásnál
-        gate = new OneSpriteStaticActor(Assets.manager.get(Assets.GATE));
-        gate.setWidth(gate.getWidth()*(getViewport().getWorldHeight()/ gate.getHeight()));
+        gate = new OneSpriteStaticActor(Assets.manager.get(Assets.GATEWALL));
+        gate.setWidth(getViewport().getWorldWidth());
         gate.setHeight(getViewport().getWorldHeight());
         gate.setPosition(getViewport().getWorldWidth()/2 - gate.getWidth()/2,
                 getViewport().getWorldHeight()/2 - gate.getHeight()/2);

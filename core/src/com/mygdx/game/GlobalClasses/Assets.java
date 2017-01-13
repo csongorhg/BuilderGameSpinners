@@ -50,14 +50,12 @@ public class Assets {
 	//TEXTURE
 	public static final AssetDescriptor<Texture> TEST_TEXTURE
 			= new AssetDescriptor<Texture>("TestImg/ratyitutu.png", Texture.class);
-	public static final AssetDescriptor<Texture> BACKGROUND
-			= new AssetDescriptor<Texture>("Menu/background.png", Texture.class);
 	public static final AssetDescriptor<Texture> SOUND
 			= new AssetDescriptor<Texture>("Menu/sound.png", Texture.class);
 	public static final AssetDescriptor<Texture> NOSOUND
 			= new AssetDescriptor<Texture>("Menu/nosound.png", Texture.class);
-	public static final AssetDescriptor<Texture> GATE
-			= new AssetDescriptor<Texture>("Menu/kapu.png", Texture.class);
+	public static final AssetDescriptor<Texture> GATEWALL
+			= new AssetDescriptor<Texture>("Menu/gatewall.png", Texture.class);
 	public static final AssetDescriptor<Texture> GRID
 			= new AssetDescriptor<Texture>("Menu/racs.png", Texture.class);
 
@@ -80,10 +78,9 @@ public class Assets {
 
 		//TEXTURA
 		manager.load(TEST_TEXTURE);
-		manager.load(BACKGROUND);
 		manager.load(SOUND);
 		manager.load(NOSOUND);
-		manager.load(GATE);
+		manager.load(GATEWALL);
 		manager.load(GRID);
 
 
