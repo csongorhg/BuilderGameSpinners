@@ -13,6 +13,7 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.OtherScr.OtherScreen;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Play.PlayScreen;
 import com.mygdx.game.WorldGenerate.Generator;
 
 /**
@@ -50,7 +51,7 @@ public class MenuStage extends MyStage {
 
         addBackEventStackListener();
 
-        System.out.println(new Generator(100,100).toString());
+        //System.out.println(new Generator(100,100).toString());
 
         readyToChangeStage = false;
 
@@ -242,7 +243,7 @@ public class MenuStage extends MyStage {
              //mennyi idő elteltével váltson
             if (0 >= buttontimer) {
                 switch (enumButton) {
-                    case PLAY: game.setScreen(new OtherScreen(game)); break;
+                    case PLAY: game.setScreen(new PlayScreen(game)); break;
                     case MAPS: game.setScreen(new OtherScreen(game)); break;
                     case QUIT: game.dispose(); System.exit(0);
                 }

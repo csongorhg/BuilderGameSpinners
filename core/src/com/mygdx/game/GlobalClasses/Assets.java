@@ -58,6 +58,14 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Menu/gatewall.png", Texture.class);
 	public static final AssetDescriptor<Texture> GRID
 			= new AssetDescriptor<Texture>("Menu/racs.png", Texture.class);
+	public static final AssetDescriptor<Texture> GRASS_BLOCK
+			= new AssetDescriptor<Texture>("Play/grass.png", Texture.class);
+	public static final AssetDescriptor<Texture> WATER_BLOCK
+			= new AssetDescriptor<Texture>("Play/water.png", Texture.class);
+	public static final AssetDescriptor<Texture> TREE_BLOCK
+			= new AssetDescriptor<Texture>("Play/tree.png", Texture.class);
+	public static final AssetDescriptor<Texture> STONE_BLOCK
+			= new AssetDescriptor<Texture>("Play/stone.png", Texture.class);
 
 
 
@@ -82,6 +90,10 @@ public class Assets {
 		manager.load(NOSOUND);
 		manager.load(GATEWALL);
 		manager.load(GRID);
+		manager.load(GRASS_BLOCK);
+		manager.load(WATER_BLOCK);
+		manager.load(TREE_BLOCK);
+		manager.load(STONE_BLOCK);
 
 
 

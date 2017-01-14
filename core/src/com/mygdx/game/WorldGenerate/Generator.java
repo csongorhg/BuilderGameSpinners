@@ -105,4 +105,9 @@ public class Generator {
         }
         return sor;
     }
+
+
+    public int[][] getWORLD() {
+        return WORLD;
+    }
 }
