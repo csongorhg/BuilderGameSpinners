@@ -40,7 +40,9 @@ public class Generator {
                 WORLD[j][elso]= 1;
                 //szélesítés
                 if(elso != 0)WORLD[j][elso-1] = 1;
+                if(elso != 1)WORLD[j][elso-2] = 1;
                 if(elso != WORLD.length-1)WORLD[j][elso+1] = 1;
+                if(elso != WORLD.length-2)WORLD[j][elso+2] = 1;
                 //lefele
                 if(elso == 0) elso += vel(0,1);
                 else if (elso == WORLD.length-1) elso -=vel(0,1);
