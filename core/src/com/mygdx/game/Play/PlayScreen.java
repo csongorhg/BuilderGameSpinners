@@ -1,24 +1,23 @@
-package com.mygdx.game.Menu;
+package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 
 /**
- * Created by tuskeb on 2016. 09. 30..
+ * Created by mordes on 2017.01.14..
  */
-public class MenuScreen extends MyScreen {
-
-    protected MenuStage menuStage;
+public class PlayScreen extends MyScreen{
+    protected PlayStage playStage;
     private MyStage bgStage;
 
-    public MenuScreen(MyGdxGame game) {
+    public PlayScreen(MyGdxGame game) {
         super(game);
     }
 
@@ -31,8 +30,8 @@ public class MenuScreen extends MyScreen {
         bgStage.act(delta);
         //háttér
 
-        menuStage.act(delta);
-        menuStage.draw();
+        playStage.act(delta);
+        playStage.draw();
 
     }
 
@@ -44,7 +43,7 @@ public class MenuScreen extends MyScreen {
 
     @Override
     public void dispose() {
-        menuStage.dispose();
+        playStage.dispose();
         super.dispose();
     }
 
@@ -52,8 +51,8 @@ public class MenuScreen extends MyScreen {
     public void init() {
         /*OrthographicCamera orthographicCamera = new OrthographicCamera(1280, 720);
         orthographicCamera.setToOrtho(true);*/
-        menuStage = new MenuStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(menuStage);
+        playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game);
+        Gdx.input.setInputProcessor(playStage);
 
 
 
@@ -71,12 +70,6 @@ public class MenuScreen extends MyScreen {
                 r = 0;
                 g = 0;
                 b = 0;
-                backGroudActor = new OneSpriteStaticActor(Assets.manager.get(Assets.GATEWALL));
-                backGroudActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-                setCameraZoomXY(backGroudActor.getWidth() / 2, backGroudActor.getHeight() / 2, 40);
-                setCameraMoveToXY(backGroudActor.getWidth() / 2
-                        , backGroudActor.getHeight() / 2, 1, 80);
-                //addActor(backGroudActor);
             }
 
             @Override

@@ -50,16 +50,22 @@ public class Assets {
 	//TEXTURE
 	public static final AssetDescriptor<Texture> TEST_TEXTURE
 			= new AssetDescriptor<Texture>("TestImg/ratyitutu.png", Texture.class);
-	public static final AssetDescriptor<Texture> BACKGROUND
-			= new AssetDescriptor<Texture>("Menu/background.png", Texture.class);
 	public static final AssetDescriptor<Texture> SOUND
 			= new AssetDescriptor<Texture>("Menu/sound.png", Texture.class);
 	public static final AssetDescriptor<Texture> NOSOUND
 			= new AssetDescriptor<Texture>("Menu/nosound.png", Texture.class);
-	public static final AssetDescriptor<Texture> GATE
-			= new AssetDescriptor<Texture>("Menu/kapu.png", Texture.class);
+	public static final AssetDescriptor<Texture> GATEWALL
+			= new AssetDescriptor<Texture>("Menu/gatewall.png", Texture.class);
 	public static final AssetDescriptor<Texture> GRID
 			= new AssetDescriptor<Texture>("Menu/racs.png", Texture.class);
+	public static final AssetDescriptor<Texture> GRASS_BLOCK
+			= new AssetDescriptor<Texture>("Play/grass.png", Texture.class);
+	public static final AssetDescriptor<Texture> WATER_BLOCK
+			= new AssetDescriptor<Texture>("Play/water.png", Texture.class);
+	public static final AssetDescriptor<Texture> TREE_BLOCK
+			= new AssetDescriptor<Texture>("Play/tree.png", Texture.class);
+	public static final AssetDescriptor<Texture> STONE_BLOCK
+			= new AssetDescriptor<Texture>("Play/stone.png", Texture.class);
 
 
 
@@ -80,11 +86,14 @@ public class Assets {
 
 		//TEXTURA
 		manager.load(TEST_TEXTURE);
-		manager.load(BACKGROUND);
 		manager.load(SOUND);
 		manager.load(NOSOUND);
-		manager.load(GATE);
+		manager.load(GATEWALL);
 		manager.load(GRID);
+		manager.load(GRASS_BLOCK);
+		manager.load(WATER_BLOCK);
+		manager.load(TREE_BLOCK);
+		manager.load(STONE_BLOCK);
 
 
 
