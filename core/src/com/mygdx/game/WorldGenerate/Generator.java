@@ -20,7 +20,7 @@ public class Generator {
         generalo();
     }
 
-    private int vel(int a, int b){
+    public static int vel(int a, int b){
         return (int)(Math.random()*(b-a+1)+a);
     }
 

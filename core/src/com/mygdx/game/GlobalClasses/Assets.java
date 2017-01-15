@@ -59,13 +59,19 @@ public class Assets {
 	public static final AssetDescriptor<Texture> GRID
 			= new AssetDescriptor<Texture>("Menu/racs.png", Texture.class);
 	public static final AssetDescriptor<Texture> GRASS_BLOCK
-			= new AssetDescriptor<Texture>("Play/grass.png", Texture.class);
+			= new AssetDescriptor<Texture>("Tiles/fu.png", Texture.class);
 	public static final AssetDescriptor<Texture> WATER_BLOCK
-			= new AssetDescriptor<Texture>("Play/water.png", Texture.class);
+			= new AssetDescriptor<Texture>("Tiles/viz.png", Texture.class);
 	public static final AssetDescriptor<Texture> TREE_BLOCK
-			= new AssetDescriptor<Texture>("Play/tree.png", Texture.class);
+			= new AssetDescriptor<Texture>("Tiles/fa_1.png", Texture.class);
+	public static final AssetDescriptor<Texture> TREE2_BLOCK
+			= new AssetDescriptor<Texture>("Tiles/fa_2.png", Texture.class);
+	public static final AssetDescriptor<Texture> TREE3_BLOCK
+			= new AssetDescriptor<Texture>("Tiles/fa_3.png", Texture.class);
 	public static final AssetDescriptor<Texture> STONE_BLOCK
-			= new AssetDescriptor<Texture>("Play/stone.png", Texture.class);
+			= new AssetDescriptor<Texture>("Tiles/ko_1.png", Texture.class);
+	public static final AssetDescriptor<Texture> STONE2_BLOCK
+			= new AssetDescriptor<Texture>("Tiles/ko_2.png", Texture.class);
 
 
 
@@ -93,7 +99,10 @@ public class Assets {
 		manager.load(GRASS_BLOCK);
 		manager.load(WATER_BLOCK);
 		manager.load(TREE_BLOCK);
+		manager.load(TREE2_BLOCK);
+		manager.load(TREE3_BLOCK);
 		manager.load(STONE_BLOCK);
+		manager.load(STONE2_BLOCK);
 
 
 

@@ -91,6 +91,7 @@ public class PlayStage extends MyStage {
             posy -= oneSpriteStaticActor.getHeight();
             posx = 0;
 
+
             for (int anAWorld : aWorld) {
 
                 switch (anAWorld) {
@@ -111,21 +112,52 @@ public class PlayStage extends MyStage {
                         grassBlock.setSize(128, 128);
                         grassBlock.setPosition(posx, posy);
                         addActor(grassBlock);
-                        treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE_BLOCK));
-                        treeBlock.setSize(128, 128);
-                        treeBlock.setPosition(posx, posy);
-                        addActor(treeBlock);
+
+                        int n = Generator.vel(0,2);
+                        switch (n) {
+                            case 0:
+                                treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE_BLOCK));
+                                treeBlock.setSize(128, 128);
+                                treeBlock.setPosition(posx, posy);
+                                addActor(treeBlock);
+                                break;
+                            case 1:
+                                treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE2_BLOCK));
+                                treeBlock.setSize(128, 128);
+                                treeBlock.setPosition(posx, posy);
+                                addActor(treeBlock);
+                                break;
+                            case 2:
+                                treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE3_BLOCK));
+                                treeBlock.setSize(128, 128);
+                                treeBlock.setPosition(posx, posy);
+                                addActor(treeBlock);
+                                break;
+                        }
+
                         break;
                     case 3:
                         grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
                         grassBlock.setSize(128, 128);
                         grassBlock.setPosition(posx, posy);
                         addActor(grassBlock);
-                        stoneBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE_BLOCK));
-                        stoneBlock.setSize(128, 128);
-                        stoneBlock.setPosition(posx, posy);
-                        addActor(stoneBlock);
-                        break;
+                        n = Generator.vel(0,1);
+                        switch (n) {
+                            case 0:
+                                stoneBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE_BLOCK));
+                                stoneBlock.setSize(128, 128);
+                                stoneBlock.setPosition(posx, posy);
+                                addActor(stoneBlock);
+                                break;
+                            case 1:
+                                stoneBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE2_BLOCK));
+                                stoneBlock.setSize(128, 128);
+                                stoneBlock.setPosition(posx, posy);
+                                addActor(stoneBlock);
+                                break;
+                        }
+
+
                 }
 
                 posx += oneSpriteStaticActor.getWidth();
