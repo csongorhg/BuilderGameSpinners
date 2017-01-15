@@ -42,6 +42,12 @@ abstract public class MyStage extends Stage implements InitableInterface {
         return getActors().get(getActors().size-1);
     }
 
+    public void moveCamera(float dx, float dy) {
+        OrthographicCamera c = (OrthographicCamera)getCamera();
+        c.position.add(dx, dy, 0);
+        c.update();
+    }
+
     public void setCameraZoomXY(float x, float y, float zoom)
     {
         OrthographicCamera c = (OrthographicCamera)getCamera();

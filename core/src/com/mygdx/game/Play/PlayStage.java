@@ -58,28 +58,21 @@ public class PlayStage extends MyStage {
 
         //addActor(textButton);
 
-
-
-
-
     }
 
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-
-        //float sx = getViewport().getScreenX() + screenX/1.0f;
-        //float sy = getViewport().getScreenY() + screenY/1.0f;
-
-        System.out.println(screenX+" "+screenY);
-
-        //System.out.println(getCamera().position.x+" "+getCamera().position.y);
-
-        //setCameraZoomXY(screenX + getViewport().getScreenWidth(), screenY + getViewport().getScreenHeight(), 1);
-        //x = getViewport().getScreenX();
-        //y = getViewport().getScreenY();
-
+        moveCamera((screenX - x) / 10 * -1, (screenY - y) / 5 );
         return super.touchDragged(screenX, screenY, pointer);
+    }
+
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        x = screenX;
+        y = screenY;
+        return super.touchDown(screenX, screenY, pointer, button);
     }
 
     private void fillArea() {
