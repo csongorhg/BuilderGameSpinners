@@ -1,6 +1,7 @@
 package com.mygdx.game.MyBaseClasses;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -67,6 +68,38 @@ abstract public class MyStage extends Stage implements InitableInterface {
         cameraTargetY = y;
         cameraTargetZoom = zoom;
         cameraMoveSpeed = speed;
+    }
+
+    public void updateFrustum(){
+        Camera c = getCamera();
+        for (Actor a: getActors()) {
+            a.setVisible(isActorShowing(c,a));
+        }
+    }
+
+    public void updateFrustum(float margin){
+        OrthographicCamera c = (OrthographicCamera)getCamera();
+        for (Actor a: getActors()) {
+            a.setVisible(isActorShowing(c,a, margin));
+        }
+    }
+
+    private static boolean isActorShowing(Camera c, Actor a){
+        return c.frustum.pointInFrustum(a.getX(), a.getY(), 0) || c.frustum.pointInFrustum(a.getX() + a.getWidth(), a.getY() + a.getHeight(), 0) ||
+                c.frustum.pointInFrustum(a.getX() + a.getWidth(), a.getY(), 0) || c.frustum.pointInFrustum(a.getX(), a.getY() + a.getHeight(), 0);
+    }
+
+    private static boolean isActorShowing(OrthographicCamera c, Actor a, float zoom){
+        float z = c.zoom;
+        c.zoom *= zoom;
+        c.update();
+        boolean b = isActorShowing(c,a);
+        c.zoom = z;
+        c.update();
+        return b;
+        /*return isActorShowing(c, a) || c.frustum.pointInFrustum(a.getX() - margin, a.getY() - margin, 0) || c.frustum.pointInFrustum(a.getX()  + a.getWidth() + margin, a.getY() + a.getHeight() + margin, 0) ||
+                c.frustum.pointInFrustum(a.getX() + a.getWidth() + margin, a.getY() - margin, 0) || c.frustum.pointInFrustum(a.getX() - margin, a.getY() + a.getHeight() + margin, 0);
+    */
     }
 
     public void setCameraResetToCenterOfScreen()
