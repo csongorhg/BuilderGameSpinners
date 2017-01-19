@@ -87,7 +87,7 @@ public class MenuStage extends MyStage {
             }
         });
         mapTextButton.setWidth(getViewport().getWorldWidth()/4);
-        mapTextButton.setPosition(-mapTextButton.getWidth()
+        mapTextButton.setPosition(getViewport().getWorldWidth()/2-mapTextButton.getWidth()/2
                 ,getViewport().getWorldHeight()/2 - mapTextButton.getHeight()/2);
         addActor(mapTextButton);
 
@@ -103,7 +103,7 @@ public class MenuStage extends MyStage {
             }
         });
         playTextButton.setWidth(getViewport().getWorldWidth()/4);
-        playTextButton.setPosition(-playTextButton.getWidth()
+        playTextButton.setPosition(getViewport().getWorldWidth()/2-playTextButton.getWidth()/2
                 ,mapTextButton.getY() + playTextButton.getHeight()*1.5f);
         addActor(playTextButton);
 
@@ -119,7 +119,7 @@ public class MenuStage extends MyStage {
             }
         });
         quitTextButton.setWidth(getViewport().getWorldWidth()/4);
-        quitTextButton.setPosition(-quitTextButton.getWidth()
+        quitTextButton.setPosition(getViewport().getWorldWidth()/2-quitTextButton.getWidth()/2
                 ,mapTextButton.getY() - playTextButton.getHeight()*1.5f);
         addActor(quitTextButton);
 
@@ -137,9 +137,6 @@ public class MenuStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
 
-        //gombok középre igazitása
-        textButtonCenter();
-
         //zene
         musicIsPlaying();
 
@@ -152,31 +149,6 @@ public class MenuStage extends MyStage {
     public void dispose() {
         super.dispose();
     }
-
-    //Gombok beúszása
-    private void textButtonCenter() {
-        if (!isButtonCenteredX(playTextButton)
-                || !isButtonCenteredX(mapTextButton)
-                || !isButtonCenteredX(quitTextButton)) {
-
-            float value = 8;
-
-            playTextButton.setX(playTextButton.getX()+value);
-
-            mapTextButton.setX(mapTextButton.getX()+value);
-
-            quitTextButton.setX(quitTextButton.getX()+value);
-
-        }
-
-    }
-
-    private boolean isButtonCenteredX(TextButton myButton) {
-        return myButton.getX() + myButton.getWidth()/2 >= getViewport().getWorldWidth()/2;
-    }
-    //Gombok beúszása
-
-
 
     //Zene
     private void musicOnOff(){

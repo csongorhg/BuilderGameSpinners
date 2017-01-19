@@ -45,6 +45,8 @@ public class PlayStage extends MyStage {
 
 
 
+        setCameraZoomXY(getViewport().getWorldWidth(),getViewport().getWorldHeight(),5);
+
         textButton = new MyButton("Vissza", game.getTextButtonStyle());
         textButton.addListener(new ClickListener(){
             @Override

@@ -18,6 +18,7 @@ public class Generator {
             }
         }
         generalo();
+        vizeleenorzo();
     }
 
     public static int vel(int a, int b){
@@ -93,6 +94,18 @@ public class Generator {
         kavics();
     }
 
+    private void vizeleenorzo(){
+        for(int i = 0; i < WORLD.length; i++){
+            for(int j = 0; j < WORLD[0].length; j++){
+                if(WORLD[i][j] == 1){
+                    if(i != 0 && i != 99)
+                    if(WORLD[i+1][j] != 1 && WORLD[i-1][j] != 1){
+                        WORLD[i][j] = 0;
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public String toString() {
