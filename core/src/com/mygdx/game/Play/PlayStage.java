@@ -2,7 +2,9 @@ package com.mygdx.game.Play;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -32,7 +34,10 @@ public class PlayStage extends MyStage {
 
 
     public void init() {
-
+      /*  setCameraTargetX(0);
+        setCameraTargetY(0);
+        setCameraTargetZoom(1);
+        setCameraMoveSpeed(999999);*/
         addBackEventStackListener();
 
 
@@ -45,7 +50,7 @@ public class PlayStage extends MyStage {
 
 
 
-        setCameraZoomXY(getViewport().getWorldWidth(),getViewport().getWorldHeight(),5);
+        setCameraZoomXY(getViewport().getWorldWidth(),getViewport().getWorldHeight(),1);
 
 
 
@@ -57,12 +62,52 @@ public class PlayStage extends MyStage {
                 game.setScreenBackByStackPop();
             }
         });
+/*
+        addListener(new ClickListener(){
+            private float dx = 0, dy = 0;
 
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                dx=0;
+                dy=0;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchDragged(InputEvent event, float x, float y, int pointer) {
+                super.touchDragged(event, x, y, pointer);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+            }
+        });
+*/
         //addActor(textButton);
+        addListener(new ActorGestureListener(){
 
+            @Override
+            public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
+                super.pan(event, x, y, deltaX, deltaY);
+                if (Math.abs(deltaX)<8){
+                    deltaX = 0;
+                }
+                if (Math.abs(deltaY)<8){
+                    deltaY = 0;
+                }
+                //setCameraZoomXY(getCamera().position.x-deltaX, getCamera().position.y-deltaY,1);
+                //moveCamera((screenX - x) / 10 * -1, (screenY - y) / 5 );
+                //System.out.println("x=" + x + " y=" + y + " deltaX=" + deltaX + " deltaY=" + deltaY);
+                setCameraTargetX(getCameraTargetX()-deltaX*2);
+                setCameraTargetY(getCameraTargetY()-deltaY*2);
+                setCameraMoveSpeed(4096);
+                setCameraTargetZoom(1);
+            }
+        });
     }
 
-
+/*
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         System.out.println(getCamera().position.x);
@@ -80,7 +125,7 @@ public class PlayStage extends MyStage {
         y = screenY;
         return super.touchDown(screenX, screenY, pointer, button);
     }
-
+*/
     private void fillArea() {
 
         generator = new Generator(100,100); //100x100-as terület

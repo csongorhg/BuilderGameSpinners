@@ -62,6 +62,40 @@ abstract public class MyStage extends Stage implements InitableInterface {
     private float cameraTargetZoom = 0;
     private float cameraMoveSpeed = 0;
 
+
+
+    public float getCameraMoveSpeed() {
+        return cameraMoveSpeed;
+    }
+
+    public void setCameraMoveSpeed(float cameraMoveSpeed) {
+        this.cameraMoveSpeed = cameraMoveSpeed;
+    }
+
+    public float getCameraTargetX() {
+        return cameraTargetX;
+    }
+
+    public void setCameraTargetX(float cameraTargetX) {
+        this.cameraTargetX = cameraTargetX;
+    }
+
+    public float getCameraTargetY() {
+        return cameraTargetY;
+    }
+
+    public void setCameraTargetY(float cameraTargetY) {
+        this.cameraTargetY = cameraTargetY;
+    }
+
+    public float getCameraTargetZoom() {
+        return cameraTargetZoom;
+    }
+
+    public void setCameraTargetZoom(float cameraTargetZoom) {
+        this.cameraTargetZoom = cameraTargetZoom;
+    }
+
     public void setCameraMoveToXY(float x, float y, float zoom, float speed)
     {
         cameraTargetX = x;
