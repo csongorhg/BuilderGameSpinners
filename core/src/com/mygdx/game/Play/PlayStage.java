@@ -32,6 +32,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     private float x,y;
 
+    private int mapWidth;
+    private int mapHeight;
 
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -54,7 +56,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         x= 0; y=0;
 
 
-
+        mapWidth=100;
+        mapHeight=100;
         fillArea();
 
 
@@ -137,7 +140,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 */
     private void fillArea() {
 
-        generator = new Generator(100,100); //100x100-as terület
+        generator = new Generator(mapWidth,mapHeight); //100x100-as terület
 
         int[][] world = generator.getWORLD();
         float posx = 0;
@@ -229,7 +232,31 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     @Override
     public void act(float delta) {
         super.act(delta);
+        fixCamera();
         updateFrustum();
+    }
+
+    private void fixCamera(){
+        OrthographicCamera c = (OrthographicCamera)getCamera();
+
+        System.out.println(c.position.x + ":" + c.position.y);
+        if (c.position.x<getViewport().getWorldWidth()/2){
+            c.position.x = getViewport().getWorldWidth()/2;
+            setCameraTargetX(c.position.x);
+        }
+        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2){
+            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2;
+            setCameraTargetX(c.position.x);
+        }
+        if (c.position.y > getViewport().getWorldHeight()/2) {
+            c.position.y = getViewport().getWorldHeight()/2;
+            setCameraTargetY(c.position.y);
+        }
+        if (c.position.y < -mapHeight*128+getViewport().getWorldHeight()*1.5f) {
+            c.position.y = -mapHeight*128+getViewport().getWorldHeight()*1.5f;
+            setCameraTargetY(c.position.y);
+        }
+
     }
 
 
