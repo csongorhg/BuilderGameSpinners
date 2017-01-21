@@ -49,9 +49,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         Gdx.input.setInputProcessor(im);
         setCameraTargetX(0);
         setCameraTargetY(0);
-        setCameraTargetZoom(1);
+        setCameraTargetZoom(2);
         setCameraMoveSpeed(999999);
-        setCameraZoomXY(0,0,1);
+        setCameraZoomXY(0,0,2);
         addBackEventStackListener();
 
 
@@ -271,21 +271,21 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private void fixCamera(){
         OrthographicCamera c = (OrthographicCamera)getCamera();
 
-        System.out.println(c.position.x + ":" + c.position.y);
-        if (c.position.x<getViewport().getWorldWidth()/2){
-            c.position.x = getViewport().getWorldWidth()/2;
+        //System.out.println(c.position.x + ":" + c.position.y);
+        if (c.position.x<getViewport().getWorldWidth()/2*c.zoom){
+            c.position.x = getViewport().getWorldWidth()/2*c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2){
-            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2;
+        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2*c.zoom){
+            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.y > getViewport().getWorldHeight()/2) {
-            c.position.y = getViewport().getWorldHeight()/2;
+        if (c.position.y > 0) {
+            c.position.y = 0;
             setCameraTargetY(c.position.y);
         }
-        if (c.position.y < -mapHeight*128+getViewport().getWorldHeight()*1.5f) {
-            c.position.y = -mapHeight*128+getViewport().getWorldHeight()*1.5f;
+        if (c.position.y < -mapHeight*128+getViewport().getWorldHeight()*c.zoom) {
+            c.position.y = -mapHeight*128+getViewport().getWorldHeight()*c.zoom;
             setCameraTargetY(c.position.y);
         }
 
@@ -319,7 +319,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         setCameraTargetX(getCameraTargetX()-deltaX*c.zoom*(getViewport().getWorldWidth()/(float)Gdx.graphics.getWidth()));
         setCameraTargetY(getCameraTargetY()+deltaY*c.zoom*(getViewport().getWorldHeight()/(float)Gdx.graphics.getHeight()));
         setCameraMoveSpeed(2048);
-        setCameraTargetZoom(1);
+        //setCameraTargetZoom(1);
         return false;
     }
 
