@@ -72,10 +72,18 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Tiles/ko_1.png", Texture.class);
 	public static final AssetDescriptor<Texture> STONE2_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/ko_2.png", Texture.class);
+	public static final AssetDescriptor<Texture> HOUSE
+			= new AssetDescriptor<Texture>("Buildings/haz.png", Texture.class);
+	public static final AssetDescriptor<Texture> STONE_WORKER
+			= new AssetDescriptor<Texture>("Buildings/kofejto.png", Texture.class);
+	public static final AssetDescriptor<Texture> WOOD_WORKER
+			= new AssetDescriptor<Texture>("Buildings/favago.png", Texture.class);
+	public static final AssetDescriptor<Texture> CITY_HALL
+			= new AssetDescriptor<Texture>("Buildings/var.png", Texture.class);
 
 
 
-    public static void prepare() {
+	public static void prepare() {
 		manager = new AssetManager();
 		Texture.setAssetManager(manager);
 	}
@@ -103,6 +111,10 @@ public class Assets {
 		manager.load(TREE3_BLOCK);
 		manager.load(STONE_BLOCK);
 		manager.load(STONE2_BLOCK);
+		manager.load(HOUSE);
+		manager.load(STONE_WORKER);
+		manager.load(WOOD_WORKER);
+		manager.load(CITY_HALL);
 
 
 

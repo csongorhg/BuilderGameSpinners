@@ -27,6 +27,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private TextButton textButton;
 
     private OneSpriteStaticActor grassBlock, waterBlock, treeBlock, stoneBlock;
+    private OneSpriteStaticActor cityhall;
+
+    private OneSpriteStaticActor[][] worldOneSprite;
 
     private Generator generator;
 
@@ -114,7 +117,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                 setCameraTargetX(getCameraTargetX()-deltaX*2);
                 setCameraTargetY(getCameraTargetY()-deltaY*2);
                 setCameraMoveSpeed(4096);
-                setCameraTargetZoom(1);
+                setCameraTargetZoom(2);
             }
         });*/
     }
@@ -141,6 +144,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private void fillArea() {
 
         generator = new Generator(mapWidth,mapHeight); //100x100-as terület
+        worldOneSprite = new OneSpriteStaticActor[100][100];
+
+        generator = new Generator(100,100); //100x100-as terület
 
         int[][] world = generator.getWORLD();
         float posx = 0;
@@ -149,11 +155,14 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         OneSpriteStaticActor oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
         oneSpriteStaticActor.setSize(128,128);
 
+        int i = 0;
+        int j;
+
         for (int[] aWorld : world) {
 
             posy -= oneSpriteStaticActor.getHeight();
             posx = 0;
-
+            j = 0;
 
             for (int anAWorld : aWorld) {
 
@@ -163,18 +172,21 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                         grassBlock.setSize(128, 128);
                         grassBlock.setPosition(posx, posy);
                         addActor(grassBlock);
+                        worldOneSprite[i][j] = grassBlock;
                         break;
                     case 1:
                         waterBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK));
                         waterBlock.setSize(128, 128);
                         waterBlock.setPosition(posx, posy);
                         addActor(waterBlock);
+                        worldOneSprite[i][j] = waterBlock;
                         break;
                     case 2:
                         grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
                         grassBlock.setSize(128, 128);
                         grassBlock.setPosition(posx, posy);
                         addActor(grassBlock);
+
 
                         int n = Generator.vel(0,2);
                         switch (n) {
@@ -183,20 +195,24 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                                 treeBlock.setSize(128, 128);
                                 treeBlock.setPosition(posx, posy);
                                 addActor(treeBlock);
+                                worldOneSprite[i][j] = treeBlock;
                                 break;
                             case 1:
                                 treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE2_BLOCK));
                                 treeBlock.setSize(128, 128);
                                 treeBlock.setPosition(posx, posy);
                                 addActor(treeBlock);
+                                worldOneSprite[i][j] = treeBlock;
                                 break;
                             case 2:
                                 treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE3_BLOCK));
                                 treeBlock.setSize(128, 128);
                                 treeBlock.setPosition(posx, posy);
                                 addActor(treeBlock);
+                                worldOneSprite[i][j] = treeBlock;
                                 break;
                         }
+
 
                         break;
                     case 3:
@@ -211,21 +227,37 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                                 stoneBlock.setSize(128, 128);
                                 stoneBlock.setPosition(posx, posy);
                                 addActor(stoneBlock);
+                                worldOneSprite[i][j] = stoneBlock;
                                 break;
                             case 1:
                                 stoneBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE2_BLOCK));
                                 stoneBlock.setSize(128, 128);
                                 stoneBlock.setPosition(posx, posy);
                                 addActor(stoneBlock);
+                                worldOneSprite[i][j] = stoneBlock;
                                 break;
                         }
-
-
+                        break;
+                    case 9:
+                        grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
+                        grassBlock.setSize(128, 128);
+                        grassBlock.setPosition(posx, posy);
+                        addActor(grassBlock);
+                        cityhall = new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL));
+                        cityhall.setSize(256, 256);
+                        cityhall.setPosition(posx-128,posy);
+                        //setCameraMoveToXY(posx,posy+128,1,2000);
+                        setCameraZoomXY(posx,posy+128,2);
+                        setCameraTargetX(posx);
+                        setCameraTargetY(posy+128);
+                        addActor(cityhall);
+                        break;
                 }
-
+                j++;
                 posx += oneSpriteStaticActor.getWidth();
 
             }
+            i++;
         }
     }
 

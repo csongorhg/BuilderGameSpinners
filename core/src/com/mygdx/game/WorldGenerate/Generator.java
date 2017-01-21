@@ -9,6 +9,7 @@ import java.util.Random;
 public class Generator {
 
     private int [][] WORLD;
+    private int x,y;
 
     public Generator(int ww, int wh){
         WORLD = new int[ww][wh];
@@ -88,8 +89,53 @@ public class Generator {
         }
     }
 
+    private void city(){
+        x = vel(0,98);
+        y = vel(1,99);
+        //folyó 1
+        while(!jo(x,y)){
+            x = vel(0,98);
+            y = vel(1,99);
+        }
+        WORLD[x][y] = 9;
+        //fa közelben
+        int helyx = vel(x-8,x+8);
+        int helyy = vel(y-8,y+8);
+        while(helyx > (x - 4) && helyx < x + 3){
+            helyx = vel(x-8,x+8);
+        }
+        while (helyy > y - 4 && helyy < y + 3){
+            helyy = vel(y-8,y+8);
+        }
+        kit(helyx,helyy,7,2);
+        //kő közelben
+        helyx = vel(x-8,x+8);
+        helyy = vel(y-8,y+8);
+        while(helyx > (x - 4) && helyx < x + 3){
+            helyx = vel(x-8,x+8);
+        }
+        while (helyy > y - 4 && helyy < y + 3){
+            helyy = vel(y-8,y+8);
+        }
+
+        kit(helyx,helyy,5,3);
+    }
+
+    private boolean jo(int x, int y){
+        boolean b = true;
+        for (int i = -11; i <= 10; i++) {
+            for (int j = -11; j <= 10; j++) {
+                if(x+i > 99 || x+i < 0) b = false;
+                else if(y+j > 99 || y+j < 0) b = false;
+                else if(WORLD[x+i][y+j] == 1) b = false;
+            }
+        }
+        return b;
+    }
+
     private void generalo(){
         folyo();
+        city();
         erdo();
         kavics();
     }
