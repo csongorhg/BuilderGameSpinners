@@ -12,6 +12,7 @@ import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
 
 /**
@@ -248,6 +249,8 @@ public class PlayStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        //itt kezeli az eltelt időt
+        TimeStepper.STEP(delta);
         updateFrustum();
     }
 }
