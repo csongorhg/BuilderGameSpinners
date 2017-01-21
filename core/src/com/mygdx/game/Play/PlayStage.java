@@ -1,6 +1,11 @@
 package com.mygdx.game.Play;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -17,7 +22,7 @@ import com.mygdx.game.WorldGenerate.Generator;
 /**
  * Created by mordes on 2017.01.14..
  */
-public class PlayStage extends MyStage {
+public class PlayStage extends MyStage implements GestureDetector.GestureListener{
 
     private TextButton textButton;
 
@@ -34,10 +39,14 @@ public class PlayStage extends MyStage {
 
 
     public void init() {
-      /*  setCameraTargetX(0);
+        GestureDetector gd = new GestureDetector(20, 0.5f, 2, 0.15f, this);
+        InputMultiplexer im = new InputMultiplexer(gd, this);
+        Gdx.input.setInputProcessor(im);
+        setCameraTargetX(0);
         setCameraTargetY(0);
         setCameraTargetZoom(1);
-        setCameraMoveSpeed(999999);*/
+        setCameraMoveSpeed(999999);
+        setCameraZoomXY(0,0,1);
         addBackEventStackListener();
 
 
@@ -50,7 +59,7 @@ public class PlayStage extends MyStage {
 
 
 
-        setCameraZoomXY(getViewport().getWorldWidth(),getViewport().getWorldHeight(),1);
+        //setCameraZoomXY(getViewport().getWorldWidth(),getViewport().getWorldHeight(),1);
 
 
 
@@ -85,7 +94,7 @@ public class PlayStage extends MyStage {
         });
 */
         //addActor(textButton);
-        addListener(new ActorGestureListener(){
+   /*     addListener(new ActorGestureListener(){
 
             @Override
             public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
@@ -104,7 +113,7 @@ public class PlayStage extends MyStage {
                 setCameraMoveSpeed(4096);
                 setCameraTargetZoom(1);
             }
-        });
+        });*/
     }
 
 /*
@@ -221,5 +230,57 @@ public class PlayStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         updateFrustum();
+    }
+
+
+    @Override
+    public boolean fling(float velocityX, float velocityY, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(float x, float y, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean tap(float x, float y, int count, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean longPress(float x, float y) {
+        return false;
+    }
+
+    @Override
+    public boolean pan(float x, float y, float deltaX, float deltaY) {
+        //System.out.println("x=" + x + " y=" + y + " deltaX=" + deltaX + " deltaY=" + deltaY);
+        OrthographicCamera c = (OrthographicCamera)getCamera();
+        setCameraTargetX(getCameraTargetX()-deltaX*c.zoom*(getViewport().getWorldWidth()/(float)Gdx.graphics.getWidth()));
+        setCameraTargetY(getCameraTargetY()+deltaY*c.zoom*(getViewport().getWorldHeight()/(float)Gdx.graphics.getHeight()));
+        setCameraMoveSpeed(2048);
+        setCameraTargetZoom(1);
+        return false;
+    }
+
+    @Override
+    public boolean panStop(float x, float y, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean zoom(float initialDistance, float distance) {
+        return false;
+    }
+
+    @Override
+    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+        return false;
+    }
+
+    @Override
+    public void pinchStop() {
+
     }
 }

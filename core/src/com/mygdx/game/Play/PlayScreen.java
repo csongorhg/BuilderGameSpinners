@@ -52,7 +52,7 @@ public class PlayScreen extends MyScreen{
         /*OrthographicCamera orthographicCamera = new OrthographicCamera(1280, 720);
         orthographicCamera.setToOrtho(true);*/
         playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(playStage);
+        //Gdx.input.setInputProcessor(playStage);
 
 
 
