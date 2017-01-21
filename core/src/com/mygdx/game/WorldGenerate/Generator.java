@@ -109,12 +109,14 @@ public class Generator {
         }
         kit(helyx,helyy,7,2);
         //kő közelben
+        int fax = helyx;
+        int fay = helyy;
         helyx = vel(x-8,x+8);
         helyy = vel(y-8,y+8);
-        while(helyx > (x - 4) && helyx < x + 3){
+        while(helyx > (x - 4) && helyx < x + 3 || (helyx > fax - 3 && helyx < fax + 2)){
             helyx = vel(x-8,x+8);
         }
-        while (helyy > y - 4 && helyy < y + 3){
+        while (helyy > y - 4 && helyy < y + 3 || (helyy > fay - 3 && helyy < fay + 2)){
             helyy = vel(y-8,y+8);
         }
 
