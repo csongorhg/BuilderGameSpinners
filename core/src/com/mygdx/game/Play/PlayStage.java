@@ -39,6 +39,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private int mapWidth;
     private int mapHeight;
 
+    private boolean updateFustrumNeed = true;
+
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
@@ -268,11 +270,26 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         fixCamera();
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
-        updateFrustum(1.1f);
+        if (isUpdateFustrumNeed()){
+            updateFrustum(1.3f);
+            updateFustrumNeed = false;
+        }
         if (zoomcount > 0) {
             zoomcount--;
         }
+    }
 
+
+    private float cameraX=0, cameraY=0, cameraZoom=0;
+    public boolean isUpdateFustrumNeed(){
+        OrthographicCamera c = (OrthographicCamera) getCamera();
+        if (Math.abs(cameraX - c.position.x)>256 || Math.abs(cameraY - c.position.y)>256 || Math.abs(cameraZoom - c.zoom)>0.2){
+            updateFustrumNeed = true;
+            cameraX = c.position.x;
+            cameraY = c.position.y;
+            cameraZoom = c.zoom;
+        }
+        return updateFustrumNeed;
     }
 
     private void fixCamera(){
