@@ -248,7 +248,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                         cityhall.setSize(256, 256);
                         cityhall.setPosition(posx-128,posy);
                         //setCameraMoveToXY(posx,posy+128,1,2000);
-                        setCameraZoomXY(posx,posy+128,2);
+                        setCameraZoomXY(posx,posy+128, ((OrthographicCamera)getCamera()).zoom);
                         setCameraTargetX(posx);
                         setCameraTargetY(posy+128);
                         addActor(cityhall);
@@ -268,7 +268,11 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         fixCamera();
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
-        updateFrustum();
+        updateFrustum(1.1f);
+        if (zoomcount > 0) {
+            zoomcount--;
+        }
+
     }
 
     private void fixCamera(){
@@ -331,8 +335,28 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         return false;
     }
 
+
+    private int zoomcount = 2;
+    private float zoom;
+
     @Override
     public boolean zoom(float initialDistance, float distance) {
+        Gdx.app.error("Builder",initialDistance + " : " + distance);
+        OrthographicCamera c = (OrthographicCamera) getCamera();
+        if (zoomcount==0){
+            zoom = c.zoom;
+        }else {
+            c.zoom = zoom * initialDistance / distance;
+        }
+        if (c.zoom<0.5f){
+            c.zoom = 0.5f;
+        }
+        if (c.zoom>3f){
+            c.zoom = 3f;
+        }
+        c.update();
+        setCameraTargetZoom(c.zoom);
+        zoomcount = 2;
         return false;
     }
 

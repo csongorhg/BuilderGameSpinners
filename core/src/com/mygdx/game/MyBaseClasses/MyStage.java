@@ -113,9 +113,14 @@ abstract public class MyStage extends Stage implements InitableInterface {
 
     public void updateFrustum(float margin){
         OrthographicCamera c = (OrthographicCamera)getCamera();
+        float z = c.zoom;
+        c.zoom *= margin;
+        c.update();
         for (Actor a: getActors()) {
-            a.setVisible(isActorShowing(c,a, margin));
+            a.setVisible(isActorShowing(c,a));
         }
+        c.zoom = z;
+        c.update();
     }
 
     private static boolean isActorShowing(Camera c, Actor a){
