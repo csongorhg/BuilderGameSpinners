@@ -35,6 +35,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     private Generator generator;
 
+    private int cityx,cityy;
     private float x,y;
 
     private int mapWidth;
@@ -68,6 +69,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         mapHeight=100;
         fillArea();
 
+        setCameraMoveToXY(cityx*128,cityy*128-128,((OrthographicCamera)getCamera()).zoom,9999);
+
 
 
         //setCameraZoomXY(getViewport().getWorldWidth(),getViewport().getWorldHeight(),1);
@@ -95,8 +98,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
         int[][] world = generator.getWORLD();
         System.out.println(generator.toString());
-        float posx = 0;
-        float posy = 0;
+        /*float posx = 0;
+        float posy = 0;*/
 
         citycount = 0;
 
@@ -108,37 +111,41 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
         for (int[] aWorld : world) {
 
-            posy += oneSpriteStaticActor.getHeight();
-            posx = 0;
+            //posy += oneSpriteStaticActor.getHeight();
+            //posx = 0;
             j = 0;
 
             for (int anAWorld : aWorld) {
 
                 switch (anAWorld) {
                     case 0:
-                        mapActors[j][i] = new grassActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new grassActor(i,j);
+                        addActor(mapActors[i][j]);
                         break;
                     case 1:
-                        mapActors[j][i] = new waterActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new waterActor(i,j);
+                        addActor(mapActors[i][j]);
                         break;
                     case 2:
-                        mapActors[j][i] = new woodActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new woodActor(i,j);
+                        addActor(mapActors[i][j]);
                         break;
                     case 3:
-                        mapActors[j][i] = new stoneActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new stoneActor(i,j);
+                        addActor(mapActors[i][j]);
                         break;
                     case 9:
                         citycount++;
-                        mapActors[j][i] = new cityActor(j,i,citycount);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new cityActor(i,j,citycount);
+                        addActor(mapActors[i][j]);
+                        if(citycount == 4){
+                            cityx = i;
+                            cityy = j;
+                        }
                         break;
                 }
                 j++;
-                posx += oneSpriteStaticActor.getWidth();
+                //posx += oneSpriteStaticActor.getWidth();
 
             }
             i++;
