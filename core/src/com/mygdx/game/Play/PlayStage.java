@@ -30,7 +30,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private OneSpriteStaticActor grassBlock, waterBlock, treeBlock, stoneBlock;
     private OneSpriteStaticActor cityhall;
 
-    private OneSpriteStaticActor[][] worldOneSprite;
+    //private OneSpriteStaticActor[][] worldOneSprite;
+    private mapActor[][] mapActors;
 
     private Generator generator;
 
@@ -147,7 +148,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private void fillArea() {
 
         generator = new Generator(mapWidth,mapHeight); //100x100-as terület
-        worldOneSprite = new OneSpriteStaticActor[100][100];
+        //worldOneSprite = new OneSpriteStaticActor[100][100];
+        mapActors = new mapActor[100][100];
 
         generator = new Generator(100,100); //100x100-as terület
 
@@ -171,13 +173,16 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
                 switch (anAWorld) {
                     case 0:
-                        grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
+                        mapActors[i][j] = new grassActor(i,j);
+                        addActor(mapActors[i][j]);
+                        /*grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
                         grassBlock.setSize(128, 128);
                         grassBlock.setPosition(posx, posy);
                         addActor(grassBlock);
-                        worldOneSprite[i][j] = grassBlock;
+                        worldOneSprite[i][j] = grassBlock;*/
                         break;
-                    case 1:
+                    /*case 1:
+
                         waterBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK));
                         waterBlock.setSize(128, 128);
                         waterBlock.setPosition(posx, posy);
@@ -254,7 +259,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                         setCameraTargetX(posx);
                         setCameraTargetY(posy+128);
                         addActor(cityhall);
-                        break;
+                        break;*/
                 }
                 j++;
                 posx += oneSpriteStaticActor.getWidth();
