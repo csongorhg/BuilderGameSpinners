@@ -39,6 +39,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     private int mapWidth;
     private int mapHeight;
+    private int citycount;
 
     private boolean updateFustrumNeed = true;
 
@@ -81,70 +82,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                 game.setScreenBackByStackPop();
             }
         });
-/*
-        addListener(new ClickListener(){
-            private float dx = 0, dy = 0;
-
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                dx=0;
-                dy=0;
-                return super.touchDown(event, x, y, pointer, button);
-            }
-
-            @Override
-            public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                super.touchDragged(event, x, y, pointer);
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-            }
-        });
-*/
-        //addActor(textButton);
-   /*     addListener(new ActorGestureListener(){
-
-            @Override
-            public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
-                super.pan(event, x, y, deltaX, deltaY);
-                if (Math.abs(deltaX)<8){
-                    deltaX = 0;
-                }
-                if (Math.abs(deltaY)<8){
-                    deltaY = 0;
-                }
-                //setCameraZoomXY(getCamera().position.x-deltaX, getCamera().position.y-deltaY,1);
-                //moveCamera((screenX - x) / 10 * -1, (screenY - y) / 5 );
-                //System.out.println("x=" + x + " y=" + y + " deltaX=" + deltaX + " deltaY=" + deltaY);
-                setCameraTargetX(getCameraTargetX()-deltaX*2);
-                setCameraTargetY(getCameraTargetY()-deltaY*2);
-                setCameraMoveSpeed(4096);
-                setCameraTargetZoom(2);
-            }
-        });*/
-    }
-
-/*
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        System.out.println(getCamera().position.x);
-
-
-
-        moveCamera((screenX - x) / 10 * -1, (screenY - y) / 5 );
-        return super.touchDragged(screenX, screenY, pointer);
     }
 
 
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        x = screenX;
-        y = screenY;
-        return super.touchDown(screenX, screenY, pointer, button);
-    }
-*/
     private void fillArea() {
 
         generator = new Generator(mapWidth,mapHeight); //100x100-as terület
@@ -154,8 +94,11 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         generator = new Generator(100,100); //100x100-as terület
 
         int[][] world = generator.getWORLD();
+        System.out.println(generator.toString());
         float posx = 0;
         float posy = 0;
+
+        citycount = 0;
 
         OneSpriteStaticActor oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
         oneSpriteStaticActor.setSize(128,128);
@@ -165,104 +108,37 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
         for (int[] aWorld : world) {
 
-            //posy += oneSpriteStaticActor.getHeight();
-            //posx = 0;
+            posy += oneSpriteStaticActor.getHeight();
+            posx = 0;
             j = 0;
 
             for (int anAWorld : aWorld) {
 
                 switch (anAWorld) {
                     case 0:
-                        mapActors[i][j] = new grassActor(i,j);
-                        addActor(mapActors[i][j]);
-                        /*grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
-                        grassBlock.setSize(128, 128);
-                        grassBlock.setPosition(posx, posy);
-                        addActor(grassBlock);
-                        worldOneSprite[i][j] = grassBlock;*/
+                        mapActors[j][i] = new grassActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
-                    /*case 1:
-
-                        waterBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK));
-                        waterBlock.setSize(128, 128);
-                        waterBlock.setPosition(posx, posy);
-                        addActor(waterBlock);
-                        worldOneSprite[i][j] = waterBlock;
+                    case 1:
+                        mapActors[j][i] = new waterActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
                     case 2:
-                        grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
-                        grassBlock.setSize(128, 128);
-                        grassBlock.setPosition(posx, posy);
-                        addActor(grassBlock);
-
-
-                        int n = Generator.vel(0,2);
-                        switch (n) {
-                            case 0:
-                                treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE_BLOCK));
-                                treeBlock.setSize(128, 128);
-                                treeBlock.setPosition(posx, posy);
-                                addActor(treeBlock);
-                                worldOneSprite[i][j] = treeBlock;
-                                break;
-                            case 1:
-                                treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE2_BLOCK));
-                                treeBlock.setSize(128, 128);
-                                treeBlock.setPosition(posx, posy);
-                                addActor(treeBlock);
-                                worldOneSprite[i][j] = treeBlock;
-                                break;
-                            case 2:
-                                treeBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.TREE3_BLOCK));
-                                treeBlock.setSize(128, 128);
-                                treeBlock.setPosition(posx, posy);
-                                addActor(treeBlock);
-                                worldOneSprite[i][j] = treeBlock;
-                                break;
-                        }
-
-
+                        mapActors[j][i] = new woodActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
                     case 3:
-                        grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
-                        grassBlock.setSize(128, 128);
-                        grassBlock.setPosition(posx, posy);
-                        addActor(grassBlock);
-                        n = Generator.vel(0,1);
-                        switch (n) {
-                            case 0:
-                                stoneBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE_BLOCK));
-                                stoneBlock.setSize(128, 128);
-                                stoneBlock.setPosition(posx, posy);
-                                addActor(stoneBlock);
-                                worldOneSprite[i][j] = stoneBlock;
-                                break;
-                            case 1:
-                                stoneBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE2_BLOCK));
-                                stoneBlock.setSize(128, 128);
-                                stoneBlock.setPosition(posx, posy);
-                                addActor(stoneBlock);
-                                worldOneSprite[i][j] = stoneBlock;
-                                break;
-                        }
+                        mapActors[j][i] = new stoneActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
                     case 9:
-                        grassBlock = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
-                        grassBlock.setSize(128, 128);
-                        grassBlock.setPosition(posx, posy);
-                        addActor(grassBlock);
-                        cityhall = new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL));
-                        cityhall.setSize(256, 256);
-                        cityhall.setPosition(posx-128,posy);
-                        //setCameraMoveToXY(posx,posy+128,1,2000);
-                        setCameraZoomXY(posx,posy+128, ((OrthographicCamera)getCamera()).zoom);
-                        setCameraTargetX(posx);
-                        setCameraTargetY(posy+128);
-                        addActor(cityhall);
-                        break;*/
+                        citycount++;
+                        mapActors[j][i] = new cityActor(j,i,citycount);
+                        addActor(mapActors[j][i]);
+                        break;
                 }
                 j++;
-                //posx += oneSpriteStaticActor.getWidth();
+                posx += oneSpriteStaticActor.getWidth();
 
             }
             i++;

@@ -98,6 +98,9 @@ public class Generator {
             y = vel(1,99);
         }
         WORLD[x][y] = 9;
+        WORLD[x-1][y] = 9;
+        WORLD[x][y-1] = 9;
+        WORLD[x-1][y-1] = 9;
         //fa közelben
         int helyx = vel(x-8,x+8);
         int helyy = vel(y-8,y+8);
