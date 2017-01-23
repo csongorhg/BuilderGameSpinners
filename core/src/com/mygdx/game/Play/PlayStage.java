@@ -155,7 +155,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
         int[][] world = generator.getWORLD();
         float posx = 0;
-        float posy = getViewport().getWorldHeight();
+        float posy = 0;
 
         OneSpriteStaticActor oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
         oneSpriteStaticActor.setSize(128,128);
@@ -165,8 +165,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
         for (int[] aWorld : world) {
 
-            posy -= oneSpriteStaticActor.getHeight();
-            posx = 0;
+            //posy += oneSpriteStaticActor.getHeight();
+            //posx = 0;
             j = 0;
 
             for (int anAWorld : aWorld) {
@@ -262,7 +262,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                         break;*/
                 }
                 j++;
-                posx += oneSpriteStaticActor.getWidth();
+                //posx += oneSpriteStaticActor.getWidth();
 
             }
             i++;
@@ -276,7 +276,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
         if (isUpdateFustrumNeed()){
-            updateFrustum(1.3f);
+            updateFrustum(1.4f);
             updateFustrumNeed = false;
         }
         if (zoomcount > 0) {
@@ -288,7 +288,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private float cameraX=0, cameraY=0, cameraZoom=0;
     public boolean isUpdateFustrumNeed(){
         OrthographicCamera c = (OrthographicCamera) getCamera();
-        if (Math.abs(cameraX - c.position.x)>256 || Math.abs(cameraY - c.position.y)>256 || Math.abs(cameraZoom - c.zoom)>0.2){
+        if (Math.abs(cameraX - c.position.x)>128/c.zoom || Math.abs(cameraY - c.position.y)>128/c.zoom || Math.abs(cameraZoom - c.zoom)>0.2){
             updateFustrumNeed = true;
             cameraX = c.position.x;
             cameraY = c.position.y;
@@ -309,15 +309,14 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
             c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.y > 0) {
-            c.position.y = 0;
+        if (c.position.y < getViewport().getWorldHeight()/2*c.zoom) {
+            c.position.y = getViewport().getWorldHeight()/2*c.zoom;
             setCameraTargetY(c.position.y);
         }
-        if (c.position.y < -mapHeight*128+getViewport().getWorldHeight()*c.zoom) {
-            c.position.y = -mapHeight*128+getViewport().getWorldHeight()*c.zoom;
+        if (c.position.y>mapHeight*128-getViewport().getWorldHeight()/2*c.zoom){
+            c.position.y = mapHeight*128-getViewport().getWorldHeight()/2*c.zoom;
             setCameraTargetY(c.position.y);
         }
-
     }
 
 
