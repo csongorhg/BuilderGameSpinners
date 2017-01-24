@@ -119,28 +119,28 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
                 switch (anAWorld) {
                     case 0:
-                        mapActors[i][j] = new grassActor(i,j);
-                        addActor(mapActors[i][j]);
+                        mapActors[j][i] = new grassActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
                     case 1:
-                        mapActors[i][j] = new waterActor(i,j);
-                        addActor(mapActors[i][j]);
+                        mapActors[j][i] = new waterActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
                     case 2:
-                        mapActors[i][j] = new woodActor(i,j);
-                        addActor(mapActors[i][j]);
+                        mapActors[j][i] = new woodActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
                     case 3:
-                        mapActors[i][j] = new stoneActor(i,j);
-                        addActor(mapActors[i][j]);
+                        mapActors[j][i] = new stoneActor(j,i);
+                        addActor(mapActors[j][i]);
                         break;
                     case 9:
                         citycount++;
-                        mapActors[i][j] = new cityActor(i,j,citycount);
-                        addActor(mapActors[i][j]);
+                        mapActors[j][i] = new cityActor(j,i,citycount);
+                        addActor(mapActors[j][i]);
                         if(citycount == 4){
-                            cityx = i;
-                            cityy = j;
+                            cityx = j;
+                            cityy = i;
                         }
                         break;
                 }
