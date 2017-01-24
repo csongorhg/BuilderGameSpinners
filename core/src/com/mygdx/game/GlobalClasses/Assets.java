@@ -82,6 +82,32 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Buildings/favago.png", Texture.class);
 	public static final AssetDescriptor<Texture> CITY_HALL
 			= new AssetDescriptor<Texture>("Buildings/var.png", Texture.class);
+	public static final AssetDescriptor<Texture> BANYA
+			= new AssetDescriptor<Texture>("Interface/banya.png", Texture.class);
+	public static final AssetDescriptor<Texture> BARAKK
+			= new AssetDescriptor<Texture>("Interface/barakk.png", Texture.class);
+	public static final AssetDescriptor<Texture> ARANY
+			= new AssetDescriptor<Texture>("Interface/coin.png", Texture.class);
+	public static final AssetDescriptor<Texture> FAVAGO
+			= new AssetDescriptor<Texture>("Interface/favago.png", Texture.class);
+	public static final AssetDescriptor<Texture> HALASZ
+			= new AssetDescriptor<Texture>("Interface/halasz.png", Texture.class);
+	public static final AssetDescriptor<Texture> HAZ
+			= new AssetDescriptor<Texture>("Interface/haz.png", Texture.class);
+	public static final AssetDescriptor<Texture> KUT
+			= new AssetDescriptor<Texture>("Interface/kut.png", Texture.class);
+	public static final AssetDescriptor<Texture> MEAT
+			= new AssetDescriptor<Texture>("Interface/meat.png", Texture.class);
+	public static final AssetDescriptor<Texture> MEZO
+			= new AssetDescriptor<Texture>("Interface/mezo.png", Texture.class);
+	public static final AssetDescriptor<Texture> PEOPLE
+			= new AssetDescriptor<Texture>("Interface/people.png", Texture.class);
+	public static final AssetDescriptor<Texture> STONE
+			= new AssetDescriptor<Texture>("Interface/stone.png", Texture.class);
+	public static final AssetDescriptor<Texture> WOOD
+			= new AssetDescriptor<Texture>("Interface/wood.png", Texture.class);
+	public static final AssetDescriptor<Texture> FAHATTER
+			= new AssetDescriptor<Texture>("Interface/fahatter.png", Texture.class);
 
 
 
@@ -118,6 +144,19 @@ public class Assets {
 		manager.load(STONE_WORKER);
 		manager.load(WOOD_WORKER);
 		manager.load(CITY_HALL);
+		manager.load(BANYA);
+		manager.load(BARAKK);
+		manager.load(ARANY);
+		manager.load(FAVAGO);
+		manager.load(HALASZ);
+		manager.load(HAZ);
+		manager.load(KUT);
+		manager.load(MEAT);
+		manager.load(MEZO);
+		manager.load(PEOPLE);
+		manager.load(STONE);
+		manager.load(WOOD);
+		manager.load(FAHATTER);
 
 
 
