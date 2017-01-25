@@ -5,6 +5,4 @@ package com.mygdx.game.PlayingMechanism;
  */
 
 public class Buildings {
-
-
 }
