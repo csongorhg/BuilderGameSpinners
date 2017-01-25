@@ -78,7 +78,7 @@ public class MenuStage extends MyStage {
 
 
         //MAPS
-        mapTextButton = new MyButton("Maps", game.getTextButtonStyle());
+        mapTextButton = new MyButton("New World", game.getTextButtonStyle());
         mapTextButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -86,7 +86,7 @@ public class MenuStage extends MyStage {
                 setParamsForNewStage(clickedButton.MAPS);
             }
         });
-        mapTextButton.setWidth(getViewport().getWorldWidth()/4);
+        mapTextButton.setWidth(getViewport().getWorldWidth()/5*2);
         mapTextButton.setPosition(getViewport().getWorldWidth()/2-mapTextButton.getWidth()/2
                 ,getViewport().getWorldHeight()/2 - mapTextButton.getHeight()/2);
         addActor(mapTextButton);
@@ -102,7 +102,7 @@ public class MenuStage extends MyStage {
                 setParamsForNewStage(clickedButton.PLAY);
             }
         });
-        playTextButton.setWidth(getViewport().getWorldWidth()/4);
+        playTextButton.setWidth(getViewport().getWorldWidth()/5*2);
         playTextButton.setPosition(getViewport().getWorldWidth()/2-playTextButton.getWidth()/2
                 ,mapTextButton.getY() + playTextButton.getHeight()*1.5f);
         addActor(playTextButton);
@@ -118,7 +118,7 @@ public class MenuStage extends MyStage {
                 setParamsForNewStage(clickedButton.QUIT);
             }
         });
-        quitTextButton.setWidth(getViewport().getWorldWidth()/4);
+        quitTextButton.setWidth(getViewport().getWorldWidth()/5*2);
         quitTextButton.setPosition(getViewport().getWorldWidth()/2-quitTextButton.getWidth()/2
                 ,mapTextButton.getY() - playTextButton.getHeight()*1.5f);
         addActor(quitTextButton);
