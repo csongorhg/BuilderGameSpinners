@@ -27,7 +27,7 @@ public class cityActor extends mapActor {
                 public void init() {
                     super.init();
                     setSize(256, 256);
-                    setPosition(-128, -128);
+                    setPosition(-128, 0);
                 }
             });
         }

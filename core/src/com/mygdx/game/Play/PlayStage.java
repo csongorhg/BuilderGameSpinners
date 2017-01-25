@@ -60,7 +60,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         mapHeight=100;
         fillArea();
 
-        setCameraMoveToXY(cityx*128,cityy*128-128,((OrthographicCamera)getCamera()).zoom,9999);
+        setCameraMoveToXY(cityx*128,cityy*128+128,((OrthographicCamera)getCamera()).zoom,9999);
 
         //kiködösítés
         fog(cityx,cityy);
@@ -93,7 +93,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         OneSpriteStaticActor oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
         oneSpriteStaticActor.setSize(128,128);
 
-        int i = 0;
+        int i = mapActors.length-1;
         int j;
 
         for (int[] aWorld : world) {
@@ -132,7 +132,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                 j++;
 
             }
-            i++;
+            i--;
         }
     }
 

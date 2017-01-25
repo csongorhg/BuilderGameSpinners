@@ -36,7 +36,7 @@ abstract public class mapActor extends Group {
         //fogActor.setColor(1f,1f,1f,1f);
         actor = a;
         fogActor.setSize(a.getWidth(), a.getHeight());
-        setPosition(x*128, y*128);
+        setPosition(128*x, 128*y);
     }
 
 
