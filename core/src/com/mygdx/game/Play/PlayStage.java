@@ -27,16 +27,11 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     private TextButton textButton;
 
-    private OneSpriteStaticActor grassBlock, waterBlock, treeBlock, stoneBlock;
-    private OneSpriteStaticActor cityhall;
-
-    //private OneSpriteStaticActor[][] worldOneSprite;
     private mapActor[][] mapActors;
 
     private Generator generator;
 
     private int cityx,cityy;
-    private float x,y;
 
     private int mapWidth;
     private int mapHeight;
@@ -61,19 +56,14 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         addBackEventStackListener();
 
 
-        //camera
-        x= 0; y=0;
-
-
         mapWidth=100;
         mapHeight=100;
         fillArea();
 
         setCameraMoveToXY(cityx*128,cityy*128-128,((OrthographicCamera)getCamera()).zoom,9999);
 
-
-
-        //setCameraZoomXY(getViewport().getWorldWidth(),getViewport().getWorldHeight(),1);
+        //kiködösítés
+        fog(cityx,cityy);
 
 
 
@@ -91,15 +81,12 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private void fillArea() {
 
         generator = new Generator(mapWidth,mapHeight); //100x100-as terület
-        //worldOneSprite = new OneSpriteStaticActor[100][100];
         mapActors = new mapActor[100][100];
 
         generator = new Generator(100,100); //100x100-as terület
 
         int[][] world = generator.getWORLD();
         System.out.println(generator.toString());
-        /*float posx = 0;
-        float posy = 0;*/
 
         citycount = 0;
 
@@ -111,8 +98,6 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
         for (int[] aWorld : world) {
 
-            //posy += oneSpriteStaticActor.getHeight();
-            //posx = 0;
             j = 0;
 
             for (int anAWorld : aWorld) {
@@ -145,10 +130,28 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                         break;
                 }
                 j++;
-                //posx += oneSpriteStaticActor.getWidth();
 
             }
             i++;
+        }
+    }
+
+    private void fog(int x, int y){
+        //a kiködösíteni kívánt terület x-y kordinátáit kell megadni (a mapActors tömb szerint!)
+        if(x < mapActors.length && x > -1 && y < mapActors[0].length && y > -1 && mapActors[x][y].isFog()){
+            mapActors[x][y].setFog(false);
+            if(mapActors[x][y] instanceof waterActor && x != 99 && x != 0 && y != 99 && y != 0){
+                if(mapActors[x][y+1] instanceof grassActor || mapActors[x][y-1] instanceof grassActor){
+                    mapActors[x + 1][y].setFog(false);
+                    mapActors[x - 1][y].setFog(false);
+                }
+            }
+            if(!(mapActors[x][y] instanceof waterActor)){
+                fog(x + 1, y);
+                fog(x - 1, y);
+                fog(x, y + 1);
+                fog(x, y - 1);
+            }
         }
     }
 
@@ -183,7 +186,6 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private void fixCamera(){
         OrthographicCamera c = (OrthographicCamera)getCamera();
 
-        //System.out.println(c.position.x + ":" + c.position.y);
         if (c.position.x<getViewport().getWorldWidth()/2*c.zoom){
             c.position.x = getViewport().getWorldWidth()/2*c.zoom;
             setCameraTargetX(c.position.x);
@@ -225,12 +227,10 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
-        //System.out.println("x=" + x + " y=" + y + " deltaX=" + deltaX + " deltaY=" + deltaY);
         OrthographicCamera c = (OrthographicCamera)getCamera();
         setCameraTargetX(getCameraTargetX()-deltaX*c.zoom*(getViewport().getWorldWidth()/(float)Gdx.graphics.getWidth()));
         setCameraTargetY(getCameraTargetY()+deltaY*c.zoom*(getViewport().getWorldHeight()/(float)Gdx.graphics.getHeight()));
         setCameraMoveSpeed(2048);
-        //setCameraTargetZoom(1);
         return false;
     }
 
