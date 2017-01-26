@@ -37,7 +37,30 @@ public class TimeStepper {
 
         //---------------------------------------
 
+        if(kaja > lakosokszama){
+            kaja-=lakosokszama;
+        }else{
+            lakosokszama = lakosokszama-(lakosokszama-kaja);
+            kaja = 0;
+        }
 
+        if(kaja > katonakszama){
+            kaja-=katonakszama;
+        }else{
+            katonakszama = katonakszama-(katonakszama-kaja);
+            kaja = 0;
+        }
+
+        if(epuletekszama/5 > kutakszama){
+            if(vel(0,10) == 5){
+                System.out.println("Tűz van!");
+            }
+        }
+
+        if(vel(0,30) == 10){
+            int egysegek = vel(5,30);
+            System.out.println("Megtámadott "+egysegek+" barbár!");
+        }
 
         //---------------------------------------
         if(lakosokszama <= 0){
