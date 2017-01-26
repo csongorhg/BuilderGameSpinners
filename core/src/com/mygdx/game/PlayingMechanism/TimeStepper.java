@@ -19,12 +19,12 @@ public class TimeStepper {
         elteltido+=delta;
         if(elteltnap*egynap < elteltido){
             elteltnap++;
-            nap();
-            System.out.println(elteltnap+". nap");
             if(elteltnap%(ev/2) == ev/2-1){
                 nyarvan = !nyarvan;
                 System.out.println("Beköszöntött a " + (nyarvan ? "nyár" : "tél"));
             }
+            System.out.println(elteltnap+". nap");
+            nap();
         }
     }
 
@@ -67,18 +67,36 @@ public class TimeStepper {
             kaja = 0;
         }
 
-        if(epuletekszama/5 > kutakszama){
-            if(vel(0,10) == 5){
+        if(epuletekszama/5.0 > kutakszama){
+            if(vel(0,30) == 5){
                 System.out.println("Tűz van!");
             }
         }
 
-        if(vel(0,30) == 10){
+        if(vel(0,30) == 10 && elteltnap > 30){
             int egysegek = vel(5,30);
             System.out.println("Megtámadott "+egysegek+" barbár!");
+            if(egysegek/2 < katonakszama){
+                katonakszama-=egysegek/2;
+            }else{
+                int minusz =(egysegek/2-katonakszama)*2;
+                arany-=minusz;
+                if(arany<0) arany = 0;
+                fa-=minusz;
+                if(fa < 0) fa = 0;
+                ko-=minusz;
+                if(ko < 0) ko = 0;
+                kaja-=minusz;
+                if(kaja< 0) kaja = 0;
+                lakosokszama-=minusz;
+                if(lakosokszama < 0) lakosokszama = 0;
+            }
         }
 
         //---------------------------------------
+
+        System.out.println("arany: "+arany+" fa: "+fa+" kaja: "+kaja+" ko: "+ko+" lakos: "+lakosokszama);
+
         if(lakosokszama <= 0){
             System.out.println("Játék vége!");
         }

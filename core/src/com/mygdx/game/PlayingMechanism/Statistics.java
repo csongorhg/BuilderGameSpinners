@@ -6,11 +6,11 @@ package com.mygdx.game.PlayingMechanism;
 
 public class Statistics {
 
-    public static int lakosokszama = 10;
-    public static int fa = 25;
-    public static int ko = 25;
-    public static int arany = 25;
-    public static int kaja = 25;
+    public static int lakosokszama = 5;
+    public static int fa = 20;
+    public static int ko = 20;
+    public static int arany = 10;
+    public static int kaja = 40;
 
     public static int lakosokszamaValt = 0;
     public static int faValt = 0;
