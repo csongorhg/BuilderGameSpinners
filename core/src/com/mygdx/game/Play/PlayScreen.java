@@ -1,6 +1,7 @@
 package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -14,8 +15,12 @@ import com.mygdx.game.MyGdxGame;
  * Created by mordes on 2017.01.14..
  */
 public class PlayScreen extends MyScreen{
+
     protected PlayStage playStage;
     private MyStage bgStage;
+
+    public static final String PREFS = "MAP";
+    private Preferences preferences = Gdx.app.getPreferences(PREFS);
 
     public PlayScreen(MyGdxGame game) {
         super(game);
@@ -44,7 +49,14 @@ public class PlayScreen extends MyScreen{
     @Override
     public void dispose() {
         playStage.dispose();
+        preferences.flush();
         super.dispose();
+    }
+
+    @Override
+    public void hide() {
+        preferences.flush();
+        super.hide();
     }
 
     @Override

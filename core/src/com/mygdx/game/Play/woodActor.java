@@ -39,4 +39,9 @@ public class woodActor extends mapActor {
         return posArrayY;
     }
 
+    @Override
+    public String toString() {
+        return "2";
+    }
+
 }

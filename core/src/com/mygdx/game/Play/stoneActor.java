@@ -40,4 +40,9 @@ public class stoneActor extends mapActor {
         return posArrayY;
     }
 
+    @Override
+    public String toString() {
+        return "3";
+    }
+
 }

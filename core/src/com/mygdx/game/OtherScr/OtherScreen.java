@@ -32,4 +32,9 @@ public class OtherScreen extends MyScreen {
         otherStage = new OtherStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
         Gdx.input.setInputProcessor(otherStage);
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

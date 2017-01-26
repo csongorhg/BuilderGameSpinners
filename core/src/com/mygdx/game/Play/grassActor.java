@@ -34,5 +34,9 @@ public class grassActor extends mapActor {
         return posArrayY;
     }
 
+    @Override
+    public String toString() {
+        return "0";
+    }
 
 }

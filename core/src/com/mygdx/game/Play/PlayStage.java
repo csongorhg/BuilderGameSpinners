@@ -2,6 +2,7 @@ package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -25,6 +27,8 @@ import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
 
 import java.awt.Point;
+import java.sql.Time;
+import java.util.Vector;
 
 /**
  * Created by mordes on 2017.01.14..
@@ -47,6 +51,13 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     private boolean updateFustrumNeed = true;
 
+    //pref
+    public static final String PREFS = "MAP";
+    private Preferences preferences;
+    private static int nap = 0;
+    private static String saveMap = "";
+    //pref
+
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
@@ -55,6 +66,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     public void init() {
 
         ingameMenu = new IngameMenu(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
+
+
+        preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
 
         GestureDetector gd = new GestureDetector(20, 0.5f, 2, 0.15f, this);
         InputMultiplexer im = new InputMultiplexer(gd, this);
@@ -65,6 +79,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         setCameraMoveSpeed(999999);
         setCameraZoomXY(0,0,2);
         addBackEventStackListener();
+
+
 
 
         mapWidth=100;
@@ -89,20 +105,37 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+
                 game.setScreenBackByStackPop();
             }
         });
+        addActor(textButton);
     }
 
 
     private void fillArea() {
 
-        generator = new Generator(mapWidth,mapHeight); //100x100-as terület
-        mapActors = new mapActor[generator.getWORLD().length][generator.getWORLD()[0].length];
+        int[][] world;
 
-        generator = new Generator(generator.getWORLD().length,generator.getWORLD()[0].length); //100x100-as terület
+        if(preferences.getString(PlayScreen.PREFS,"").equals("")){
+            generator = new Generator(mapWidth,mapHeight); //100x100-as terület
+            world = generator.getWORLD();
+        }
+        else{
+            String[] sor = preferences.getString(PlayScreen.PREFS).split("\n");
+            world = new int[mapWidth][mapHeight];
+            for (int i = 0; i < sor.length; i++) {
+                String[] t = sor[i].split(";");
+                for (int j = 0; j < t.length; j++) {
+                    world[i][j] = Integer.parseInt(t[j]);
+                }
+            }
+        }
+        mapActors = new mapActor[mapWidth][mapHeight];
 
-        int[][] world = generator.getWORLD();
+
+
+
         //System.out.println(generator.toString());
 
         citycount = 0;
@@ -216,8 +249,14 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     public void act(float delta) {
         super.act(delta);
         fixCamera();
+
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
+
+        if (TimeStepper.elteltnap != nap) {
+            mapSave();
+        }
+
         if (isUpdateFustrumNeed()){
             updateFrustum(1.4f);
             updateFustrumNeed = false;
@@ -227,6 +266,20 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         }
 
         ingameMenu.act(delta);
+    }
+
+    private void mapSave(){
+        System.out.println("Saving game...");
+        nap = TimeStepper.elteltnap;
+
+        saveMap = "";
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 0; j < mapActors[i].length; j++) {
+                saveMap += mapActors[i][j].toString()+";";
+            }
+            saveMap += "\n";
+        }
+        preferences.putString(PlayScreen.PREFS,saveMap);
     }
 
 

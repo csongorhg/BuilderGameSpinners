@@ -40,4 +40,9 @@ public class cityActor extends mapActor {
     public int getPosArrayY() {
         return posArrayY;
     }
+
+    @Override
+    public String toString() {
+        return "9";
+    }
 }

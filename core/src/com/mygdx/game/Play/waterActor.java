@@ -31,4 +31,9 @@ public class waterActor extends mapActor {
         return posArrayY;
     }
 
+    @Override
+    public String toString() {
+        return "1";
+    }
+
 }
