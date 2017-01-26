@@ -90,12 +90,12 @@ public class Generator {
     }
 
     private void city(){
-        x = vel(0,98);
-        y = vel(1,99);
+        x = vel(0,WORLD.length-2);
+        y = vel(1,WORLD.length-1);
         //folyó 1
         while(!jo(x,y)){
-            x = vel(0,98);
-            y = vel(1,99);
+            x = vel(0,WORLD.length-2);
+            y = vel(1,WORLD.length-1);
         }
         WORLD[x][y] = 9;
         WORLD[x-1][y] = 9;
@@ -130,8 +130,8 @@ public class Generator {
         boolean b = true;
         for (int i = -11; i <= 10; i++) {
             for (int j = -11; j <= 10; j++) {
-                if(x+i > 99 || x+i < 0) b = false;
-                else if(y+j > 99 || y+j < 0) b = false;
+                if(x+i > WORLD.length-1 || x+i < 0) b = false;
+                else if(y+j > WORLD.length-1 || y+j < 0) b = false;
                 else if(WORLD[x+i][y+j] == 1) b = false;
             }
         }
@@ -149,7 +149,7 @@ public class Generator {
         for(int i = 0; i < WORLD.length; i++){
             for(int j = 0; j < WORLD[0].length; j++){
                 if(WORLD[i][j] == 1){
-                    if(i != 0 && i != 99)
+                    if(i != 0 && i != WORLD.length-1)
                     if(WORLD[i+1][j] != 1 && WORLD[i-1][j] != 1){
                         WORLD[i][j] = 0;
                     }
