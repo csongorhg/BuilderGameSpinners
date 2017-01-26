@@ -34,4 +34,9 @@ public class woodActor extends mapActor {
 
     public Texture getWood(){return tree.getTexture();}
 
+    @Override
+    public String toString() {
+        return "2";
+    }
+
 }

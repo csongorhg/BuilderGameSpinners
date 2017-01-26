@@ -24,5 +24,9 @@ public class grassActor extends mapActor {
     }
 
 
+    @Override
+    public String toString() {
+        return "0";
+    }
 
 }

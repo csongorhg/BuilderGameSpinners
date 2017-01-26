@@ -21,4 +21,9 @@ public class waterActor extends mapActor {
     }
 
 
+    @Override
+    public String toString() {
+        return "1";
+    }
+
 }
