@@ -9,8 +9,6 @@ import com.mygdx.game.WorldGenerate.Generator;
  */
 public class stoneActor extends mapActor {
 
-    private int posArrayX,posArrayY;
-
 
     public stoneActor(int x, int y) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
@@ -20,8 +18,6 @@ public class stoneActor extends mapActor {
                 setSize(128,128);
             }
         }, x, y);
-        posArrayX = x;
-        posArrayY = y;
         addActor(new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.STONE_BLOCK):Assets.manager.get(Assets.STONE2_BLOCK)){
             @Override
             public void init() {

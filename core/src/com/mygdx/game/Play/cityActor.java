@@ -8,8 +8,6 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 public class cityActor extends mapActor {
 
-    private int posArrayX,posArrayY;
-
 
     public cityActor(int x, int y, int count) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
@@ -19,8 +17,6 @@ public class cityActor extends mapActor {
                 setSize(128,128);
             }
         }, x, y);
-        posArrayX = x;
-        posArrayY = y;
         if(count == 4) {
             addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)) {
                 @Override

@@ -33,7 +33,7 @@ import java.util.Vector;
 /**
  * Created by mordes on 2017.01.14..
  */
-public class PlayStage extends MyStage implements GestureDetector.GestureListener{
+abstract public class PlayStage extends MyStage implements GestureDetector.GestureListener{
 
     private TextButton textButton;
 
@@ -61,6 +61,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
+
+    abstract public void selectMapActor(mapActor mapActor);
+
 
 
     public void init() {
@@ -152,6 +155,14 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                     case 0:
                         mapActors[i][j] = new grassActor(i,j);
                         addActor(mapActors[i][j]);
+                        final mapActor g = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(g);
+                            }
+                        });
                         break;
                     case 1:
                         mapActors[i][j] = new waterActor(i,j);
@@ -160,10 +171,26 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                     case 2:
                         mapActors[i][j] = new woodActor(i,j);
                         addActor(mapActors[i][j]);
+                        final mapActor w = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(w);
+                            }
+                        });
                         break;
                     case 3:
                         mapActors[i][j] = new stoneActor(i,j);
                         addActor(mapActors[i][j]);
+                        final mapActor s = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(s);
+                            }
+                        });
                         break;
                     case 9:
                         citycount++;
