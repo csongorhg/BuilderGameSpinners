@@ -16,6 +16,9 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Statistics;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
+
+import java.sql.Time;
 
 /**
  * Created by tanulo on 2017. 01. 26..
@@ -23,6 +26,7 @@ import com.mygdx.game.PlayingMechanism.Statistics;
 public class IngameMenu extends MyStage {
 
     private MyLabel faLabel, koLabel, aranyLabel, nepLabel, etelLabel, katonaLabel;
+    private MyLabel napLabel;
     private OneSpriteStaticActor hatter;
     private OneSpriteStaticActor faActor, koActor, aranyActor, nepActor, etelActor, katonaActor;
     private Label.LabelStyle style;
@@ -38,9 +42,12 @@ public class IngameMenu extends MyStage {
         float height = ((ExtendViewport)getViewport()).getWorldHeight();
 
         hatter = new OneSpriteStaticActor(Assets.manager.get(Assets.FAHATTER));
+
         addActor(hatter);
-        hatter.setSize(width/2, hatter.getHeight());
-        hatter.setPosition(0, height - hatter.getHeight() * 1 / 4);
+
+        hatter.setSize(width/2+150, hatter.getHeight());
+
+        hatter.setPosition(0, height - hatter.getHeight() * 1 / 4 - 10);
 
         labelStyle(hatter.getHeight()/8-10);
 
@@ -82,20 +89,26 @@ public class IngameMenu extends MyStage {
         faActor.setPosition(5, height-5-faActor.getHeight());
         koActor.setPosition(5, faActor.getY()-10-koActor.getHeight());
 
-        faLabel.setPosition(faActor.getX()+faActor.getWidth()+50, faActor.getY()-5);
-        koLabel.setPosition(koActor.getX()+koActor.getWidth()+50, koActor.getY()-10);
+        faLabel.setPosition(faActor.getX()+faActor.getWidth()+20, faActor.getY()-10);
+        koLabel.setPosition(koActor.getX()+koActor.getWidth()+20, koActor.getY()-10);
 
-        aranyActor.setPosition(faLabel.getX()+faLabel.getWidth()+50, faActor.getY());
-        etelActor.setPosition(koLabel.getX()+koLabel.getWidth()+50, koActor.getY());
+        aranyActor.setPosition(faActor.getX()+faActor.getWidth()+150, faActor.getY());
+        etelActor.setPosition(koActor.getX()+koActor.getWidth()+150, koActor.getY());
 
-        aranyLabel.setPosition(aranyActor.getX()+aranyActor.getWidth()+50, aranyActor.getY()-5);
-        etelLabel.setPosition(etelActor.getX()+etelActor.getWidth()+50, etelActor.getY()-10);
+        aranyLabel.setPosition(aranyActor.getX()+aranyActor.getWidth()+20, aranyActor.getY()-10);
+        etelLabel.setPosition(etelActor.getX()+etelActor.getWidth()+20, etelActor.getY()-10);
 
-        nepActor.setPosition(aranyLabel.getX()+aranyLabel.getWidth()+50, aranyActor.getY());
-        katonaActor.setPosition(etelLabel.getX()+etelLabel.getWidth()+50, etelActor.getY());
+        nepActor.setPosition(aranyActor.getX()+aranyActor.getWidth()+150, aranyActor.getY());
+        katonaActor.setPosition(etelActor.getX()+etelActor.getWidth()+150, etelActor.getY());
 
-        nepLabel.setPosition(nepActor.getX()+nepActor.getWidth()+50, nepActor.getY()-5);
-        katonaLabel.setPosition(katonaActor.getX()+katonaActor.getWidth()+50, katonaActor.getY()-10);
+        nepLabel.setPosition(nepActor.getX()+nepActor.getWidth()+20, nepActor.getY()-10);
+        katonaLabel.setPosition(katonaActor.getX()+katonaActor.getWidth()+20, katonaActor.getY()-10);
+
+        napLabel = new MyLabel(TimeStepper.elteltnap+". nap", style);
+
+        addActor(napLabel);
+
+        napLabel.setPosition(nepActor.getX()+nepActor.getWidth()+150, height-((hatter.getHeight()/8)+napLabel.getHeight()/2)-5);
 
     }
 
@@ -115,6 +128,13 @@ public class IngameMenu extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        faLabel.setText(Statistics.fa+"");
+        koLabel.setText(Statistics.ko+"");
+        aranyLabel.setText(Statistics.arany+"");
+        nepLabel.setText(Statistics.lakosokszama+"");
+        etelLabel.setText(Statistics.kaja+"");
+        katonaLabel.setText(Statistics.katonakszama+"");
+        napLabel.setText(TimeStepper.elteltnap+". nap");
     }
 
     @Override
