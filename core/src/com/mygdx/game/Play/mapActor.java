@@ -11,6 +11,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 
 abstract public class mapActor extends Group {
+    private int posArrayX,posArrayY;
     private static float posX = 0,posY = 99*128;
     private static int n = 0;
     public boolean isFog() {
@@ -33,6 +34,9 @@ abstract public class mapActor extends Group {
     private Actor actor;
 
     public mapActor(Actor a, int x, int y) {
+        posArrayX = x;
+        posArrayY = y;
+
         addActor(a);
         n++;
         addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
@@ -51,6 +55,13 @@ abstract public class mapActor extends Group {
 
     }
 
+    public int getPosArrayX() {
+        return posArrayX;
+    }
+
+    public int getPosArrayY() {
+        return posArrayY;
+    }
 
 
 }

@@ -4,17 +4,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.mapActorInterface.MapActorGlobalStage;
+import com.mygdx.game.mapActorInterface.MapActorGrassStage;
+import com.mygdx.game.mapActorInterface.MapActorWoodStage;
 
 /**
  * Created by mordes on 2017.01.14..
  */
 public class PlayScreen extends MyScreen{
     protected PlayStage playStage;
+    protected MapActorGlobalStage mapActorGlobalStage;
+
     private MyStage bgStage;
 
     public PlayScreen(MyGdxGame game) {
@@ -33,6 +37,10 @@ public class PlayScreen extends MyScreen{
         playStage.act(delta);
         playStage.draw();
 
+        if (mapActorGlobalStage != null) {
+            mapActorGlobalStage.act(delta);
+            mapActorGlobalStage.draw();
+        }
     }
 
     @Override
@@ -51,7 +59,24 @@ public class PlayScreen extends MyScreen{
     public void init() {
         /*OrthographicCamera orthographicCamera = new OrthographicCamera(1280, 720);
         orthographicCamera.setToOrtho(true);*/
-        playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game);
+        mapActorGlobalStage = new MapActorGlobalStage(game, null);
+
+        playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game){
+            @Override
+            public void selectMapActor(mapActor mapActor) {
+                mapActorGlobalStage.dispose();
+                mapActorGlobalStage = null;
+                if (mapActor instanceof grassActor) {
+                    mapActorGlobalStage = new MapActorGrassStage(game, (grassActor)mapActor);
+                }
+                if (mapActor instanceof woodActor) {
+                    mapActorGlobalStage = new MapActorWoodStage(game, (woodActor)mapActor);
+                }
+                if (mapActorGlobalStage == null) {
+                    mapActorGlobalStage = new MapActorGlobalStage(game, mapActor);
+                }
+            }
+        };
         //Gdx.input.setInputProcessor(playStage);
 
 

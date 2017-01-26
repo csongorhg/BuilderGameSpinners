@@ -11,7 +11,6 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 
 public class grassActor extends mapActor {
 
-    private int posArrayX,posArrayY;
 
 
     public grassActor(int x, int y) {
@@ -22,17 +21,8 @@ public class grassActor extends mapActor {
                 setSize(128,128);
             }
         }, x, y);
-        posArrayX = x;
-        posArrayY = y;
     }
 
-    public int getPosArrayX() {
-        return posArrayX;
-    }
-
-    public int getPosArrayY() {
-        return posArrayY;
-    }
 
 
 }

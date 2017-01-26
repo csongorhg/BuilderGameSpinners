@@ -8,7 +8,6 @@ import com.mygdx.game.WorldGenerate.Generator;
  * Created by tanulo on 2017. 01. 23..
  */
 public class woodActor extends mapActor {
-    private int posArrayX,posArrayY;
 
 
     public woodActor(int x, int y) {
@@ -19,8 +18,6 @@ public class woodActor extends mapActor {
                 setSize(128,128);
             }
         }, x, y);
-        posArrayX = x;
-        posArrayY = y;
         addActor(new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.TREE_BLOCK):Assets.manager.get(Assets.TREE3_BLOCK)){
             @Override
             public void init() {
@@ -31,12 +28,5 @@ public class woodActor extends mapActor {
         });
     }
 
-    public int getPosArrayX() {
-        return posArrayX;
-    }
-
-    public int getPosArrayY() {
-        return posArrayY;
-    }
 
 }

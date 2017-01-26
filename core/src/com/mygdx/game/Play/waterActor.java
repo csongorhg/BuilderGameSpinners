@@ -8,7 +8,6 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 public class waterActor extends mapActor {
 
-    private int posArrayX,posArrayY;
 
 
     public waterActor(int x, int y) {
@@ -19,16 +18,7 @@ public class waterActor extends mapActor {
                 setSize(128,128);
             }
         }, x, y);
-        posArrayX = x;
-        posArrayY = y;
     }
 
-    public int getPosArrayX() {
-        return posArrayX;
-    }
-
-    public int getPosArrayY() {
-        return posArrayY;
-    }
 
 }
