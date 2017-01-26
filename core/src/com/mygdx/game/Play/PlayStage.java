@@ -2,6 +2,7 @@ package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.input.GestureDetector;
@@ -12,7 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Queue;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
@@ -29,6 +32,8 @@ import java.awt.Point;
 public class PlayStage extends MyStage implements GestureDetector.GestureListener{
 
     private TextButton textButton;
+
+    private IngameMenu ingameMenu;
 
     private mapActor[][] mapActors;
 
@@ -48,6 +53,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
 
     public void init() {
+
+        ingameMenu = new IngameMenu(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
+
         GestureDetector gd = new GestureDetector(20, 0.5f, 2, 0.15f, this);
         InputMultiplexer im = new InputMultiplexer(gd, this);
         Gdx.input.setInputProcessor(im);
@@ -217,6 +225,8 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         if (zoomcount > 0) {
             zoomcount--;
         }
+
+        ingameMenu.act(delta);
     }
 
 
@@ -320,6 +330,19 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     @Override
     public void pinchStop() {
+
+    }
+
+    @Override
+    public void draw() {
+        super.draw();
+        ingameMenu.draw();
+    }
+
+    @Override
+    public void dispose() {
+        ingameMenu.dispose();
+        super.dispose();
 
     }
 }
