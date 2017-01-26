@@ -23,7 +23,6 @@ public class TimeStepper {
                 nyarvan = !nyarvan;
                 System.out.println("Beköszöntött a " + (nyarvan ? "nyár" : "tél"));
             }
-            System.out.println(elteltnap+". nap");
             nap();
         }
     }
@@ -94,8 +93,6 @@ public class TimeStepper {
         }
 
         //---------------------------------------
-
-        System.out.println("arany: "+arany+" fa: "+fa+" kaja: "+kaja+" ko: "+ko+" lakos: "+lakosokszama);
 
         if(lakosokszama <= 0){
             System.out.println("Játék vége!");
