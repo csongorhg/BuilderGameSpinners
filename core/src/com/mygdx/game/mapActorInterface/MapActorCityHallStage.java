@@ -3,17 +3,16 @@ package com.mygdx.game.mapActorInterface;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Play.grassActor;
-import com.mygdx.game.Play.woodActor;
+import com.mygdx.game.Play.cityActor;
 
 /**
- * Created by tuskeb on 2017. 01. 26..
+ * Created by tanulo on 2017. 01. 26..
  */
+public class MapActorCityHallStage extends MapActorStage {
 
-public class MapActorWoodStage extends MapActorStage {
-    private grassActor mapactor;
+    private cityActor mapactor;
 
-    public MapActorWoodStage(MyGdxGame game, woodActor g) {
+    public MapActorCityHallStage(MyGdxGame game, cityActor g) {
         super(game, g);
         getActorGroup().addActor(new MyLabel("Tree",game.getLabelStyle()){
             @Override
@@ -22,7 +21,7 @@ public class MapActorWoodStage extends MapActorStage {
                 setPosition(50,50);
             }
         });
-        getActorGroup().addActor(new OneSpriteStaticActor(g.getWood()){
+        getActorGroup().addActor(new OneSpriteStaticActor(g.getCityHall()){
             @Override
             public void init() {
                 super.init();
@@ -31,5 +30,4 @@ public class MapActorWoodStage extends MapActorStage {
             }
         });
     }
-
 }

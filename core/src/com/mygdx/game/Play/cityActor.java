@@ -1,5 +1,6 @@
 package com.mygdx.game.Play;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 
@@ -7,6 +8,8 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  * Created by tanulo on 2017. 01. 23..
  */
 public class cityActor extends mapActor {
+
+    private OneSpriteStaticActor cityhall;
 
 
     public cityActor(int x, int y, int count) {
@@ -18,15 +21,18 @@ public class cityActor extends mapActor {
             }
         }, x, y);
         if(count == 4) {
-            addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)) {
+            addActor(cityhall = new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)) {
                 @Override
                 public void init() {
                     super.init();
                     setSize(256, 256);
                     setPosition(-128, 0);
                 }
+
             });
         }
     }
+
+    public Texture getCityHall(){return cityhall.getTexture();}
 
 }

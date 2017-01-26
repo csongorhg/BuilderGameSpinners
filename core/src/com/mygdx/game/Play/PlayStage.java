@@ -134,6 +134,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                     case 1:
                         mapActors[i][j] = new waterActor(i,j);
                         addActor(mapActors[i][j]);
+                        final mapActor wa = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(wa);
+                            }
+                        });
                         break;
                     case 2:
                         mapActors[i][j] = new woodActor(i,j);
@@ -163,6 +171,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         citycount++;
                         mapActors[i][j] = new cityActor(i,j,citycount);
                         addActor(mapActors[i][j]);
+                        final mapActor c = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(c);
+                            }
+                        });
                         if(citycount == 4){
                             cityx = j;
                             cityy = i;

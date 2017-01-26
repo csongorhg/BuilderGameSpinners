@@ -14,6 +14,7 @@ import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Play.cityActor;
 import com.mygdx.game.Play.grassActor;
 import com.mygdx.game.Play.mapActor;
 
@@ -38,7 +39,6 @@ public class MapActorStage extends MyStage {
         if (g != null) {
             mapactor = g;
             addSelectActor(g.getStage());
-            System.out.println(g.getPosArrayX() + " - " + g.getPosArrayY());
         }
 
         addActor(actorGroup = new Group());
@@ -61,16 +61,23 @@ public class MapActorStage extends MyStage {
 
 
     public void addSelectActor(Stage stage){
-        this.selectActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(mapactor.getX(), mapactor.getY());
-                setSize(128,128);
-                setTouchable(Touchable.disabled);
-            }
-        };
-        stage.addActor(selectActor);
+        if(mapactor != null) {
+            this.selectActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)) {
+                @Override
+                public void init() {
+                    super.init();
+                    if(!(mapactor instanceof cityActor)) {
+                        setPosition(mapactor.getX(), mapactor.getY());
+                        setSize(128, 128);
+                    }else{
+                        setPosition(mapactor.getX()-128, mapactor.getY());
+                        setSize(256, 256);
+                    }
+                    setTouchable(Touchable.disabled);
+                }
+            };
+            stage.addActor(selectActor);
+        }
     }
 
     @Override

@@ -8,7 +8,8 @@ import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.mapActorInterface.MapActorGrassStage;
+import com.mygdx.game.mapActorInterface.MapActorCityHallStage;
+import com.mygdx.game.mapActorInterface.MapActorStoneStage;
 import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
 
@@ -66,11 +67,14 @@ public class PlayScreen extends MyScreen{
             public void selectMapActor(mapActor mapActor) {
                 mapActorGlobalStage.dispose();
                 mapActorGlobalStage = null;
-                if (mapActor instanceof grassActor) {
-                    mapActorGlobalStage = new MapActorGrassStage(game, (grassActor)mapActor);
+                if (mapActor instanceof stoneActor) {
+                    mapActorGlobalStage = new MapActorStoneStage(game, (stoneActor)mapActor);
                 }
                 if (mapActor instanceof woodActor) {
                     mapActorGlobalStage = new MapActorWoodStage(game, (woodActor)mapActor);
+                }
+                if (mapActor instanceof cityActor) {
+                    mapActorGlobalStage = new MapActorCityHallStage(game, (cityActor)mapActor);
                 }
                 if (mapActorGlobalStage == null) {
                     mapActorGlobalStage = new MapActorStage(game, mapActor);
