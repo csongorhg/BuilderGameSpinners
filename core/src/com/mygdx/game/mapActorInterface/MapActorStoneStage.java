@@ -21,19 +21,12 @@ public class MapActorStoneStage extends MapActorStage {
 
     public MapActorStoneStage(MyGdxGame game, stoneActor g) {
         super(game, g);
-        getActorGroup().addActor(new MyLabel("Stone",game.getLabelStyle()){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(50,50);
-            }
-        });
         getActorGroup().addActor(new OneSpriteStaticActor(g.getStone()){
             @Override
             public void init() {
                 super.init();
-                setSize(140, 140);
-                setPosition(70, getViewport().getWorldHeight()-70-getWidth());
+                setSize(meret/2, meret/2);
+                setPosition(meret/4, getViewport().getWorldHeight()-meret/4-getWidth());
             }
         });
     }

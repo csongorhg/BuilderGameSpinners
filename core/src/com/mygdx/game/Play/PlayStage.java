@@ -35,8 +35,6 @@ import java.util.Vector;
  */
 abstract public class PlayStage extends MyStage implements GestureDetector.GestureListener{
 
-    private TextButton textButton;
-
     private IngameMenu ingameMenu;
 
     private mapActor[][] mapActors;
@@ -90,7 +88,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         mapHeight=100;
         fillArea();
 
-        setCameraMoveToXY(cityx*128,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
+        setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
 
         //kiködösítés
         int seged;
@@ -103,16 +101,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         //System.out.println(cityx+" "+cityy);
 
-        textButton = new MyButton("Vissza", game.getTextButtonStyle());
-        textButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-
-                game.setScreenBackByStackPop();
-            }
-        });
-        addActor(textButton);
     }
 
 

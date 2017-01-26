@@ -1,21 +1,20 @@
 package com.mygdx.game.mapActorInterface;
 
-import com.mygdx.game.MyBaseClasses.MyLabel;
+import com.mygdx.game.BuildigsClasses.WoodCutter;
+import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Play.grassActor;
-import com.mygdx.game.Play.woodActor;
 
 /**
- * Created by tuskeb on 2017. 01. 26..
+ * Created by Kicsi on 2017. 01. 26..
  */
 
-public class MapActorWoodStage extends MapActorStage {
-    private grassActor mapactor;
+public class MapActorWoodCutterStage extends MapActorStage {
+    private WoodCutter mapactor;
 
-    public MapActorWoodStage(MyGdxGame game, woodActor g) {
+    public MapActorWoodCutterStage(MyGdxGame game, WoodCutter g) {
         super(game, g);
-        getActorGroup().addActor(new OneSpriteStaticActor(g.getWood()){
+        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.FAVAGO)){
             @Override
             public void init() {
                 super.init();
@@ -24,5 +23,4 @@ public class MapActorWoodStage extends MapActorStage {
             }
         });
     }
-
 }

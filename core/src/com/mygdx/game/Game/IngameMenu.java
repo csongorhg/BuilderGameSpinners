@@ -3,14 +3,22 @@ package com.mygdx.game.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -29,7 +37,6 @@ public class IngameMenu extends MyStage {
     private MyLabel napLabel;
     private OneSpriteStaticActor hatter;
     private OneSpriteStaticActor faActor, koActor, aranyActor, nepActor, etelActor, katonaActor;
-    private Label.LabelStyle style;
 
     public IngameMenu(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -42,14 +49,11 @@ public class IngameMenu extends MyStage {
         float height = ((ExtendViewport)getViewport()).getWorldHeight();
 
         hatter = new OneSpriteStaticActor(Assets.manager.get(Assets.FAHATTER));
-
         addActor(hatter);
-
         hatter.setSize(width/2+150, hatter.getHeight());
-
         hatter.setPosition(0, height - hatter.getHeight() * 1 / 4 - 10);
 
-        labelStyle(hatter.getHeight()/8-10);
+        Label.LabelStyle style = labelStyle(hatter.getHeight()/8-10);
 
         faLabel = new MyLabel(""+Statistics.fa, style);
         koLabel = new MyLabel(""+Statistics.ko, style);
@@ -88,42 +92,25 @@ public class IngameMenu extends MyStage {
 
         faActor.setPosition(5, height-5-faActor.getHeight());
         koActor.setPosition(5, faActor.getY()-10-koActor.getHeight());
-
         faLabel.setPosition(faActor.getX()+faActor.getWidth()+20, faActor.getY()-10);
         koLabel.setPosition(koActor.getX()+koActor.getWidth()+20, koActor.getY()-10);
 
         aranyActor.setPosition(faActor.getX()+faActor.getWidth()+150, faActor.getY());
         etelActor.setPosition(koActor.getX()+koActor.getWidth()+150, koActor.getY());
-
         aranyLabel.setPosition(aranyActor.getX()+aranyActor.getWidth()+20, aranyActor.getY()-10);
         etelLabel.setPosition(etelActor.getX()+etelActor.getWidth()+20, etelActor.getY()-10);
 
         nepActor.setPosition(aranyActor.getX()+aranyActor.getWidth()+150, aranyActor.getY());
         katonaActor.setPosition(etelActor.getX()+etelActor.getWidth()+150, etelActor.getY());
-
         nepLabel.setPosition(nepActor.getX()+nepActor.getWidth()+20, nepActor.getY()-10);
         katonaLabel.setPosition(katonaActor.getX()+katonaActor.getWidth()+20, katonaActor.getY()-10);
 
         napLabel = new MyLabel(TimeStepper.elteltnap+". nap", style);
-
         addActor(napLabel);
-
         napLabel.setPosition(nepActor.getX()+nepActor.getWidth()+150, height-((hatter.getHeight()/8)+napLabel.getHeight()/2)-5);
 
     }
 
-    private void labelStyle(float a){
-        style = new Label.LabelStyle();
-        style.fontColor = Color.WHITE;
-
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        meret.size = (int)a;
-        meret.characters = Assets.CHARS;
-        BitmapFont font = generator.generateFont(meret);
-        generator.dispose();
-        style.font = font;
-    }
 
     @Override
     public void act(float delta) {
@@ -145,5 +132,21 @@ public class IngameMenu extends MyStage {
     @Override
     public void dispose() {
         super.dispose();
+    }
+
+
+    private Label.LabelStyle labelStyle(float a){
+        Label.LabelStyle style;
+        style = new Label.LabelStyle();
+        style.fontColor = Color.WHITE;
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        meret.size = (int)a;
+        meret.characters = Assets.CHARS;
+        BitmapFont font = generator.generateFont(meret);
+        generator.dispose();
+        style.font = font;
+        return style;
     }
 }
