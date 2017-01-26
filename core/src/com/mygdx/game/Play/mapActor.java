@@ -11,13 +11,15 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 
 abstract public class mapActor extends Group {
+    private static float posX = 0,posY = 99*128;
+    private static int n = 0;
     public boolean isFog() {
         return fog;
     }
 
     public void setFog(boolean fog) {
         fogActor.setVisible(fog);
-        actor.setVisible(!fog);
+        //actor.setVisible(!fog);
         this.fog = fog;
     }
 
@@ -32,11 +34,21 @@ abstract public class mapActor extends Group {
 
     public mapActor(Actor a, int x, int y) {
         addActor(a);
+        n++;
         addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
         //fogActor.setColor(1f,1f,1f,1f);
         actor = a;
         fogActor.setSize(a.getWidth(), a.getHeight());
-        setPosition(128*x, 128*y);
+        setPosition(posX, posY);
+        if(n == 100) {
+            n = 0;
+            posY -= 128;
+            posX = 0;
+        }
+        else {
+            posX += 128;
+        }
+
     }
 
 

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyButton;
@@ -19,6 +20,8 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
+
+import java.awt.Point;
 
 /**
  * Created by mordes on 2017.01.14..
@@ -60,12 +63,18 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         mapHeight=100;
         fillArea();
 
-        setCameraMoveToXY(cityx*128,cityy*128+128,((OrthographicCamera)getCamera()).zoom,9999);
+        setCameraMoveToXY(cityx*128,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
 
         //kiködösítés
-        fog(cityx,cityy);
+        int seged;
 
+        seged = cityy;
+        cityy = cityx;
+        cityx = seged;
 
+        fog((byte)cityx,(byte)cityy);
+
+        System.out.println(cityx+" "+cityy);
 
         textButton = new MyButton("Vissza", game.getTextButtonStyle());
         textButton.addListener(new ClickListener(){
@@ -81,9 +90,9 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
     private void fillArea() {
 
         generator = new Generator(mapWidth,mapHeight); //100x100-as terület
-        mapActors = new mapActor[100][100];
+        mapActors = new mapActor[generator.getWORLD().length][generator.getWORLD()[0].length];
 
-        generator = new Generator(100,100); //100x100-as terület
+        generator = new Generator(generator.getWORLD().length,generator.getWORLD()[0].length); //100x100-as terület
 
         int[][] world = generator.getWORLD();
         System.out.println(generator.toString());
@@ -93,10 +102,45 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         OneSpriteStaticActor oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
         oneSpriteStaticActor.setSize(128,128);
 
-        int i = mapActors.length-1;
-        int j;
+        //int i = mapActors.length-1;
+        //int j;
 
-        for (int[] aWorld : world) {
+        for (int i = 0; i < world.length; i++) {
+            for (int j = 0; j < world[0].length; j++) {
+                switch (world[i][j]){
+                    case 0:
+                        mapActors[i][j] = new grassActor(i,j);
+                        addActor(mapActors[i][j]);
+                        break;
+                    case 1:
+                        mapActors[i][j] = new waterActor(i,j);
+                        addActor(mapActors[i][j]);
+                        cityx = j;
+                        cityy = i;
+                        System.out.println("bement");
+                        break;
+                    case 2:
+                        mapActors[i][j] = new woodActor(i,j);
+                        addActor(mapActors[i][j]);
+                        break;
+                    case 3:
+                        mapActors[i][j] = new stoneActor(i,j);
+                        addActor(mapActors[i][j]);
+                        break;
+                    case 9:
+                        citycount++;
+                        mapActors[i][j] = new cityActor(i,j,citycount);
+                        addActor(mapActors[i][j]);
+                        if(citycount == 4){
+                            cityx = j;
+                            cityy = i;
+                        }
+                        break;
+                }
+            }
+        }
+
+        /*for (int[] aWorld : world) {
 
             j = 0;
 
@@ -133,26 +177,53 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
             }
             i--;
-        }
+        }*/
     }
 
-    private void fog(int x, int y){
-        //a kiködösíteni kívánt terület x-y kordinátáit kell megadni (a mapActors tömb szerint!)
-        if(x < mapActors.length && x > -1 && y < mapActors[0].length && y > -1 && mapActors[x][y].isFog()){
-            mapActors[x][y].setFog(false);
-            if(mapActors[x][y] instanceof waterActor && x != 99 && x != 0 && y != 99 && y != 0){
-                if(mapActors[x][y+1] instanceof grassActor || mapActors[x][y-1] instanceof grassActor){
-                    mapActors[x + 1][y].setFog(false);
-                    mapActors[x - 1][y].setFog(false);
-                }
-            }
-            if(!(mapActors[x][y] instanceof waterActor)){
-                fog(x + 1, y);
-                fog(x - 1, y);
-                fog(x, y + 1);
-                fog(x, y - 1);
+    private void fog(byte x, byte y){
+
+        Queue<Point> points = new Queue<Point>();
+
+        //Kezdetben minden legyen köd!
+        for (int i = 0; i< mapActors.length; i++){
+            for(int j = 0; j<mapActors[i].length; j++)
+            {
+                mapActors[i][j].setFog(true);
             }
         }
+
+        points.addLast(new Point(x,y));
+
+        while (points.size>0){
+            Point p = points.removeFirst();
+            //if(!(mapActors[p.x][p.y] instanceof waterActor) && !mapActors[p.x][p.y].isFog()){
+                if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && !(mapActors[p.x+1][p.y] instanceof waterActor)) {
+                    points.addLast(new Point(p.x + 1, p.y));
+                    mapActors[p.x + 1][p.y].setFog(false);
+                }
+                if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && !(mapActors[p.x-1][p.y] instanceof waterActor)) {
+                    points.addLast(new Point(p.x - 1, p.y));
+                    mapActors[p.x - 1][p.y].setFog(false);
+                }
+                if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && !(mapActors[p.x][p.y+1] instanceof waterActor)) {
+                    points.addLast(new Point(p.x, p.y + 1));
+                    mapActors[p.x][p.y + 1].setFog(false);
+                }
+                if (p.y>0 && mapActors[p.x][p.y-1].isFog() && !(mapActors[p.x][p.y-1] instanceof waterActor)) {
+                    points.addLast(new Point(p.x, p.y - 1));
+                    mapActors[p.x][p.y - 1].setFog(false);
+                }
+            //}
+            //System.out.println(p.x + " - " + p.y);
+        }
+        /*
+        for (int i = 1; i< mapActors.length; i++){
+            for(int j = 1; j<mapActors[i].length; j++)
+            {
+            }
+        }
+        */
+
     }
 
     @Override
