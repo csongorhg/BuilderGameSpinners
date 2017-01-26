@@ -8,7 +8,6 @@ import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.mapActorInterface.MapActorGlobalStage;
 import com.mygdx.game.mapActorInterface.MapActorGrassStage;
 import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
