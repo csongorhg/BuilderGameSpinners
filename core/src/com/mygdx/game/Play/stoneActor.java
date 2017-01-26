@@ -35,13 +35,6 @@ public class stoneActor extends mapActor {
 
     public Texture getStone(){return stone.getTexture();}
 
-    public int getPosArrayX() {
-        return posArrayX;
-    }
-
-    public int getPosArrayY() {
-        return posArrayY;
-    }
 
     @Override
     public String toString() {

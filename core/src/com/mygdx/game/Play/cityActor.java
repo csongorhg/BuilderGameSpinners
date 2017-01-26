@@ -35,13 +35,6 @@ public class cityActor extends mapActor {
 
     public Texture getCityHall(){return cityhall.getTexture();}
 
-    public int getPosArrayX() {
-        return posArrayX;
-    }
-
-    public int getPosArrayY() {
-        return posArrayY;
-    }
 
     @Override
     public String toString() {
