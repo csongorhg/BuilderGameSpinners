@@ -37,6 +37,22 @@ public class TimeStepper {
 
         //---------------------------------------
 
+        if(!nyarvan){
+            if(fa > lakosokszama/2){
+                fa-=lakosokszama/2;
+            }else{
+                lakosokszama = (lakosokszama/2-(lakosokszama/2-fa))*2;
+                fa = 0;
+            }
+
+            if(fa > katonakszama/2){
+                fa-=katonakszama/2;
+            }else{
+                katonakszama = (katonakszama/2-(katonakszama/2-fa))*2;
+                fa = 0;
+            }
+        }
+
         if(kaja > lakosokszama){
             kaja-=lakosokszama;
         }else{
