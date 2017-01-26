@@ -13,7 +13,7 @@ import com.mygdx.game.Play.grassActor;
  * Created by tuskeb on 2017. 01. 26..
  */
 
-public class MapActorGrassStage extends MapActorGlobalStage {
+public class MapActorGrassStage extends MapActorStage {
 
 
     public MapActorGrassStage(MyGdxGame game, grassActor g) {

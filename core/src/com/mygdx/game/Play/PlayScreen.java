@@ -10,6 +10,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.mapActorInterface.MapActorGlobalStage;
 import com.mygdx.game.mapActorInterface.MapActorGrassStage;
+import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
 
 /**
@@ -17,7 +18,7 @@ import com.mygdx.game.mapActorInterface.MapActorWoodStage;
  */
 public class PlayScreen extends MyScreen{
     protected PlayStage playStage;
-    protected MapActorGlobalStage mapActorGlobalStage;
+    protected MapActorStage mapActorGlobalStage;
 
     private MyStage bgStage;
 
@@ -59,7 +60,7 @@ public class PlayScreen extends MyScreen{
     public void init() {
         /*OrthographicCamera orthographicCamera = new OrthographicCamera(1280, 720);
         orthographicCamera.setToOrtho(true);*/
-        mapActorGlobalStage = new MapActorGlobalStage(game, null);
+        mapActorGlobalStage = new MapActorStage(game, null);
 
         playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game){
             @Override
@@ -73,7 +74,7 @@ public class PlayScreen extends MyScreen{
                     mapActorGlobalStage = new MapActorWoodStage(game, (woodActor)mapActor);
                 }
                 if (mapActorGlobalStage == null) {
-                    mapActorGlobalStage = new MapActorGlobalStage(game, mapActor);
+                    mapActorGlobalStage = new MapActorStage(game, mapActor);
                 }
             }
         };

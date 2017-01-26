@@ -9,7 +9,7 @@ import com.mygdx.game.Play.woodActor;
  * Created by tuskeb on 2017. 01. 26..
  */
 
-public class MapActorWoodStage extends MapActorGlobalStage {
+public class MapActorWoodStage extends MapActorStage {
     private grassActor mapactor;
 
     public MapActorWoodStage(MyGdxGame game, woodActor g) {
