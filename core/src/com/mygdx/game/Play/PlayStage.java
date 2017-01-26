@@ -74,7 +74,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
         fog((byte)cityx,(byte)cityy);
 
-        System.out.println(cityx+" "+cityy);
+        //System.out.println(cityx+" "+cityy);
 
         textButton = new MyButton("Vissza", game.getTextButtonStyle());
         textButton.addListener(new ClickListener(){
@@ -95,7 +95,7 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         generator = new Generator(generator.getWORLD().length,generator.getWORLD()[0].length); //100x100-as terület
 
         int[][] world = generator.getWORLD();
-        System.out.println(generator.toString());
+        //System.out.println(generator.toString());
 
         citycount = 0;
 
@@ -115,9 +115,6 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
                     case 1:
                         mapActors[i][j] = new waterActor(i,j);
                         addActor(mapActors[i][j]);
-                        cityx = j;
-                        cityy = i;
-                        System.out.println("bement");
                         break;
                     case 2:
                         mapActors[i][j] = new woodActor(i,j);
@@ -140,44 +137,6 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
             }
         }
 
-        /*for (int[] aWorld : world) {
-
-            j = 0;
-
-            for (int anAWorld : aWorld) {
-
-                switch (anAWorld) {
-                    case 0:
-                        mapActors[j][i] = new grassActor(j,i);
-                        addActor(mapActors[j][i]);
-                        break;
-                    case 1:
-                        mapActors[j][i] = new waterActor(j,i);
-                        addActor(mapActors[j][i]);
-                        break;
-                    case 2:
-                        mapActors[j][i] = new woodActor(j,i);
-                        addActor(mapActors[j][i]);
-                        break;
-                    case 3:
-                        mapActors[j][i] = new stoneActor(j,i);
-                        addActor(mapActors[j][i]);
-                        break;
-                    case 9:
-                        citycount++;
-                        mapActors[j][i] = new cityActor(j,i,citycount);
-                        addActor(mapActors[j][i]);
-                        if(citycount == 4){
-                            cityx = j;
-                            cityy = i;
-                        }
-                        break;
-                }
-                j++;
-
-            }
-            i--;
-        }*/
     }
 
     private void fog(byte x, byte y){
@@ -216,13 +175,32 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
             //}
             //System.out.println(p.x + " - " + p.y);
         }
-        /*
-        for (int i = 1; i< mapActors.length; i++){
-            for(int j = 1; j<mapActors[i].length; j++)
-            {
+
+        boolean[][] isWaterFog = new boolean[mapActors.length][mapActors[0].length];
+
+
+        //System.out.println("Amit csináltam");
+
+        for (int i = 0; i < mapActors.length; i++){
+            for(int j = 1; j < mapActors[i].length - 1; j++) {
+                if (mapActors[i][j - 1].isFog() && !mapActors[i][j].isFog()) {
+                    isWaterFog[i][j - 1] = true;
+                    mapActors[i][j - 1].setFog(false);
+                }
+                else if (mapActors[i][j + 1].isFog() && !mapActors[i][j].isFog()) {
+                    isWaterFog[i][j + 1] = true;
+                    mapActors[i][j + 1].setFog(false);
+                }
+                else {
+                    isWaterFog[i][j] = false;
+                }
+                //System.out.print(isWaterFog[i][j] ? "1" : "0");
             }
+            //System.out.println();
         }
-        */
+
+
+
 
     }
 
