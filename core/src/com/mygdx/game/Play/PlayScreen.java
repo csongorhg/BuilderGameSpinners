@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -15,6 +16,7 @@ import com.mygdx.game.mapActorInterface.MapActorCityHallStage;
 import com.mygdx.game.mapActorInterface.MapActorGrassStage;
 import com.mygdx.game.mapActorInterface.MapActorStoneStage;
 import com.mygdx.game.mapActorInterface.MapActorStage;
+import com.mygdx.game.mapActorInterface.MapActorWoodCutterStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
 
 /**
@@ -94,6 +96,9 @@ public class PlayScreen extends MyScreen{
                 }
                 else if (mapActor instanceof grassActor) {
                     mapActorGlobalStage = new MapActorGrassStage(game, (grassActor)mapActor);
+                }
+                else if(mapActor instanceof WoodCutter){
+                    mapActorGlobalStage = new MapActorWoodCutterStage(game, (WoodCutter)mapActor);
                 }
                 else if (mapActorGlobalStage == null) {
                     mapActorGlobalStage = new MapActorStage(game, null);

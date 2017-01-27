@@ -24,4 +24,10 @@ public class MapActorWoodCutterStage extends MapActorStage {
             }
         });
     }
+
+    @Override
+    public String toString() {
+        return "11";
+    }
+
 }

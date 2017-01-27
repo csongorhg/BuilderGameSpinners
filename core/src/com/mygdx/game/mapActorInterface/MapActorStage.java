@@ -97,18 +97,13 @@ public class MapActorStage extends MyStage {
 
 
     public void addSelectActor(Stage stage){
-        if(mapactor != null) {
-            this.selectActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)) {
+        if(mapactor != null && !mapactor.isFog()) {
+            this.selectActor = new OneSpriteStaticActor(Assets.manager.get(Assets.KIJELOLES)) {
                 @Override
                 public void init() {
                     super.init();
-                    if(!(mapactor instanceof cityActor)) {
-                        setPosition(mapactor.getX(), mapactor.getY());
-                        setSize(128, 128);
-                    }else{
-                        setPosition(mapactor.getX()-128, mapactor.getY());
-                        setSize(256, 256);
-                    }
+                    setSize(mapactor.getMapActorWidth(), mapactor.getMapActorHeight());
+                    setPosition(mapactor.getX()-(mapactor.getMapActorWidth()-128), mapactor.getY());
                     setTouchable(Touchable.disabled);
                 }
             };

@@ -38,7 +38,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private IngameMenu ingameMenu;
 
-    private mapActor[][] mapActors;
+    public static mapActor[][] mapActors;
 
     private Generator generator;
 
@@ -299,6 +299,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         }
 
         ingameMenu.act(delta);
+
+
     }
 
     private void mapSave(){

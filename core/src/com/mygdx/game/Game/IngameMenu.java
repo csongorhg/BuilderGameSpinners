@@ -53,6 +53,12 @@ public class IngameMenu extends MyStage {
         addActor(hatter);
         hatter.setSize(width/2+150, hatter.getHeight());
         hatter.setPosition(0, height - hatter.getHeight() * 1 / 4 - 10);
+        hatter.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+            }
+        });
 
         Label.LabelStyle style = labelStyle(hatter.getHeight()/8-10);
 
