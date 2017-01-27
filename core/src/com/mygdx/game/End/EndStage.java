@@ -46,14 +46,14 @@ public class EndStage extends MyStage {
         addBackEventStackListener();
 
         labelStyle();
-        myLabel = new MyLabel(TimeStepper.elteltnap+" napot éltél túl.",style);
+        myLabel = new MyLabel("You survived "+TimeStepper.elteltnap+" days.",style);
         myLabel.setAlignment(Align.center);
         myLabel.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight()/5);
         myLabel.setPosition(0,getViewport().getWorldHeight()/5*3);
         addActor(myLabel);
 
         labelStyle();
-        myLabel1 = new MyLabel("Legtöbb "+Statistics.legtobblakos+" lakosod volt.",style);
+        myLabel1 = new MyLabel("Highest population: "+Statistics.legtobblakos+" people",style);
         myLabel1.setAlignment(Align.center);
         myLabel1.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight()/5);
         myLabel1.setPosition(0,getViewport().getWorldHeight()/5*2);

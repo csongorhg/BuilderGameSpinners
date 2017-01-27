@@ -24,6 +24,7 @@ import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
 
@@ -55,7 +56,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private Preferences preferences;
     private static int nap = 0;
     private static String saveMap = "";
-    //pref
+    //prefstatistic
+    private Preferences prefstatistic;
+    private static String saveStatistic ="";
 
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -69,7 +72,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         ingameMenu = new IngameMenu(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
 
-
+        prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
         preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
 
 
@@ -85,6 +88,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         mapWidth=100;
         mapHeight=100;
+        statisticupdate();
         fillArea();
 
         setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
@@ -102,6 +106,32 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         //getViewport().setScreenWidth(getViewport().getScreenWidth()-512);
         //System.out.println(cityx+" "+cityy);
 
+    }
+
+    private  void statisticupdate(){
+        if(!prefstatistic.getString(PlayScreen.PREFstatistic,"").equals("")){
+            String[] t = prefstatistic.getString(PlayScreen.PREFstatistic).split(";");
+
+            Statistics.legtobblakos = Integer.parseInt(t[0]);
+
+            Statistics.lakosokszama = Integer.parseInt(t[1]);
+            Statistics.fa = Integer.parseInt(t[2]);
+            Statistics.ko = Integer.parseInt(t[3]);
+            Statistics.arany = Integer.parseInt(t[4]);
+            Statistics.kaja = Integer.parseInt(t[5]);
+
+            Statistics.lakosokszamaValt = Integer.parseInt(t[6]);
+            Statistics.faValt = Integer.parseInt(t[7]);
+            Statistics.koValt = Integer.parseInt(t[8]);
+            Statistics.aranyValt = Integer.parseInt(t[9]);
+            Statistics.kajaValt = Integer.parseInt(t[10]);
+
+            Statistics.epuletekszama = Integer.parseInt(t[11]);
+            Statistics.kutakszama = Integer.parseInt(t[12]);
+            Statistics.katonakszama = Integer.parseInt(t[13]);
+
+            TimeStepper.elteltnap = Integer.parseInt(t[14]);
+        }
     }
 
 
@@ -283,11 +313,13 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         /*if(TimeStepper.vege){
             preferences.putString(PlayScreen.PREFS,"");
+            prefstatistic.putString(PlayScreen.PREFstatistic,"");
             game.setScreen(new EndScreen(game));
         }*/
 
         if (TimeStepper.elteltnap != nap) {
             mapSave();
+            statisticSave();
         }
 
         if (isUpdateFustrumNeed()){
@@ -315,6 +347,12 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             saveMap += "\n";
         }
         preferences.putString(PlayScreen.PREFS,saveMap);
+    }
+
+    private void statisticSave(){
+        saveStatistic = "" ;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
+        prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
     }
 
 
