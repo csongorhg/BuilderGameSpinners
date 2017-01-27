@@ -82,7 +82,7 @@ public class OtherStage extends MyStage {
         //átméretezés
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        meret.size = 100;
+        meret.size = 140;
         meret.characters = Assets.CHARS;
         BitmapFont font = generator.generateFont(meret);
         generator.dispose();
