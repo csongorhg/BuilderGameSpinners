@@ -1,8 +1,10 @@
 package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.MyBaseClasses.MyScreen;
@@ -22,12 +24,11 @@ public class PlayScreen extends MyScreen{
 
     protected PlayStage playStage;
     protected MapActorStage mapActorGlobalStage;
-
+    private InputMultiplexer im;
     private MyStage bgStage;
 
     public static final String PREFS = "MAP";
     private Preferences preferences = Gdx.app.getPreferences(PREFS);
-
     public PlayScreen(MyGdxGame game) {
         super(game);
     }
@@ -60,6 +61,7 @@ public class PlayScreen extends MyScreen{
     public void dispose() {
         playStage.dispose();
         preferences.flush();
+        mapActorGlobalStage.dispose();
         super.dispose();
     }
 
@@ -79,25 +81,27 @@ public class PlayScreen extends MyScreen{
             @Override
             public void selectMapActor(mapActor mapActor) {
                 mapActorGlobalStage.dispose();
+                im.removeProcessor(mapActorGlobalStage);
                 mapActorGlobalStage = null;
                 if (mapActor instanceof stoneActor) {
                     mapActorGlobalStage = new MapActorStoneStage(game, (stoneActor)mapActor);
                 }
-                if (mapActor instanceof woodActor) {
+                else if (mapActor instanceof woodActor) {
                     mapActorGlobalStage = new MapActorWoodStage(game, (woodActor)mapActor);
                 }
-                if (mapActor instanceof cityActor) {
+                else if (mapActor instanceof cityActor) {
                     mapActorGlobalStage = new MapActorCityHallStage(game, (cityActor)mapActor);
                 }
-                if (mapActor instanceof grassActor) {
+                else if (mapActor instanceof grassActor) {
                     mapActorGlobalStage = new MapActorGrassStage(game, (grassActor)mapActor);
                 }
-                if (mapActorGlobalStage == null) {
+                else if (mapActorGlobalStage == null) {
                     mapActorGlobalStage = new MapActorStage(game, null);
                 }
+
+                im.addProcessor(0,mapActorGlobalStage);
             }
         };
-        //Gdx.input.setInputProcessor(playStage);
 
 
         //háttér
@@ -127,6 +131,11 @@ public class PlayScreen extends MyScreen{
             }
         };
         //háttér vége
+        GestureDetector gd;
+        gd = new GestureDetector(20, 0.5f, 2, 0.15f, playStage);
+        im = new InputMultiplexer(mapActorGlobalStage, gd, playStage);
+        Gdx.input.setInputProcessor(im);
+
     }
 
 }

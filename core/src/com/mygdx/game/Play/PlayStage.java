@@ -72,9 +72,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
 
-        GestureDetector gd = new GestureDetector(20, 0.5f, 2, 0.15f, this);
-        InputMultiplexer im = new InputMultiplexer(gd, this);
-        Gdx.input.setInputProcessor(im);
+
         setCameraTargetX(0);
         setCameraTargetY(0);
         setCameraTargetZoom(2);
@@ -100,6 +98,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         fog((byte)cityx,(byte)cityy);
 
+        //ExtendViewport v = (ExtendViewport)getViewport();
+        //getViewport().setScreenWidth(getViewport().getScreenWidth()-512);
         //System.out.println(cityx+" "+cityy);
 
     }
@@ -142,7 +142,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             for (int j = 0; j < world[0].length; j++) {
                 switch (world[i][j]){
                     case 0:
-                        mapActors[i][j] = new grassActor(i,j);
+                        mapActors[i][j] = new grassActor(i,j, 128, 128);
                         addActor(mapActors[i][j]);
                         final mapActor g = mapActors[i][j];
                         mapActors[i][j].addListener(new ClickListener(){
@@ -154,7 +154,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         });
                         break;
                     case 1:
-                        mapActors[i][j] = new waterActor(i,j);
+                        mapActors[i][j] = new waterActor(i,j, 128, 128);
                         addActor(mapActors[i][j]);
                         final mapActor wa = mapActors[i][j];
                         mapActors[i][j].addListener(new ClickListener(){
@@ -166,7 +166,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         });
                         break;
                     case 2:
-                        mapActors[i][j] = new woodActor(i,j);
+                        mapActors[i][j] = new woodActor(i,j, 128, 128);
                         addActor(mapActors[i][j]);
                         final mapActor w = mapActors[i][j];
                         mapActors[i][j].addListener(new ClickListener(){
@@ -178,7 +178,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         });
                         break;
                     case 3:
-                        mapActors[i][j] = new stoneActor(i,j);
+                        mapActors[i][j] = new stoneActor(i,j, 128,128);
                         addActor(mapActors[i][j]);
                         final mapActor s = mapActors[i][j];
                         mapActors[i][j].addListener(new ClickListener(){
@@ -191,7 +191,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         break;
                     case 9:
                         citycount++;
-                        mapActors[i][j] = new cityActor(i,j,citycount);
+                        mapActors[i][j] = new cityActor(i,j,citycount, 256, 256);
                         addActor(mapActors[i][j]);
                         final mapActor c = mapActors[i][j];
                         mapActors[i][j].addListener(new ClickListener(){
@@ -335,16 +335,16 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             c.position.x = getViewport().getWorldWidth()/2*c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2*c.zoom){
-            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom;
+        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2*c.zoom + 256*c.zoom){
+            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom + 256*c.zoom;
             setCameraTargetX(c.position.x);
         }
         if (c.position.y < getViewport().getWorldHeight()/2*c.zoom) {
             c.position.y = getViewport().getWorldHeight()/2*c.zoom;
             setCameraTargetY(c.position.y);
         }
-        if (c.position.y>mapHeight*128-getViewport().getWorldHeight()/2*c.zoom){
-            c.position.y = mapHeight*128-getViewport().getWorldHeight()/2*c.zoom;
+        if (c.position.y>mapHeight*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom){
+            c.position.y = mapHeight*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom;
             setCameraTargetY(c.position.y);
         }
     }

@@ -13,19 +13,21 @@ public class stoneActor extends mapActor {
     private OneSpriteStaticActor stone;
 
 
-    public stoneActor(int x, int y) {
+    public stoneActor(int x, int y, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
             @Override
             public void init() {
                 super.init();
-                setSize(128,128);
+                setSize(w, h);
             }
-        }, x, y);
+        }, x, y, w, h);
+
+
         addActor(stone = new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.STONE_BLOCK):Assets.manager.get(Assets.STONE2_BLOCK)){
             @Override
             public void init() {
                 super.init();
-                setSize(128, 128);
+                setSize(w, h);
 
             }
 

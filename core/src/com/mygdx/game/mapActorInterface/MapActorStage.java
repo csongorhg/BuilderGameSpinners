@@ -1,6 +1,7 @@
 package com.mygdx.game.mapActorInterface;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -60,7 +62,18 @@ public class MapActorStage extends MyStage {
 
 
         OneSpriteStaticActor oneSpriteStaticActor;
-        actorGroup.addActor(oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FAHATTER)));
+        actorGroup.addActor(oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FAHATTER)){
+            @Override
+            public void init() {
+                super.init();
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
+            }
+        });
         oneSpriteStaticActor.setPosition(0,0);
         oneSpriteStaticActor.setSize(actorGroup.getWidth(), actorGroup.getHeight());
 
@@ -105,7 +118,7 @@ public class MapActorStage extends MyStage {
 
     @Override
     public void dispose() {
-        if (selectActor !=null){
+        if (selectActor != null && selectActor.getStage()!=null) {
             selectActor.getStage().getActors().removeValue(selectActor, true);
         }
         super.dispose();

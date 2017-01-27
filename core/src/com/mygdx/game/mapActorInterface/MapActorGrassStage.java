@@ -36,7 +36,7 @@ public class MapActorGrassStage extends MapActorStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                new WoodCutter(mapactor.getPosArrayX(),mapactor.getPosArrayY(), mapactor);
+                new WoodCutter(mapactor.getPosArrayX(), mapactor.getPosArrayY(), mapactor, 128, 128);
             }
         });
     }
