@@ -61,7 +61,7 @@ public class Assets {
 	public static final AssetDescriptor<Texture> GRID
 			= new AssetDescriptor<Texture>("Menu/racs.png", Texture.class);
 	public static final AssetDescriptor<Texture> FOG
-			= new AssetDescriptor<Texture>("Tiles/kod.png", Texture.class);
+			= new AssetDescriptor<Texture>("Menu/gatewall.png", Texture.class);
 	public static final AssetDescriptor<Texture> GRASS_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/fu.png", Texture.class);
 	public static final AssetDescriptor<Texture> WATER_BLOCK
