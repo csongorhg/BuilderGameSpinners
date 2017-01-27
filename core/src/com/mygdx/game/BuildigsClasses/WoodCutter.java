@@ -14,20 +14,27 @@ import com.mygdx.game.Play.mapActor;
 
 public class WoodCutter extends mapActor {
 
-    public WoodCutter(int x, int y, grassActor g) {
+    private OneSpriteStaticActor woodCutter;
+
+
+    public WoodCutter(int x, int y, grassActor g, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
             @Override
             public void init() {
                 super.init();
                 setSize(128,128);
             }
-        }, x, y);
-        g.addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
+        }, x, y, w, h);
+
+        g.addActor(woodCutter = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
             @Override
             public void init() {
                 super.init();
-                setSize(128,128);
+                setSize(w,h);
             }
         });
+
+        //woodCutter.addListener(new ClickListener())
+
     }
 }

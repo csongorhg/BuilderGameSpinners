@@ -8,16 +8,14 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 public class waterActor extends mapActor {
 
-
-
-    public waterActor(int x, int y) {
+    public waterActor(int x, int y, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK)){
             @Override
             public void init() {
                 super.init();
-                setSize(128,128);
+                setSize(w,h);
             }
-        }, x, y);
+        }, x, y, w, h);
     }
 
 

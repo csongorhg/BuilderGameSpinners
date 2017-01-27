@@ -37,6 +37,7 @@ public class IngameMenu extends MyStage {
     private MyLabel napLabel;
     private OneSpriteStaticActor hatter;
     private OneSpriteStaticActor faActor, koActor, aranyActor, nepActor, etelActor, katonaActor;
+    private float width, height;
 
     public IngameMenu(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -45,8 +46,8 @@ public class IngameMenu extends MyStage {
 
     @Override
     public void init() {
-        float width = ((ExtendViewport)getViewport()).getWorldWidth();
-        float height = ((ExtendViewport)getViewport()).getWorldHeight();
+        width = ((ExtendViewport)getViewport()).getWorldWidth();
+        height = ((ExtendViewport)getViewport()).getWorldHeight();
 
         hatter = new OneSpriteStaticActor(Assets.manager.get(Assets.FAHATTER));
         addActor(hatter);
@@ -149,4 +150,6 @@ public class IngameMenu extends MyStage {
         style.font = font;
         return style;
     }
+
+    public float getHatterPosition(){return (hatter.getHeight() * 1 / 4 + 10);}
 }

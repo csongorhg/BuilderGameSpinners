@@ -10,6 +10,7 @@ import com.mygdx.game.MyGdxGame;
  */
 
 public class MapActorWoodCutterStage extends MapActorStage {
+
     private WoodCutter mapactor;
 
     public MapActorWoodCutterStage(MyGdxGame game, WoodCutter g) {

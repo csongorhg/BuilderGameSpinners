@@ -12,20 +12,21 @@ public class cityActor extends mapActor {
     private OneSpriteStaticActor cityhall;
 
 
-    public cityActor(int x, int y, int count) {
+    public cityActor(int x, int y, int count, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
             @Override
             public void init() {
                 super.init();
                 setSize(128,128);
             }
-        }, x, y);
+        }, x, y, w, h);
+
         if(count == 4) {
             addActor(cityhall = new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)) {
                 @Override
                 public void init() {
                     super.init();
-                    setSize(256, 256);
+                    setSize(w, h);
                     setPosition(-128, 0);
                 }
 
