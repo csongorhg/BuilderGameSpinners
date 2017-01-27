@@ -29,7 +29,7 @@ public class OtherStage extends MyStage {
     private Label.LabelStyle style;
 
     public static final String PREFS = "MAP";
-    private Preferences preferences;
+    private Preferences preferences,prefstatistic;
 
     public OtherStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -38,6 +38,7 @@ public class OtherStage extends MyStage {
 
     public void init() {
 
+        prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
         preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
 
         addBackEventStackListener();
@@ -54,6 +55,7 @@ public class OtherStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                prefstatistic.putString(PlayScreen.PREFstatistic,"");
                 preferences.putString(PlayScreen.PREFS,"");
                 game.setScreen(new PlayScreen(game));
             }

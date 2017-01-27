@@ -28,6 +28,9 @@ public class PlayScreen extends MyScreen{
     private MyStage bgStage;
 
     public static final String PREFS = "MAP";
+    public static final String PREFstatistic = "STATISTIC";
+
+    private Preferences prefstatistic = Gdx.app.getPreferences(PREFstatistic);
     private Preferences preferences = Gdx.app.getPreferences(PREFS);
     public PlayScreen(MyGdxGame game) {
         super(game);
@@ -60,6 +63,7 @@ public class PlayScreen extends MyScreen{
     @Override
     public void dispose() {
         playStage.dispose();
+        prefstatistic.flush();
         preferences.flush();
         mapActorGlobalStage.dispose();
         super.dispose();
@@ -67,6 +71,7 @@ public class PlayScreen extends MyScreen{
 
     @Override
     public void hide() {
+        prefstatistic.flush();
         preferences.flush();
         super.hide();
     }
