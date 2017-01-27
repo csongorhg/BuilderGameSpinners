@@ -14,6 +14,9 @@ public class TimeStepper {
     public static int egynap = 10;
     public static int ev = 60; //tél és nyár = év/2
     public static boolean nyarvan = true;
+    public static boolean vege = false;
+
+
 
     public static void STEP(float delta){
         elteltido+=delta;
@@ -35,6 +38,10 @@ public class TimeStepper {
         lakosokszama += lakosokszamaValt;
 
         //---------------------------------------
+
+        if(legtobblakos < lakosokszama){
+            legtobblakos = lakosokszama;
+        }
 
         if(!nyarvan){
             if(fa > lakosokszama/2){
@@ -96,6 +103,7 @@ public class TimeStepper {
 
         if(lakosokszama <= 0){
             System.out.println("Játék vége!");
+            vege = true;
         }
     }
 
