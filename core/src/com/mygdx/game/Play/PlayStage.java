@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.End.EndScreen;
 import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
@@ -255,22 +256,18 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         for (int i = 0; i < mapActors.length; i++){
             for(int j = 1; j < mapActors[i].length - 1; j++) {
-                if (mapActors[i][j - 1].isFog() && !mapActors[i][j].isFog()) {
-                    isWaterFog[i][j - 1] = true;
-                    mapActors[i][j - 1].setFog(false);
-                }
-                else if (mapActors[i][j + 1].isFog() && !mapActors[i][j].isFog()) {
+                if (mapActors[i][j + 1].isFog() && !mapActors[i][j].isFog() && !isWaterFog[i][j]) {
                     isWaterFog[i][j + 1] = true;
                     mapActors[i][j + 1].setFog(false);
                 }
-                else {
-                    isWaterFog[i][j] = false;
+                else if (mapActors[i][j - 1].isFog() && !mapActors[i][j].isFog() && !isWaterFog[i][j]) {
+                    isWaterFog[i][j - 1] = true;
+                    mapActors[i][j - 1].setFog(false);
                 }
                 //System.out.print(isWaterFog[i][j] ? "1" : "0");
             }
             //System.out.println();
         }
-
 
 
 
@@ -283,6 +280,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
+
+        /*if(TimeStepper.vege){
+            preferences.putString(PlayScreen.PREFS,"");
+            game.setScreen(new EndScreen(game));
+        }*/
 
         if (TimeStepper.elteltnap != nap) {
             mapSave();
