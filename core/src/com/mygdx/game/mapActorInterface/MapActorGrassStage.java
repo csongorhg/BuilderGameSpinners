@@ -36,11 +36,13 @@ public class MapActorGrassStage extends MapActorStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                WoodCutter woodCutter = new WoodCutter(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = woodCutter;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 11};
+                ujepuletFeltolt(t);
             }
         });
     }
 
-
+    private void ujepuletFeltolt(int t[]){
+        for(int i=0; i<4; i++) PlayStage.ujepulet[i] = t[i];
+    }
 }

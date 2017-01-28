@@ -61,6 +61,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private Preferences prefstatistic;
     private static String saveStatistic ="";
 
+    public static int ujepulet[] = {0, 0, 0, 0};
+
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
@@ -238,23 +240,27 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         }
                         break;
                     case 11: //favágó
-                        //grassActor ga= new grassActor(i,j, 128, 128);
-                        mapActors[i][j] = new WoodCutter(i,j,128,128);
-                        addActor(mapActors[i][j]);
-                        final mapActor ww = mapActors[i][j];
-                        mapActors[i][j].addListener(new ClickListener(){
-                            @Override
-                            public void clicked(InputEvent event, float x, float y) {
-                                super.clicked(event, x, y);
-                                selectMapActor(ww);
-                            }
-                        });
+                        favago(i,j);
                         break;
                 }
             }
         }
-
     }
+
+    private void favago(int i, int j){
+        if(mapActors[i][j] != null) mapActors[i][j].remove();
+        mapActors[i][j] = new WoodCutter(i,j,128,128);
+        addActor(mapActors[i][j]);
+        final mapActor ww = mapActors[i][j];
+        mapActors[i][j].addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                selectMapActor(ww);
+            }
+        });
+    }
+
 
     private void fog(byte x, byte y){
 
@@ -346,7 +352,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         ingameMenu.act(delta);
 
-
+        if(ujepulet[0] == 1){
+            if(ujepulet[3] == 11) favago(ujepulet[1], ujepulet[2]);
+            mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
+            ujepulet[0] = 0;
+        }
     }
 
     private void mapSave(){
