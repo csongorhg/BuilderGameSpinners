@@ -7,15 +7,30 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.mygdx.game.BuildigsClasses.Barrack;
+import com.mygdx.game.BuildigsClasses.Bridge;
+import com.mygdx.game.BuildigsClasses.FishDock;
+import com.mygdx.game.BuildigsClasses.House;
+import com.mygdx.game.BuildigsClasses.Mill;
+import com.mygdx.game.BuildigsClasses.StoneWorker;
+import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.mapActorInterface.MapActorBarrackStage;
+import com.mygdx.game.mapActorInterface.MapActorBridgeStage;
 import com.mygdx.game.mapActorInterface.MapActorCityHallStage;
+import com.mygdx.game.mapActorInterface.MapActorFishDockStage;
 import com.mygdx.game.mapActorInterface.MapActorGrassStage;
+import com.mygdx.game.mapActorInterface.MapActorHouseStage;
+import com.mygdx.game.mapActorInterface.MapActorMillStage;
 import com.mygdx.game.mapActorInterface.MapActorStoneStage;
 import com.mygdx.game.mapActorInterface.MapActorStage;
+import com.mygdx.game.mapActorInterface.MapActorStoneWorkerStage;
+import com.mygdx.game.mapActorInterface.MapActorWaterStage;
+import com.mygdx.game.mapActorInterface.MapActorWaterWellStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodCutterStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
 
@@ -84,6 +99,7 @@ public class PlayScreen extends MyScreen{
                 mapActorGlobalStage.dispose();
                 im.removeProcessor(mapActorGlobalStage);
                 mapActorGlobalStage = null;
+
                 if (mapActor instanceof stoneActor) {
                     mapActorGlobalStage = new MapActorStoneStage(game, (stoneActor)mapActor);
                 }
@@ -99,9 +115,31 @@ public class PlayScreen extends MyScreen{
                 else if(mapActor instanceof WoodCutter){
                     mapActorGlobalStage = new MapActorWoodCutterStage(game, (WoodCutter)mapActor);
                 }
-                else if (mapActorGlobalStage == null) {
-                    mapActorGlobalStage = new MapActorStage(game, null);
+                else if(mapActor instanceof Barrack){
+                    mapActorGlobalStage = new MapActorBarrackStage(game, (Barrack)mapActor);
                 }
+                else if(mapActor instanceof Bridge){
+                    mapActorGlobalStage = new MapActorBridgeStage(game, (Bridge)mapActor);
+                }
+                else if(mapActor instanceof FishDock){
+                    mapActorGlobalStage = new MapActorFishDockStage(game, (FishDock)mapActor);
+                }
+                else if(mapActor instanceof House){
+                    mapActorGlobalStage = new MapActorHouseStage(game, (House)mapActor);
+                }
+                else if(mapActor instanceof Mill){
+                    mapActorGlobalStage = new MapActorMillStage(game, (Mill)mapActor);
+                }
+                else if(mapActor instanceof StoneWorker){
+                    mapActorGlobalStage = new MapActorStoneWorkerStage(game, (StoneWorker)mapActor);
+                }
+                else if(mapActor instanceof WaterWell){
+                    mapActorGlobalStage = new MapActorWaterWellStage(game, (WaterWell)mapActor);
+                }
+                else if(mapActor instanceof waterActor){
+                    mapActorGlobalStage = new MapActorWaterStage(game, (waterActor) mapActor);
+                }
+                else mapActorGlobalStage = new MapActorStage(game, null);
 
                 im.addProcessor(0,mapActorGlobalStage);
             }

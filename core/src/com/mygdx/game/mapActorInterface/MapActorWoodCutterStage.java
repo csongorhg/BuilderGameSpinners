@@ -31,6 +31,7 @@ public class MapActorWoodCutterStage extends MapActorStage {
                 });
             }
         });
+        allRemove();
     }
 
 }

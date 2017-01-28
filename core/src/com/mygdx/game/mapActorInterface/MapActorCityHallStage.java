@@ -30,5 +30,6 @@ public class MapActorCityHallStage extends MapActorStage {
                 });
             }
         });
+        allRemove();
     }
 }

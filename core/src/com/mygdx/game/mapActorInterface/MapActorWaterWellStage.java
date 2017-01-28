@@ -1,5 +1,7 @@
 package com.mygdx.game.mapActorInterface;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -16,13 +18,20 @@ public class MapActorWaterWellStage extends MapActorStage {
 
     public MapActorWaterWellStage(MyGdxGame game, WaterWell w) {
         super(game, w);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.KUT)){
+        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_WELL)){
             @Override
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
                 setPosition(meret/4, getViewport().getWorldHeight()-meret/4-getWidth());
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
             }
         });
+        allRemove();
     }
 }

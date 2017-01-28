@@ -122,6 +122,8 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Interface/wood.png", Texture.class);
 	public static final AssetDescriptor<Texture> FAHATTER
 			= new AssetDescriptor<Texture>("Interface/fahatter.png", Texture.class);
+	public static final AssetDescriptor<Texture> HID
+			= new AssetDescriptor<Texture>("Interface/hid.png", Texture.class);
 
 	public static final AssetDescriptor<Texture> KIJELOLES
 			= new AssetDescriptor<Texture>("Tiles/kijeloles.png", Texture.class);
@@ -181,6 +183,7 @@ public class Assets {
 		manager.load(BARRACK);
 		manager.load(FISHDOCK);
 		manager.load(WATER_WELL);
+		manager.load(HID);
 
 		//ATLAS
 		manager.load(EXPLOSION_TEXTUREATLAS);

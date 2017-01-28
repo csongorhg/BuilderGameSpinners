@@ -1,5 +1,7 @@
 package com.mygdx.game.mapActorInterface;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.BuildigsClasses.House;
 import com.mygdx.game.BuildigsClasses.Mill;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
@@ -17,13 +19,21 @@ public class MapActorHouseStage extends MapActorStage {
 
     public MapActorHouseStage(MyGdxGame game, House h) {
         super(game, h);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.HAZ)){
+        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.HOUSE)){
             @Override
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
                 setPosition(meret/4, getViewport().getWorldHeight()-meret/4-getWidth());
+
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
             }
         });
+        allRemove();
     }
 }

@@ -2,22 +2,21 @@ package com.mygdx.game.mapActorInterface;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.MyBaseClasses.MyLabel;
+import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Play.grassActor;
-import com.mygdx.game.Play.woodActor;
+import com.mygdx.game.Play.waterActor;
 
 /**
- * Created by tuskeb on 2017. 01. 26..
+ * Created by Kicsi on 2017. 01. 28..
  */
 
-public class MapActorWoodStage extends MapActorStage {
+public class MapActorWaterStage extends MapActorStage {
 
-    public MapActorWoodStage(MyGdxGame game, woodActor g) {
+    public MapActorWaterStage(MyGdxGame game, waterActor g) {
         super(game, g);
         if(!g.isFog())
-            getActorGroup().addActor(new OneSpriteStaticActor(g.getWood()){
+            getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK)){
                 @Override
                 public void init() {
                     super.init();
@@ -31,7 +30,12 @@ public class MapActorWoodStage extends MapActorStage {
                     });
                 }
             });
-        allRemove();
+        favago.remove();
+        banya.remove();
+        barrak.remove();
+        haz.remove();
+        mezo.remove();
+        kut.remove();
     }
 
 }

@@ -239,16 +239,37 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         }
                         break;
                     case 11: //favágó
-                        favago(i,j);
+                        ujEpulet(i,j, new WoodCutter(i,j,128,128));
+                        break;
+                    case 12: //halasz
+                        ujEpulet(i,j, new FishDock(i,j,128,128));
+                        break;
+                    case 13: //hid
+                        ujEpulet(i,j, new Bridge(i,j,128,128));
+                        break;
+                    case 14: //ház
+                        ujEpulet(i,j, new House(i,j,128,128));
+                        break;
+                    case 15: //barakk
+                        ujEpulet(i,j, new Barrack(i,j,128,128));
+                        break;
+                    case 16: //bánya
+                        ujEpulet(i,j, new StoneWorker(i,j,128,128));
+                        break;
+                    case 17: //kut
+                        ujEpulet(i,j, new WaterWell(i,j,128,128));
+                        break;
+                    case 18: //mezo
+                        ujEpulet(i,j, new Mill(i,j,128,128));
                         break;
                 }
             }
         }
     }
 
-    private void favago(int i, int j){
+    private void ujEpulet(int i, int j, mapActor m){
         if(mapActors[i][j] != null) mapActors[i][j].remove();
-        mapActors[i][j] = new WoodCutter(i,j,128,128);
+        mapActors[i][j] = m;
         addActor(mapActors[i][j]);
         final mapActor ww = mapActors[i][j];
         mapActors[i][j].addListener(new ClickListener(){
@@ -352,7 +373,15 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         ingameMenu.act(delta);
 
         if(ujepulet[0] == 1){
-            if(ujepulet[3] == 11) favago(ujepulet[1], ujepulet[2]);
+            if(ujepulet[3] == 11) ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 12) ujEpulet(ujepulet[1], ujepulet[2], new FishDock(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 13) ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 14) ujEpulet(ujepulet[1], ujepulet[2], new House(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 15) ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 16) ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 17) ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 18) ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
+
             mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;
         }

@@ -52,7 +52,7 @@ public class MapActorStage extends MyStage {
     protected Actor selectActor = null;
     protected final int meret = 256;
     private TextButton textButton;
-    private OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
+    protected OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
 
     public Group getActorGroup() {
         return actorGroup;
@@ -98,6 +98,24 @@ public class MapActorStage extends MyStage {
         actorGroup.addActor(halasz);
         actorGroup.addActor(mezo);
         actorGroup.addActor(hid);
+
+        if(g != null)
+            if(g.isFog()) allRemove();
+    }
+
+    protected void allRemove(){
+        favago.remove();
+        banya.remove();
+        haz.remove();
+        barrak.remove();
+        kut.remove();
+        halasz.remove();
+        mezo.remove();
+        hid.remove();
+    }
+
+    private void ujepuletFeltolt(int t[]){
+        for(int i=0; i<4; i++) PlayStage.ujepulet[i] = t[i];
     }
 
     @Override
@@ -115,8 +133,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                WoodCutter woodCutter = new WoodCutter(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = woodCutter;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 11};
+                ujepuletFeltolt(t);
             }
         });
         //----------------------------------------
@@ -132,8 +150,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                StoneWorker stoneWorker = new StoneWorker(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = stoneWorker;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 16};
+                ujepuletFeltolt(t);
             }
         });
         //----------------------------------------
@@ -149,8 +167,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                House house = new House(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = house;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 14};
+                ujepuletFeltolt(t);
             }
         });
         //----------------------------------------
@@ -166,8 +184,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                Barrack barrack = new Barrack(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = barrack;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 15};
+                ujepuletFeltolt(t);
             }
         });
         //----------------------------------------
@@ -183,8 +201,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                WaterWell waterWell = new WaterWell(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = waterWell;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 17};
+                ujepuletFeltolt(t);
             }
         });
         //----------------------------------------
@@ -200,8 +218,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                FishDock fishDock = new FishDock(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = fishDock;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 12};
+                ujepuletFeltolt(t);
             }
         });
         //----------------------------------------
@@ -217,12 +235,12 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                Mill mill = new Mill(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = mill;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 18};
+                ujepuletFeltolt(t);
             }
         });
         //----------------------------------------
-        hid = new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)){
+        hid = new OneSpriteStaticActor(Assets.manager.get(Assets.HID)){
             @Override
             public void init() {
                 super.init();
@@ -234,11 +252,10 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                Bridge bridge = new Bridge(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
-                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = bridge;
+                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 13};
+                ujepuletFeltolt(t);
             }
         });
-
 
 
         textButton = new MyButton("Exit game", textButtonStyle(50));

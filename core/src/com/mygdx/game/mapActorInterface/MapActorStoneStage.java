@@ -23,19 +23,21 @@ public class MapActorStoneStage extends MapActorStage {
 
     public MapActorStoneStage(MyGdxGame game, stoneActor g) {
         super(game, g);
-        getActorGroup().addActor(new OneSpriteStaticActor(g.getStone()){
-            @Override
-            public void init() {
-                super.init();
-                setSize(meret/2, meret/2);
-                setPosition(meret/4, getViewport().getWorldHeight()-meret/4-getWidth());
-                addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                    }
-                });
-            }
-        });
+        if(!g.isFog())
+            getActorGroup().addActor(new OneSpriteStaticActor(g.getStone()){
+                @Override
+                public void init() {
+                    super.init();
+                    setSize(meret/2, meret/2);
+                    setPosition(meret/4, getViewport().getWorldHeight()-meret/4-getWidth());
+                    addListener(new ClickListener(){
+                        @Override
+                        public void clicked(InputEvent event, float x, float y) {
+                            super.clicked(event, x, y);
+                        }
+                    });
+                }
+            });
+        allRemove();
     }
 }

@@ -1,5 +1,7 @@
 package com.mygdx.game.mapActorInterface;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.BuildigsClasses.Mill;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -16,13 +18,20 @@ public class MapActorMillStage extends MapActorStage {
 
     public MapActorMillStage(MyGdxGame game, Mill m) {
         super(game, m);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.MEZO)){
+        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.MILL)){
             @Override
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
                 setPosition(meret/4, getViewport().getWorldHeight()-meret/4-getWidth());
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
             }
         });
+        allRemove();
     }
 }
