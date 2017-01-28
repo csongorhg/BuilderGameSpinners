@@ -1,6 +1,7 @@
 package com.mygdx.game.Menu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -17,6 +18,9 @@ public class MenuScreen extends MyScreen {
 
     protected MenuStage menuStage;
     private MyStage bgStage;
+
+
+
 
     public MenuScreen(MyGdxGame game) {
         super(game);
@@ -46,6 +50,11 @@ public class MenuScreen extends MyScreen {
     public void dispose() {
         menuStage.dispose();
         super.dispose();
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
     }
 
     @Override

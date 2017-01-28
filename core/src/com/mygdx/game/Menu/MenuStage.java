@@ -1,6 +1,7 @@
 package com.mygdx.game.Menu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -40,9 +41,9 @@ public class MenuStage extends MyStage {
     private float buttontimer;
 
 
+
     public MenuStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
-
     }
 
 

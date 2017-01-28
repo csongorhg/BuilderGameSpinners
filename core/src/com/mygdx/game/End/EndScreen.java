@@ -1,4 +1,4 @@
-package com.mygdx.game.OtherScr;
+package com.mygdx.game.End;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,11 +13,11 @@ import com.mygdx.game.MyGdxGame;
 /**
  * Created by tuskeb on 2016. 09. 30..
  */
-public class OtherScreen extends MyScreen {
-    protected OtherStage otherStage;
+public class EndScreen extends MyScreen {
+    protected EndStage endStage;
     private MyStage bgStage;
 
-    public OtherScreen(MyGdxGame game) {
+    public EndScreen(MyGdxGame game) {
         super(game);
     }
 
@@ -28,8 +28,8 @@ public class OtherScreen extends MyScreen {
         bgStage.act();
         bgStage.draw();
 
-        otherStage.act(delta);
-        otherStage.draw();
+        endStage.act(delta);
+        endStage.draw();
 
 
     }
@@ -65,8 +65,8 @@ public class OtherScreen extends MyScreen {
             }
         };
 
-        otherStage = new OtherStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(otherStage);
+        endStage = new EndStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
+        Gdx.input.setInputProcessor(endStage);
 
     }
 

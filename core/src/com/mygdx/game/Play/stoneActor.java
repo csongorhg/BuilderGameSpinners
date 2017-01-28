@@ -1,5 +1,6 @@
 package com.mygdx.game.Play;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.WorldGenerate.Generator;
@@ -9,35 +10,37 @@ import com.mygdx.game.WorldGenerate.Generator;
  */
 public class stoneActor extends mapActor {
 
-    private int posArrayX,posArrayY;
+    private OneSpriteStaticActor stone;
 
 
-    public stoneActor(int x, int y) {
+    public stoneActor(int x, int y, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
             @Override
             public void init() {
                 super.init();
-                setSize(128,128);
+                setSize(w, h);
             }
-        }, x, y);
-        posArrayX = x;
-        posArrayY = y;
-        addActor(new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.STONE_BLOCK):Assets.manager.get(Assets.STONE2_BLOCK)){
+        }, x, y, w, h);
+
+
+        addActor(stone = new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.STONE_BLOCK):Assets.manager.get(Assets.STONE2_BLOCK)){
             @Override
             public void init() {
                 super.init();
-                setSize(128, 128);
+                setSize(w, h);
 
             }
+
+
         });
     }
 
-    public int getPosArrayX() {
-        return posArrayX;
-    }
+    public Texture getStone(){return stone.getTexture();}
 
-    public int getPosArrayY() {
-        return posArrayY;
+
+    @Override
+    public String toString() {
+        return "3";
     }
 
 }

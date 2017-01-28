@@ -2,6 +2,8 @@ package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.input.GestureDetector;
@@ -11,23 +13,33 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Queue;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.End.EndScreen;
+import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
+
+import java.awt.Point;
+import java.sql.Time;
+import java.util.Vector;
 
 /**
  * Created by mordes on 2017.01.14..
  */
-public class PlayStage extends MyStage implements GestureDetector.GestureListener{
+abstract public class PlayStage extends MyStage implements GestureDetector.GestureListener{
 
-    private TextButton textButton;
+    private IngameMenu ingameMenu;
 
-    private mapActor[][] mapActors;
+    public static mapActor[][] mapActors;
 
     private Generator generator;
 
@@ -39,15 +51,31 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     private boolean updateFustrumNeed = true;
 
+    //pref
+    public static final String PREFS = "MAP";
+    private Preferences preferences;
+    private static int nap = 0;
+    private static String saveMap = "";
+    //prefstatistic
+    private Preferences prefstatistic;
+    private static String saveStatistic ="";
+
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
 
+    abstract public void selectMapActor(mapActor mapActor);
+
+
 
     public void init() {
-        GestureDetector gd = new GestureDetector(20, 0.5f, 2, 0.15f, this);
-        InputMultiplexer im = new InputMultiplexer(gd, this);
-        Gdx.input.setInputProcessor(im);
+
+        ingameMenu = new IngameMenu(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
+
+        prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
+        preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
+
+
         setCameraTargetX(0);
         setCameraTargetY(0);
         setCameraTargetZoom(2);
@@ -56,111 +84,244 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         addBackEventStackListener();
 
 
+
+
         mapWidth=100;
         mapHeight=100;
+        statisticupdate();
         fillArea();
 
-        setCameraMoveToXY(cityx*128,cityy*128-128,((OrthographicCamera)getCamera()).zoom,9999);
+        setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
 
         //kiködösítés
-        fog(cityx,cityy);
+        int seged;
 
+        seged = cityy;
+        cityy = cityx;
+        cityx = seged;
 
+        fog((byte)cityx,(byte)cityy);
 
-        textButton = new MyButton("Vissza", game.getTextButtonStyle());
-        textButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                game.setScreenBackByStackPop();
-            }
-        });
+        //ExtendViewport v = (ExtendViewport)getViewport();
+        //getViewport().setScreenWidth(getViewport().getScreenWidth()-512);
+        //System.out.println(cityx+" "+cityy);
+
+    }
+
+    private  void statisticupdate(){
+        if(!prefstatistic.getString(PlayScreen.PREFstatistic,"").equals("")){
+            String[] t = prefstatistic.getString(PlayScreen.PREFstatistic).split(";");
+
+            Statistics.legtobblakos = Integer.parseInt(t[0]);
+
+            Statistics.lakosokszama = Integer.parseInt(t[1]);
+            Statistics.fa = Integer.parseInt(t[2]);
+            Statistics.ko = Integer.parseInt(t[3]);
+            Statistics.arany = Integer.parseInt(t[4]);
+            Statistics.kaja = Integer.parseInt(t[5]);
+
+            Statistics.lakosokszamaValt = Integer.parseInt(t[6]);
+            Statistics.faValt = Integer.parseInt(t[7]);
+            Statistics.koValt = Integer.parseInt(t[8]);
+            Statistics.aranyValt = Integer.parseInt(t[9]);
+            Statistics.kajaValt = Integer.parseInt(t[10]);
+
+            Statistics.epuletekszama = Integer.parseInt(t[11]);
+            Statistics.kutakszama = Integer.parseInt(t[12]);
+            Statistics.katonakszama = Integer.parseInt(t[13]);
+
+            TimeStepper.elteltnap = Integer.parseInt(t[14]);
+        }
     }
 
 
     private void fillArea() {
 
-        generator = new Generator(mapWidth,mapHeight); //100x100-as terület
-        mapActors = new mapActor[100][100];
+        int[][] world;
 
-        generator = new Generator(100,100); //100x100-as terület
+        if(preferences.getString(PlayScreen.PREFS,"").equals("")){
+            generator = new Generator(mapWidth,mapHeight); //100x100-as terület
+            world = generator.getWORLD();
+        }
+        else{
+            String[] sor = preferences.getString(PlayScreen.PREFS).split("\n");
+            world = new int[mapWidth][mapHeight];
+            for (int i = 0; i < sor.length; i++) {
+                String[] t = sor[i].split(";");
+                for (int j = 0; j < t.length; j++) {
+                    world[i][j] = Integer.parseInt(t[j]);
+                }
+            }
+        }
+        mapActors = new mapActor[mapWidth][mapHeight];
 
-        int[][] world = generator.getWORLD();
-        System.out.println(generator.toString());
+
+
+
+        //System.out.println(generator.toString());
 
         citycount = 0;
 
         OneSpriteStaticActor oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK));
         oneSpriteStaticActor.setSize(128,128);
 
-        int i = 0;
-        int j;
+        //int i = mapActors.length-1;
+        //int j;
 
-        for (int[] aWorld : world) {
-
-            j = 0;
-
-            for (int anAWorld : aWorld) {
-
-                switch (anAWorld) {
+        for (int i = 0; i < world.length; i++) {
+            for (int j = 0; j < world[0].length; j++) {
+                switch (world[i][j]){
                     case 0:
-                        mapActors[j][i] = new grassActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new grassActor(i,j, 128, 128);
+                        addActor(mapActors[i][j]);
+                        final mapActor g = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(g);
+                            }
+                        });
                         break;
                     case 1:
-                        mapActors[j][i] = new waterActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new waterActor(i,j, 128, 128);
+                        addActor(mapActors[i][j]);
+                        final mapActor wa = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(wa);
+                            }
+                        });
                         break;
                     case 2:
-                        mapActors[j][i] = new woodActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new woodActor(i,j, 128, 128);
+                        addActor(mapActors[i][j]);
+                        final mapActor w = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(w);
+                            }
+                        });
                         break;
                     case 3:
-                        mapActors[j][i] = new stoneActor(j,i);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new stoneActor(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor s = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(s);
+                            }
+                        });
                         break;
                     case 9:
                         citycount++;
-                        mapActors[j][i] = new cityActor(j,i,citycount);
-                        addActor(mapActors[j][i]);
+                        mapActors[i][j] = new cityActor(i,j,citycount, 256, 256);
+                        addActor(mapActors[i][j]);
+                        final mapActor c = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(c);
+                            }
+                        });
                         if(citycount == 4){
                             cityx = j;
                             cityy = i;
                         }
                         break;
                 }
-                j++;
-
             }
-            i++;
         }
+
     }
 
-    private void fog(int x, int y){
-        //a kiködösíteni kívánt terület x-y kordinátáit kell megadni (a mapActors tömb szerint!)
-        if(x < mapActors.length && x > -1 && y < mapActors[0].length && y > -1 && mapActors[x][y].isFog()){
-            mapActors[x][y].setFog(false);
-            if(mapActors[x][y] instanceof waterActor && x != 99 && x != 0 && y != 99 && y != 0){
-                if(mapActors[x][y+1] instanceof grassActor || mapActors[x][y-1] instanceof grassActor){
-                    mapActors[x + 1][y].setFog(false);
-                    mapActors[x - 1][y].setFog(false);
-                }
-            }
-            if(!(mapActors[x][y] instanceof waterActor)){
-                fog(x + 1, y);
-                fog(x - 1, y);
-                fog(x, y + 1);
-                fog(x, y - 1);
+    private void fog(byte x, byte y){
+
+        Queue<Point> points = new Queue<Point>();
+
+        //Kezdetben minden legyen köd!
+        for (int i = 0; i< mapActors.length; i++){
+            for(int j = 0; j<mapActors[i].length; j++)
+            {
+                mapActors[i][j].setFog(true);
             }
         }
+
+        points.addLast(new Point(x,y));
+
+        while (points.size>0){
+            Point p = points.removeFirst();
+            //if(!(mapActors[p.x][p.y] instanceof waterActor) && !mapActors[p.x][p.y].isFog()){
+                if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && !(mapActors[p.x+1][p.y] instanceof waterActor)) {
+                    points.addLast(new Point(p.x + 1, p.y));
+                    mapActors[p.x + 1][p.y].setFog(false);
+                }
+                if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && !(mapActors[p.x-1][p.y] instanceof waterActor)) {
+                    points.addLast(new Point(p.x - 1, p.y));
+                    mapActors[p.x - 1][p.y].setFog(false);
+                }
+                if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && !(mapActors[p.x][p.y+1] instanceof waterActor)) {
+                    points.addLast(new Point(p.x, p.y + 1));
+                    mapActors[p.x][p.y + 1].setFog(false);
+                }
+                if (p.y>0 && mapActors[p.x][p.y-1].isFog() && !(mapActors[p.x][p.y-1] instanceof waterActor)) {
+                    points.addLast(new Point(p.x, p.y - 1));
+                    mapActors[p.x][p.y - 1].setFog(false);
+                }
+            //}
+            //System.out.println(p.x + " - " + p.y);
+        }
+
+        boolean[][] isWaterFog = new boolean[mapActors.length][mapActors[0].length];
+
+
+        //System.out.println("Amit csináltam");
+
+        for (int i = 0; i < mapActors.length; i++){
+            for(int j = 1; j < mapActors[i].length - 1; j++) {
+                if (mapActors[i][j + 1].isFog() && !mapActors[i][j].isFog() && !isWaterFog[i][j]) {
+                    isWaterFog[i][j + 1] = true;
+                    mapActors[i][j + 1].setFog(false);
+                }
+                else if (mapActors[i][j - 1].isFog() && !mapActors[i][j].isFog() && !isWaterFog[i][j]) {
+                    isWaterFog[i][j - 1] = true;
+                    mapActors[i][j - 1].setFog(false);
+                }
+                //System.out.print(isWaterFog[i][j] ? "1" : "0");
+            }
+            //System.out.println();
+        }
+
+
+
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
         fixCamera();
+
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
+
+        /*if(TimeStepper.vege){
+            preferences.putString(PlayScreen.PREFS,"");
+            prefstatistic.putString(PlayScreen.PREFstatistic,"");
+            game.setScreen(new EndScreen(game));
+        }*/
+
+        if (TimeStepper.elteltnap != nap) {
+            mapSave();
+            statisticSave();
+        }
+
         if (isUpdateFustrumNeed()){
             updateFrustum(1.4f);
             updateFustrumNeed = false;
@@ -168,6 +329,30 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
         if (zoomcount > 0) {
             zoomcount--;
         }
+
+        ingameMenu.act(delta);
+
+
+    }
+
+    private void mapSave(){
+        System.out.println("Saving game...");
+        nap = TimeStepper.elteltnap;
+
+        saveMap = "";
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 0; j < mapActors[i].length; j++) {
+                saveMap += mapActors[i][j].toString()+";";
+            }
+            saveMap += "\n";
+        }
+        preferences.putString(PlayScreen.PREFS,saveMap);
+    }
+
+    private void statisticSave(){
+        saveStatistic = "" ;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
+        prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
     }
 
 
@@ -190,16 +375,16 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
             c.position.x = getViewport().getWorldWidth()/2*c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2*c.zoom){
-            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom;
+        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2*c.zoom + 256*c.zoom){
+            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom + 256*c.zoom;
             setCameraTargetX(c.position.x);
         }
         if (c.position.y < getViewport().getWorldHeight()/2*c.zoom) {
             c.position.y = getViewport().getWorldHeight()/2*c.zoom;
             setCameraTargetY(c.position.y);
         }
-        if (c.position.y>mapHeight*128-getViewport().getWorldHeight()/2*c.zoom){
-            c.position.y = mapHeight*128-getViewport().getWorldHeight()/2*c.zoom;
+        if (c.position.y>mapHeight*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom){
+            c.position.y = mapHeight*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom;
             setCameraTargetY(c.position.y);
         }
     }
@@ -271,6 +456,19 @@ public class PlayStage extends MyStage implements GestureDetector.GestureListene
 
     @Override
     public void pinchStop() {
+
+    }
+
+    @Override
+    public void draw() {
+        super.draw();
+        ingameMenu.draw();
+    }
+
+    @Override
+    public void dispose() {
+        ingameMenu.dispose();
+        super.dispose();
 
     }
 }

@@ -11,13 +11,17 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 
 abstract public class mapActor extends Group {
+    private int posArrayX,posArrayY;
+    protected float mapActorWidth, mapActorHeight;
+    private static float posX = 0,posY = 99*128;
+    private static int n = 0;
     public boolean isFog() {
         return fog;
     }
 
     public void setFog(boolean fog) {
         fogActor.setVisible(fog);
-        actor.setVisible(!fog);
+        //actor.setVisible(!fog);
         this.fog = fog;
     }
 
@@ -30,15 +34,48 @@ abstract public class mapActor extends Group {
 
     private Actor actor;
 
-    public mapActor(Actor a, int x, int y) {
+
+    public mapActor(Actor a, int x, int y, float w, float h) {
+        posArrayX = x;
+        posArrayY = y;
+
+        mapActorWidth = w;
+        mapActorHeight = h;
+
         addActor(a);
+        n++;
         addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
         //fogActor.setColor(1f,1f,1f,1f);
         actor = a;
         fogActor.setSize(a.getWidth(), a.getHeight());
-        setPosition(x*128, y*128);
+        setPosition(posX, posY);
+        if(n == 100) {
+            n = 0;
+            posY -= 128;
+            posX = 0;
+        }
+        else {
+            posX += 128;
+        }
+
     }
 
+    public float getMapActorWidth() {
+        return mapActorWidth;
+    }
+
+    public float getMapActorHeight() {
+        return mapActorHeight;
+    }
+
+
+    public int getPosArrayX() {
+        return posArrayX;
+    }
+
+    public int getPosArrayY() {
+        return posArrayY;
+    }
 
 
 }
