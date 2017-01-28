@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.End.EndScreen;
 import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -171,7 +172,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         for (int i = 0; i < world.length; i++) {
             for (int j = 0; j < world[0].length; j++) {
                 switch (world[i][j]){
-                    case 0:
+                    case 0: //fű
                         mapActors[i][j] = new grassActor(i,j, 128, 128);
                         addActor(mapActors[i][j]);
                         final mapActor g = mapActors[i][j];
@@ -183,7 +184,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                             }
                         });
                         break;
-                    case 1:
+                    case 1: //víz
                         mapActors[i][j] = new waterActor(i,j, 128, 128);
                         addActor(mapActors[i][j]);
                         final mapActor wa = mapActors[i][j];
@@ -195,7 +196,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                             }
                         });
                         break;
-                    case 2:
+                    case 2: //fa
                         mapActors[i][j] = new woodActor(i,j, 128, 128);
                         addActor(mapActors[i][j]);
                         final mapActor w = mapActors[i][j];
@@ -207,7 +208,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                             }
                         });
                         break;
-                    case 3:
+                    case 3: //kő
                         mapActors[i][j] = new stoneActor(i,j, 128,128);
                         addActor(mapActors[i][j]);
                         final mapActor s = mapActors[i][j];
@@ -219,7 +220,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                             }
                         });
                         break;
-                    case 9:
+                    case 9: //város
                         citycount++;
                         mapActors[i][j] = new cityActor(i,j,citycount, 256, 256);
                         addActor(mapActors[i][j]);
@@ -235,6 +236,19 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                             cityx = j;
                             cityy = i;
                         }
+                        break;
+                    case 11: //favágó
+                        //grassActor ga= new grassActor(i,j, 128, 128);
+                        mapActors[i][j] = new WoodCutter(i,j,128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor ww = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(ww);
+                            }
+                        });
                         break;
                 }
             }
@@ -347,11 +361,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             saveMap += "\n";
         }
         preferences.putString(PlayScreen.PREFS,saveMap);
+
     }
 
     private void statisticSave(){
         saveStatistic = "" ;
-        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"
+                +Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"
+                +Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
         prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
     }
 

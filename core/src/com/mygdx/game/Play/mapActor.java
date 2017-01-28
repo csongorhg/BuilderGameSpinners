@@ -20,6 +20,12 @@ abstract public class mapActor extends Group {
     }
 
     public void setFog(boolean fog) {
+
+        if(fog){
+            addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
+            fogActor.setSize(actor.getWidth(), actor.getHeight());
+            //fogActor.setZIndex(Integer.MAX_VALUE);
+        }
         fogActor.setVisible(fog);
         //actor.setVisible(!fog);
         this.fog = fog;
@@ -44,10 +50,9 @@ abstract public class mapActor extends Group {
 
         addActor(a);
         n++;
-        addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
+        //addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
         //fogActor.setColor(1f,1f,1f,1f);
         actor = a;
-        fogActor.setSize(a.getWidth(), a.getHeight());
         setPosition(posX, posY);
         if(n == 100) {
             n = 0;

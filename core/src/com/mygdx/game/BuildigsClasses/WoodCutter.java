@@ -18,7 +18,7 @@ public class WoodCutter extends mapActor {
     private OneSpriteStaticActor woodCutter;
 
 
-    public WoodCutter(int x, int y, grassActor g, final float w, final float h) {
+    public WoodCutter(int x, int y, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
             @Override
             public void init() {
@@ -27,7 +27,7 @@ public class WoodCutter extends mapActor {
             }
         }, x, y, w, h);
 
-        g.addActor(woodCutter = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
+        addActor(woodCutter = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
             @Override
             public void init() {
                 super.init();
@@ -44,4 +44,10 @@ public class WoodCutter extends mapActor {
         });
 
     }
+
+    @Override
+    public String toString() {
+        return "11";
+    }
+
 }
