@@ -27,7 +27,6 @@ public class PlayScreen extends MyScreen{
     protected PlayStage playStage;
     protected MapActorStage mapActorGlobalStage;
     private InputMultiplexer im;
-    private MyStage bgStage;
 
     public static final String PREFS = "MAP";
     public static final String PREFstatistic = "STATISTIC";
@@ -41,11 +40,6 @@ public class PlayScreen extends MyScreen{
     @Override
     public void render(float delta) {
         super.render(delta);
-
-        //háttér
-        bgStage.draw();
-        bgStage.act(delta);
-        //háttér
 
         playStage.act(delta);
         playStage.draw();
@@ -64,10 +58,10 @@ public class PlayScreen extends MyScreen{
 
     @Override
     public void dispose() {
-        playStage.dispose();
+        //playStage.dispose();
         prefstatistic.flush();
         preferences.flush();
-        mapActorGlobalStage.dispose();
+        //mapActorGlobalStage.dispose();
         super.dispose();
     }
 
@@ -113,34 +107,6 @@ public class PlayScreen extends MyScreen{
             }
         };
 
-
-        //háttér
-        bgStage = new MyStage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())), spriteBatch, game) {
-
-            public OneSpriteStaticActor getBackGroudActor() {
-                return backGroudActor;
-            }
-
-            private OneSpriteStaticActor backGroudActor;
-
-            @Override
-            public void init() {
-                r = 0;
-                g = 0;
-                b = 0;
-            }
-
-            @Override
-            protected void resized() {
-
-            }
-
-            @Override
-            public void act(float delta) {
-                super.act(delta);
-            }
-        };
-        //háttér vége
         GestureDetector gd;
         gd = new GestureDetector(20, 0.5f, 2, 0.15f, playStage);
         im = new InputMultiplexer(mapActorGlobalStage, gd, playStage);
