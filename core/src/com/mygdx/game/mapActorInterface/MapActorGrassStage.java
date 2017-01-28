@@ -42,5 +42,9 @@ public class MapActorGrassStage extends MapActorStage {
         });
     }
 
+    @Override
+    public void init() {
+        super.init();
 
+    }
 }

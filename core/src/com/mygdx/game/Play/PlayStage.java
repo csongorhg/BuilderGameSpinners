@@ -13,6 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.BuildigsClasses.Barrack;
+import com.mygdx.game.BuildigsClasses.Bridge;
+import com.mygdx.game.BuildigsClasses.FishDock;
+import com.mygdx.game.BuildigsClasses.House;
+import com.mygdx.game.BuildigsClasses.Mill;
+import com.mygdx.game.BuildigsClasses.StoneWorker;
+import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.End.EndScreen;
 import com.mygdx.game.Game.IngameMenu;
@@ -235,7 +242,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         }
                         break;
                     case 11:
-                        //grassActor ga= new grassActor(i,j, 128, 128);
                         mapActors[i][j] = new WoodCutter(i,j,128,128);
                         addActor(mapActors[i][j]);
                         final mapActor ww = mapActors[i][j];
@@ -247,6 +253,91 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                             }
                         });
                         break;
+                    case 12:
+                        mapActors[i][j] = new FishDock(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor f = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(f);
+                            }
+                        });
+                        break;
+                    case 13:
+                        mapActors[i][j] = new Bridge(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor br = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(br);
+                            }
+                        });
+                        break;
+                    case 14:
+                        mapActors[i][j] = new House(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor h = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(h);
+                            }
+                        });
+                        break;
+                    case 15:
+                        mapActors[i][j] = new Barrack(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor b = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(b);
+                            }
+                        });
+                        break;
+                    case 16:
+                        mapActors[i][j] = new StoneWorker(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor sw = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(sw);
+                            }
+                        });
+                        break;
+                    case 17:
+                        mapActors[i][j] = new WaterWell(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor waw = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(waw);
+                            }
+                        });
+                        break;
+                    case 18:
+                        mapActors[i][j] = new Mill(i,j, 128,128);
+                        addActor(mapActors[i][j]);
+                        final mapActor m = mapActors[i][j];
+                        mapActors[i][j].addListener(new ClickListener(){
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                super.clicked(event, x, y);
+                                selectMapActor(m);
+                            }
+                        });
+                        break;
+
                 }
             }
         }
