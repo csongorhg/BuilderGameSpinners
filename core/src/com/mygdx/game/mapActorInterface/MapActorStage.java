@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,6 +22,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.BuildigsClasses.Barrack;
+import com.mygdx.game.BuildigsClasses.Bridge;
+import com.mygdx.game.BuildigsClasses.FishDock;
+import com.mygdx.game.BuildigsClasses.House;
+import com.mygdx.game.BuildigsClasses.Mill;
+import com.mygdx.game.BuildigsClasses.StoneWorker;
+import com.mygdx.game.BuildigsClasses.WaterWell;
+import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
@@ -28,6 +37,7 @@ import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Play.PlayStage;
 import com.mygdx.game.Play.cityActor;
 import com.mygdx.game.Play.grassActor;
 import com.mygdx.game.Play.mapActor;
@@ -42,7 +52,7 @@ public class MapActorStage extends MyStage {
     protected Actor selectActor = null;
     protected final int meret = 256;
     private TextButton textButton;
-
+    private OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
 
     public Group getActorGroup() {
         return actorGroup;
@@ -80,10 +90,157 @@ public class MapActorStage extends MyStage {
 
         init();
         actorGroup.addActor(textButton);
+        actorGroup.addActor(favago);
+        actorGroup.addActor(banya);
+        actorGroup.addActor(haz);
+        actorGroup.addActor(barrak);
+        actorGroup.addActor(kut);
+        actorGroup.addActor(halasz);
+        actorGroup.addActor(mezo);
+        actorGroup.addActor(hid);
     }
 
     @Override
     public void init() {
+
+        favago = new OneSpriteStaticActor(Assets.manager.get(Assets.FAVAGO)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(0, getViewport().getWorldHeight()/2);
+            }
+        };
+        favago.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                WoodCutter woodCutter = new WoodCutter(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = woodCutter;
+            }
+        });
+        //----------------------------------------
+        banya = new OneSpriteStaticActor(Assets.manager.get(Assets.BANYA)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(meret/2, getViewport().getWorldHeight()/2);
+            }
+        };
+        banya.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                StoneWorker stoneWorker = new StoneWorker(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = stoneWorker;
+            }
+        });
+        //----------------------------------------
+        haz = new OneSpriteStaticActor(Assets.manager.get(Assets.HAZ)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(0, getViewport().getWorldHeight()/2-meret/2);
+            }
+        };
+        haz.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                House house = new House(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = house;
+            }
+        });
+        //----------------------------------------
+        barrak = new OneSpriteStaticActor(Assets.manager.get(Assets.BARAKK)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(meret/2, getViewport().getWorldHeight()/2-meret/2);
+            }
+        };
+        barrak.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                Barrack barrack = new Barrack(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = barrack;
+            }
+        });
+        //----------------------------------------
+        kut = new OneSpriteStaticActor(Assets.manager.get(Assets.KUT)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(0, getViewport().getWorldHeight()/2-meret);
+            }
+        };
+        kut.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                WaterWell waterWell = new WaterWell(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = waterWell;
+            }
+        });
+        //----------------------------------------
+        halasz = new OneSpriteStaticActor(Assets.manager.get(Assets.HALASZ)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(meret/2, getViewport().getWorldHeight()/2-meret);
+            }
+        };
+        halasz.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                FishDock fishDock = new FishDock(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = fishDock;
+            }
+        });
+        //----------------------------------------
+        mezo = new OneSpriteStaticActor(Assets.manager.get(Assets.MEZO)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(0, getViewport().getWorldHeight()/2-meret-meret/2);
+            }
+        };
+        mezo.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                Mill mill = new Mill(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = mill;
+            }
+        });
+        //----------------------------------------
+        hid = new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(meret/2, meret/2);
+                setPosition(meret/2, getViewport().getWorldHeight()/2-meret-meret/2);
+            }
+        };
+        hid.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                Bridge bridge = new Bridge(mapactor.getPosArrayX(), mapactor.getPosArrayY(), 128, 128);
+                PlayStage.mapActors[mapactor.getPosArrayX()][mapactor.getPosArrayY()] = bridge;
+            }
+        });
+
+
+
         textButton = new MyButton("Exit game", textButtonStyle(50));
         textButton.addListener(new ClickListener(){
             @Override

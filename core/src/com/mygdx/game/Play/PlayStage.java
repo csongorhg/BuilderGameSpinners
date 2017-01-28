@@ -1,27 +1,29 @@
 package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.BuildigsClasses.Barrack;
+import com.mygdx.game.BuildigsClasses.Bridge;
+import com.mygdx.game.BuildigsClasses.FishDock;
+import com.mygdx.game.BuildigsClasses.House;
+import com.mygdx.game.BuildigsClasses.Mill;
+import com.mygdx.game.BuildigsClasses.StoneWorker;
+import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.End.EndScreen;
 import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
-import com.mygdx.game.Menu.MenuScreen;
-import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
@@ -29,9 +31,6 @@ import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
 
-import java.awt.Point;
-import java.sql.Time;
-import java.util.Vector;
 
 /**
  * Created by mordes on 2017.01.14..
@@ -264,7 +263,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private void fog(byte x, byte y){
 
-        Queue<Point> points = new Queue<Point>();
+        Queue<GridPoint2> points = new Queue<GridPoint2>();
 
         //Kezdetben minden legyen köd!
         for (int i = 0; i< mapActors.length; i++){
@@ -274,25 +273,25 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             }
         }
 
-        points.addLast(new Point(x,y));
+        points.addLast(new GridPoint2(x,y));
 
         while (points.size>0){
-            Point p = points.removeFirst();
+            GridPoint2 p = points.removeFirst();
             //if(!(mapActors[p.x][p.y] instanceof waterActor) && !mapActors[p.x][p.y].isFog()){
                 if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && !(mapActors[p.x+1][p.y] instanceof waterActor)) {
-                    points.addLast(new Point(p.x + 1, p.y));
+                    points.addLast(new GridPoint2(p.x + 1, p.y));
                     mapActors[p.x + 1][p.y].setFog(false);
                 }
                 if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && !(mapActors[p.x-1][p.y] instanceof waterActor)) {
-                    points.addLast(new Point(p.x - 1, p.y));
+                    points.addLast(new GridPoint2(p.x - 1, p.y));
                     mapActors[p.x - 1][p.y].setFog(false);
                 }
                 if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && !(mapActors[p.x][p.y+1] instanceof waterActor)) {
-                    points.addLast(new Point(p.x, p.y + 1));
+                    points.addLast(new GridPoint2(p.x, p.y + 1));
                     mapActors[p.x][p.y + 1].setFog(false);
                 }
                 if (p.y>0 && mapActors[p.x][p.y-1].isFog() && !(mapActors[p.x][p.y-1] instanceof waterActor)) {
-                    points.addLast(new Point(p.x, p.y - 1));
+                    points.addLast(new GridPoint2(p.x, p.y - 1));
                     mapActors[p.x][p.y - 1].setFog(false);
                 }
             //}
@@ -372,13 +371,12 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         }
         preferences.putString(PlayScreen.PREFS,saveMap);
 
+
     }
 
     private void statisticSave(){
         saveStatistic = "" ;
-        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"
-                +Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"
-                +Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
         prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
     }
 

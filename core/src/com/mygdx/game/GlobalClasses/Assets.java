@@ -76,6 +76,7 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Tiles/ko_1.png", Texture.class);
 	public static final AssetDescriptor<Texture> STONE2_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/ko_2.png", Texture.class);
+
 	public static final AssetDescriptor<Texture> HOUSE
 			= new AssetDescriptor<Texture>("Buildings/haz.png", Texture.class);
 	public static final AssetDescriptor<Texture> STONE_WORKER
@@ -84,6 +85,17 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Buildings/favago.png", Texture.class);
 	public static final AssetDescriptor<Texture> CITY_HALL
 			= new AssetDescriptor<Texture>("Buildings/var.png", Texture.class);
+	public static final AssetDescriptor<Texture> MILL
+			= new AssetDescriptor<Texture>("Buildings/malom.png", Texture.class);
+	public static final AssetDescriptor<Texture> BRIDGE
+			= new AssetDescriptor<Texture>("Buildings/hid.png", Texture.class);
+	public static final AssetDescriptor<Texture> FISHDOCK
+			= new AssetDescriptor<Texture>("Buildings/halasz.png", Texture.class);
+	public static final AssetDescriptor<Texture> BARRACK
+			= new AssetDescriptor<Texture>("Buildings/kikepzo.png", Texture.class);
+	public static final AssetDescriptor<Texture> WATER_WELL
+			= new AssetDescriptor<Texture>("Buildings/kut.png", Texture.class);
+
 	public static final AssetDescriptor<Texture> BANYA
 			= new AssetDescriptor<Texture>("Interface/banya.png", Texture.class);
 	public static final AssetDescriptor<Texture> BARAKK
@@ -110,6 +122,7 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Interface/wood.png", Texture.class);
 	public static final AssetDescriptor<Texture> FAHATTER
 			= new AssetDescriptor<Texture>("Interface/fahatter.png", Texture.class);
+
 	public static final AssetDescriptor<Texture> KIJELOLES
 			= new AssetDescriptor<Texture>("Tiles/kijeloles.png", Texture.class);
 
@@ -163,8 +176,11 @@ public class Assets {
 		manager.load(FAHATTER);
 		manager.load(WALL);
 		manager.load(KIJELOLES);
-
-
+		manager.load(MILL);
+		manager.load(BRIDGE);
+		manager.load(BARRACK);
+		manager.load(FISHDOCK);
+		manager.load(WATER_WELL);
 
 		//ATLAS
 		manager.load(EXPLOSION_TEXTUREATLAS);
