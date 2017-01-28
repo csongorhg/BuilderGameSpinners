@@ -325,11 +325,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
 
-        /*if(TimeStepper.vege){
+        if(TimeStepper.vege){
             preferences.putString(PlayScreen.PREFS,"");
             prefstatistic.putString(PlayScreen.PREFstatistic,"");
             game.setScreen(new EndScreen(game));
-        }*/
+        }
 
         if (TimeStepper.elteltnap != nap) {
             mapSave();

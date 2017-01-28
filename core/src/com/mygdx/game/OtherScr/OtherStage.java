@@ -41,8 +41,6 @@ public class OtherStage extends MyStage {
         prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
         preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
 
-        addBackEventStackListener();
-
         labelStyle();
         myLabel = new MyLabel("Are you sure?",style);
         myLabel.setAlignment(Align.center);
