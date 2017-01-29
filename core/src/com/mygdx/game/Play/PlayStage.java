@@ -155,6 +155,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 }
             }
         }
+
+
         mapActors = new mapActor[mapWidth][mapHeight];
 
 
@@ -169,7 +171,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         //int i = mapActors.length-1;
         //int j;
-
         for (int i = 0; i < world.length; i++) {
             for (int j = 0; j < world[0].length; j++) {
                 switch (world[i][j]){

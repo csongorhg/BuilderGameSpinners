@@ -53,6 +53,7 @@ public class MapActorStage extends MyStage {
     protected final int meret = 256;
     private TextButton textButton;
     protected OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
+    private static boolean elsoinditas = true;
 
     public Group getActorGroup() {
         return actorGroup;
@@ -101,6 +102,11 @@ public class MapActorStage extends MyStage {
 
         if(g != null)
             if(g.isFog()) allRemove();
+
+        if(elsoinditas){
+            allRemove();
+            elsoinditas = false;
+        }
     }
 
     protected void allRemove(){
@@ -263,6 +269,7 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                elsoinditas = true;
                 game.setScreen(new MenuScreen(game));
             }
         });
