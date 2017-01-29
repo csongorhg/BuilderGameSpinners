@@ -99,13 +99,20 @@ public class MapActorStage extends MyStage {
         actorGroup.addActor(mezo);
         actorGroup.addActor(hid);
 
-        if(g != null)
-            if(g.isFog()) allRemove();
+        /*if(g != null)
+            if(g.isFog()) allRemove();*/
 
         if(elsoinditas){
             allRemove();
             elsoinditas = false;
         }
+    }
+
+    public void redXmaker(float posx,float posy){
+        OneSpriteStaticActor X = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
+        X.setSize(meret/2,meret/2);
+        X.setPosition(posx,posy);
+        addActor(X);
     }
 
     protected void allRemove(){
@@ -119,7 +126,7 @@ public class MapActorStage extends MyStage {
         hid.remove();
     }
 
-    private void ujepuletFeltolt(int t[]){
+    public void ujepuletFeltolt(int t[]){
         for(int i=0; i<4; i++) PlayStage.ujepulet[i] = t[i];
     }
 
@@ -134,14 +141,14 @@ public class MapActorStage extends MyStage {
                 setPosition(0, getViewport().getWorldHeight()/2);
             }
         };
-        favago.addListener(new ClickListener(){
+        /*favago.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 11};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
         //----------------------------------------
         banya = new OneSpriteStaticActor(Assets.manager.get(Assets.BANYA)){
             @Override
@@ -151,14 +158,14 @@ public class MapActorStage extends MyStage {
                 setPosition(meret/2, getViewport().getWorldHeight()/2);
             }
         };
-        banya.addListener(new ClickListener(){
+        /*banya.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 16};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
         //----------------------------------------
         haz = new OneSpriteStaticActor(Assets.manager.get(Assets.HAZ)){
             @Override
@@ -168,14 +175,14 @@ public class MapActorStage extends MyStage {
                 setPosition(0, getViewport().getWorldHeight()/2-meret/2);
             }
         };
-        haz.addListener(new ClickListener(){
+        /*haz.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 14};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
         //----------------------------------------
         barrak = new OneSpriteStaticActor(Assets.manager.get(Assets.BARAKK)){
             @Override
@@ -185,14 +192,14 @@ public class MapActorStage extends MyStage {
                 setPosition(meret/2, getViewport().getWorldHeight()/2-meret/2);
             }
         };
-        barrak.addListener(new ClickListener(){
+        /*barrak.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 15};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
         //----------------------------------------
         kut = new OneSpriteStaticActor(Assets.manager.get(Assets.KUT)){
             @Override
@@ -202,14 +209,14 @@ public class MapActorStage extends MyStage {
                 setPosition(0, getViewport().getWorldHeight()/2-meret);
             }
         };
-        kut.addListener(new ClickListener(){
+        /*kut.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 17};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
         //----------------------------------------
         halasz = new OneSpriteStaticActor(Assets.manager.get(Assets.HALASZ)){
             @Override
@@ -219,14 +226,14 @@ public class MapActorStage extends MyStage {
                 setPosition(meret/2, getViewport().getWorldHeight()/2-meret);
             }
         };
-        halasz.addListener(new ClickListener(){
+        /*halasz.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 12};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
         //----------------------------------------
         mezo = new OneSpriteStaticActor(Assets.manager.get(Assets.MEZO)){
             @Override
@@ -236,14 +243,14 @@ public class MapActorStage extends MyStage {
                 setPosition(0, getViewport().getWorldHeight()/2-meret-meret/2);
             }
         };
-        mezo.addListener(new ClickListener(){
+        /*mezo.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 18};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
         //----------------------------------------
         hid = new OneSpriteStaticActor(Assets.manager.get(Assets.HID)){
             @Override
@@ -253,14 +260,14 @@ public class MapActorStage extends MyStage {
                 setPosition(meret/2, getViewport().getWorldHeight()/2-meret-meret/2);
             }
         };
-        hid.addListener(new ClickListener(){
+        /*hid.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 13};
                 ujepuletFeltolt(t);
             }
-        });
+        });*/
 
 
         textButton = new MyButton("Exit game", textButtonStyle(50));

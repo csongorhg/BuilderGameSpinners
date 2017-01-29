@@ -20,14 +20,14 @@ public class MapActorWaterStage extends MapActorStage {
 
     public MapActorWaterStage(MyGdxGame game, waterActor g) {
         super(game, g);
-        if(!g.isFog())
-            getActorGroup().addActor(water = new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK)){
+        if(!g.isFog()) {
+            getActorGroup().addActor(water = new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK)) {
                 @Override
                 public void init() {
                     super.init();
-                    setSize(meret/2, meret/2);
-                    setPosition(meret/4, getViewport().getWorldHeight()-meret/4-getWidth());
-                    addListener(new ClickListener(){
+                    setSize(meret / 2, meret / 2);
+                    setPosition(meret / 4, getViewport().getWorldHeight() - meret / 4 - getWidth());
+                    addListener(new ClickListener() {
                         @Override
                         public void clicked(InputEvent event, float x, float y) {
                             super.clicked(event, x, y);
@@ -35,17 +35,93 @@ public class MapActorWaterStage extends MapActorStage {
                     });
                 }
             });
-        if((PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof waterActor && PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor && PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor && PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor) || (PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge || PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge) || (PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof FishDock || PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof FishDock || PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof FishDock|| PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof FishDock)){
-            allRemove();
-            getActorGroup().removeActor(water);
-        }else {
-            favago.remove();
-            banya.remove();
-            barrak.remove();
-            haz.remove();
-            mezo.remove();
-            kut.remove();
+            //vízre nem építhető épületek
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2);
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret/2);
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret);
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret-meret/2);
+            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret/2);
+            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2);
+
+            boolean b = true;
+
+            if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof waterActor &&
+                    PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&
+                    PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
+                    PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
+                redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
+                redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
+                b = false;
+
+            }
+            else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
+                    PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge){
+
+                redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret);
+                redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret - meret / 2);
+                b = false;
+
+            }
+            else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof FishDock ||
+                    PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof FishDock){
+                if((PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
+                        PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor)){
+                    redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret);
+                    redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret - meret / 2);
+                    b = false;
+                }
+
+            }
+            else if(PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof FishDock ||
+                    PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof FishDock){
+
+                if(PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
+                        PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
+                    redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
+                    redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
+                    b = false;
+                }
+            }
+            if(b){
+                halasz.addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 12};
+                        ujepuletFeltolt(t);
+                    }
+                });
+                hid.addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 13};
+                        ujepuletFeltolt(t);
+                    }
+                });
+            }
+
+        } else { // ha ködös
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2);
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret/2);
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret);
+            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret-meret/2);
+            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret/2);
+            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2);
+            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
+            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
         }
+        /*if((PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof waterActor &&
+                PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&
+                PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
+                PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor) ||
+                (PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
+                        PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge) ||
+                (PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof FishDock ||
+                        PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof FishDock ||
+                        PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof FishDock||
+                        PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof FishDock)){
+            getActorGroup().removeActor(water);*/
     }
 
 }
