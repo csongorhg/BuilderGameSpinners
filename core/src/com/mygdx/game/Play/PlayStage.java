@@ -406,12 +406,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             else if(ujepulet[3] == 15) ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 16) ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 17) ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2],128,128));
-            else if(ujepulet[3] == 18)
-                ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
-                ujEpulet(ujepulet[1]+1, ujepulet[2], new MillCircle(ujepulet[1]+1, ujepulet[2],128,128));
-
-
-
+            else if(ujepulet[3] == 18) ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
             mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;
         }
