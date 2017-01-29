@@ -141,6 +141,11 @@ public class MenuStage extends MyStage {
         //zene
         musicIsPlaying();
 
+        if(!music.isPlaying() && playing){
+            music.stop();
+            music.play();
+        }
+
         //új menü
         newStage();
 

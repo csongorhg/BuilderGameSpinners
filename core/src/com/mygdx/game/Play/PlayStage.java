@@ -353,7 +353,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         super.act(delta);
         fixCamera();
 
-        if(!MenuStage.music.isPlaying()){
+        if(!MenuStage.music.isPlaying() && MenuStage.playing){
             MenuStage.music.stop();
             MenuStage.music.play();
         }

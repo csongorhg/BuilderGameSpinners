@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
@@ -86,5 +87,14 @@ public class EndStage extends MyStage {
         generator.dispose();
         style.font = font;
 
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if(!MenuStage.music.isPlaying() && MenuStage.playing){
+            MenuStage.music.stop();
+            MenuStage.music.play();
+        }
     }
 }
