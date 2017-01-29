@@ -264,7 +264,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         ujEpulet(i,j, new Mill(i,j,128,128));
                         break;
                 }
-                if(mapActors[i][j].getY()<0){
+                if(mapActors[i][j].getY()<=0){
                     mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,(100-mapActors[i][j].getPosArrayX())*128-128);
                 }
             }
