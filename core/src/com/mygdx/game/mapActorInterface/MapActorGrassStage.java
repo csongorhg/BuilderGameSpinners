@@ -29,8 +29,8 @@ public class MapActorGrassStage extends MapActorStage {
 
         if(!g.isFog()){
             //hid halasz
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
+            redXmaker(meret/2,meret/2);
+            redXmaker(meret/2,0);
 
             favago.addListener(new ClickListener(){
                 @Override
@@ -92,17 +92,17 @@ public class MapActorGrassStage extends MapActorStage {
                 });
             }
             else{
-                redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret-meret/2);
+                redXmaker(0,0);
             }
         } else {
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
+            redXmaker(0,meret+meret/2);
+            redXmaker(0,meret);
+            redXmaker(0,meret/2);
+            redXmaker(0,0);
+            redXmaker(meret/2,meret);
+            redXmaker(meret/2,meret+meret/2);
+            redXmaker(meret/2,meret/2);
+            redXmaker(meret/2,0);
         }
     }
 }

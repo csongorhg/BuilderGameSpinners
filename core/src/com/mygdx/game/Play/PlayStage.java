@@ -22,6 +22,7 @@ import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.End.EndScreen;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
@@ -352,6 +353,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         super.act(delta);
         fixCamera();
 
+        if(!MenuStage.music.isPlaying()){
+            MenuStage.music.stop();
+            MenuStage.music.play();
+        }
         //itt kezeli az eltelt időt
         TimeStepper.STEP(delta);
 

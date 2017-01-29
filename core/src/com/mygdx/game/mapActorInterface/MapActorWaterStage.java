@@ -36,12 +36,12 @@ public class MapActorWaterStage extends MapActorStage {
                 }
             });
             //vízre nem építhető épületek
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2);
+            redXmaker(0,meret+meret/2);
+            redXmaker(0,meret);
+            redXmaker(0,meret/2);
+            redXmaker(0,0);
+            redXmaker(meret/2,meret);
+            redXmaker(meret/2,meret+meret/2);
 
             boolean b = true;
 
@@ -49,16 +49,16 @@ public class MapActorWaterStage extends MapActorStage {
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&
                     PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
                     PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
-                redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
-                redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
+                redXmaker(meret/2,meret/2);
+                redXmaker(meret/2,0);
                 b = false;
 
             }
             else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge){
 
-                redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret);
-                redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret - meret / 2);
+                redXmaker(meret/2,meret/2);
+                redXmaker(meret/2,0);
                 b = false;
 
             }
@@ -66,8 +66,8 @@ public class MapActorWaterStage extends MapActorStage {
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof FishDock){
                 if((PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
                         PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor)){
-                    redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret);
-                    redXmaker(getViewport().getWorldWidth() - meret / 2, getViewport().getWorldHeight() / 2 - meret - meret / 2);
+                    redXmaker(meret/2,meret/2);
+                    redXmaker(meret/2,0);
                     b = false;
                 }
 
@@ -77,8 +77,8 @@ public class MapActorWaterStage extends MapActorStage {
 
                 if(PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
                         PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
-                    redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
-                    redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
+                    redXmaker(meret/2,meret/2);
+                    redXmaker(meret/2,0);
                     b = false;
                 }
             }
@@ -102,14 +102,14 @@ public class MapActorWaterStage extends MapActorStage {
             }
 
         } else { // ha ködös
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret);
-            redXmaker(getViewport().getWorldWidth()-meret,getViewport().getWorldHeight()/2-meret-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret);
-            redXmaker(getViewport().getWorldWidth()-meret/2,getViewport().getWorldHeight()/2-meret-meret/2);
+            redXmaker(0,meret+meret/2);
+            redXmaker(0,meret);
+            redXmaker(0,meret/2);
+            redXmaker(0,0);
+            redXmaker(meret/2,meret);
+            redXmaker(meret/2,meret+meret/2);
+            redXmaker(meret/2,meret/2);
+            redXmaker(meret/2,0);
         }
         /*if((PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof waterActor &&
                 PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&
