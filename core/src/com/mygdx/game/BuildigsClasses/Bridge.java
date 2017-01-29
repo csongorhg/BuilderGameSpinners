@@ -15,6 +15,7 @@ public class Bridge extends mapActor {
     private OneSpriteStaticActor bridge;
 
 
+
     public Bridge(int x, int y, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK)){
             @Override

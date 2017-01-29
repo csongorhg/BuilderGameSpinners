@@ -22,12 +22,13 @@ abstract public class mapActor extends Group {
 
     public void setFog(boolean fog) {
 
+
         if(fog){
             addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
             fogActor.setSize(actor.getWidth(), actor.getHeight());
             //fogActor.setZIndex(Integer.MAX_VALUE);
         }
-        fogActor.setVisible(fog);
+        if(fogActor != null)fogActor.setVisible(fog);
         //actor.setVisible(!fog);
         this.fog = fog;
     }

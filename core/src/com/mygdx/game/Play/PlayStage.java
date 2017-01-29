@@ -93,6 +93,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         statisticupdate();
         fillArea();
 
+
         setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
 
         //kiködösítés
@@ -379,7 +380,13 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if(ujepulet[0] == 1){
             if(ujepulet[3] == 11) ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 12) ujEpulet(ujepulet[1], ujepulet[2], new FishDock(ujepulet[1], ujepulet[2],128,128));
-            else if(ujepulet[3] == 13) ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 13){
+                ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
+                if(mapActors[ujepulet[1]][ujepulet[2]] != null) {
+                    kikodosit();
+                    tovabbepit(ujepulet[1], ujepulet[2]);
+                }
+            }
             else if(ujepulet[3] == 14) ujEpulet(ujepulet[1], ujepulet[2], new House(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 15) ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 16) ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
@@ -389,6 +396,27 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;
         }
+    }
+
+    private void kikodosit(){ // csak akkor jó ha egy folyó van a mapon!!!!!!!!!! Illetve instabil!!!!!!!!
+        for (int i = 0; i< mapActors.length; i++)
+            for(int j = 0; j<mapActors[i].length; j++)
+                if(mapActors[i][j].isFog())
+                    mapActors[i][j].setFog(false);
+    }
+
+    private void tovabbepit(int x, int y){
+        boolean b = true;
+        if(mapActors[x][y-1] instanceof waterActor) b = true;
+        else if(mapActors[x][y+1] instanceof waterActor) b = false;
+
+        int i=1;
+        do{
+            if(b) ujEpulet(x, y-i, new Bridge(x, y-i,128,128));
+            else ujEpulet(x, y+i, new Bridge(x, y+i,128,128));
+            i++;
+            mapActors[x][(b?y-i:y+i)].setPosition((mapActors[x][(b?y-i:y+i)].getPosArrayY())*128,(100-mapActors[x][(b?y-i:y+i)].getPosArrayX())*128-128);
+        }while(mapActors[x][(b?y-i:y+i)] instanceof waterActor);
     }
 
     private void mapSave(){
