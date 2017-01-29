@@ -17,6 +17,7 @@ import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
 import com.mygdx.game.BuildigsClasses.House;
 import com.mygdx.game.BuildigsClasses.Mill;
+import com.mygdx.game.BuildigsClasses.MillCircle;
 import com.mygdx.game.BuildigsClasses.StoneWorker;
 import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
@@ -261,8 +262,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                     case 17: //kut
                         ujEpulet(i,j, new WaterWell(i,j,128,128));
                         break;
-                    case 18: //mezo
+                    case 18: //malom
                         ujEpulet(i,j, new Mill(i,j,128,128));
+                        break;
+                    case 19: //mező
+                        ujEpulet(i,j, new MillCircle(i,j,128,128));
                         break;
                 }
                 if(mapActors[i][j].getY()<=0){
@@ -276,6 +280,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if(mapActors[i][j] != null) mapActors[i][j].remove();
         mapActors[i][j] = m;
         addActor(mapActors[i][j]);
+        System.out.println(i+" "+j);
         final mapActor ww = mapActors[i][j];
         mapActors[i][j].addListener(new ClickListener(){
             @Override
@@ -382,6 +387,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         ingameMenu.act(delta);
 
+        epit_e();
+
+    }
+
+    private void epit_e() {
         if(ujepulet[0] == 1){
             if(ujepulet[3] == 11) ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 12) ujEpulet(ujepulet[1], ujepulet[2], new FishDock(ujepulet[1], ujepulet[2],128,128));
@@ -396,7 +406,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             else if(ujepulet[3] == 15) ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 16) ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 17) ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2],128,128));
-            else if(ujepulet[3] == 18) ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 18)
+                ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
+                ujEpulet(ujepulet[1]+1, ujepulet[2], new MillCircle(ujepulet[1]+1, ujepulet[2],128,128));
+
+
 
             mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;

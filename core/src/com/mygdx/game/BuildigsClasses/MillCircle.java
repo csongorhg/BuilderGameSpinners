@@ -1,22 +1,18 @@
 package com.mygdx.game.BuildigsClasses;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.Play.mapActor;
 
 /**
- * Created by Vince on 2017. 01. 28..
+ * Created by mordes on 2017.01.29..
  */
 
-public class Mill extends mapActor {
+public class MillCircle extends mapActor {
 
-    private OneSpriteStaticActor mill;
+    private OneSpriteStaticActor millCircle;
 
-
-
-    public Mill(int x, int y, final float w, final float h) {
+    public MillCircle(int x, int y, final float w, final float h) {
         super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
             @Override
             public void init() {
@@ -25,7 +21,7 @@ public class Mill extends mapActor {
             }
         }, x, y, w, h);
 
-        addActor(mill = new OneSpriteStaticActor(Assets.manager.get(Assets.MILL)){
+        addActor(millCircle = new OneSpriteStaticActor(Assets.manager.get(Assets.MILLMEZO)){
             @Override
             public void init() {
                 super.init();
@@ -37,7 +33,7 @@ public class Mill extends mapActor {
 
     @Override
     public String toString() {
-        return "18";
+        return "19";
     }
 
 }

@@ -86,6 +86,8 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Buildings/var.png", Texture.class);
 	public static final AssetDescriptor<Texture> MILL
 			= new AssetDescriptor<Texture>("Buildings/malom.png", Texture.class);
+	public static final AssetDescriptor<Texture> MILLMEZO
+			= new AssetDescriptor<Texture>("Buildings/mezo.png", Texture.class);
 	public static final AssetDescriptor<Texture> BRIDGE
 			= new AssetDescriptor<Texture>("Buildings/hid.png", Texture.class);
 	public static final AssetDescriptor<Texture> FISHDOCK
@@ -180,6 +182,7 @@ public class Assets {
 		manager.load(WALL);
 		manager.load(KIJELOLES);
 		manager.load(MILL);
+		manager.load(MILLMEZO);
 		manager.load(BRIDGE);
 		manager.load(BARRACK);
 		manager.load(FISHDOCK);
