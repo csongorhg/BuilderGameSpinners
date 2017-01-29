@@ -43,11 +43,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private Generator generator;
 
-    private int cityx,cityy;
+    private int cityx = 0,cityy = 0;
 
     private int mapWidth;
     private int mapHeight;
-    private int citycount;
+    private int citycount = 0;
 
     private boolean updateFustrumNeed = true;
 
@@ -263,6 +263,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                     case 18: //mezo
                         ujEpulet(i,j, new Mill(i,j,128,128));
                         break;
+                }
+                if(mapActors[i][j].getY()<0){
+                    mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,(100-mapActors[i][j].getPosArrayX())*128-128);
                 }
             }
         }
