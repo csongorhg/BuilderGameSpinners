@@ -1,4 +1,4 @@
-package com.mygdx.game.Game;
+package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -112,7 +112,7 @@ public class IngameMenu extends MyStage {
         nepLabel.setPosition(nepActor.getX()+nepActor.getWidth()+20, nepActor.getY()-10);
         katonaLabel.setPosition(katonaActor.getX()+katonaActor.getWidth()+20, katonaActor.getY()-10);
 
-        napLabel = new MyLabel(TimeStepper.elteltnap+". nap", style);
+        napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, style);
         addActor(napLabel);
         napLabel.setPosition(nepActor.getX()+nepActor.getWidth()+150, height-((hatter.getHeight()/8)+napLabel.getHeight()/2)-5);
 
@@ -128,7 +128,7 @@ public class IngameMenu extends MyStage {
         nepLabel.setText(Statistics.lakosokszama+"");
         etelLabel.setText(Statistics.kaja+"");
         katonaLabel.setText(Statistics.katonakszama+"");
-        napLabel.setText(TimeStepper.elteltnap+". nap");
+        napLabel.setText("DAY "+TimeStepper.elteltnap);
     }
 
     @Override

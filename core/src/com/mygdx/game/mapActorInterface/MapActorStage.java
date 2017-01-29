@@ -30,7 +30,6 @@ import com.mygdx.game.BuildigsClasses.Mill;
 import com.mygdx.game.BuildigsClasses.StoneWorker;
 import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
-import com.mygdx.game.Game.IngameMenu;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.MyBaseClasses.MyButton;
