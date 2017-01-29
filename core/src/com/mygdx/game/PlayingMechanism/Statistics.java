@@ -24,4 +24,24 @@ public class Statistics {
     public static int kutakszama = 0;
     public static int katonakszama = 0;
 
+    public static void setDefaultStatistics() {
+        legtobblakos = 5;
+
+        lakosokszama = 5;
+        fa = 20;
+        ko = 20;
+        arany = 10;
+        kaja = 40;
+
+        lakosokszamaValt = 0;
+        faValt = 0;
+        koValt = 0;
+        aranyValt = 0;
+        kajaValt = 0;
+
+        epuletekszama = 1;
+        kutakszama = 0;
+        katonakszama = 0;
+    }
+
 }

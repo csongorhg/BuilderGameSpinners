@@ -90,12 +90,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         mapWidth=100;
         mapHeight=100;
-        statisticupdate();
         fillArea();
 
 
         setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
-
+        System.out.println("POZX "+cityx*128+256+" POZY "+(mapHeight-1-cityy)*128+128);
         //kiködösítés
         int seged;
 
@@ -134,6 +133,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             Statistics.katonakszama = Integer.parseInt(t[13]);
 
             TimeStepper.elteltnap = Integer.parseInt(t[14]);
+            System.out.println("PREF:"+TimeStepper.elteltnap);
         }
     }
 
@@ -142,7 +142,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         int[][] world;
 
-        if(preferences.getString(PlayScreen.PREFS,"").equals("")){
+        if(preferences.getString(PlayScreen.PREFS,"").equals("")){ //nincs világ
             generator = new Generator(mapWidth,mapHeight); //100x100-as terület
             world = generator.getWORLD();
         }
@@ -155,6 +155,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                     world[i][j] = Integer.parseInt(t[j]);
                 }
             }
+            statisticupdate();
         }
 
 
@@ -359,6 +360,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if(TimeStepper.vege){
             preferences.putString(PlayScreen.PREFS,"");
             prefstatistic.putString(PlayScreen.PREFstatistic,"");
+            dispose();
             game.setScreen(new EndScreen(game));
         }
 

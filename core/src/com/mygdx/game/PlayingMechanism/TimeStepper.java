@@ -17,6 +17,17 @@ public class TimeStepper {
     public static boolean vege = false;
 
 
+    public static void setDefaultTime() {
+        elteltido = -1;
+        elteltnap = 0;
+
+        egynap = 10;
+        ev = 60; //tél és nyár = év/2
+        nyarvan = true;
+
+        vege = false;
+    }
+
 
     public static void STEP(float delta){
         elteltido+=delta;

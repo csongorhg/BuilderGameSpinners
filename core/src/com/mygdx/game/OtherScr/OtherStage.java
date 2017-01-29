@@ -18,6 +18,8 @@ import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayScreen;
+import com.mygdx.game.PlayingMechanism.Statistics;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 
 /**
  * Created by tuskeb on 2016. 09. 30..
@@ -55,6 +57,10 @@ public class OtherStage extends MyStage {
                 super.clicked(event, x, y);
                 prefstatistic.putString(PlayScreen.PREFstatistic,"");
                 preferences.putString(PlayScreen.PREFS,"");
+
+                Statistics.setDefaultStatistics(); //statisztikák nullázása
+                TimeStepper.setDefaultTime(); //idő nullázása
+
                 game.setScreen(new PlayScreen(game));
             }
         });
