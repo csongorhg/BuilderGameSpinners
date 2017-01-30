@@ -6,7 +6,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.GridPoint2;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Queue;
@@ -30,6 +33,9 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
+
+import java.util.Vector;
 
 
 /**
@@ -61,6 +67,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private static String saveStatistic ="";
 
     public static int ujepulet[] = {0, 0, 0, 0};
+
+    private Vector<GridPoint2> v;
 
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -102,11 +110,16 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         cityy = cityx;
         cityx = seged;
 
+        setDefaultFog();
         fog((byte)cityx,(byte)cityy);
 
-        //ExtendViewport v = (ExtendViewport)getViewport();
-        //getViewport().setScreenWidth(getViewport().getScreenWidth()-512);
-        //System.out.println(cityx+" "+cityy);
+        if(v.size() > 0){
+            for (int i = 0; i < v.size(); i++) {
+                GridPoint2 p = v.get(i);
+                waterFog((byte)(p.x+1),(byte)p.y);
+                waterFog((byte)(p.x-1),(byte)p.y);
+            }
+        }
 
     }
 
@@ -173,6 +186,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         //int i = mapActors.length-1;
         //int j;
+
+        v = new Vector<GridPoint2>();
+
         for (int i = 0; i < world.length; i++) {
             for (int j = 0; j < world[0].length; j++) {
                 switch (world[i][j]){
@@ -249,6 +265,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         break;
                     case 13: //hid
                         ujEpulet(i,j, new Bridge(i,j,128,128));
+                        v.add(new GridPoint2(i,j));
                         break;
                     case 14: //ház
                         ujEpulet(i,j, new House(i,j,128,128));
@@ -279,12 +296,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private void ujEpulet(int i, int j, mapActor m){
         if(mapActors[i][j] != null)
             mapActors[i][j].remove();
-        System.out.println(mapActors[i][j]);
         mapActors[i][j] = m;
         addActor(mapActors[i][j]);
         mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,
                 (100-mapActors[i][j].getPosArrayX())*128-128);  //helyes pozicionálás
-        System.out.println(mapActors[i][j]);
         final mapActor ww = mapActors[i][j];
         mapActors[i][j].addListener(new ClickListener(){
             @Override
@@ -296,10 +311,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     }
 
 
-    private void fog(byte x, byte y){
-
-        Queue<GridPoint2> points = new Queue<GridPoint2>();
-
+    private void setDefaultFog(){
         //Kezdetben minden legyen köd!
         for (int i = 0; i< mapActors.length; i++){
             for(int j = 0; j<mapActors[i].length; j++)
@@ -307,6 +319,38 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 mapActors[i][j].setFog(true);
             }
         }
+    }
+
+    private void waterFog(byte x, byte y){
+        Queue<GridPoint2> points = new Queue<GridPoint2>();
+
+        points.addLast(new GridPoint2(x,y));
+
+        while (points.size>0){
+            GridPoint2 p = points.removeFirst();
+
+            if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && (mapActors[p.x+1][p.y] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x + 1, p.y));
+                mapActors[p.x + 1][p.y].setFog(false);
+            }
+            if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && (mapActors[p.x-1][p.y] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x - 1, p.y));
+                mapActors[p.x - 1][p.y].setFog(false);
+            }
+            if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && (mapActors[p.x][p.y+1] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x, p.y + 1));
+                mapActors[p.x][p.y + 1].setFog(false);
+            }
+            if (p.y>0 && mapActors[p.x][p.y-1].isFog() && (mapActors[p.x][p.y-1] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x, p.y - 1));
+                mapActors[p.x][p.y - 1].setFog(false);
+            }
+        }
+    }
+
+    private void fog(byte x, byte y){
+
+        Queue<GridPoint2> points = new Queue<GridPoint2>();
 
         points.addLast(new GridPoint2(x,y));
 
@@ -360,7 +404,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     @Override
     public void act(float delta) {
         super.act(delta);
-        //fixCamera();
+        fixCamera();
 
         if(!MenuStage.music.isPlaying() && MenuStage.playing){
             MenuStage.music.stop();
@@ -419,17 +463,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 }
                 ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
             }
-            mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
+            //mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;
         }
     }
-
-    /*private void kikodosit(){ // csak akkor jó ha egy folyó van a mapon!!!!!!!!!! Illetve instabil!!!!!!!!
-        for (int i = 0; i< mapActors.length; i++)
-            for(int j = 0; j<mapActors[i].length; j++)
-                if(mapActors[i][j].isFog())
-                    mapActors[i][j].setFog(false);
-    }*/
 
     private void tovabbepit(int x, int y){
         boolean b = true;
@@ -441,10 +478,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             if(b) ujEpulet(x, y-i, new Bridge(x, y-i,128,128));
             else ujEpulet(x, y+i, new Bridge(x, y+i,128,128));
             i++;
-            //mapActors[x][(b?y-i:y+i)].setPosition((mapActors[x][(b?y-i:y+i)].getPosArrayY())*128,(100-mapActors[x][(b?y-i:y+i)].getPosArrayX())*128-128);
+            waterFog((byte)(x+1),(byte)(b ? y-i : y+i));
+            waterFog((byte)(x-1),(byte)(b ? y-i : y+i));
         }while(mapActors[x][(b?y-i:y+i)] instanceof waterActor);
         fog((byte)x,(byte)(b ? y-i-2 : y+i+2));
-        System.out.println(b ? y-i-2 : y+i+2);
+
     }
 
     private void mapSave(){
