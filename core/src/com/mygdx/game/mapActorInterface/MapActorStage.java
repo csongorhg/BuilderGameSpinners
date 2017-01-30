@@ -89,7 +89,7 @@ public class MapActorStage extends MyStage {
         oneSpriteStaticActor.setSize(actorGroup.getWidth(), actorGroup.getHeight());
 
         init();
-        actorGroup.addActor(textButton);
+        //actorGroup.addActor(textButton);
         actorGroup.addActor(favago);
         actorGroup.addActor(banya);
         actorGroup.addActor(haz);
@@ -111,7 +111,7 @@ public class MapActorStage extends MyStage {
     public void redXmaker(float posx,float posy){
         OneSpriteStaticActor X = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
         X.setSize(meret/2,meret/2);
-        X.setPosition(posx,posy+textButton.getHeight());
+        X.setPosition(posx,posy);
         actorGroup.addActor(X);
     }
 
@@ -133,24 +133,12 @@ public class MapActorStage extends MyStage {
     @Override
     public void init() {
 
-        textButton = new MyButton("Exit game", textButtonStyle(50));
-        textButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                elsoinditas = true;
-                game.setScreen(new MenuScreen(game));
-            }
-        });
-        textButton.setSize(meret, textButton.getHeight());
-        textButton.setPosition(0, 0);
-
         favago = new OneSpriteStaticActor(Assets.manager.get(Assets.FAVAGO)){
             @Override
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(0, textButton.getHeight()+meret+meret/2);
+                setPosition(0, meret+meret/2);
             }
         };
         /*favago.addListener(new ClickListener(){
@@ -167,7 +155,7 @@ public class MapActorStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(meret/2, textButton.getHeight()+meret+meret/2);
+                setPosition(meret/2, meret+meret/2);
             }
         };
         /*banya.addListener(new ClickListener(){
@@ -184,7 +172,7 @@ public class MapActorStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(0, textButton.getHeight()+meret);
+                setPosition(0, meret);
             }
         };
         /*haz.addListener(new ClickListener(){
@@ -201,7 +189,7 @@ public class MapActorStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(meret/2, textButton.getHeight()+meret);
+                setPosition(meret/2, meret);
             }
         };
         /*barrak.addListener(new ClickListener(){
@@ -218,7 +206,7 @@ public class MapActorStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(0, textButton.getHeight()+meret/2);
+                setPosition(0, meret/2);
             }
         };
         /*kut.addListener(new ClickListener(){
@@ -235,7 +223,7 @@ public class MapActorStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(meret/2, textButton.getHeight()+meret/2);
+                setPosition(meret/2, meret/2);
             }
         };
         /*halasz.addListener(new ClickListener(){
@@ -252,7 +240,7 @@ public class MapActorStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(0, textButton.getHeight());
+                setPosition(0,0);
             }
         };
         /*mezo.addListener(new ClickListener(){
@@ -269,7 +257,7 @@ public class MapActorStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(meret/2, meret/2);
-                setPosition(meret/2, textButton.getHeight());
+                setPosition(meret/2, 0);
             }
         };
         /*hid.addListener(new ClickListener(){
@@ -307,7 +295,7 @@ public class MapActorStage extends MyStage {
         super.dispose();
     }
 
-    private TextButton.TextButtonStyle textButtonStyle(int a){
+    /*private TextButton.TextButtonStyle textButtonStyle(int a){
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
 
         Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
@@ -330,6 +318,6 @@ public class MapActorStage extends MyStage {
         style.font = font;
 
         return style;
-    }
+    }*/
 
 }

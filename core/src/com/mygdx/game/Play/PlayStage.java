@@ -277,10 +277,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     }
 
     private void ujEpulet(int i, int j, mapActor m){
-        if(mapActors[i][j] != null) mapActors[i][j].remove();
+        if(mapActors[i][j] != null)
+            mapActors[i][j].remove();
+        System.out.println(mapActors[i][j]);
         mapActors[i][j] = m;
         addActor(mapActors[i][j]);
-        System.out.println(i+" "+j);
+        mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,
+                (100-mapActors[i][j].getPosArrayX())*128-128);  //helyes pozicionálás
+        System.out.println(mapActors[i][j]);
         final mapActor ww = mapActors[i][j];
         mapActors[i][j].addListener(new ClickListener(){
             @Override
@@ -356,7 +360,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     @Override
     public void act(float delta) {
         super.act(delta);
-        fixCamera();
+        //fixCamera();
 
         if(!MenuStage.music.isPlaying() && MenuStage.playing){
             MenuStage.music.stop();
@@ -398,7 +402,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             else if(ujepulet[3] == 13){
                 ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
                 if(mapActors[ujepulet[1]][ujepulet[2]] != null) {
-                    kikodosit();
+                    //fog((byte)ujepulet[1], (byte)ujepulet[2]);
                     tovabbepit(ujepulet[1], ujepulet[2]);
                 }
             }
@@ -406,18 +410,26 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             else if(ujepulet[3] == 15) ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 16) ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
             else if(ujepulet[3] == 17) ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2],128,128));
-            else if(ujepulet[3] == 18) ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
+            else if(ujepulet[3] == 18){
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        if(!(i == 0 && j == 0))
+                            ujEpulet(ujepulet[1]+i, ujepulet[2]+j, new MillCircle(ujepulet[1]+i, ujepulet[2]+j,128,128));
+                    }
+                }
+                ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
+            }
             mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;
         }
     }
 
-    private void kikodosit(){ // csak akkor jó ha egy folyó van a mapon!!!!!!!!!! Illetve instabil!!!!!!!!
+    /*private void kikodosit(){ // csak akkor jó ha egy folyó van a mapon!!!!!!!!!! Illetve instabil!!!!!!!!
         for (int i = 0; i< mapActors.length; i++)
             for(int j = 0; j<mapActors[i].length; j++)
                 if(mapActors[i][j].isFog())
                     mapActors[i][j].setFog(false);
-    }
+    }*/
 
     private void tovabbepit(int x, int y){
         boolean b = true;
@@ -429,8 +441,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             if(b) ujEpulet(x, y-i, new Bridge(x, y-i,128,128));
             else ujEpulet(x, y+i, new Bridge(x, y+i,128,128));
             i++;
-            mapActors[x][(b?y-i:y+i)].setPosition((mapActors[x][(b?y-i:y+i)].getPosArrayY())*128,(100-mapActors[x][(b?y-i:y+i)].getPosArrayX())*128-128);
+            //mapActors[x][(b?y-i:y+i)].setPosition((mapActors[x][(b?y-i:y+i)].getPosArrayY())*128,(100-mapActors[x][(b?y-i:y+i)].getPosArrayX())*128-128);
         }while(mapActors[x][(b?y-i:y+i)] instanceof waterActor);
+        fog((byte)x,(byte)(b ? y-i-2 : y+i+2));
+        System.out.println(b ? y-i-2 : y+i+2);
     }
 
     private void mapSave(){
