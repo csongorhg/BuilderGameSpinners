@@ -33,7 +33,7 @@ import java.sql.Time;
  */
 public class IngameMenu extends MyStage {
 
-    private MyLabel faLabel, koLabel, aranyLabel, nepLabel, etelLabel, katonaLabel;
+    private MyLabel faLabel, koLabel, aranyLabel, nepLabel, etelLabel,faLabelValt, koLabelValt, aranyLabelValt, nepLabelValt, etelLabelValt, katonaLabel;
     private MyLabel napLabel;
     private OneSpriteStaticActor hatter;
     private OneSpriteStaticActor faActor, koActor, aranyActor, nepActor, etelActor, katonaActor;
@@ -60,14 +60,18 @@ public class IngameMenu extends MyStage {
             }
         });
 
-        Label.LabelStyle style = labelStyle(hatter.getHeight()/8-10);
+        faLabel = new MyLabel(""+Statistics.fa, labelStyle(hatter.getHeight()/8-10,false));
+        koLabel = new MyLabel(""+Statistics.ko, labelStyle(hatter.getHeight()/8-10,false));
+        aranyLabel = new MyLabel(""+Statistics.arany, labelStyle(hatter.getHeight()/8-10,false));
+        nepLabel = new MyLabel(""+Statistics.lakosokszama, labelStyle(hatter.getHeight()/8-10,false));
+        etelLabel = new MyLabel(""+Statistics.kaja, labelStyle(hatter.getHeight()/8-10,false));
+        katonaLabel = new MyLabel(""+Statistics.katonakszama, labelStyle(hatter.getHeight()/8-10,false));
 
-        faLabel = new MyLabel(""+Statistics.fa, style);
-        koLabel = new MyLabel(""+Statistics.ko, style);
-        aranyLabel = new MyLabel(""+Statistics.arany, style);
-        nepLabel = new MyLabel(""+Statistics.lakosokszama, style);
-        etelLabel = new MyLabel(""+Statistics.kaja, style);
-        katonaLabel = new MyLabel(""+Statistics.katonakszama, style);
+        faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(hatter.getHeight()/8-10,true));
+        koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(hatter.getHeight()/8-10,true));
+        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, labelStyle(hatter.getHeight()/8-10,true));
+        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, labelStyle(hatter.getHeight()/8-10,true));
+        etelLabelValt = new MyLabel(""+Statistics.kajaValt, labelStyle(hatter.getHeight()/8-10,true));
 
         addActor(faLabel);
         addActor(koLabel);
@@ -75,6 +79,12 @@ public class IngameMenu extends MyStage {
         addActor(nepLabel);
         addActor(etelLabel);
         addActor(katonaLabel);
+
+        addActor(faLabelValt);
+        addActor(koLabelValt);
+        addActor(aranyLabelValt);
+        addActor(nepLabelValt);
+        addActor(etelLabelValt);
 
         faActor = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
         koActor = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
@@ -97,22 +107,27 @@ public class IngameMenu extends MyStage {
         etelActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
         katonaActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
 
-        faActor.setPosition(5, height-5-faActor.getHeight());
-        koActor.setPosition(5, faActor.getY()-10-koActor.getHeight());
-        faLabel.setPosition(faActor.getX()+faActor.getWidth()+20, faActor.getY()-10);
-        koLabel.setPosition(koActor.getX()+koActor.getWidth()+20, koActor.getY()-10);
+        faActor.setPosition(width/40*1,height/30*28);
+        koActor.setPosition(width/40*1,height/30*26);
+        faLabel.setPosition(width/40*3,height/30*28);
+        koLabel.setPosition(width/40*3,height/30*26);
+        faLabelValt.setPosition(width/40*5,height/30*28);
+        koLabelValt.setPosition(width/40*5,height/30*26);
 
-        aranyActor.setPosition(faActor.getX()+faActor.getWidth()+150, faActor.getY());
-        etelActor.setPosition(koActor.getX()+koActor.getWidth()+150, koActor.getY());
-        aranyLabel.setPosition(aranyActor.getX()+aranyActor.getWidth()+20, aranyActor.getY()-10);
-        etelLabel.setPosition(etelActor.getX()+etelActor.getWidth()+20, etelActor.getY()-10);
+        aranyActor.setPosition(width/40*7,height/30*28);
+        etelActor.setPosition(width/40*7,height/30*26);
+        aranyLabel.setPosition(width/40*9,height/30*28);
+        etelLabel.setPosition(width/40*9,height/30*26);
+        aranyLabelValt.setPosition(width/40*11,height/30*28);
+        etelLabelValt.setPosition(width/40*11,height/30*26);
 
-        nepActor.setPosition(aranyActor.getX()+aranyActor.getWidth()+150, aranyActor.getY());
-        katonaActor.setPosition(etelActor.getX()+etelActor.getWidth()+150, etelActor.getY());
-        nepLabel.setPosition(nepActor.getX()+nepActor.getWidth()+20, nepActor.getY()-10);
-        katonaLabel.setPosition(katonaActor.getX()+katonaActor.getWidth()+20, katonaActor.getY()-10);
+        nepActor.setPosition(width/40*13,height/30*28);
+        katonaActor.setPosition(width/40*13,height/30*26);
+        nepLabel.setPosition(width/40*15,height/30*28);
+        katonaLabel.setPosition(width/40*15,height/30*26);
+        nepLabelValt.setPosition(width/40*17,height/30*28);
 
-        napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, style);
+        napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, labelStyle(hatter.getHeight()/8-10,false));
         addActor(napLabel);
         napLabel.setPosition(nepActor.getX()+nepActor.getWidth()+150, height-((hatter.getHeight()/8)+napLabel.getHeight()/2)-5);
 
@@ -127,6 +142,13 @@ public class IngameMenu extends MyStage {
         aranyLabel.setText(Statistics.arany+"");
         nepLabel.setText(Statistics.lakosokszama+"");
         etelLabel.setText(Statistics.kaja+"");
+
+        faLabelValt.setText((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama-Statistics.katonakszama))+"");
+        koLabelValt.setText(Statistics.koValt+"");
+        aranyLabelValt.setText(Statistics.aranyValt+"");
+        nepLabelValt.setText(Statistics.lakosokszamaValt+"");
+        etelLabelValt.setText((Statistics.kajaValt-Statistics.lakosokszama-Statistics.katonakszama)+"");
+
         katonaLabel.setText(Statistics.katonakszama+"");
         napLabel.setText("DAY "+TimeStepper.elteltnap);
     }
@@ -142,10 +164,14 @@ public class IngameMenu extends MyStage {
     }
 
 
-    private Label.LabelStyle labelStyle(float a){
+    private Label.LabelStyle labelStyle(float a,boolean green){
         Label.LabelStyle style;
         style = new Label.LabelStyle();
-        style.fontColor = Color.WHITE;
+        if(green){
+            style.fontColor = Color.GREEN;
+        }else{
+            style.fontColor = Color.WHITE;
+        }
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();

@@ -45,6 +45,18 @@ public class Buildings {
             Statistics.koValt += -b[szint-1].koNaponta;
             Statistics.kajaValt += -b[szint-1].kajaNaponta;
             Statistics.lakosokszamaValt += -b[szint-1].lakossagNaponta;
+        }else if(szint == 0 && no){
+            Statistics.arany += b[0].aranyLetrehoz;
+            Statistics.fa += b[0].faLetrehoz;
+            Statistics.ko += b[0].koLetrehoz;
+            Statistics.kaja += b[0].kajaLetrehoz;
+            Statistics.lakosokszama += b[0].lakossagLetrehoz;
+
+            Statistics.aranyValt += b[0].aranyNaponta;
+            Statistics.faValt += b[0].faNaponta;
+            Statistics.koValt += b[0].koNaponta;
+            Statistics.kajaValt += b[0].kajaNaponta;
+            Statistics.lakosokszamaValt += b[0].lakossagNaponta;
         }
         else{
             if(no){

@@ -27,7 +27,7 @@ public class Building {
     protected int kajaNaponta = 0;
     protected int lakossagNaponta = 0;
 
-    public Building(int faletrehoz,int koletrehoz,int aranyletrehoz,int kajaletrehoz,int lakossagletrehoz,int fanaponta,int konaponta,int aranynaponta,int kajanaponta,int lakossagnaponta,int falebont,int kolebont,int aranylebont,int kajalebont,int lakossaglebont) {
+    public Building(int lakossagletrehoz,int kajaletrehoz,int faletrehoz,int koletrehoz,int aranyletrehoz,int lakossagnaponta,int kajanaponta,int fanaponta,int konaponta,int aranynaponta,int lakossaglebont,int kajalebont,int falebont,int kolebont,int aranylebont) {
         faLetrehoz = faletrehoz;
         koLetrehoz = koletrehoz;
         aranyLetrehoz = aranyletrehoz;
