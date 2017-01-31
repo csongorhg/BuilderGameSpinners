@@ -127,6 +127,10 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Interface/hid.png", Texture.class);
 	public static final AssetDescriptor<Texture> REDX
 			= new AssetDescriptor<Texture>("Interface/redX.png", Texture.class);
+	public static final AssetDescriptor<Texture> DG
+			= new AssetDescriptor<Texture>("Interface/downgrade.png", Texture.class);
+	public static final AssetDescriptor<Texture> UG
+			= new AssetDescriptor<Texture>("Interface/upgrade.png", Texture.class);
 
 	public static final AssetDescriptor<Texture> KIJELOLES
 			= new AssetDescriptor<Texture>("Tiles/kijeloles.png", Texture.class);
@@ -192,6 +196,8 @@ public class Assets {
 		manager.load(WATER_WELL);
 		manager.load(HID);
 		manager.load(REDX);
+		manager.load(DG);
+		manager.load(UG);
 
 		manager.load(FUSNOW_BLOCK);
 
