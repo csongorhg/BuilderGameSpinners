@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * Created by tuskeb on 2016. 09. 30..
  */
 abstract public class OneSpriteActor extends MyActor implements InitableInterface {
+    public Sprite getSprite() {
+        return sprite;
+    }
+
     protected Sprite sprite;
 
     public OneSpriteActor(Sprite sprite) {

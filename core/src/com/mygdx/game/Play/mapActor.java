@@ -84,5 +84,6 @@ abstract public class mapActor extends Group {
         return posArrayY;
     }
 
-
+    abstract public void setWinter();
+    abstract public void setSummer();
 }
