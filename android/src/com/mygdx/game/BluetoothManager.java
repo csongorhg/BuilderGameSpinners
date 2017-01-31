@@ -13,7 +13,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.badlogic.gdx.utils.Queue;
 import com.mygdx.game.MyBaseClasses.iBluetooth;
@@ -35,6 +34,8 @@ public class BluetoothManager implements iBluetooth {
     private AcceptThread mAcceptThread;
     private ConnectThread mConnectThread;
     private ConnectedThread mConnectedThread;
+
+    private String frameSplitter = "Ł";
 
     public static final int STATE_NONE = 0;
     public static final int STATE_LISTEN = 1;
@@ -355,9 +356,11 @@ public class BluetoothManager implements iBluetooth {
 
     public void sendMessage(String message) {
         if (message.length() > 0) {
+            /*
             if (message.length() == 1) {
                 message = "0" + message;
-            }
+            }*/
+            message +=frameSplitter;
             byte[] send = message.getBytes();
             this.write(send);
         }
@@ -496,7 +499,7 @@ public class BluetoothManager implements iBluetooth {
                 try {
                     byte[] buffer = new byte[1024];
                     bytes = mmInStream.read(buffer);
-                    Log.e("BTM", "Read (BT thread)");
+                    //Log.e("BTM", "Read (BT thread)");
                     //Scanner scanner = new Scanner(mmInStream);
                     setMessage(new String(buffer, "UTF-8"));
                     mHandler.obtainMessage(AndroidLauncher.MESSAGE_READ, bytes, -1,
@@ -529,6 +532,11 @@ public class BluetoothManager implements iBluetooth {
             this.message = message;
             messageTaken = false;
         }*/
-        messages.addLast(message);
+        String[] strings = message.split(frameSplitter);
+        for (String s: strings) {
+            if(s.compareTo("")!=0) {
+                messages.addLast(s);
+            }
+        }
     }
 }

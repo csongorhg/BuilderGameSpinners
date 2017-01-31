@@ -519,6 +519,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             saveMap += "\n";
         }
         preferences.putString(PlayScreen.PREFS,saveMap);
+        preferences.flush();
 
 
     }
@@ -527,6 +528,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         saveStatistic = "" ;
         saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
         prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
+        prefstatistic.flush();
     }
 
 

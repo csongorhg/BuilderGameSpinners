@@ -58,7 +58,8 @@ public class OtherStage extends MyStage {
                 super.clicked(event, x, y);
                 prefstatistic.putString(PlayScreen.PREFstatistic,"");
                 preferences.putString(PlayScreen.PREFS,"");
-
+                preferences.flush();
+                prefstatistic.flush();
                 Statistics.setDefaultStatistics(); //statisztikák nullázása
                 TimeStepper.setDefaultTime(); //idő nullázása
 
