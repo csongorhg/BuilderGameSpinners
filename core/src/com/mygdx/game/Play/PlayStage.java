@@ -439,6 +439,16 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         epit_e();
 
+        if (!TimeStepper.nyarvan) winterActors();
+
+    }
+
+    private void winterActors() {
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 0; j < mapActors[i].length; j++) {
+                mapActors[i][j].setWinter();
+            }
+        }
     }
 
     private void epit_e() {

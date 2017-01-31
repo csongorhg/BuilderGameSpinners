@@ -39,4 +39,14 @@ public class StoneWorker extends mapActor {
         return "16";
     }
 
+    @Override
+    public void setSummer() {
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+    }
+
+    @Override
+    public void setWinter() {
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+    }
+
 }
