@@ -35,7 +35,7 @@ public class IngameMenu extends MyStage {
 
     private MyLabel faLabel, koLabel, aranyLabel, nepLabel, etelLabel,faLabelValt, koLabelValt, aranyLabelValt, nepLabelValt, etelLabelValt, katonaLabel;
     private MyLabel napLabel;
-    private OneSpriteStaticActor hatter;
+    private OneSpriteStaticActor hatter, oneSpriteStaticActor;
     private OneSpriteStaticActor faActor, koActor, aranyActor, nepActor, etelActor, katonaActor;
     private float width, height;
 
@@ -131,6 +131,18 @@ public class IngameMenu extends MyStage {
         addActor(napLabel);
         napLabel.setPosition(nepActor.getX()+nepActor.getWidth()+150, height-((hatter.getHeight()/8)+napLabel.getHeight()/2)-5);
 
+        oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.WALL));
+        oneSpriteStaticActor.setPosition(getViewport().getWorldWidth() - oneSpriteStaticActor.getWidth() - 256,
+                getViewport().getWorldHeight() - oneSpriteStaticActor.getHeight());
+        oneSpriteStaticActor.setSize(256, 128);
+        addActor(oneSpriteStaticActor);
+        oneSpriteStaticActor.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                System.out.println("pecs");
+            }
+        });
     }
 
 

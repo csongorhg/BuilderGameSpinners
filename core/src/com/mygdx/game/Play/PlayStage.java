@@ -103,7 +103,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
 
         setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
-        System.out.println("POZX "+cityx*128+256+" POZY "+(mapHeight-1-cityy)*128+128);
         //kiködösítés
         int seged;
 
@@ -121,6 +120,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 waterFog((byte)(p.x-1),(byte)p.y);
             }
         }
+
+
 
     }
 
