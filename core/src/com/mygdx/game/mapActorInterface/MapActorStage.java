@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Bluetooth.BluetoothScreen;
 import com.mygdx.game.BuildigsClasses.Barrack;
 import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
@@ -53,6 +54,7 @@ public class MapActorStage extends MyStage {
     private TextButton textButton;
     protected OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
     private static boolean elsoinditas = true;
+    private OneSpriteStaticActor oneSpriteStaticActor;
 
     public Group getActorGroup() {
         return actorGroup;
@@ -268,6 +270,18 @@ public class MapActorStage extends MyStage {
                 ujepuletFeltolt(t);
             }
         });*/
+        oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.WALL));
+        oneSpriteStaticActor.setSize(100, 100);
+        oneSpriteStaticActor.setPosition(getViewport().getWorldWidth() - oneSpriteStaticActor.getWidth() - 256,
+                getViewport().getWorldHeight() - oneSpriteStaticActor.getHeight());
+        addActor(oneSpriteStaticActor);
+        oneSpriteStaticActor.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreen(new BluetoothScreen(game));
+            }
+        });
 
     }
 

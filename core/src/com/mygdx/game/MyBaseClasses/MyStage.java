@@ -22,6 +22,7 @@ abstract public class MyStage extends Stage implements InitableInterface {
     public MyStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch);
         this.game = game;
+        System.out.println(game.getScreen());
         init();
         setDebugAll(true);
     }

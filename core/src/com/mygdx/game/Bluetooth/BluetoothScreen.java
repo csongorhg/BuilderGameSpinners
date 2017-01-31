@@ -1,11 +1,16 @@
 package com.mygdx.game.Bluetooth;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.BluetoothChooseServerClientStage;
 import com.mygdx.game.MyBaseClasses.BluetoothClientConnectionStage;
 import com.mygdx.game.MyBaseClasses.BluetoothDisconectionStage;
 import com.mygdx.game.MyBaseClasses.BluetoothServerListenStage;
 import com.mygdx.game.MyBaseClasses.MyScreen;
+import com.mygdx.game.MyBaseClasses.MyStage;
+import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -13,6 +18,8 @@ import com.mygdx.game.MyGdxGame;
  */
 
 public class BluetoothScreen extends MyScreen {
+
+    private MyStage bgStage;
 
     public enum BluetoothState{
         Choose, Listening, Discovering, Connected, Disconnected
@@ -35,8 +42,30 @@ public class BluetoothScreen extends MyScreen {
     public void init() {
         super.init();
 
+        bgStage = new MyStage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())), spriteBatch, game) {
 
+            private OneSpriteStaticActor backGroudActor;
 
+            @Override
+            public void init() {
+                r = 0;
+                g = 0;
+                b = 0;
+                backGroudActor = new OneSpriteStaticActor(Assets.manager.get(Assets.WALL));
+                backGroudActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                addActor(backGroudActor);
+            }
+
+            @Override
+            protected void resized() {
+
+            }
+
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+            }
+        };
 
         bluetoothChooseServerClientStage = new BluetoothChooseServerClientStage(game) {
             @Override
@@ -120,6 +149,8 @@ public class BluetoothScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+        bgStage.draw();
+        bgStage.act();
         switch (bluetoothState){
             case Choose:
                 bluetoothChooseServerClientStage.act(delta);
