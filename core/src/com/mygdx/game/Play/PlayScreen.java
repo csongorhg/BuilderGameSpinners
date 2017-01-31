@@ -12,6 +12,7 @@ import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
 import com.mygdx.game.BuildigsClasses.House;
 import com.mygdx.game.BuildigsClasses.Mill;
+import com.mygdx.game.BuildigsClasses.MillCircle;
 import com.mygdx.game.BuildigsClasses.StoneWorker;
 import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
@@ -25,6 +26,7 @@ import com.mygdx.game.mapActorInterface.MapActorCityHallStage;
 import com.mygdx.game.mapActorInterface.MapActorFishDockStage;
 import com.mygdx.game.mapActorInterface.MapActorGrassStage;
 import com.mygdx.game.mapActorInterface.MapActorHouseStage;
+import com.mygdx.game.mapActorInterface.MapActorMillFieldStage;
 import com.mygdx.game.mapActorInterface.MapActorMillStage;
 import com.mygdx.game.mapActorInterface.MapActorStoneStage;
 import com.mygdx.game.mapActorInterface.MapActorStage;
@@ -138,6 +140,8 @@ public class PlayScreen extends MyScreen{
                 }
                 else if(mapActor instanceof waterActor){
                     mapActorGlobalStage = new MapActorWaterStage(game, (waterActor) mapActor);
+                } else if(mapActor instanceof MillCircle){
+                    mapActorGlobalStage = new MapActorMillFieldStage(game, (MillCircle)mapActor);
                 }
                 else mapActorGlobalStage = new MapActorStage(game, null);
 
