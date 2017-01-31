@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.MyBaseClasses.MyActor;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 
 /**
@@ -24,11 +25,16 @@ abstract public class mapActor extends Group {
 
 
         if(fog){
-            addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
-            fogActor.setSize(actor.getWidth(), actor.getHeight());
+            if (fogActor==null) {
+                addActor(fogActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FOG)));
+                fogActor.setSize(actor.getWidth(), actor.getHeight());
+            }
             //fogActor.setZIndex(Integer.MAX_VALUE);
         }
-        if(fogActor != null)fogActor.setVisible(fog);
+        else {
+            removeActor(fogActor, true);
+        }
+        //if(fogActor != null)fogActor.setVisible(fog);
         //actor.setVisible(!fog);
         this.fog = fog;
     }
