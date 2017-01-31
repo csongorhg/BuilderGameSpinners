@@ -2,9 +2,11 @@ package com.mygdx.game.mapActorInterface;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 
@@ -15,6 +17,7 @@ import com.mygdx.game.MyGdxGame;
 public class MapActorWaterWellStage extends MapActorStage {
 
     private WaterWell mapactor;
+    private MyLabel label;
 
     public MapActorWaterWellStage(MyGdxGame game, WaterWell w) {
         super(game, w);
@@ -33,5 +36,17 @@ public class MapActorWaterWellStage extends MapActorStage {
             }
         });
         allRemove();
+
+        init();
+        getActorGroup().addActor(label);
+    }
+
+    @Override
+    public void init() {
+        super.init();
+
+        label = new MyLabel("Protect\n5 buildings",labelStyle(60));
+        label.setAlignment(Align.center);
+        label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
     }
 }
