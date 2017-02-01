@@ -508,7 +508,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private void epit_e() {
 
         if(ujepulet[0] == 1){
-            System.out.println("Tralal");
             if(ujepulet[3] == 11){
                 ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
                 Buildings.epuletFejlesztes("faKitermelo",0,true);
@@ -522,7 +521,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 if(mapActors[ujepulet[1]][ujepulet[2]] != null) {
                     //fog((byte)ujepulet[1], (byte)ujepulet[2]);
                     tovabbepit(ujepulet[1], ujepulet[2]);
-                    Statistics.fa--;
+                    Statistics.fa -= 5;
+                    Statistics.ko -= 10;
                 }
             }
             else if(ujepulet[3] == 14){
@@ -555,7 +555,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             }
             //mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;
-
+            selectMapActor(mapActors[ujepulet[1]][ujepulet[2]]);
         }
     }
 
