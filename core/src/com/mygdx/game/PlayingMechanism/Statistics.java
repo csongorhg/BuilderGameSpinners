@@ -22,7 +22,6 @@ public class Statistics {
 
     public static int epuletekszama = 1;
     public static int kutakszama = 0;
-    public static int katonakszama = 0;
 
     public static void setDefaultStatistics() {
         legtobblakos = 5;
@@ -41,7 +40,6 @@ public class Statistics {
 
         epuletekszama = 1;
         kutakszama = 0;
-        katonakszama = 0;
     }
 
 }
