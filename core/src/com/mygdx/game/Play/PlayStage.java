@@ -169,7 +169,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             for (int i = 0; i < sor.length; i++) {
                 String[] t = sor[i].split(";");
                 for (int j = 0; j < t.length; j++) {
-                    //world[i][j] = Integer.parseInt(t[j]);
+                    world[i][j] = Integer.parseInt(t[j]);
                 }
             }
             statisticupdate();
