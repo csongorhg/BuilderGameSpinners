@@ -61,26 +61,21 @@ public class TimeStepper {
                 lakosokszama = (lakosokszama/2-(lakosokszama/2-fa))*2;
                 fa = 0;
             }
-
-            if(fa > Units.getLetszam()){
-                fa-=Units.getLetszam();
-            }else{
-                Units.kivon(Units.getLetszam()-fa);
-                fa = 0;
-            }
-        }
-
-        if(kaja > lakosokszama){
-            kaja-=lakosokszama;
-        }else{
-            lakosokszama = lakosokszama-(lakosokszama-kaja);
-            kaja = 0;
         }
 
         if(kaja > Units.getLetszam()){
             kaja-=Units.getLetszam();
         }else{
             Units.kivon(Units.getLetszam()-kaja);
+            kaja = 0;
+        }
+
+        arany-=Units.getZsold();
+
+        if(kaja > lakosokszama){
+            kaja-=lakosokszama;
+        }else{
+            lakosokszama = lakosokszama-(lakosokszama-kaja);
             kaja = 0;
         }
 

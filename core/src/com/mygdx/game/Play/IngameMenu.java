@@ -154,7 +154,7 @@ public class IngameMenu extends MyStage {
         nepLabelValt.setText(Statistics.lakosokszamaValt+"");
         etelLabelValt.setText((Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam())+"");
 
-        katonaLabel.setText(Units.getLetszam()+"");
+        katonaLabel.setText(Units.getEro()+"");
         napLabel.setText("DAY "+TimeStepper.elteltnap);
     }
 

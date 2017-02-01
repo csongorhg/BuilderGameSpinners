@@ -1,14 +1,16 @@
 package com.mygdx.game.PlayingMechanism;
 
+import static com.mygdx.game.PlayingMechanism.Statistics.*;
+
 /**
  * Created by tanulo on 2017. 02. 01..
  */
 public class Units {
 
-    static int kardosLetszam = 0;
-    static int ijjaszLetszam = 0;
-    static int lovasLetszam = 0;
-    static int agyusLetszam = 0;
+    public static int kardosLetszam = 0;
+    public static int ijjaszLetszam = 0;
+    public static int lovasLetszam = 0;
+    public static int agyusLetszam = 0;
 
     static int kardosEro = 1;
     static int ijjaszEro = 2;
@@ -78,5 +80,56 @@ public class Units {
         }
     }
 
+    public static int getEro() {
+        int ero = kardosLetszam*kardosEro + ijjaszLetszam*ijjaszEro + lovasLetszam*lovasEro + agyusLetszam*agyusEro;
+        return ero;
+    }
+
+    //lakos,fa,ko,arany
+
+    public static void ujAgyus() {
+        if(lakosokszama >= agyusKoltseg[0] && fa >= agyusKoltseg[1] && ko >= agyusKoltseg[2] && arany >= agyusKoltseg[3]){
+            lakosokszama -= agyusKoltseg[0];
+            fa -= agyusKoltseg[1];
+            ko -= agyusKoltseg[2];
+            arany -= agyusKoltseg[3];
+            agyusLetszam++;
+        }
+    }
+
+    public static void ujLovas() {
+        if(lakosokszama >= lovasKoltseg[0] && fa >= lovasKoltseg[1] && ko >= lovasKoltseg[2] && arany >= lovasKoltseg[3]){
+            lakosokszama -= lovasKoltseg[0];
+            fa -= lovasKoltseg[1];
+            ko -= lovasKoltseg[2];
+            arany -= lovasKoltseg[3];
+            lovasLetszam++;
+        }
+    }
+
+    public static void ujKardos() {
+        if(lakosokszama >= kardosKoltseg[0] && fa >= kardosKoltseg[1] && ko >= kardosKoltseg[2] && arany >= kardosKoltseg[3]){
+            lakosokszama -= kardosKoltseg[0];
+            fa -= kardosKoltseg[1];
+            ko -= kardosKoltseg[2];
+            arany -= kardosKoltseg[3];
+            kardosLetszam++;
+        }
+    }
+
+    public static void ujIjjasz() {
+        if(lakosokszama >= ijjaszKoltseg[0] && fa >= ijjaszKoltseg[1] && ko >= ijjaszKoltseg[2] && arany >= ijjaszKoltseg[3]){
+            lakosokszama -= ijjaszKoltseg[0];
+            fa -= ijjaszKoltseg[1];
+            ko -= ijjaszKoltseg[2];
+            arany -= ijjaszKoltseg[3];
+            ijjaszLetszam++;
+        }
+    }
+
+    public static int getZsold() {
+        int zsold = kardosLetszam*kardosKoltseg[0] + ijjaszLetszam*ijjaszKoltseg[0] + lovasLetszam*lovasKoltseg[0] + agyusLetszam*agyusKoltseg[0];
+        return zsold;
+    }
 }
 

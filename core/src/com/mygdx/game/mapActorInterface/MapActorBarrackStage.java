@@ -8,6 +8,7 @@ import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayingMechanism.Units;
 
 /**
  * Created by Vince on 2017. 01. 28..
@@ -54,7 +55,7 @@ public class MapActorBarrackStage extends MapActorStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-
+                Units.ujIjjasz();
             }
         });
 
@@ -65,7 +66,7 @@ public class MapActorBarrackStage extends MapActorStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-
+                Units.ujKardos();
             }
         });
 
@@ -76,7 +77,7 @@ public class MapActorBarrackStage extends MapActorStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-
+                Units.ujLovas();
             }
         });
 
@@ -87,7 +88,7 @@ public class MapActorBarrackStage extends MapActorStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-
+                Units.ujAgyus();
             }
         });
     }
