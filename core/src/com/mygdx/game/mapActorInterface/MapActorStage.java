@@ -56,6 +56,7 @@ public class MapActorStage extends MyStage {
     protected OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
     private static boolean elsoinditas = true;
     private OneSpriteStaticActor oneSpriteStaticActor;
+    public static float meretes;
 
     public Group getActorGroup() {
         return actorGroup;
@@ -297,6 +298,7 @@ public class MapActorStage extends MyStage {
         });*/
         oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.WALL));
         oneSpriteStaticActor.setSize(100, 100);
+        meretes = oneSpriteStaticActor.getWidth();
         oneSpriteStaticActor.setPosition(getViewport().getWorldWidth() - oneSpriteStaticActor.getWidth() - 256,
                 getViewport().getWorldHeight() - oneSpriteStaticActor.getHeight());
         addActor(oneSpriteStaticActor);
@@ -325,6 +327,7 @@ public class MapActorStage extends MyStage {
             stage.addActor(selectActor);
         }
     }
+
 
     @Override
     public void dispose() {

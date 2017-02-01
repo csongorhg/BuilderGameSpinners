@@ -26,6 +26,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.PlayingMechanism.Units;
+import com.mygdx.game.mapActorInterface.MapActorStage;
 
 import java.sql.Time;
 
@@ -47,13 +48,11 @@ public class IngameMenu extends MyStage {
 
     @Override
     public void init() {
-        width = ((ExtendViewport)getViewport()).getWorldWidth();
-        height = ((ExtendViewport)getViewport()).getWorldHeight();
 
         hatter = new OneSpriteStaticActor(Assets.manager.get(Assets.FAHATTER));
         addActor(hatter);
-        hatter.setSize(width/2+150, hatter.getHeight());
-        hatter.setPosition(0, height - hatter.getHeight() * 1 / 4 - 10);
+        hatter.setSize(getViewport().getWorldWidth()-256- MapActorStage.meretes, hatter.getHeight());
+        hatter.setPosition(0, getViewport().getWorldHeight() - hatter.getHeight() * 1 / 4 - 20);
         hatter.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -61,18 +60,23 @@ public class IngameMenu extends MyStage {
             }
         });
 
-        faLabel = new MyLabel(""+Statistics.fa, labelStyle(hatter.getHeight()/8-10,false));
-        koLabel = new MyLabel(""+Statistics.ko, labelStyle(hatter.getHeight()/8-10,false));
-        aranyLabel = new MyLabel(""+Statistics.arany, labelStyle(hatter.getHeight()/8-10,false));
-        nepLabel = new MyLabel(""+Statistics.lakosokszama, labelStyle(hatter.getHeight()/8-10,false));
-        etelLabel = new MyLabel(""+Statistics.kaja, labelStyle(hatter.getHeight()/8-10,false));
-        katonaLabel = new MyLabel(""+Units.getLetszam(), labelStyle(hatter.getHeight()/8-10,false));
+        width = hatter.getWidth();
+        height = hatter.getHeight() * 1/4-20;
+        float negyed = width/4;
+        float fel = height/2;
 
-        faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(hatter.getHeight()/8-10,true));
-        koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(hatter.getHeight()/8-10,true));
-        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, labelStyle(hatter.getHeight()/8-10,true));
-        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, labelStyle(hatter.getHeight()/8-10,true));
-        etelLabelValt = new MyLabel(""+Statistics.kajaValt, labelStyle(hatter.getHeight()/8-10,true));
+        faLabel = new MyLabel(""+Statistics.fa, labelStyle(fel,false));
+        koLabel = new MyLabel(""+Statistics.ko, labelStyle(fel,false));
+        aranyLabel = new MyLabel(""+Statistics.arany, labelStyle(fel,false));
+        nepLabel = new MyLabel(""+Statistics.lakosokszama, labelStyle(fel,false));
+        etelLabel = new MyLabel(""+Statistics.kaja, labelStyle(fel,false));
+        katonaLabel = new MyLabel(""+Units.getLetszam(), labelStyle(fel,false));
+
+        faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(fel,true));
+        koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(fel,true));
+        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, labelStyle(fel,true));
+        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, labelStyle(fel,true));
+        etelLabelValt = new MyLabel(""+Statistics.kajaValt, labelStyle(fel,true));
 
         addActor(faLabel);
         addActor(koLabel);
@@ -101,37 +105,36 @@ public class IngameMenu extends MyStage {
         addActor(etelActor);
         addActor(katonaActor);
 
-        faActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
-        koActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
-        aranyActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
-        nepActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
-        etelActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
-        katonaActor.setSize(hatter.getHeight()/8-10,hatter.getHeight()/8-10);
+        faActor.setSize(fel,fel);
+        koActor.setSize(fel,fel);
+        aranyActor.setSize(fel,fel);
+        nepActor.setSize(fel,fel);
+        etelActor.setSize(fel,fel);
+        katonaActor.setSize(fel,fel);
 
-        faActor.setPosition(width/40*1,height/30*28);
-        koActor.setPosition(width/40*1,height/30*26);
-        faLabel.setPosition(width/40*3,height/30*28);
-        koLabel.setPosition(width/40*3,height/30*26);
-        faLabelValt.setPosition(width/40*5,height/30*28);
-        koLabelValt.setPosition(width/40*5,height/30*26);
+        faActor.setPosition(10,getViewport().getWorldHeight()-fel-15);
+        koActor.setPosition(faActor.getX(),faActor.getY()-20-koActor.getHeight());
+        faLabel.setPosition(faActor.getX()+10+faActor.getWidth(),faActor.getY());
+        koLabel.setPosition(koActor.getX()+10+koActor.getWidth(),koActor.getY());
+        faLabelValt.setPosition(faActor.getX()+100+faActor.getWidth(),faActor.getY());
+        koLabelValt.setPosition(koActor.getX()+100+koActor.getWidth(),koActor.getY());
 
-        aranyActor.setPosition(width/40*7,height/30*28);
-        etelActor.setPosition(width/40*7,height/30*26);
-        aranyLabel.setPosition(width/40*9,height/30*28);
-        etelLabel.setPosition(width/40*9,height/30*26);
-        aranyLabelValt.setPosition(width/40*11,height/30*28);
-        etelLabelValt.setPosition(width/40*11,height/30*26);
+        aranyActor.setPosition(negyed+10,faActor.getY());
+        etelActor.setPosition(aranyActor.getX(),aranyActor.getY()-20-etelActor.getHeight());
+        aranyLabel.setPosition(aranyActor.getX()+10+aranyActor.getWidth(),aranyActor.getY());
+        etelLabel.setPosition(etelActor.getX()+10+etelActor.getWidth(),etelActor.getY());
+        aranyLabelValt.setPosition(aranyActor.getX()+100+aranyActor.getWidth(),aranyActor.getY());
+        etelLabelValt.setPosition(etelActor.getX()+100+etelActor.getWidth(),etelActor.getY());
 
-        nepActor.setPosition(width/40*13,height/30*28);
-        katonaActor.setPosition(width/40*13,height/30*26);
-        nepLabel.setPosition(width/40*15,height/30*28);
-        katonaLabel.setPosition(width/40*15,height/30*26);
-        nepLabelValt.setPosition(width/40*17,height/30*28);
+        nepActor.setPosition(negyed*2+10,aranyActor.getY());
+        katonaActor.setPosition(nepActor.getX(),nepActor.getY()-20-katonaActor.getHeight());
+        nepLabel.setPosition(nepActor.getX()+10+nepActor.getWidth(),nepActor.getY());
+        katonaLabel.setPosition(katonaActor.getX()+10+katonaActor.getWidth(),katonaActor.getY());
+        nepLabelValt.setPosition(nepActor.getX()+100+nepActor.getWidth(),nepActor.getY());
 
-        napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, labelStyle(hatter.getHeight()/8-10,false));
+        napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, labelStyle(fel,false));
         addActor(napLabel);
-        napLabel.setPosition(nepActor.getX()+nepActor.getWidth()+150, height-((hatter.getHeight()/8)+napLabel.getHeight()/2)-5);
-
+        napLabel.setPosition((width-negyed/2)-napLabel.getWidth()/2,getViewport().getWorldHeight()-(fel+napLabel.getHeight()/2+20));
 
     }
 

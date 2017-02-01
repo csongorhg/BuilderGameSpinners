@@ -8,6 +8,7 @@ import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Play.PlayStage;
 
 /**
  * Created by Kicsi on 2017. 01. 26..
@@ -55,5 +56,4 @@ public class MapActorWoodCutterStage extends MapActorStage {
         label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight());
 
     }
-
 }

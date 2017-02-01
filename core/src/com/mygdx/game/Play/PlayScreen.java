@@ -141,7 +141,8 @@ public class PlayScreen extends MyScreen{
                 }
                 else if(mapActor instanceof waterActor){
                     mapActorGlobalStage = new MapActorWaterStage(game, (waterActor) mapActor);
-                } else if(mapActor instanceof MillCircle){
+                }
+                else if(mapActor instanceof MillCircle){
                     mapActorGlobalStage = new MapActorMillFieldStage(game, (MillCircle)mapActor);
                 }
                 else mapActorGlobalStage = new MapActorStage(game, null);
