@@ -40,7 +40,7 @@ public class OtherStage extends MyStage {
 
 
     public void init() {
-
+        addBackEventStackListener();
         prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
         preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
 
@@ -63,7 +63,7 @@ public class OtherStage extends MyStage {
                 Statistics.setDefaultStatistics(); //statisztikák nullázása
                 TimeStepper.setDefaultTime(); //idő nullázása
 
-                game.setScreen(new PlayScreen(game));
+                game.setScreen(new PlayScreen(game), false);
             }
         });
         yesButton.setSize(getViewport().getWorldWidth()/5,getViewport().getWorldHeight()/5);

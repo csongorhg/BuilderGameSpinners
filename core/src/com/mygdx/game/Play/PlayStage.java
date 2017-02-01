@@ -446,7 +446,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             preferences.putString(PlayScreen.PREFS,"");
             prefstatistic.putString(PlayScreen.PREFstatistic,"");
             dispose();
-            game.setScreen(new EndScreen(game));
+            game.setScreen(new EndScreen(game), false);
         }
 
         if (TimeStepper.elteltnap != nap) {
