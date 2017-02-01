@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -126,6 +127,30 @@ public class MapActorStage extends MyStage {
         halasz.remove();
         mezo.remove();
         hid.remove();
+    }
+
+    protected void standardBuildings(){
+        hid.remove();
+        halasz.remove();
+        favago.setPosition(0,getViewport().getWorldHeight()/2);
+        banya.setPosition(0,getViewport().getWorldHeight()/2+favago.getHeight());
+        haz.setPosition(0,getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight());
+
+        barrak.setPosition(0,getViewport().getWorldHeight()/2-barrak.getHeight());
+        mezo.setPosition(0,getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight());
+        kut.setPosition(0,getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight());
+    }
+
+    protected  void waterbuildings(){
+        favago.remove();
+        banya.remove();
+        haz.remove();
+        barrak.remove();
+        kut.remove();
+        mezo.remove();
+
+        halasz.setPosition(0,getViewport().getWorldHeight()/2);
+        hid.setPosition(0,getViewport().getWorldHeight()/2-hid.getHeight());
     }
 
     public void ujepuletFeltolt(int t[]){
@@ -309,10 +334,10 @@ public class MapActorStage extends MyStage {
         super.dispose();
     }
 
-    /*private TextButton.TextButtonStyle textButtonStyle(int a){
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+    public Label.LabelStyle labelStyle(int a){
+        Label.LabelStyle style = new Label.LabelStyle();
 
-        Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
+        /*Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
         p.setColor(0.1f,0.2f,0.2f, 0.5f);
         p.fill();
         style.up = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
@@ -321,7 +346,7 @@ public class MapActorStage extends MyStage {
         style.over = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
         p.setColor(1f,0.5f,0.8f, 1f);
         p.fill();
-        style.down = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
+        style.down = new TextureRegionDrawable(new TextureRegion(new Texture(p)));*/
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -332,6 +357,6 @@ public class MapActorStage extends MyStage {
         style.font = font;
 
         return style;
-    }*/
+    }
 
 }

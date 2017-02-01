@@ -40,4 +40,14 @@ public class Bridge extends mapActor {
         return "13";
     }
 
+    @Override
+    public void setSummer() {
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+    }
+
+    @Override
+    public void setWinter() {
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+    }
+
 }

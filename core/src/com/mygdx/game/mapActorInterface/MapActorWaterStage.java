@@ -2,9 +2,11 @@ package com.mygdx.game.mapActorInterface;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayStage;
@@ -35,13 +37,8 @@ public class MapActorWaterStage extends MapActorStage {
                     });
                 }
             });
-            //vízre nem építhető épületek
-            redXmaker(0,meret+meret/2);
-            redXmaker(0,meret);
-            redXmaker(0,meret/2);
-            redXmaker(0,0);
-            redXmaker(meret/2,meret);
-            redXmaker(meret/2,meret+meret/2);
+
+            waterbuildings();
 
             boolean b = true;
 
@@ -102,14 +99,11 @@ public class MapActorWaterStage extends MapActorStage {
             }
 
         } else { // ha ködös
-            redXmaker(0,meret+meret/2);
-            redXmaker(0,meret);
-            redXmaker(0,meret/2);
-            redXmaker(0,0);
-            redXmaker(meret/2,meret);
-            redXmaker(meret/2,meret+meret/2);
-            redXmaker(meret/2,meret/2);
-            redXmaker(meret/2,0);
+            allRemove();
+            MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",labelStyle(50));
+            getActorGroup().addActor(label);
+            label.setAlignment(Align.center);
+            label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
         }
         /*if((PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof waterActor &&
                 PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&

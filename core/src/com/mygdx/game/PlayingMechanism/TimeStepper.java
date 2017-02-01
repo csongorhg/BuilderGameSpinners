@@ -12,7 +12,7 @@ public class TimeStepper {
     public static int elteltnap = 0;
 
     public static int egynap = 10;
-    public static int ev = 60; //tél és nyár = év/2
+    public static int ev = 4; //tél és nyár = év/2
     public static boolean nyarvan = true;
     public static boolean vege = false;
 
@@ -22,7 +22,7 @@ public class TimeStepper {
         elteltnap = 0;
 
         egynap = 10;
-        ev = 60; //tél és nyár = év/2
+        ev = 4; //tél és nyár = év/2
         nyarvan = true;
 
         vege = false;
