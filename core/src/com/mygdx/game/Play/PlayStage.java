@@ -329,7 +329,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         mapActors[i][j] = m;
         addActor(mapActors[i][j]);
         mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,
-                (mapHeight-mapActors[i][j].getPosArrayX())*128-128);  //helyes pozicionálás
+                (mapHeight-mapActors[i][j].getPosArrayX())*128);  //helyes pozicionálás
         final mapActor ww = mapActors[i][j];
         mapActors[i][j].addListener(new ClickListener(){
             @Override
