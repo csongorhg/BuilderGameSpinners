@@ -52,8 +52,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private int cityx = 0,cityy = 0;
 
-    private int mapWidth;
-    private int mapHeight;
+    public static int mapWidth;
+    public static int mapHeight;
     private int citycount = 0;
 
     private boolean updateFustrumNeed = true;
@@ -99,8 +99,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
 
 
-        mapWidth=100;
-        mapHeight=100;
+        mapWidth=50;
+        mapHeight=50;
         fillArea();
 
 
@@ -164,7 +164,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             varos = true;
         }
         else{
-            String[] sor = preferences.getString(PlayScreen.PREFS).split("\n");
+            String[] sor = preferences.getString(PlayScreen.PREFS).split("#");
             world = new int[mapWidth][mapHeight];
             for (int i = 0; i < sor.length; i++) {
                 String[] t = sor[i].split(";");
@@ -176,6 +176,12 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             varos = false;
         }
 
+        for (int i = 0; i < world.length; i++) {
+            for (int j = 0; j < world[i].length; j++) {
+                System.out.print(world[i][j]);
+            }
+            System.out.println();
+        }
 
         mapActors = new mapActor[mapWidth][mapHeight];
 
@@ -311,7 +317,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         break;
                 }
                 if(mapActors[i][j].getY()<=0){
-                    mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,(100-mapActors[i][j].getPosArrayX())*128-128);
+                    mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,(mapHeight-mapActors[i][j].getPosArrayX())*128-128);
                 }
             }
         }
@@ -323,7 +329,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         mapActors[i][j] = m;
         addActor(mapActors[i][j]);
         mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,
-                (100-mapActors[i][j].getPosArrayX())*128-128);  //helyes pozicionálás
+                (mapHeight-mapActors[i][j].getPosArrayX())*128-128);  //helyes pozicionálás
         final mapActor ww = mapActors[i][j];
         mapActors[i][j].addListener(new ClickListener(){
             @Override
@@ -585,7 +591,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             for (int j = 0; j < mapActors[i].length; j++) {
                 saveMap += mapActors[i][j].toString()+";";
             }
-            saveMap += "\n";
+            saveMap += "#";
         }
         preferences.putString(PlayScreen.PREFS,saveMap);
         preferences.flush();

@@ -44,7 +44,7 @@ public class Generator {
                 if(elso > 1)WORLD[j][elso-1] = 1;
                 if(elso > 2)WORLD[j][elso-2] = 1;
                 if(elso < WORLD.length-2)WORLD[j][elso+1] = 1;
-                if(elso < WORLD.length-3)WORLD[j][elso+2] = 1;
+                //if(elso < WORLD.length-3)WORLD[j][elso+2] = 1;
                 //lefele
                 if(elso == 0) elso += vel(0,1);
                 else if (elso == WORLD.length-1) elso -=vel(0,1);
@@ -67,7 +67,7 @@ public class Generator {
 
     private void erdo(){
         int kezdox, kezdoy;
-        int erdoszam = vel(10,16);
+        int erdoszam = vel(8,12);
         for(int i = 0; i < erdoszam; i++) {
             do {
                 kezdox = vel(0, WORLD.length - 1);
