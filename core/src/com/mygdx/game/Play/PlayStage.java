@@ -159,7 +159,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         int[][] world;
 
         if(preferences.getString(PlayScreen.PREFS,"").equals("")){ //nincs világ
-            generator = new Generator(mapWidth,mapHeight); //100x100-as terület
+            generator = new Generator(mapWidth,mapHeight); //50x50-as terület
             world = generator.getWORLD();
             varos = true;
         }
@@ -199,7 +199,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         //int j;
 
         v = new Vector<GridPoint2>();
-
         for (int i = 0; i < world.length; i++) {
             for (int j = 0; j < world[0].length; j++) {
                 switch (world[i][j]){
@@ -719,6 +718,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     @Override
     public void dispose() {
         ingameMenu.dispose();
+
         super.dispose();
 
     }
