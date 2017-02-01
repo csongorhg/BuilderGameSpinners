@@ -469,11 +469,24 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             nemvolt = true;
             summerActors();
         }
-        if (TimeStepper.tuzvan) tuz();
+        if (TimeStepper.tuzvan) {
+            tuz();
+        }
     }
 
     private void tuz(){
-
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 0; j < mapActors[i].length; j++) {
+                if (!(mapActors[i][j] instanceof cityActor) && !(mapActors[i][j] instanceof WaterWell)
+                        && !(mapActors[i][j] instanceof stoneActor) && !(mapActors[i][j] instanceof grassActor)
+                        && !(mapActors[i][j] instanceof woodActor) && !(mapActors[i][j] instanceof waterActor)
+                        && !(mapActors[i][j] instanceof Bridge) && !(mapActors[i][j] instanceof Mill)
+                        && !(mapActors[i][j] instanceof MillCircle)) {
+                    mapActors[i][j].setFire(true);
+                    break;
+                }
+            }
+        }
     }
 
     private void winterActors() {
@@ -493,7 +506,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     }
 
     private void epit_e() {
+
         if(ujepulet[0] == 1){
+            System.out.println("Tralal");
             if(ujepulet[3] == 11){
                 ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
                 Buildings.epuletFejlesztes("faKitermelo",0,true);
@@ -525,6 +540,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             else if(ujepulet[3] == 17){
                 ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2],128,128));
                 Buildings.epuletFejlesztes("kut",0,true);
+                Statistics.kutakszama++;
             }
             else if(ujepulet[3] == 18){
                 for (int i = -1; i <= 1; i++) {
@@ -539,6 +555,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             }
             //mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
             ujepulet[0] = 0;
+
         }
     }
 

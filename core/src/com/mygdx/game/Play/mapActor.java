@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyActor;
+import com.mygdx.game.MyBaseClasses.OneSpriteAnimatedActor;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 
 /**
@@ -17,6 +18,13 @@ abstract public class mapActor extends Group {
     protected float mapActorWidth, mapActorHeight;
     private static float posX = 0,posY = 99*128;
     private static int n = 0;
+    private boolean fire = false;
+
+    private boolean fog = true;
+    private OneSpriteStaticActor fogActor;
+
+    private OneSpriteAnimatedActor fireActor;
+
     public boolean isFog() {
         return fog;
     }
@@ -39,8 +47,6 @@ abstract public class mapActor extends Group {
         this.fog = fog;
     }
 
-    private boolean fog = true;
-    private OneSpriteStaticActor fogActor;
 
     public Actor getActor() {
         return actor;
@@ -88,6 +94,24 @@ abstract public class mapActor extends Group {
 
     public int getPosArrayY() {
         return posArrayY;
+    }
+
+    public boolean isFire() {
+        return fire;
+    }
+
+    public void setFire(boolean fire) {
+        if(fire){
+            if (fireActor==null) {
+                addActor(fireActor = new OneSpriteAnimatedActor(Assets.manager.get(Assets.FIRE_TEXTUREATLAS)));
+                fireActor.setSize(actor.getWidth(), actor.getHeight());
+            }
+            //fogActor.setZIndex(Integer.MAX_VALUE);
+        }
+        else {
+            removeActor(fireActor, true);
+        }
+        this.fire = fire;
     }
 
     abstract public void setWinter();

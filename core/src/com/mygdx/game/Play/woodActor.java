@@ -14,16 +14,27 @@ public class woodActor extends mapActor {
 
 
     public woodActor(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.TREE_BLOCK):Assets.manager.get(Assets.TREE3_BLOCK)){
+        super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
             @Override
             public void init() {
                 super.init();
                 setSize(w, h);
             }
         }, x, y, w, h);
+
+
+        addActor(tree = new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.TREE_BLOCK):Assets.manager.get(Assets.TREE3_BLOCK)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(w, h);
+
+            }
+
+        });
     }
 
-    public Texture getWood(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
+    public Texture getWood(){return tree.getTexture();}
 
     @Override
     public String toString() {
@@ -32,12 +43,12 @@ public class woodActor extends mapActor {
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Generator.vel(0,1) == 1?Assets.manager.get(Assets.TREE_BLOCK):Assets.manager.get(Assets.TREE3_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FASNOW_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
     }
 
 }
