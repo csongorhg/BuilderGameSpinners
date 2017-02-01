@@ -43,6 +43,8 @@ public class Assets {
 	//ATLAS
 	public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS
 			= new AssetDescriptor<TextureAtlas>("Explosion/explosion.atlas", TextureAtlas.class);
+	public static final AssetDescriptor<TextureAtlas> FIRE_TEXTUREATLAS
+			= new AssetDescriptor<TextureAtlas>("Tiles/tuz.atlas", TextureAtlas.class);
 
 
 
@@ -253,8 +255,7 @@ public class Assets {
 		manager.load(HAZSNOW);
 
 		//ATLAS
-		manager.load(EXPLOSION_TEXTUREATLAS);
-
+		manager.load(FIRE_TEXTUREATLAS);
 
 
 		//ZENE
