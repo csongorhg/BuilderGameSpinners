@@ -67,8 +67,6 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Tiles/viz.png", Texture.class);
 	public static final AssetDescriptor<Texture> TREE_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/fa_1.png", Texture.class);
-	public static final AssetDescriptor<Texture> TREE2_BLOCK
-			= new AssetDescriptor<Texture>("Tiles/fa_2.png", Texture.class);
 	public static final AssetDescriptor<Texture> TREE3_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/fa_3.png", Texture.class);
 	public static final AssetDescriptor<Texture> STONE_BLOCK
@@ -132,11 +130,48 @@ public class Assets {
 	public static final AssetDescriptor<Texture> UG
 			= new AssetDescriptor<Texture>("Interface/upgrade.png", Texture.class);
 
+	public static final AssetDescriptor<Texture> CANON_MAN
+			= new AssetDescriptor<Texture>("Interface/canon.png", Texture.class);
+	public static final AssetDescriptor<Texture> BOW_MAN
+			= new AssetDescriptor<Texture>("Interface/bow.png", Texture.class);
+	public static final AssetDescriptor<Texture> SWORD_MAN
+			= new AssetDescriptor<Texture>("Interface/sword.png", Texture.class);
+	public static final AssetDescriptor<Texture> HORSE_MAN
+			= new AssetDescriptor<Texture>("Interface/horse.png", Texture.class);
+
+
 	public static final AssetDescriptor<Texture> KIJELOLES
 			= new AssetDescriptor<Texture>("Tiles/kijeloles.png", Texture.class);
 
 	public static final AssetDescriptor<Texture> FUSNOW_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/havas/fuSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> VIZSNOW_BLOCK
+			= new AssetDescriptor<Texture>("Tiles/havas/vizSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> STONE1_SNOW
+			= new AssetDescriptor<Texture>("Tiles/havas/ko_1_Snow.png", Texture.class);
+	public static final AssetDescriptor<Texture> STONE2_SNOW
+			= new AssetDescriptor<Texture>("Tiles/havas/ko_2_Snow.png", Texture.class);
+	public static final AssetDescriptor<Texture> FAVAGOSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/favagoSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> HALASZSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/halaszSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> HAZSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/hazSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> HIDSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/hid.png", Texture.class);
+	public static final AssetDescriptor<Texture> KIKEPZOSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/kikepzoSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> KOFEJTOSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/kofejtoSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> KUTSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/kutSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> MALOMSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/malomSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> MEZOSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/mezoSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> VARSNOW
+			= new AssetDescriptor<Texture>("Buildings/havas/varSnow.png", Texture.class);
+
 
 
 
@@ -165,7 +200,6 @@ public class Assets {
 		manager.load(GRASS_BLOCK);
 		manager.load(WATER_BLOCK);
 		manager.load(TREE_BLOCK);
-		manager.load(TREE2_BLOCK);
 		manager.load(TREE3_BLOCK);
 		manager.load(STONE_BLOCK);
 		manager.load(STONE2_BLOCK);
@@ -198,8 +232,25 @@ public class Assets {
 		manager.load(REDX);
 		manager.load(DG);
 		manager.load(UG);
+		manager.load(CANON_MAN);
+		manager.load(HORSE_MAN);
+		manager.load(SWORD_MAN);
+		manager.load(BOW_MAN);
 
 		manager.load(FUSNOW_BLOCK);
+		manager.load(VIZSNOW_BLOCK);
+		manager.load(STONE1_SNOW);
+		manager.load(STONE2_SNOW);
+		manager.load(FAVAGOSNOW);
+		manager.load(HALASZSNOW);
+		manager.load(HIDSNOW);
+		manager.load(KIKEPZOSNOW);
+		manager.load(KOFEJTOSNOW);
+		manager.load(KUTSNOW);
+		manager.load(MALOMSNOW);
+		manager.load(MEZOSNOW);
+		manager.load(VARSNOW);
+		manager.load(HAZSNOW);
 
 		//ATLAS
 		manager.load(EXPLOSION_TEXTUREATLAS);
