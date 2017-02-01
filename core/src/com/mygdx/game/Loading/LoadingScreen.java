@@ -22,6 +22,7 @@ public class LoadingScreen extends MyScreen {
 
     public LoadingScreen(MyGdxGame game) {
 		super(game);
+		Gdx.input.setCatchBackKey(true);
 		stage = new Stage();
 		//háttér
 		backGroudActor = new OneSpriteStaticActor("Menu/wall.png");
