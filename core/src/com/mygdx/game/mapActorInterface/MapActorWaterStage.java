@@ -10,6 +10,7 @@ import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayStage;
+import com.mygdx.game.Play.grassActor;
 import com.mygdx.game.Play.waterActor;
 
 /**
@@ -40,16 +41,16 @@ public class MapActorWaterStage extends MapActorStage {
 
             waterbuildings();
 
-            boolean b = true;
+            boolean b = false;
 
-            if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof waterActor &&
-                    PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&
-                    PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
-                    PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
-                b = false;
+            if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof grassActor ||
+                    PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof grassActor ||
+                    PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof grassActor ||
+                    PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof grassActor){
+                b = true;
 
             }
-            else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
+            /*else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge){
                 b = false;
 
@@ -69,7 +70,7 @@ public class MapActorWaterStage extends MapActorStage {
                         PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
                     b = false;
                 }
-            }
+            }*/
             if(b){
                 halasz.addListener(new ClickListener(){
                     @Override
