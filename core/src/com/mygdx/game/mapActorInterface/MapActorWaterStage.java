@@ -18,7 +18,7 @@ import com.mygdx.game.Play.waterActor;
 
 public class MapActorWaterStage extends MapActorStage {
 
-    private OneSpriteStaticActor water;
+    private OneSpriteStaticActor water,redX;
 
     public MapActorWaterStage(MyGdxGame game, waterActor g) {
         super(game, g);
@@ -46,16 +46,11 @@ public class MapActorWaterStage extends MapActorStage {
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&
                     PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
                     PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
-                redXmaker(meret/2,meret/2);
-                redXmaker(meret/2,0);
                 b = false;
 
             }
             else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge){
-
-                redXmaker(meret/2,meret/2);
-                redXmaker(meret/2,0);
                 b = false;
 
             }
@@ -63,8 +58,6 @@ public class MapActorWaterStage extends MapActorStage {
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof FishDock){
                 if((PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
                         PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor)){
-                    redXmaker(meret/2,meret/2);
-                    redXmaker(meret/2,0);
                     b = false;
                 }
 
@@ -74,8 +67,6 @@ public class MapActorWaterStage extends MapActorStage {
 
                 if(PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
                         PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor){
-                    redXmaker(meret/2,meret/2);
-                    redXmaker(meret/2,0);
                     b = false;
                 }
             }
@@ -96,6 +87,17 @@ public class MapActorWaterStage extends MapActorStage {
                         ujepuletFeltolt(t);
                     }
                 });
+            }
+            else{
+                redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
+                redX.setSize(meret/2,meret/2);
+                redX.setPosition(halasz.getX(),halasz.getY());
+                getActorGroup().addActor(redX);
+
+                redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
+                redX.setSize(meret/2,meret/2);
+                redX.setPosition(hid.getX(),hid.getY());
+                getActorGroup().addActor(redX);
             }
 
         } else { // ha ködös
