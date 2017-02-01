@@ -13,28 +13,18 @@ public class cityActor extends mapActor {
 
 
     public cityActor(int x, int y, int count, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
+        super(new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)){
             @Override
             public void init() {
                 super.init();
-                setSize(128,128);
+                setSize(256,256);
+                setPosition(-128,0);
             }
         }, x, y, w, h);
 
-        if(count == 4) {
-            addActor(cityhall = new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)) {
-                @Override
-                public void init() {
-                    super.init();
-                    setSize(w, h);
-                    setPosition(-128, 0);
-                }
-
-            });
-        }
     }
 
-    public Texture getCityHall(){return cityhall.getTexture();}
+    public Texture getCityHall(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
 
 
     @Override
@@ -44,11 +34,11 @@ public class cityActor extends mapActor {
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.CITY_HALL));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.VARSNOW));
     }
 }

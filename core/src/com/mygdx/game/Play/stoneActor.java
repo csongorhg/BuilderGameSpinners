@@ -14,7 +14,7 @@ public class stoneActor extends mapActor {
 
 
     public stoneActor(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
+        super(new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.STONE_BLOCK):Assets.manager.get(Assets.STONE2_BLOCK)){
             @Override
             public void init() {
                 super.init();
@@ -22,20 +22,9 @@ public class stoneActor extends mapActor {
             }
         }, x, y, w, h);
 
-
-        addActor(stone = new OneSpriteStaticActor(Generator.vel(0,1) == 1?Assets.manager.get(Assets.STONE_BLOCK):Assets.manager.get(Assets.STONE2_BLOCK)){
-            @Override
-            public void init() {
-                super.init();
-                setSize(w, h);
-
-            }
-
-
-        });
     }
 
-    public Texture getStone(){return stone.getTexture();}
+    public Texture getStone(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
 
 
     @Override
@@ -45,12 +34,12 @@ public class stoneActor extends mapActor {
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Generator.vel(0,1) == 1?Assets.manager.get(Assets.STONE_BLOCK):Assets.manager.get(Assets.STONE2_BLOCK));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Generator.vel(0,1) == 1?Assets.manager.get(Assets.KO1_SNOW):Assets.manager.get(Assets.KO2_SNOW));
     }
 
 }

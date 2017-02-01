@@ -16,21 +16,13 @@ public class FishDock extends mapActor {
 
 
     public FishDock(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK)){
+        super(new OneSpriteStaticActor(Assets.manager.get(Assets.FISHDOCK)){
             @Override
             public void init() {
                 super.init();
                 setSize(128,128);
             }
         }, x, y, w, h);
-
-        addActor(fishDock = new OneSpriteStaticActor(Assets.manager.get(Assets.FISHDOCK)){
-            @Override
-            public void init() {
-                super.init();
-                setSize(w,h);
-            }
-        });
 
     }
 
@@ -41,12 +33,12 @@ public class FishDock extends mapActor {
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FISHDOCK));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.HALASZSNOW));
     }
 
 }

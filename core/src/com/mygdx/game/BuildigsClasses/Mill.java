@@ -17,21 +17,13 @@ public class Mill extends mapActor {
 
 
     public Mill(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
+        super(new OneSpriteStaticActor(Assets.manager.get(Assets.MILL)){
             @Override
             public void init() {
                 super.init();
                 setSize(128,128);
             }
         }, x, y, w, h);
-
-        addActor(mill = new OneSpriteStaticActor(Assets.manager.get(Assets.MILL)){
-            @Override
-            public void init() {
-                super.init();
-                setSize(w,h);
-            }
-        });
 
     }
 
@@ -42,12 +34,12 @@ public class Mill extends mapActor {
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.MILL));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.MALOMSNOW));
     }
 
 }

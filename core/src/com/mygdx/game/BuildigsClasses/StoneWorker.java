@@ -16,21 +16,13 @@ public class StoneWorker extends mapActor {
 
 
     public StoneWorker(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
+        super(new OneSpriteStaticActor(Assets.manager.get(Assets.STONE_WORKER)){
             @Override
             public void init() {
                 super.init();
                 setSize(128,128);
             }
         }, x, y, w, h);
-
-        addActor(stoneWorker = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE_WORKER)){
-            @Override
-            public void init() {
-                super.init();
-                setSize(w,h);
-            }
-        });
 
     }
 
@@ -41,12 +33,12 @@ public class StoneWorker extends mapActor {
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.STONE_WORKER));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.KOFEJTOSNOW));
     }
 
 }

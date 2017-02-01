@@ -132,8 +132,8 @@ public class Assets {
 	public static final AssetDescriptor<Texture> UG
 			= new AssetDescriptor<Texture>("Interface/upgrade.png", Texture.class);
 
-	public static final AssetDescriptor<Texture> CANON_MAN
-			= new AssetDescriptor<Texture>("Interface/canon.png", Texture.class);
+	public static final AssetDescriptor<Texture> CANNON_MAN
+			= new AssetDescriptor<Texture>("Interface/cannon.png", Texture.class);
 	public static final AssetDescriptor<Texture> BOW_MAN
 			= new AssetDescriptor<Texture>("Interface/bow.png", Texture.class);
 	public static final AssetDescriptor<Texture> SWORD_MAN
@@ -147,11 +147,13 @@ public class Assets {
 
 	public static final AssetDescriptor<Texture> FUSNOW_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/havas/fuSnow.png", Texture.class);
+	public static final AssetDescriptor<Texture> FASNOW_BLOCK
+			= new AssetDescriptor<Texture>("Tiles/fa_2.png", Texture.class);
 	public static final AssetDescriptor<Texture> VIZSNOW_BLOCK
 			= new AssetDescriptor<Texture>("Tiles/havas/vizSnow.png", Texture.class);
-	public static final AssetDescriptor<Texture> STONE1_SNOW
+	public static final AssetDescriptor<Texture> KO1_SNOW
 			= new AssetDescriptor<Texture>("Tiles/havas/ko_1_Snow.png", Texture.class);
-	public static final AssetDescriptor<Texture> STONE2_SNOW
+	public static final AssetDescriptor<Texture> KO2_SNOW
 			= new AssetDescriptor<Texture>("Tiles/havas/ko_2_Snow.png", Texture.class);
 	public static final AssetDescriptor<Texture> FAVAGOSNOW
 			= new AssetDescriptor<Texture>("Buildings/havas/favagoSnow.png", Texture.class);
@@ -234,15 +236,16 @@ public class Assets {
 		manager.load(REDX);
 		manager.load(DG);
 		manager.load(UG);
-		manager.load(CANON_MAN);
+		manager.load(CANNON_MAN);
 		manager.load(HORSE_MAN);
 		manager.load(SWORD_MAN);
 		manager.load(BOW_MAN);
 
 		manager.load(FUSNOW_BLOCK);
 		manager.load(VIZSNOW_BLOCK);
-		manager.load(STONE1_SNOW);
-		manager.load(STONE2_SNOW);
+		manager.load(FASNOW_BLOCK);
+		manager.load(KO1_SNOW);
+		manager.load(KO2_SNOW);
 		manager.load(FAVAGOSNOW);
 		manager.load(HALASZSNOW);
 		manager.load(HIDSNOW);

@@ -19,29 +19,13 @@ public class WoodCutter extends mapActor {
 
 
     public WoodCutter(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS_BLOCK)){
+        super(new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
             @Override
             public void init() {
                 super.init();
                 setSize(128,128);
             }
         }, x, y, w, h);
-
-        addActor(woodCutter = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
-            @Override
-            public void init() {
-                super.init();
-                setSize(w,h);
-            }
-        });
-
-        woodCutter.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-
-            }
-        });
 
     }
 
@@ -55,12 +39,12 @@ public class WoodCutter extends mapActor {
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.GRASS_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.WOOD_WORKER));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FUSNOW_BLOCK));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.FAVAGOSNOW));
     }
 
 }

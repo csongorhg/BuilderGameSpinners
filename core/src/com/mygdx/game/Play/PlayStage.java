@@ -71,6 +71,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private Vector<GridPoint2> v;
 
+    private boolean nemvolt = true, varos = false;
+
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
@@ -101,7 +103,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         mapHeight=100;
         fillArea();
 
-
+        System.out.println(cityx+" "+cityy);
         setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
         //kiködösítés
         int seged;
@@ -160,6 +162,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if(preferences.getString(PlayScreen.PREFS,"").equals("")){ //nincs világ
             generator = new Generator(mapWidth,mapHeight); //100x100-as terület
             world = generator.getWORLD();
+            varos = true;
         }
         else{
             String[] sor = preferences.getString(PlayScreen.PREFS).split("\n");
@@ -171,6 +174,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 }
             }
             statisticupdate();
+            varos = false;
         }
 
 
@@ -243,18 +247,37 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         });
                         break;
                     case 9: //város
-                        citycount++;
-                        mapActors[i][j] = new cityActor(i,j,citycount, 256, 256);
-                        addActor(mapActors[i][j]);
-                        final mapActor c = mapActors[i][j];
-                        mapActors[i][j].addListener(new ClickListener(){
-                            @Override
-                            public void clicked(InputEvent event, float x, float y) {
-                                super.clicked(event, x, y);
-                                selectMapActor(c);
+                        if(varos){
+                            citycount++;
+                            if(citycount == 4) {
+                                mapActors[i][j] = new cityActor(i, j, citycount, 256, 256);
+                                addActor(mapActors[i][j]);
+                                final mapActor c = mapActors[i][j];
+                                mapActors[i][j].addListener(new ClickListener() {
+                                    @Override
+                                    public void clicked(InputEvent event, float x, float y) {
+                                        super.clicked(event, x, y);
+                                        selectMapActor(c);
+                                    }
+                                });
+
+                                cityx = j;
+                                cityy = i;
+                            } else {
+                                mapActors[i][j] = new Bridge(i, j, 128, 128);
+                                addActor(mapActors[i][j]);
                             }
-                        });
-                        if(citycount == 4){
+                        }else {
+                            mapActors[i][j] = new cityActor(i, j, citycount, 256, 256);
+                            addActor(mapActors[i][j]);
+                            final mapActor c = mapActors[i][j];
+                            mapActors[i][j].addListener(new ClickListener() {
+                                @Override
+                                public void clicked(InputEvent event, float x, float y) {
+                                    super.clicked(event, x, y);
+                                    selectMapActor(c);
+                                }
+                            });
                             cityx = j;
                             cityy = i;
                         }
@@ -439,7 +462,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         epit_e();
 
-        if (!TimeStepper.nyarvan) winterActors();
+        if (!TimeStepper.nyarvan && nemvolt){
+            nemvolt = false;
+            winterActors();
+        }
+        if(TimeStepper.nyarvan && !nemvolt ) {
+            nemvolt = true;
+            summerActors();
+        }
 
     }
 
@@ -447,6 +477,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         for (int i = 0; i < mapActors.length; i++) {
             for (int j = 0; j < mapActors[i].length; j++) {
                 mapActors[i][j].setWinter();
+            }
+        }
+    }
+
+    private void summerActors(){
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 0; j < mapActors[i].length; j++) {
+                mapActors[i][j].setSummer();
             }
         }
     }
