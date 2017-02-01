@@ -25,6 +25,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
+import com.mygdx.game.PlayingMechanism.Units;
 
 import java.sql.Time;
 
@@ -65,7 +66,7 @@ public class IngameMenu extends MyStage {
         aranyLabel = new MyLabel(""+Statistics.arany, labelStyle(hatter.getHeight()/8-10,false));
         nepLabel = new MyLabel(""+Statistics.lakosokszama, labelStyle(hatter.getHeight()/8-10,false));
         etelLabel = new MyLabel(""+Statistics.kaja, labelStyle(hatter.getHeight()/8-10,false));
-        katonaLabel = new MyLabel(""+Statistics.katonakszama, labelStyle(hatter.getHeight()/8-10,false));
+        katonaLabel = new MyLabel(""+Units.getLetszam(), labelStyle(hatter.getHeight()/8-10,false));
 
         faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(hatter.getHeight()/8-10,true));
         koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(hatter.getHeight()/8-10,true));
@@ -144,13 +145,13 @@ public class IngameMenu extends MyStage {
         nepLabel.setText(Statistics.lakosokszama+"");
         etelLabel.setText(Statistics.kaja+"");
 
-        faLabelValt.setText((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama-Statistics.katonakszama))+"");
+        faLabelValt.setText((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama- Units.getLetszam()))+"");
         koLabelValt.setText(Statistics.koValt+"");
         aranyLabelValt.setText(Statistics.aranyValt+"");
         nepLabelValt.setText(Statistics.lakosokszamaValt+"");
-        etelLabelValt.setText((Statistics.kajaValt-Statistics.lakosokszama-Statistics.katonakszama)+"");
+        etelLabelValt.setText((Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam())+"");
 
-        katonaLabel.setText(Statistics.katonakszama+"");
+        katonaLabel.setText(Units.getLetszam()+"");
         napLabel.setText("DAY "+TimeStepper.elteltnap);
     }
 

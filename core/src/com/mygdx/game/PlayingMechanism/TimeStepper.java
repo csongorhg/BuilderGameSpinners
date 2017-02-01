@@ -15,7 +15,7 @@ public class TimeStepper {
     public static int ev = 4; //tél és nyár = év/2
     public static boolean nyarvan = true;
     public static boolean vege = false;
-
+    public static boolean tuzvan = false;
 
     public static void setDefaultTime() {
         elteltido = -1;
@@ -54,7 +54,7 @@ public class TimeStepper {
             legtobblakos = lakosokszama;
         }
 
-        if(!nyarvan){
+        if(!nyarvan ){
             if(fa > lakosokszama/2){
                 fa-=lakosokszama/2;
             }else{
@@ -62,10 +62,10 @@ public class TimeStepper {
                 fa = 0;
             }
 
-            if(fa > katonakszama/2){
-                fa-=katonakszama/2;
+            if(fa > Units.getLetszam()){
+                fa-=Units.getLetszam();
             }else{
-                katonakszama = (katonakszama/2-(katonakszama/2-fa))*2;
+                Units.kivon(Units.getLetszam()-fa);
                 fa = 0;
             }
         }
@@ -77,26 +77,26 @@ public class TimeStepper {
             kaja = 0;
         }
 
-        if(kaja > katonakszama){
-            kaja-=katonakszama;
+        if(kaja > Units.getLetszam()){
+            kaja-=Units.getLetszam();
         }else{
-            katonakszama = katonakszama-(katonakszama-kaja);
+            Units.kivon(Units.getLetszam()-kaja);
             kaja = 0;
         }
 
         if(epuletekszama/5.0 > kutakszama){
-            if(vel(0,30) == 5){
-                System.out.println("Tűz van!");
+            if(vel(4,5) == 5 && elteltnap>1){
+                tuzvan = true;
             }
         }
 
         if(vel(0,30) == 10 && elteltnap > 30){
             int egysegek = vel(5,30);
             System.out.println("Megtámadott "+egysegek+" barbár!");
-            if(egysegek/2 < katonakszama){
-                katonakszama-=egysegek/2;
+            if(egysegek/2 < Units.getLetszam()){
+                Units.kivon(egysegek/2);
             }else{
-                int minusz =(egysegek/2-katonakszama)*2;
+                int minusz =(egysegek/2-Units.getLetszam())*2;
                 arany-=minusz;
                 if(arany<0) arany = 0;
                 fa-=minusz;

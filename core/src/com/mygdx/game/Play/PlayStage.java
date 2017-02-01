@@ -103,7 +103,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         mapHeight=100;
         fillArea();
 
-        System.out.println(cityx+" "+cityy);
+
         setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
         //kiködösítés
         int seged;
@@ -147,7 +147,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
             Statistics.epuletekszama = Integer.parseInt(t[11]);
             Statistics.kutakszama = Integer.parseInt(t[12]);
-            Statistics.katonakszama = Integer.parseInt(t[13]);
 
             TimeStepper.elteltnap = Integer.parseInt(t[14]);
             System.out.println("PREF:"+TimeStepper.elteltnap);
@@ -470,6 +469,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             nemvolt = true;
             summerActors();
         }
+        if (TimeStepper.tuzvan) tuz();
+    }
+
+    private void tuz(){
 
     }
 
@@ -575,7 +578,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private void statisticSave(){
         saveStatistic = "" ;
-        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+Statistics.katonakszama+";"+TimeStepper.elteltnap;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+1+";"+TimeStepper.elteltnap;
         prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
         prefstatistic.flush();
     }
