@@ -17,6 +17,7 @@ public class TimeStepper {
     public static boolean vege = false;
     public static boolean tuzvaltott = false;
     public static boolean tuzvan = false;
+    public static boolean megtamadtak = false;
 
     public static void setDefaultTime() {
         elteltido = -1;
@@ -97,8 +98,9 @@ public class TimeStepper {
             tuzvaltott = true;
         }
 
-        if(vel(0,30) == 10 && elteltnap > 30){
+        if(vel(0,30) == 10 && elteltnap > 30){ //30
             int egysegek = vel(5,30);
+            megtamadtak = true;
             System.out.println("Megtámadott "+egysegek+" barbár!");
             if(egysegek/2 < Units.getLetszam()){
                 Units.kivon(egysegek/2);

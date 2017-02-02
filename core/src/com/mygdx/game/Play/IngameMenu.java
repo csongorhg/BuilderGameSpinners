@@ -138,6 +138,7 @@ public class IngameMenu extends MyStage {
 
     }
 
+    TamadasTextActor tamadasTextActor = null;
 
     @Override
     public void act(float delta) {
@@ -156,6 +157,21 @@ public class IngameMenu extends MyStage {
 
         katonaLabel.setText(Units.getEro()+"");
         napLabel.setText("DAY "+TimeStepper.elteltnap);
+
+        tamadas(TimeStepper.megtamadtak);
+    }
+
+    private void tamadas(boolean b){
+        if(b) {
+            if (tamadasTextActor == null) {
+                addActor(tamadasTextActor = new TamadasTextActor(MapActorStage.labelStyle(80), getViewport().getWorldWidth()/2, getViewport().getWorldHeight()/2));
+                tamadasTextActor.setZIndex(Integer.MAX_VALUE);
+            }
+        }
+        else if(tamadasTextActor != null){
+            tamadasTextActor.remove();
+            tamadasTextActor = null;
+        }
     }
 
     @Override

@@ -34,6 +34,7 @@ import com.mygdx.game.PlayingMechanism.Buildings;
 import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
+import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 import java.util.Vector;
@@ -432,6 +433,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     }
 
+
+
     @Override
     public void act(float delta) {
         super.act(delta);
@@ -481,6 +484,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             tuz();
         }
     }
+
+
 
     private void tuz(){
         for (int i = 0; i < mapActors.length; i++) {
