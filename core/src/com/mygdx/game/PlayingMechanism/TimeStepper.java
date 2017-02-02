@@ -56,7 +56,6 @@ public class TimeStepper {
             kaja = 0;
         }
 
-
         //---------------------------------------
 
         if(legtobblakos < lakosokszama){
