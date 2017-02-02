@@ -43,4 +43,12 @@ public class Statistics {
         kutakszama = 0;
     }
 
+    public static int getlakosValt() {
+        if(kaja < Units.getLetszam()+lakosokszama){
+            int i = (Units.getLetszam()+lakosokszama)-kaja;
+            if(i>lakosokszama) return lakosokszama;
+            else return i;
+        }
+        else return 0;
+    }
 }

@@ -48,7 +48,14 @@ public class TimeStepper {
         fa += faValt;
         kaja += kajaValt;
         ko += koValt;
-        lakosokszama += lakosokszamaValt;
+        if(kaja> lakosokszamaValt){
+            kaja-=lakosokszamaValt;
+            lakosokszama += lakosokszamaValt;
+        }else{
+            lakosokszama += kaja;
+            kaja = 0;
+        }
+
 
         //---------------------------------------
 
