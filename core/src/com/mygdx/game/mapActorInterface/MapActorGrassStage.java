@@ -27,15 +27,17 @@ import com.mygdx.game.PlayingMechanism.Buildings;
 
 public class MapActorGrassStage extends MapActorStage {
 
-    private OneSpriteStaticActor redX;
-    private AnyagokStage hazanyag,banyaszanyag,favagoanyag,kardanyag,kapaanyag,kutanyag;
+    private OneSpriteStaticActor redX, faSprite,koSprite,aranySprite,emberSprite,husSprite;
+    private MyLabel faLabel,koLabel,aranyLabel,emberLabel,husLabel;
+    private float meretek = (meret/2)/4;
+    //private AnyagokStage hazanyag,banyaszanyag,favagoanyag,kardanyag,kapaanyag,kutanyag;
 
     public MapActorGrassStage(MyGdxGame game, grassActor g) {
         super(game, g);
 
         //f,k,a,h,l
 
-        hazanyag = new AnyagokStage(getViewport(),100,100, Buildings.haz.getLetrehoz()[2], Buildings.haz.getLetrehoz()[3], Buildings.haz.getLetrehoz()[4], Buildings.haz.getLetrehoz()[1], Buildings.haz.getLetrehoz()[0]);
+        /*hazanyag = new AnyagokStage(getViewport(),100,100, Buildings.haz.getLetrehoz()[2], Buildings.haz.getLetrehoz()[3], Buildings.haz.getLetrehoz()[4], Buildings.haz.getLetrehoz()[1], Buildings.haz.getLetrehoz()[0]);
         hazanyag.setSize(100,100);
         hazanyag.setPosition(0,0);
         addActor(hazanyag);
@@ -63,7 +65,7 @@ public class MapActorGrassStage extends MapActorStage {
         kutanyag = new AnyagokStage(getViewport(),100,-28-(128*4), Buildings.kut.getLetrehoz()[2], Buildings.kut.getLetrehoz()[3], Buildings.kut.getLetrehoz()[4], Buildings.kut.getLetrehoz()[1], Buildings.kut.getLetrehoz()[0]);
         kutanyag.setSize(100,100);
         kutanyag.setPosition(0,0);
-        addActor(kutanyag);
+        addActor(kutanyag);*/
 
         if(!g.isFog()){
             standardBuildings();
@@ -211,5 +213,126 @@ public class MapActorGrassStage extends MapActorStage {
             label.setAlignment(Align.center);
             label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
         }
+
+        //haz
+        alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
+        //banya
+        alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight(),"4","0","5","0","2");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
+        //fakitermelő
+        alapAnyagok(getViewport().getWorldHeight()/2,"2","0","0","0","2");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
+        //kaszárnya
+        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","15","15","15","10");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
+        //malom
+        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"5","0","5","0","10");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
+        //kut
+        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight()+meret/10,"0","0","5","5","0");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
     }
+
+    private void alapAnyagok(float yPos, String aranyl, String kol, String fal, String husl, String emberl){
+        aranySprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
+        aranySprite.setSize(meretek,meretek);
+        aranySprite.setPosition(meret/2,yPos);
+
+        koSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
+        koSprite.setSize(meretek,meretek);
+        koSprite.setPosition(meret/2,yPos+aranySprite.getHeight());
+
+        faSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
+        faSprite.setSize(meretek,meretek);
+        faSprite.setPosition(meret/2,yPos+koSprite.getHeight()+aranySprite.getHeight());
+
+        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
+        husSprite.setSize(meretek,meretek);
+        husSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight()+aranySprite.getHeight());
+
+        emberSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
+        emberSprite.setSize(meretek,meretek);
+        emberSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight());
+
+        aranyLabel = new MyLabel(aranyl,labelStyle(25));
+        koLabel = new MyLabel(kol,labelStyle(25));
+        faLabel = new MyLabel(fal,labelStyle(25));
+        husLabel = new MyLabel(husl,labelStyle(25));
+        emberLabel = new MyLabel(emberl,labelStyle(25));
+
+        aranyLabel.setPosition(meret/2+aranySprite.getWidth(),yPos);
+        koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());
+        faLabel.setPosition(meret/2+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
+
+        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight());
+        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight()+husSprite.getHeight());
+    }
+
 }

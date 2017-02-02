@@ -21,7 +21,10 @@ import com.mygdx.game.PlayingMechanism.Buildings;
 public class MapActorWaterStage extends MapActorStage {
 
     private OneSpriteStaticActor water,redX;
-    private AnyagokStage hidanyag,halaszanyag;
+    private OneSpriteStaticActor faSprite,koSprite,aranySprite,emberSprite,husSprite;
+    private MyLabel faLabel,koLabel,aranyLabel,emberLabel,husLabel;
+    private float meretek = (meret/2)/4;
+
 
     public MapActorWaterStage(MyGdxGame game, waterActor g) {
         super(game, g);
@@ -43,7 +46,7 @@ public class MapActorWaterStage extends MapActorStage {
 
             waterbuildings();
 
-            halaszanyag = new AnyagokStage(getViewport(),100,-28-(128*1), Buildings.farm.getLetrehoz()[2], Buildings.farm.getLetrehoz()[3], Buildings.farm.getLetrehoz()[4], Buildings.farm.getLetrehoz()[1], Buildings.farm.getLetrehoz()[0]);
+            /*halaszanyag = new AnyagokStage(getViewport(),100,-28-(128*1), Buildings.farm.getLetrehoz()[2], Buildings.farm.getLetrehoz()[3], Buildings.farm.getLetrehoz()[4], Buildings.farm.getLetrehoz()[1], Buildings.farm.getLetrehoz()[0]);
             halaszanyag.setSize(100,100);
             halaszanyag.setPosition(0,0);
             addActor(halaszanyag);
@@ -51,7 +54,7 @@ public class MapActorWaterStage extends MapActorStage {
             hidanyag = new AnyagokStage(getViewport(),100,-28-(128*2), Buildings.hid.getLetrehoz()[2], Buildings.hid.getLetrehoz()[3], Buildings.hid.getLetrehoz()[4], Buildings.hid.getLetrehoz()[1], Buildings.hid.getLetrehoz()[0]);
             hidanyag.setSize(100,100);
             hidanyag.setPosition(0,0);
-            addActor(hidanyag);
+            addActor(hidanyag);*/
 
             boolean b = false;
             if(g.getPosArrayX() > PlayStage.mapWidth-3 || g.getPosArrayX() < 2 || g.getPosArrayY() > PlayStage.mapHeight-3 || g.getPosArrayY() < 2)
@@ -132,6 +135,70 @@ public class MapActorWaterStage extends MapActorStage {
                         PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof FishDock||
                         PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof FishDock)){
             getActorGroup().removeActor(water);*/
+
+        //halasz
+        alapAnyagok(getViewport().getWorldHeight()/2,"2","0","1","0","1");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
+        //híd
+        alapAnyagok(getViewport().getWorldHeight()/2-hid.getHeight(),"10","50","0","0","0");
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
+
+    }
+
+    private void alapAnyagok(float yPos, String aranyl, String kol, String fal, String husl, String emberl){
+        aranySprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
+        aranySprite.setSize(meretek,meretek);
+        aranySprite.setPosition(meret/2,yPos);
+
+        koSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
+        koSprite.setSize(meretek,meretek);
+        koSprite.setPosition(meret/2,yPos+aranySprite.getHeight());
+
+        faSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
+        faSprite.setSize(meretek,meretek);
+        faSprite.setPosition(meret/2,yPos+koSprite.getHeight()+aranySprite.getHeight());
+
+        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
+        husSprite.setSize(meretek,meretek);
+        husSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight()+aranySprite.getHeight());
+
+        emberSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
+        emberSprite.setSize(meretek,meretek);
+        emberSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight());
+
+        aranyLabel = new MyLabel(aranyl,labelStyle(25));
+        koLabel = new MyLabel(kol,labelStyle(25));
+        faLabel = new MyLabel(fal,labelStyle(25));
+        husLabel = new MyLabel(husl,labelStyle(25));
+        emberLabel = new MyLabel(emberl,labelStyle(25));
+
+        aranyLabel.setPosition(meret/2+aranySprite.getWidth(),yPos);
+        koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());
+        faLabel.setPosition(meret/2+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
+
+        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight());
+        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight()+husSprite.getHeight());
     }
 
 }

@@ -33,6 +33,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Buildings;
 import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
+import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.WorldGenerate.Generator;
 import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
@@ -148,11 +149,16 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
             Statistics.epuletekszama = Integer.parseInt(t[11]);
             Statistics.kutakszama = Integer.parseInt(t[12]);
-            //Statistics.lakosokszama = Integer.parseInt(t[13]);
 
-            TimeStepper.elteltnap = Integer.parseInt(t[14]);
-            TimeStepper.elteltido = Float.parseFloat(t[15]);
-            System.out.println("PREF:"+TimeStepper.elteltnap);
+            TimeStepper.elteltnap = Integer.parseInt(t[13]);
+            TimeStepper.elteltido = Float.parseFloat(t[14]);
+
+            Units.kardosLetszam = Integer.parseInt(t[15]);
+            Units.ijjaszLetszam = Integer.parseInt(t[16]);
+            Units.lovasLetszam = Integer.parseInt(t[17]);
+            Units.agyusLetszam = Integer.parseInt(t[18]);
+
+            Statistics.katonakszama = Integer.parseInt(t[19]);
         }
     }
 
@@ -655,7 +661,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private void statisticSave(){
         saveStatistic = "" ;
-        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+1+";"+TimeStepper.elteltnap+";"+TimeStepper.elteltido;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+TimeStepper.elteltnap+";"+TimeStepper.elteltido+";"+Units.kardosLetszam+";"+Units.ijjaszLetszam+";"+Units.lovasLetszam+";"+Units.agyusLetszam+";"+Statistics.katonakszama;
         prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
         prefstatistic.flush();
     }
