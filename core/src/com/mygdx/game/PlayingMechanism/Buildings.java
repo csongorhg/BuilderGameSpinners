@@ -9,11 +9,13 @@ public class Buildings {
     public static Building haz = new Building(-2,-6,-3,0,-5,1,-2,0,0,1,2,0,1,0,0);
     public static Building banya =new Building(-2,0,-5,0,-4,0,0,0,3,2,2,0,2,0,0);
     public static Building farm =new Building(-1,0,-1,0,-2,0,2,0,0,0,1,0,0,0,0);
+    public static Building farmnagy =new Building(-5,0,-5,0,-10,0,10,0,0,0,5,0,0,0,0);
     public static Building faKitermelo =new Building(-2,0,0,0,-2,0,0,3,0,0,2,0,0,0,0);
     public static Building kut = new Building(0,0,-5,-5,0,0,0,0,0,0,0,0,2,2,0);
+    public static Building hid = new Building(0,0,-10,-50,0,0,0,0,0,0,0,0,2,2,0);
     public static Building kikepzo = new Building(-10,-15,-15,-15,-15,0,0,0,0,0,10,0,5,5,0);
 
-    public static void epuletFejlesztes(String kod){
+    public static boolean epuletFejlesztes(String kod){
         Building b = null;
         if (kod.equals("haz")) {
             b = haz;
@@ -27,11 +29,22 @@ public class Buildings {
             b = kut;
         } else if (kod.equals("kikepzo")) {
             b = kikepzo;
+        } else if (kod.equals("hid")){
+            b = hid;
+        }else if (kod.equals("farmnagy")) {
+            b = farmnagy;
         }
-        epul(b);
+        return epul(b);
     }
 
-    private static void epul(Building b){
+    private static boolean epul(Building b){
+        if(
+            Statistics.arany + b.aranyLetrehoz >= 0 &&
+            Statistics.fa + b.faLetrehoz >= 0 &&
+            Statistics.ko + b.koLetrehoz >= 0 &&
+            Statistics.kaja + b.kajaLetrehoz >= 0 &&
+            Statistics.lakosokszama + b.lakossagLetrehoz >= 0
+                ){
             Statistics.arany += b.aranyLetrehoz;
             Statistics.fa += b.faLetrehoz;
             Statistics.ko += b.koLetrehoz;
@@ -43,6 +56,11 @@ public class Buildings {
             Statistics.koValt += b.koNaponta;
             Statistics.kajaValt += b.kajaNaponta;
             Statistics.lakosokszamaValt += b.lakossagNaponta;
+
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public static void lerombol(String kod){

@@ -465,8 +465,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         }
 
         ingameMenu.act(delta);
-
-        epit_e();
+        if(ujepulet[0] == 1) {
+            epit_e();
+        }
 
         if (!TimeStepper.nyarvan && nemvolt){
             nemvolt = false;
@@ -514,57 +515,61 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     }
 
     private void epit_e() {
+        System.out.println(1);
 
-        if(ujepulet[0] == 1){
             if(ujepulet[3] == 11){
-                ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("faKitermelo");
+                if(Buildings.epuletFejlesztes("faKitermelo"))
+                    ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
             }
             else if(ujepulet[3] == 12){
-                ujEpulet(ujepulet[1], ujepulet[2], new FishDock(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("farm");
+                if(Buildings.epuletFejlesztes("farm"))
+                    ujEpulet(ujepulet[1], ujepulet[2], new FishDock(ujepulet[1], ujepulet[2],128,128));
             }
             else if(ujepulet[3] == 13){
-                ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
-                if(mapActors[ujepulet[1]][ujepulet[2]] != null) {
-                    //fog((byte)ujepulet[1], (byte)ujepulet[2]);
-                    tovabbepit(ujepulet[1], ujepulet[2]);
-                    Statistics.fa -= 5;
-                    Statistics.ko -= 10;
+                if(Buildings.epuletFejlesztes("hid")){
+                    ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
+                    if(mapActors[ujepulet[1]][ujepulet[2]] != null) {
+                        //fog((byte)ujepulet[1], (byte)ujepulet[2]);
+                        tovabbepit(ujepulet[1], ujepulet[2]);
+                    }
                 }
             }
             else if(ujepulet[3] == 14){
-                ujEpulet(ujepulet[1], ujepulet[2], new House(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("haz");
+                if(Buildings.epuletFejlesztes("haz")){
+                    ujEpulet(ujepulet[1], ujepulet[2], new House(ujepulet[1], ujepulet[2],128,128));
+                    System.out.println(2);
+                }
             }
             else if(ujepulet[3] == 15){
-                ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("kikepzo");
+                if(Buildings.epuletFejlesztes("kikepzo"))
+                    ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
             }
             else if(ujepulet[3] == 16){
-                ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("banya");
+                if(Buildings.epuletFejlesztes("banya"))
+                    ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
             }
             else if(ujepulet[3] == 17){
-                ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("kut");
-                Statistics.kutakszama++;
+                if(Buildings.epuletFejlesztes("kut")) {
+                    ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2], 128, 128));
+                    Statistics.kutakszama++;
+                }
             }
-            else if(ujepulet[3] == 18){
-                for (int i = -1; i <= 1; i++) {
-                    for (int j = -1; j <= 1; j++) {
-                        if(!(i == 0 && j == 0)){
-                            ujEpulet(ujepulet[1]+i, ujepulet[2]+j, new MillCircle(ujepulet[1]+i, ujepulet[2]+j,128,128));
-                            Buildings.epuletFejlesztes("farm");
+            else if(ujepulet[3] == 18) {
+                if (Buildings.epuletFejlesztes("farmnagy")) {
+                    for (int i = -1; i <= 1; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            if (!(i == 0 && j == 0)) {
+                                ujEpulet(ujepulet[1] + i, ujepulet[2] + j, new MillCircle(ujepulet[1] + i, ujepulet[2] + j, 128, 128));
+                            }
                         }
                     }
+                    ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2], 128, 128));
                 }
-                ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2],128,128));
+                //mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
+
             }
-            //mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
-            ujepulet[0] = 0;
             selectMapActor(mapActors[ujepulet[1]][ujepulet[2]]);
-        }
+        ujepulet[0] = 0;
     }
 
     private void tovabbepit(int x, int y){
