@@ -33,7 +33,7 @@ public class Generator {
     }
 
     private void folyo(){
-        int folyoszam = vel(1,10)<3?2:1;
+        int folyoszam = vel(1,10)<10?2:1;
         for(int i = 0; i<folyoszam; i++){
             int elso = -1;
             if(i == 0) elso = vel(WORLD[0].length/3,WORLD[0].length/3*2);
@@ -128,8 +128,8 @@ public class Generator {
 
     private boolean jo(int x, int y){
         boolean b = true;
-        for (int i = -11; i <= 10; i++) {
-            for (int j = -11; j <= 10; j++) {
+        for (int i = -7; i <= 6; i++) {
+            for (int j = -7; j <= 6; j++) {
                 if(x+i > WORLD.length-1 || x+i < 0) b = false;
                 else if(y+j > WORLD.length-1 || y+j < 0) b = false;
                 else if(WORLD[x+i][y+j] == 1) b = false;
