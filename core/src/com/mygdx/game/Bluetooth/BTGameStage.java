@@ -37,14 +37,13 @@ abstract public class BTGameStage extends BluetoothConnectedStage {
         //Gdx.input.setInputProcessor(this);
         addBackEventStackListener();
 
-        //Itt kellene a bluetooth által kicserélt
+        //Itt kellene a bluetooth által kicserélt (oszletszam változóban)
         //public static int osszletszam; értéke mind két eszköznek
 
         myButton = new MyButton("", game.getTextButtonStyle());
         myButton.setPosition(200,200);
         myButton.setSize(300,300);
         addActor(myButton);
-
 
     }
 
