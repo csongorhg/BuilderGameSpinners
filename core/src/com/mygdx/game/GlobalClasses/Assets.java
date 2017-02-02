@@ -96,6 +96,11 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Buildings/kikepzo.png", Texture.class);
 	public static final AssetDescriptor<Texture> WATER_WELL
 			= new AssetDescriptor<Texture>("Buildings/kut.png", Texture.class);
+	public static final AssetDescriptor<Texture> HAMU
+			= new AssetDescriptor<Texture>("Buildings/hamu.png", Texture.class);
+	public static final AssetDescriptor<Texture> HAMUSNOW
+			= new AssetDescriptor<Texture>("Buildings/hamusnow.png", Texture.class);
+
 
 	public static final AssetDescriptor<Texture> BANYA
 			= new AssetDescriptor<Texture>("Interface/banya.png", Texture.class);
@@ -274,6 +279,8 @@ public class Assets {
 		manager.load(MEZOSNOW);
 		manager.load(VARSNOW);
 		manager.load(HAZSNOW);
+		manager.load(HAMU);
+		manager.load(HAMUSNOW);
 
 		//ATLAS
 		manager.load(FIRE_TEXTUREATLAS);
