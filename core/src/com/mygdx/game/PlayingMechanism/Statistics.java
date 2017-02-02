@@ -20,7 +20,7 @@ public class Statistics {
     public static int aranyValt = 0;
     public static int kajaValt = 0;
 
-    public static int epuletekszama = 1;
+    public static int epuletekszama = 0;
     public static int kutakszama = 0;
     public static int katonakszama = 0;
 
@@ -39,7 +39,7 @@ public class Statistics {
         aranyValt = 0;
         kajaValt = 0;
 
-        epuletekszama = 1;
+        epuletekszama = 0;
         kutakszama = 0;
     }
 

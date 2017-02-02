@@ -17,7 +17,7 @@ public class Barrack extends mapActor {
 
 
     public Barrack(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.BARAKK) : Assets.manager.get(Assets.KIKEPZOSNOW)){
+        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.BARRACK) : Assets.manager.get(Assets.KIKEPZOSNOW)){
             @Override
             public void init() {
                 super.init();

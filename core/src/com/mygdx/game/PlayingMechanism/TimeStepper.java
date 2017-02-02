@@ -12,9 +12,10 @@ public class TimeStepper {
     public static int elteltnap = 0;
 
     public static int egynap = 10;
-    public static int ev = 4; //tél és nyár = év/2
+    public static int ev = 60; //tél és nyár = év/2
     public static boolean nyarvan = true;
     public static boolean vege = false;
+    public static boolean tuzvaltott = false;
     public static boolean tuzvan = false;
 
     public static void setDefaultTime() {
@@ -33,6 +34,7 @@ public class TimeStepper {
         elteltido+=delta;
         if(elteltnap*egynap < elteltido){
             elteltnap++;
+            System.out.println("Eltelt egy nap: "+elteltnap+"    "+elteltido);
             if(elteltnap%(ev/2) == ev/2-1){
                 nyarvan = !nyarvan;
                 System.out.println("Beköszöntött a " + (nyarvan ? "nyár" : "tél"));
@@ -82,7 +84,11 @@ public class TimeStepper {
         if(epuletekszama/5.0 > kutakszama){
             if(vel(4,5) == 5 && elteltnap>1){
                 tuzvan = true;
+                tuzvaltott = true;
             }
+        }else{
+            tuzvan = false;
+            tuzvaltott = true;
         }
 
         if(vel(0,30) == 10 && elteltnap > 30){
