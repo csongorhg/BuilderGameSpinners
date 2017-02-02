@@ -73,11 +73,11 @@ public class IngameMenu extends MyStage {
         etelLabel = new MyLabel(""+Statistics.kaja, labelStyle(fel-5,Color.WHITE));
         katonaLabel = new MyLabel(""+Units.getLetszam(), labelStyle(fel-5,Color.WHITE));
 
-        faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(fel-30,(Statistics.faValt>=0?Color.GREEN:Color.RED)));
-        koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(fel-30,(Statistics.koValt>=0?Color.GREEN:Color.RED)));
-        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, labelStyle(fel-30,(Statistics.aranyValt>=0?Color.GREEN:Color.RED)));
-        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, labelStyle(fel-30,(Statistics.lakosokszamaValt>=0?Color.GREEN:Color.RED)));
-        etelLabelValt = new MyLabel(""+Statistics.kajaValt, labelStyle(fel-30,(Statistics.kajaValt>=0?Color.GREEN:Color.RED)));
+        faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(fel-20,(Statistics.faValt>=0?Color.GREEN:Color.RED)));
+        koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(fel-20,(Statistics.koValt>=0?Color.GREEN:Color.RED)));
+        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, labelStyle(fel-20,(Statistics.aranyValt>=0?Color.GREEN:Color.RED)));
+        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, labelStyle(fel-20,(Statistics.lakosokszamaValt>=0?Color.GREEN:Color.RED)));
+        etelLabelValt = new MyLabel(""+Statistics.kajaValt, labelStyle(fel-20,(Statistics.kajaValt>=0?Color.GREEN:Color.RED)));
 
         addActor(faLabel);
         addActor(koLabel);

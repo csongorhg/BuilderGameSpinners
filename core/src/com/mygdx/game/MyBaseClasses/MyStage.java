@@ -18,21 +18,13 @@ import com.mygdx.game.MyGdxGame;
  */
 abstract public class MyStage extends Stage implements InitableInterface {
     public final MyGdxGame game;
-    public MyLabel fps = null;
+
 
     public MyStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch);
         this.game = game;
         init();
         //setDebugAll(true);
-        addActor(fps = new MyLabel("",game.getLabelStyle()){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(30,30);
-            }
-        });
-        fps.setZIndex(9999999);
     }
 
     public void addBackEventStackListener()    {
@@ -181,7 +173,6 @@ abstract public class MyStage extends Stage implements InitableInterface {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (fps!=null)fps.setText((int)(1/delta) + " fps");
         OrthographicCamera c = (OrthographicCamera)getCamera();
         if (cameraTargetX!=c.position.x || cameraTargetY!=c.position.y || cameraTargetZoom!=c.zoom){
             if (Math.abs(c.position.x-cameraTargetX)<cameraMoveSpeed*delta) {

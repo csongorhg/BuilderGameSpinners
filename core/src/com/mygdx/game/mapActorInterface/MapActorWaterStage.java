@@ -21,7 +21,7 @@ import com.mygdx.game.PlayingMechanism.Buildings;
 public class MapActorWaterStage extends MapActorStage {
 
     private OneSpriteStaticActor water,redX;
-    private AnyagokStage hid,halasz;
+    private AnyagokStage hidanyag,halaszanyag;
 
     public MapActorWaterStage(MyGdxGame game, waterActor g) {
         super(game, g);
@@ -43,15 +43,15 @@ public class MapActorWaterStage extends MapActorStage {
 
             waterbuildings();
 
-            halasz = new AnyagokStage(getViewport(),100,-28-(128*1), Buildings.farm.getLetrehoz()[2], Buildings.farm.getLetrehoz()[3], Buildings.farm.getLetrehoz()[4], Buildings.farm.getLetrehoz()[1], Buildings.farm.getLetrehoz()[0]);
-            halasz.setSize(100,100);
-            halasz.setPosition(0,0);
-            addActor(halasz);
+            halaszanyag = new AnyagokStage(getViewport(),100,-28-(128*1), Buildings.farm.getLetrehoz()[2], Buildings.farm.getLetrehoz()[3], Buildings.farm.getLetrehoz()[4], Buildings.farm.getLetrehoz()[1], Buildings.farm.getLetrehoz()[0]);
+            halaszanyag.setSize(100,100);
+            halaszanyag.setPosition(0,0);
+            addActor(halaszanyag);
 
-            hid = new AnyagokStage(getViewport(),100,-28-(128*2), Buildings.hid.getLetrehoz()[2], Buildings.hid.getLetrehoz()[3], Buildings.hid.getLetrehoz()[4], Buildings.hid.getLetrehoz()[1], Buildings.hid.getLetrehoz()[0]);
-            hid.setSize(100,100);
-            hid.setPosition(0,0);
-            addActor(hid);
+            hidanyag = new AnyagokStage(getViewport(),100,-28-(128*2), Buildings.hid.getLetrehoz()[2], Buildings.hid.getLetrehoz()[3], Buildings.hid.getLetrehoz()[4], Buildings.hid.getLetrehoz()[1], Buildings.hid.getLetrehoz()[0]);
+            hidanyag.setSize(100,100);
+            hidanyag.setPosition(0,0);
+            addActor(hidanyag);
 
             boolean b = false;
             if(g.getPosArrayX() > PlayStage.mapWidth-3 || g.getPosArrayX() < 2 || g.getPosArrayY() > PlayStage.mapHeight-3 || g.getPosArrayY() < 2)
