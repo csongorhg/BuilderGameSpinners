@@ -131,6 +131,14 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Interface/downgrade.png", Texture.class);
 	public static final AssetDescriptor<Texture> UG
 			= new AssetDescriptor<Texture>("Interface/upgrade.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHT
+			= new AssetDescriptor<Texture>("Interface/fight.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHTBLUE
+			= new AssetDescriptor<Texture>("Interface/fightblue.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHTGREEN
+			= new AssetDescriptor<Texture>("Interface/fightgreen.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHTRED
+			= new AssetDescriptor<Texture>("Interface/fightred.png", Texture.class);
 
 	public static final AssetDescriptor<Texture> CANNON_MAN
 			= new AssetDescriptor<Texture>("Interface/cannon.png", Texture.class);
@@ -240,6 +248,10 @@ public class Assets {
 		manager.load(HORSE_MAN);
 		manager.load(SWORD_MAN);
 		manager.load(BOW_MAN);
+		manager.load(FIGHT);
+		manager.load(FIGHTBLUE);
+		manager.load(FIGHTGREEN);
+		manager.load(FIGHTRED);
 
 		manager.load(FUSNOW_BLOCK);
 		manager.load(VIZSNOW_BLOCK);

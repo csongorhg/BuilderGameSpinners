@@ -296,7 +296,7 @@ public class MapActorStage extends MyStage {
                 ujepuletFeltolt(t);
             }
         });*/
-        oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.WALL));
+        oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FIGHTBLUE));
         oneSpriteStaticActor.setSize(100, 100);
         meretes = oneSpriteStaticActor.getWidth();
         oneSpriteStaticActor.setPosition(getViewport().getWorldWidth() - oneSpriteStaticActor.getWidth() - 256,

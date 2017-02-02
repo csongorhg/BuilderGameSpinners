@@ -52,7 +52,7 @@ public class IngameMenu extends MyStage {
         hatter = new OneSpriteStaticActor(Assets.manager.get(Assets.FAHATTER));
         addActor(hatter);
         hatter.setSize(getViewport().getWorldWidth()-256- MapActorStage.meretes, hatter.getHeight());
-        hatter.setPosition(0, getViewport().getWorldHeight() - hatter.getHeight() * 1 / 4 - 20);
+        hatter.setPosition(0, getViewport().getWorldHeight() - hatter.getHeight() * 1 / 4);
         hatter.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -61,7 +61,7 @@ public class IngameMenu extends MyStage {
         });
 
         width = hatter.getWidth();
-        height = hatter.getHeight() * 1/4-20;
+        height = hatter.getHeight() * 1/4;
         float negyed = width/4;
         float fel = height/2;
 
@@ -112,29 +112,29 @@ public class IngameMenu extends MyStage {
         etelActor.setSize(fel,fel);
         katonaActor.setSize(fel,fel);
 
-        faActor.setPosition(10,getViewport().getWorldHeight()-fel-15);
-        koActor.setPosition(faActor.getX(),faActor.getY()-20-koActor.getHeight());
-        faLabel.setPosition(faActor.getX()+10+faActor.getWidth(),faActor.getY());
-        koLabel.setPosition(koActor.getX()+10+koActor.getWidth(),koActor.getY());
-        faLabelValt.setPosition(faActor.getX()+100+faActor.getWidth(),faActor.getY());
-        koLabelValt.setPosition(koActor.getX()+100+koActor.getWidth(),koActor.getY());
+        faActor.setPosition(0,getViewport().getWorldHeight()-fel);
+        koActor.setPosition(faActor.getX(),faActor.getY()-koActor.getHeight());
+        faLabel.setPosition(faActor.getX()+(negyed*(1f/3f)),faActor.getY());
+        koLabel.setPosition(koActor.getX()+(negyed*(1f/3f)),koActor.getY());
+        faLabelValt.setPosition(faActor.getX()+(negyed*(2f/3f)),faActor.getY());
+        koLabelValt.setPosition(koActor.getX()+(negyed*(2f/3f)),koActor.getY());
 
-        aranyActor.setPosition(negyed+10,faActor.getY());
-        etelActor.setPosition(aranyActor.getX(),aranyActor.getY()-20-etelActor.getHeight());
-        aranyLabel.setPosition(aranyActor.getX()+10+aranyActor.getWidth(),aranyActor.getY());
-        etelLabel.setPosition(etelActor.getX()+10+etelActor.getWidth(),etelActor.getY());
-        aranyLabelValt.setPosition(aranyActor.getX()+100+aranyActor.getWidth(),aranyActor.getY());
-        etelLabelValt.setPosition(etelActor.getX()+100+etelActor.getWidth(),etelActor.getY());
+        aranyActor.setPosition(negyed,faActor.getY());
+        etelActor.setPosition(aranyActor.getX(),aranyActor.getY()-etelActor.getHeight());
+        aranyLabel.setPosition(aranyActor.getX()+(negyed*(1f/3f)),aranyActor.getY());
+        etelLabel.setPosition(etelActor.getX()+(negyed*(1f/3f)),etelActor.getY());
+        aranyLabelValt.setPosition(aranyActor.getX()+(negyed*(2f/3f)),aranyActor.getY());
+        etelLabelValt.setPosition(etelActor.getX()+(negyed*(2f/3f)),etelActor.getY());
 
-        nepActor.setPosition(negyed*2+10,aranyActor.getY());
-        katonaActor.setPosition(nepActor.getX(),nepActor.getY()-20-katonaActor.getHeight());
-        nepLabel.setPosition(nepActor.getX()+10+nepActor.getWidth(),nepActor.getY());
-        katonaLabel.setPosition(katonaActor.getX()+10+katonaActor.getWidth(),katonaActor.getY());
-        nepLabelValt.setPosition(nepActor.getX()+100+nepActor.getWidth(),nepActor.getY());
+        nepActor.setPosition(negyed*2,aranyActor.getY());
+        katonaActor.setPosition(nepActor.getX(),nepActor.getY()-katonaActor.getHeight());
+        nepLabel.setPosition(nepActor.getX()+(negyed*(1f/3f)),nepActor.getY());
+        katonaLabel.setPosition(katonaActor.getX()+(negyed*(1f/3f)),katonaActor.getY());
+        nepLabelValt.setPosition(nepActor.getX()+(negyed*(2f/3f)),nepActor.getY());
 
         napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, labelStyle(fel,false));
         addActor(napLabel);
-        napLabel.setPosition((width-negyed/2)-napLabel.getWidth()/2,getViewport().getWorldHeight()-(fel+napLabel.getHeight()/2+20));
+        napLabel.setPosition((width-negyed/2)-napLabel.getWidth()/2,getViewport().getWorldHeight()-(fel+napLabel.getHeight()/2));
 
     }
 
@@ -188,5 +188,5 @@ public class IngameMenu extends MyStage {
         return style;
     }
 
-    public float getHatterPosition(){return (hatter.getHeight() * 1 / 4 + 10);}
+    public float getHatterPosition(){return height+64;}
 }
