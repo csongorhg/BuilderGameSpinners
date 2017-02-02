@@ -472,7 +472,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             nemvolt = true;
             summerActors();
         }
-        if (TimeStepper.tuzvan) {
+        if (TimeStepper.tuzvaltott) {
             tuz();
         }
     }
@@ -485,11 +485,12 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         && !(mapActors[i][j] instanceof woodActor) && !(mapActors[i][j] instanceof waterActor)
                         && !(mapActors[i][j] instanceof Bridge) && !(mapActors[i][j] instanceof Mill)
                         && !(mapActors[i][j] instanceof MillCircle)) {
-                    mapActors[i][j].setFire(true);
+                    mapActors[i][j].setFire(TimeStepper.tuzvan);
                     break;
                 }
             }
         }
+        TimeStepper.tuzvaltott = false;
     }
 
     private void winterActors() {
