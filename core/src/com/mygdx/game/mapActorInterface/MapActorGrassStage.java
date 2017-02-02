@@ -17,6 +17,8 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayStage;
 import com.mygdx.game.Play.grassActor;
+import com.mygdx.game.Play.stoneActor;
+import com.mygdx.game.Play.woodActor;
 
 /**
  * Created by Kicsi on 2017. 01. 26..
@@ -32,23 +34,76 @@ public class MapActorGrassStage extends MapActorStage {
         if(!g.isFog()){
             standardBuildings();
 
-            favago.addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 11};
-                    ujepuletFeltolt(t);
+            boolean bWoodCutter = false;
+            for(int i=-1; i<=1; i++){
+                for(int j=-1; j<=1; j++){
+                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof woodActor) bWoodCutter = true;
                 }
-            });
+            }
+            for(int i=-2; i<=2; i++){
+                for(int j=-2; j<=2; j++){
+                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof WoodCutter) bWoodCutter = false;
+                }
+            }
+            if(bWoodCutter) {
+                favago.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 11};
+                        ujepuletFeltolt(t);
+                    }
+                });
+                bWoodCutter = false;
+            }
+            else{
+                redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
+                redX.setSize(meret/2,meret/2);
+                redX.setPosition(favago.getX(),favago.getY());
+                getActorGroup().addActor(redX);
+                favago.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
+            }
 
-            banya.addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 16};
-                    ujepuletFeltolt(t);
+            boolean bStoneWorker = false;
+            for(int i=-1; i<=1; i++){
+                for(int j=-1; j<=1; j++){
+                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof stoneActor) bStoneWorker = true;
                 }
-            });
+            }
+            for(int i=-2; i<=2; i++){
+                for(int j=-2; j<=2; j++){
+                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof StoneWorker) bStoneWorker = false;
+                }
+            }
+            if(bStoneWorker) {
+                banya.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 16};
+                        ujepuletFeltolt(t);
+                    }
+                });
+                bStoneWorker = false;
+            }
+            else{
+                redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
+                redX.setSize(meret/2,meret/2);
+                redX.setPosition(banya.getX(),banya.getY());
+                getActorGroup().addActor(redX);
+                banya.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
+            }
+
             haz.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
@@ -96,6 +151,12 @@ public class MapActorGrassStage extends MapActorStage {
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(mezo.getX(),mezo.getY());
                 getActorGroup().addActor(redX);
+                mezo.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
             }
         } else {
             allRemove();
