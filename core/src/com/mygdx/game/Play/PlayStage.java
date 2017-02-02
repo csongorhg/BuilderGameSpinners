@@ -147,8 +147,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
             Statistics.epuletekszama = Integer.parseInt(t[11]);
             Statistics.kutakszama = Integer.parseInt(t[12]);
+            //Statistics.lakosokszama = Integer.parseInt(t[13]);
 
             TimeStepper.elteltnap = Integer.parseInt(t[14]);
+            TimeStepper.elteltido = Float.parseFloat(t[15]);
             System.out.println("PREF:"+TimeStepper.elteltnap);
         }
     }
@@ -600,7 +602,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private void statisticSave(){
         saveStatistic = "" ;
-        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+1+";"+TimeStepper.elteltnap;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"+Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"+Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"+Statistics.epuletekszama+";"+Statistics.kutakszama+";"+1+";"+TimeStepper.elteltnap+";"+TimeStepper.elteltido;
         prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
         prefstatistic.flush();
     }
