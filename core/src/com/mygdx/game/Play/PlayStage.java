@@ -518,11 +518,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if(ujepulet[0] == 1){
             if(ujepulet[3] == 11){
                 ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("faKitermelo",0,true);
+                Buildings.epuletFejlesztes("faKitermelo");
             }
             else if(ujepulet[3] == 12){
                 ujEpulet(ujepulet[1], ujepulet[2], new FishDock(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("farm",0,true);
+                Buildings.epuletFejlesztes("farm");
             }
             else if(ujepulet[3] == 13){
                 ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
@@ -535,19 +535,19 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             }
             else if(ujepulet[3] == 14){
                 ujEpulet(ujepulet[1], ujepulet[2], new House(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("haz",0,true);
+                Buildings.epuletFejlesztes("haz");
             }
             else if(ujepulet[3] == 15){
                 ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("kikepzo",0,true);
+                Buildings.epuletFejlesztes("kikepzo");
             }
             else if(ujepulet[3] == 16){
                 ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("banya",0,true);
+                Buildings.epuletFejlesztes("banya");
             }
             else if(ujepulet[3] == 17){
                 ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2],128,128));
-                Buildings.epuletFejlesztes("kut",0,true);
+                Buildings.epuletFejlesztes("kut");
                 Statistics.kutakszama++;
             }
             else if(ujepulet[3] == 18){
@@ -555,7 +555,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                     for (int j = -1; j <= 1; j++) {
                         if(!(i == 0 && j == 0)){
                             ujEpulet(ujepulet[1]+i, ujepulet[2]+j, new MillCircle(ujepulet[1]+i, ujepulet[2]+j,128,128));
-                            Buildings.epuletFejlesztes("farm",0,true);
+                            Buildings.epuletFejlesztes("farm");
                         }
                     }
                 }
