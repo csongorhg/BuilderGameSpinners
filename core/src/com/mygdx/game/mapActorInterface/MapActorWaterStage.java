@@ -42,8 +42,9 @@ public class MapActorWaterStage extends MapActorStage {
             waterbuildings();
 
             boolean b = false;
-
-            if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof grassActor ||
+            if(g.getPosArrayX() > PlayStage.mapWidth-3 || g.getPosArrayX() < 2 || g.getPosArrayY() > PlayStage.mapHeight-3 || g.getPosArrayY() < 2)
+                b = false;
+            else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof grassActor ||
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof grassActor ||
                     PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof grassActor ||
                     PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof grassActor){

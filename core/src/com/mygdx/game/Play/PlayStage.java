@@ -71,7 +71,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private Vector<GridPoint2> v;
 
-    private boolean nemvolt = true, varos = false;
+    private boolean nemvolt = true, varos = false, kell = false;
 
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -103,8 +103,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         mapHeight=50;
         fillArea();
 
-
-        setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
+        if(kell)setCameraMoveToXY(cityx*128,cityy*128-128,((OrthographicCamera)getCamera()).zoom,9999);
+        else setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
         //kiködösítés
         int seged;
 
@@ -312,7 +312,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 }
                 if(mapActors[i][j].getY()<0){
                     mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,(mapHeight-mapActors[i][j].getPosArrayX())*128-128);
-                    //setCameraMoveToXY(mapActors[i][j].getPosArrayY()*128,mapHeight-mapActors[i][j].getPosArrayX()*128,1,99999);
+                    if(mapActors[i][j] instanceof cityActor){
+                        cityx = i;
+                        cityy = j;
+                        kell = true;
+                    }
                 }
             }
         }
@@ -354,21 +358,21 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         while (points.size>0){
             GridPoint2 p = points.removeFirst();
 
-            if (p.x<mapWidth-2 && mapActors[p.x + 1][p.y].isFog() && (mapActors[p.x+1][p.y] instanceof waterActor)) {
+            if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && (mapActors[p.x+1][p.y] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x + 1, p.y));
                 mapActors[p.x + 1][p.y].setFog(false);
             }
-            if (p.x>1 && mapActors[p.x - 1][p.y].isFog() && (mapActors[p.x-1][p.y] instanceof waterActor)) {
+            if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && (mapActors[p.x-1][p.y] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x - 1, p.y));
                 mapActors[p.x - 1][p.y].setFog(false);
             }
             //System.out.println("Y: "+p.y+", mapHeight: "+mapHeight);
             //System.out.println("X: "+p.x+", mapHeight: "+mapWidth);
-            if (p.y<mapHeight-2 && mapActors[p.x][p.y +1 ].isFog() && (mapActors[p.x][p.y+1] instanceof waterActor)) {
+            if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && (mapActors[p.x][p.y+1] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x, p.y + 1));
                 mapActors[p.x][p.y + 1].setFog(false);
             }
-            if (p.y>1 && mapActors[p.x][p.y-1].isFog() && (mapActors[p.x][p.y-1] instanceof waterActor)) {
+            if (p.y>0 && mapActors[p.x][p.y-1].isFog() && (mapActors[p.x][p.y-1] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x, p.y - 1));
                 mapActors[p.x][p.y - 1].setFog(false);
             }
