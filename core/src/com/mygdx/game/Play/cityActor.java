@@ -3,6 +3,7 @@ package com.mygdx.game.Play;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 
 /**
  * Created by tanulo on 2017. 01. 23..
@@ -13,7 +14,7 @@ public class cityActor extends mapActor {
 
 
     public cityActor(int x, int y, int count, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.CITY_HALL)){
+        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.CITY_HALL) : Assets.manager.get(Assets.VARSNOW)){
             @Override
             public void init() {
                 super.init();

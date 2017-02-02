@@ -2,6 +2,7 @@ package com.mygdx.game.Play;
 
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 
 /**
  * Created by tanulo on 2017. 01. 23..
@@ -9,7 +10,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 public class waterActor extends mapActor {
 
     public waterActor(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_BLOCK)){
+        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.WATER_BLOCK): Assets.manager.get(Assets.VIZSNOW_BLOCK)){
             @Override
             public void init() {
                 super.init();
