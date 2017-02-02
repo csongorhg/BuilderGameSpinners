@@ -50,7 +50,7 @@ public class MapActorBarrackStage extends MapActorStage {
 
         bow = new OneSpriteStaticActor(Assets.manager.get(Assets.BOW_MAN));
         bow.setSize(meret/2,meret/2);
-        bow.setPosition(0,getViewport().getWorldHeight()/2);
+        bow.setPosition(0,getViewport().getWorldHeight()/2-meret/3);
         bow.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -61,7 +61,7 @@ public class MapActorBarrackStage extends MapActorStage {
 
         sword = new OneSpriteStaticActor(Assets.manager.get(Assets.SWORD_MAN));
         sword.setSize(meret/2,meret/2);
-        sword.setPosition(0, getViewport().getWorldHeight()/2+bow.getHeight());
+        sword.setPosition(0, getViewport().getWorldHeight()/2-meret/3+bow.getHeight());
         sword.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -72,7 +72,7 @@ public class MapActorBarrackStage extends MapActorStage {
 
         horse = new OneSpriteStaticActor(Assets.manager.get(Assets.HORSE_MAN));
         horse.setSize(meret/2,meret/2);
-        horse.setPosition(0,getViewport().getWorldHeight()/2-horse.getHeight());
+        horse.setPosition(0,getViewport().getWorldHeight()/2-meret/3-horse.getHeight());
         horse.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -83,7 +83,7 @@ public class MapActorBarrackStage extends MapActorStage {
 
         cannon = new OneSpriteStaticActor(Assets.manager.get(Assets.CANNON_MAN));
         cannon.setSize(meret/2,meret/2);
-        cannon.setPosition(0,getViewport().getWorldHeight()/2-horse.getHeight()-cannon.getHeight());
+        cannon.setPosition(0,getViewport().getWorldHeight()/2-meret/3-horse.getHeight()-cannon.getHeight());
         cannon.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

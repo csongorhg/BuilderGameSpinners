@@ -18,8 +18,8 @@ import com.mygdx.game.MyGdxGame;
 public class MapActorHouseStage extends MapActorStage {
 
     private House mapactor;
-    private OneSpriteStaticActor person;
-    private MyLabel label;
+    private OneSpriteStaticActor person,coin;
+    private MyLabel label,coinLabel;
 
     public MapActorHouseStage(MyGdxGame game, House h) {
         super(game, h);
@@ -43,19 +43,28 @@ public class MapActorHouseStage extends MapActorStage {
 
         getActorGroup().addActor(person);
         getActorGroup().addActor(label);
+        getActorGroup().addActor(coin);
+        getActorGroup().addActor(coinLabel);
     }
 
     @Override
     public void init() {
         super.init();
 
+        coinLabel = new MyLabel("2 / day",labelStyle(80));
+        coinLabel.setPosition(meret/2-coinLabel.getWidth()/2, getViewport().getWorldHeight()/2-meret/2);
+
+        coin = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
+        coin.setSize(meret/2,meret/2);
+        coin.setPosition(meret/4, getViewport().getWorldHeight()/2-meret/2+coinLabel.getHeight());
+
         person = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
         person.setSize(meret/2,meret/2);
-        person.setPosition(meret/4, getViewport().getWorldHeight()/2);
+        person.setPosition(meret/4, getViewport().getWorldHeight()/2-meret/2-person.getHeight());
 
         label = new MyLabel("1 / day",labelStyle(80));
         label.setAlignment(Align.center);
-        label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight());
+        label.setPosition(meret/2-label.getWidth()/2, getViewport().getWorldHeight()/2-meret/2-person.getHeight()-label.getHeight());
 
     }
 }

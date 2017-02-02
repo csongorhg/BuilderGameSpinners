@@ -37,12 +37,18 @@ public class MapActorGrassStage extends MapActorStage {
             boolean bWoodCutter = false;
             for(int i=-1; i<=1; i++){
                 for(int j=-1; j<=1; j++){
-                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof woodActor) bWoodCutter = true;
+                    if(g.getPosArrayX()+i < PlayStage.mapWidth && g.getPosArrayX()+i > 0 && g.getPosArrayY()+j < PlayStage.mapHeight && g.getPosArrayY()+j > 0)
+                    //if(g.getPosArrayY() < PlayStage.mapHeight-1 && g.getPosArrayY() > 0 && g.getPosArrayX() < PlayStage.mapWidth-1 && g.getPosArrayX() > 0)
+                        if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof woodActor) bWoodCutter = true;
                 }
             }
             for(int i=-2; i<=2; i++){
                 for(int j=-2; j<=2; j++){
-                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof WoodCutter) bWoodCutter = false;
+                    if (!(g.getPosArrayX() + i > PlayStage.mapWidth - 1 || g.getPosArrayX() + i < 0 ||
+                            g.getPosArrayY() + j > PlayStage.mapHeight - 1 || g.getPosArrayY() + j < 0)) {
+                        if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof WoodCutter) bWoodCutter = false;
+
+                    }
                 }
             }
             if(bWoodCutter) {
@@ -72,12 +78,17 @@ public class MapActorGrassStage extends MapActorStage {
             boolean bStoneWorker = false;
             for(int i=-1; i<=1; i++){
                 for(int j=-1; j<=1; j++){
-                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof stoneActor) bStoneWorker = true;
+                    if(g.getPosArrayX()+i < PlayStage.mapWidth && g.getPosArrayX()+i > 0 && g.getPosArrayY()+j < PlayStage.mapHeight && g.getPosArrayY()+j > 0)
+                    //if(g.getPosArrayY() < PlayStage.mapHeight-1 && g.getPosArrayY() > 0 && g.getPosArrayX() < PlayStage.mapWidth-1 && g.getPosArrayX() > 0)
+                            if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof stoneActor) bStoneWorker = true;
                 }
             }
             for(int i=-2; i<=2; i++){
                 for(int j=-2; j<=2; j++){
-                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof StoneWorker) bStoneWorker = false;
+                    if (!(g.getPosArrayX() + i > PlayStage.mapWidth - 1 || g.getPosArrayX() + i < 0 ||
+                            g.getPosArrayY() + j > PlayStage.mapHeight - 1 || g.getPosArrayY() + j < 0)) {
+                        if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof StoneWorker) bStoneWorker = false;
+                    }
                 }
             }
             if(bStoneWorker) {

@@ -452,6 +452,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         }
 
         if (TimeStepper.elteltnap != nap) {
+            tuzTorles();
             mapSave();
             statisticSave();
         }
@@ -477,8 +478,45 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             nemvolt = true;
             summerActors();
         }
-        if (TimeStepper.tuzvaltott) {
+
+        if (TimeStepper.tuzvan) {
+            System.out.println("ég: "+Statistics.kutakszama);
             tuz();
+        }
+    }
+
+    private void tuzTorles() {
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 0; j < mapActors[i].length; j++) {
+                if (mapActors[i][j].isFire()) {
+                    OneSpriteStaticActor oneSpriteStaticActor;
+                    if (mapActors[i][j] instanceof FishDock) {
+                        ujEpulet(i, j, new waterActor(i, j,128,128));
+                        Statistics.epuletekszama--;
+                        Buildings.lerombol("farm");
+                    }
+                    else {
+                        ujEpulet(i, j, new grassActor(i, j,128,128));
+                        if(mapActors[i][j] instanceof WoodCutter) {
+                            Statistics.epuletekszama--;
+                            Buildings.lerombol("faKitermelo");
+                        }
+                        else if(mapActors[i][j] instanceof StoneWorker){
+                            Statistics.epuletekszama--;
+                            Buildings.lerombol("banya");
+                        }
+                        else if(mapActors[i][j] instanceof Barrack){
+                            Statistics.epuletekszama--;
+                            Buildings.lerombol("kikepzo");
+                        }
+                        else if(mapActors[i][j] instanceof House){
+                            Statistics.epuletekszama--;
+                            Buildings.lerombol("haz");
+                        }
+
+                    }
+                }
+            }
         }
     }
 
@@ -491,11 +529,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         && !(mapActors[i][j] instanceof Bridge) && !(mapActors[i][j] instanceof Mill)
                         && !(mapActors[i][j] instanceof MillCircle)) {
                     mapActors[i][j].setFire(TimeStepper.tuzvan);
-                    break;
+                    TimeStepper.tuzvan = false;
                 }
             }
         }
-        TimeStepper.tuzvaltott = false;
     }
 
     private void winterActors() {
@@ -515,17 +552,22 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     }
 
     private void epit_e() {
-        System.out.println(1);
-
             if(ujepulet[3] == 11){
-                if(Buildings.epuletFejlesztes("faKitermelo"))
+                if(Buildings.epuletFejlesztes("faKitermelo")) {
                     ujEpulet(ujepulet[1], ujepulet[2], new WoodCutter(ujepulet[1], ujepulet[2],128,128));
+                    Statistics.epuletekszama++;
+                }
+
             }
             else if(ujepulet[3] == 12){
-                if(Buildings.epuletFejlesztes("farm"))
+                if(Buildings.epuletFejlesztes("farm")) {
                     ujEpulet(ujepulet[1], ujepulet[2], new FishDock(ujepulet[1], ujepulet[2],128,128));
+                    Statistics.epuletekszama++;
+                }
+
             }
             else if(ujepulet[3] == 13){
+                Statistics.epuletekszama++;
                 if(Buildings.epuletFejlesztes("hid")){
                     ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
                     if(mapActors[ujepulet[1]][ujepulet[2]] != null) {
@@ -536,26 +578,31 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             }
             else if(ujepulet[3] == 14){
                 if(Buildings.epuletFejlesztes("haz")){
+                    Statistics.epuletekszama++;
                     ujEpulet(ujepulet[1], ujepulet[2], new House(ujepulet[1], ujepulet[2],128,128));
-                    System.out.println(2);
                 }
             }
             else if(ujepulet[3] == 15){
-                if(Buildings.epuletFejlesztes("kikepzo"))
+                if(Buildings.epuletFejlesztes("kikepzo")) {
+                    Statistics.epuletekszama++;
                     ujEpulet(ujepulet[1], ujepulet[2], new Barrack(ujepulet[1], ujepulet[2],128,128));
+                }
             }
             else if(ujepulet[3] == 16){
-                if(Buildings.epuletFejlesztes("banya"))
+                if(Buildings.epuletFejlesztes("banya")) {
+                    Statistics.epuletekszama++;
                     ujEpulet(ujepulet[1], ujepulet[2], new StoneWorker(ujepulet[1], ujepulet[2],128,128));
+                }
             }
             else if(ujepulet[3] == 17){
                 if(Buildings.epuletFejlesztes("kut")) {
-                    ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2], 128, 128));
                     Statistics.kutakszama++;
+                    ujEpulet(ujepulet[1], ujepulet[2], new WaterWell(ujepulet[1], ujepulet[2], 128, 128));
                 }
             }
             else if(ujepulet[3] == 18) {
                 if (Buildings.epuletFejlesztes("farmnagy")) {
+                    Statistics.epuletekszama++;
                     for (int i = -1; i <= 1; i++) {
                         for (int j = -1; j <= 1; j++) {
                             if (!(i == 0 && j == 0)) {

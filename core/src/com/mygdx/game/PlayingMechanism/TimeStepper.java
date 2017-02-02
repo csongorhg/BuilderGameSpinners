@@ -15,7 +15,7 @@ public class TimeStepper {
     public static int ev = 60; //tél és nyár = év/2
     public static boolean nyarvan = true;
     public static boolean vege = false;
-    public static boolean tuzvaltott = false;
+    //public static boolean tuzvaltott = false;
     public static boolean tuzvan = false;
 
     public static void setDefaultTime() {
@@ -87,14 +87,12 @@ public class TimeStepper {
             kaja = 0;
         }
 
-        if(epuletekszama/5.0 > kutakszama){
+        if(epuletekszama > kutakszama * 5){
             if(vel(4,5) == 5 && elteltnap>1){
                 tuzvan = true;
-                tuzvaltott = true;
             }
         }else{
             tuzvan = false;
-            tuzvaltott = true;
         }
 
         if(vel(0,30) == 10 && elteltnap > 30){

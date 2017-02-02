@@ -6,14 +6,14 @@ package com.mygdx.game.PlayingMechanism;
 
 public class Buildings {
 
-    public static Building haz = new Building(-2,-6,-3,0,-5,1,-2,0,0,1,2,0,1,0,0);
-    public static Building banya =new Building(-2,0,-5,0,-4,0,0,0,3,2,2,0,2,0,0);
-    public static Building farm =new Building(-1,0,-1,0,-2,0,2,0,0,0,1,0,0,0,0);
-    public static Building farmnagy =new Building(-5,0,-5,0,-10,0,10,0,0,0,5,0,0,0,0);
-    public static Building faKitermelo =new Building(-2,0,0,0,-2,0,0,3,0,0,2,0,0,0,0);
-    public static Building kut = new Building(0,0,-5,-5,0,0,0,0,0,0,0,0,2,2,0);
-    public static Building hid = new Building(0,0,-10,-50,0,0,0,0,0,0,0,0,2,2,0);
-    public static Building kikepzo = new Building(-10,-15,-15,-15,-15,0,0,0,0,0,10,0,5,5,0);
+    public static Building haz = new Building(-2,-6,-3,0,-5,1,-2,0,0,1,0,0,0,0,0);
+    public static Building banya =new Building(-2,0,-5,0,-4,0,0,0,3,2,0,0,0,0,0);
+    public static Building farm =new Building(-1,0,-1,0,-2,0,2,0,0,0,0,0,0,0,0);
+    public static Building farmnagy =new Building(-5,0,-5,0,-10,0,10,0,0,0,0,0,0,0,0);
+    public static Building faKitermelo =new Building(-2,0,0,0,-2,0,0,3,0,0,0,0,0,0,0);
+    public static Building kut = new Building(0,0,-5,-5,0,0,0,0,0,0,0,0,0,0,0);
+    public static Building hid = new Building(0,0,-10,-50,0,0,0,0,0,0,0,0,0,0,0);
+    public static Building kikepzo = new Building(-10,-15,-15,-15,-15,0,0,0,0,0,0,0,0,0,0);
 
     public static boolean epuletFejlesztes(String kod){
         Building b = null;
