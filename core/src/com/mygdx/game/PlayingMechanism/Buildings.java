@@ -6,6 +6,8 @@ package com.mygdx.game.PlayingMechanism;
 
 public class Buildings {
 
+    //l,h,f,k,a
+
     public static Building haz = new Building(-2,-6,-3,0,-5,1,-2,0,0,1,2,0,1,0,0);
     public static Building banya =new Building(-2,0,-5,0,-4,0,0,0,3,2,2,0,2,0,0);
     public static Building farm =new Building(-1,0,-1,0,-2,0,2,0,0,0,1,0,0,0,0);

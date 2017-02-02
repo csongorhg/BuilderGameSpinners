@@ -19,10 +19,10 @@ public class Units {
 
 
     //lakos,fa,ko,arany
-    static int[] kardosKoltseg = {1,1,1,2};
-    static int[] ijjaszKoltseg = {1,3,1,3};
-    static int[] lovasKoltseg = {2,1,1,4};
-    static int[] agyusKoltseg = {3,2,3,5};
+    public static int[] kardosKoltseg = {1,1,1,2};
+    public static int[] ijjaszKoltseg = {1,3,1,3};
+    public static int[] lovasKoltseg = {2,1,1,4};
+    public static int[] agyusKoltseg = {3,2,3,5};
 
     static public int getLetszam(){
         int i = 0;
