@@ -33,7 +33,7 @@ public class Generator {
     }
 
     private void folyo(){
-        int folyoszam = vel(1,10)<10?2:1;
+        int folyoszam = vel(1,10)<3?2:1;
         for(int i = 0; i<folyoszam; i++){
             int elso = -1;
             if(i == 0) elso = vel(WORLD[0].length/3,WORLD[0].length/3*2);
