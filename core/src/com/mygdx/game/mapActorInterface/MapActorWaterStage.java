@@ -12,6 +12,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayStage;
 import com.mygdx.game.Play.grassActor;
 import com.mygdx.game.Play.waterActor;
+import com.mygdx.game.PlayingMechanism.Buildings;
 
 /**
  * Created by Kicsi on 2017. 01. 28..
@@ -20,6 +21,7 @@ import com.mygdx.game.Play.waterActor;
 public class MapActorWaterStage extends MapActorStage {
 
     private OneSpriteStaticActor water,redX;
+    private AnyagokStage hid,halasz;
 
     public MapActorWaterStage(MyGdxGame game, waterActor g) {
         super(game, g);
@@ -40,6 +42,16 @@ public class MapActorWaterStage extends MapActorStage {
             });
 
             waterbuildings();
+
+            halasz = new AnyagokStage(getViewport(),100,-28-(128*1), Buildings.farm.getLetrehoz()[2], Buildings.farm.getLetrehoz()[3], Buildings.farm.getLetrehoz()[4], Buildings.farm.getLetrehoz()[1], Buildings.farm.getLetrehoz()[0]);
+            halasz.setSize(100,100);
+            halasz.setPosition(0,0);
+            addActor(halasz);
+
+            hid = new AnyagokStage(getViewport(),100,-28-(128*2), Buildings.hid.getLetrehoz()[2], Buildings.hid.getLetrehoz()[3], Buildings.hid.getLetrehoz()[4], Buildings.hid.getLetrehoz()[1], Buildings.hid.getLetrehoz()[0]);
+            hid.setSize(100,100);
+            hid.setPosition(0,0);
+            addActor(hid);
 
             boolean b = false;
             if(g.getPosArrayX() > PlayStage.mapWidth-3 || g.getPosArrayX() < 2 || g.getPosArrayY() > PlayStage.mapHeight-3 || g.getPosArrayY() < 2)

@@ -19,6 +19,7 @@ import com.mygdx.game.Play.PlayStage;
 import com.mygdx.game.Play.grassActor;
 import com.mygdx.game.Play.stoneActor;
 import com.mygdx.game.Play.woodActor;
+import com.mygdx.game.PlayingMechanism.Buildings;
 
 /**
  * Created by Kicsi on 2017. 01. 26..
@@ -27,9 +28,42 @@ import com.mygdx.game.Play.woodActor;
 public class MapActorGrassStage extends MapActorStage {
 
     private OneSpriteStaticActor redX;
+    private AnyagokStage haz,banyasz,favago,kard,kapa,kut;
 
     public MapActorGrassStage(MyGdxGame game, grassActor g) {
         super(game, g);
+
+        //f,k,a,h,l
+
+        haz = new AnyagokStage(getViewport(),100,100, Buildings.haz.getLetrehoz()[2], Buildings.haz.getLetrehoz()[3], Buildings.haz.getLetrehoz()[4], Buildings.haz.getLetrehoz()[1], Buildings.haz.getLetrehoz()[0]);
+        haz.setSize(100,100);
+        haz.setPosition(0,0);
+        addActor(haz);
+
+        banyasz = new AnyagokStage(getViewport(),100,-28, Buildings.banya.getLetrehoz()[2], Buildings.banya.getLetrehoz()[3], Buildings.banya.getLetrehoz()[4], Buildings.banya.getLetrehoz()[1], Buildings.banya.getLetrehoz()[0]);
+        banyasz.setSize(100,100);
+        banyasz.setPosition(0,0);
+        addActor(banyasz);
+
+        favago = new AnyagokStage(getViewport(),100,-28-128, Buildings.faKitermelo.getLetrehoz()[2], Buildings.faKitermelo.getLetrehoz()[3], Buildings.faKitermelo.getLetrehoz()[4], Buildings.faKitermelo.getLetrehoz()[1], Buildings.faKitermelo.getLetrehoz()[0]);
+        favago.setSize(100,100);
+        favago.setPosition(0,0);
+        addActor(favago);
+
+        kard = new AnyagokStage(getViewport(),100,-28-(128*2), Buildings.kikepzo.getLetrehoz()[2], Buildings.kikepzo.getLetrehoz()[3], Buildings.kikepzo.getLetrehoz()[4], Buildings.kikepzo.getLetrehoz()[1], Buildings.kikepzo.getLetrehoz()[0]);
+        kard.setSize(100,100);
+        kard.setPosition(0,0);
+        addActor(kard);
+
+        kapa = new AnyagokStage(getViewport(),100,-28-(128*3), Buildings.farmnagy.getLetrehoz()[2], Buildings.farmnagy.getLetrehoz()[3], Buildings.farmnagy.getLetrehoz()[4], Buildings.farmnagy.getLetrehoz()[1], Buildings.farmnagy.getLetrehoz()[0]);
+        kapa.setSize(100,100);
+        kapa.setPosition(0,0);
+        addActor(kapa);
+
+        kut = new AnyagokStage(getViewport(),100,-28-(128*4), Buildings.kut.getLetrehoz()[2], Buildings.kut.getLetrehoz()[3], Buildings.kut.getLetrehoz()[4], Buildings.kut.getLetrehoz()[1], Buildings.kut.getLetrehoz()[0]);
+        kut.setSize(100,100);
+        kut.setPosition(0,0);
+        addActor(kut);
 
         if(!g.isFog()){
             standardBuildings();
