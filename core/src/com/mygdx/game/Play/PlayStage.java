@@ -481,7 +481,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         }
 
         if (TimeStepper.tuzvan) {
-            System.out.println("ég: "+Statistics.kutakszama);
             tuz();
         }
     }
