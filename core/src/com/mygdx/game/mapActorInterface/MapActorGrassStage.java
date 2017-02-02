@@ -73,7 +73,7 @@ public class MapActorGrassStage extends MapActorStage {
                     ujepuletFeltolt(t);
                 }
             });
-            if(mapactor.getPosArrayX() < 99 && mapactor.getPosArrayX() > 0 && mapactor.getPosArrayY() < 99 && mapactor.getPosArrayY() > 0 &&
+            if(mapactor.getPosArrayX() < (PlayStage.mapWidth-1) && mapactor.getPosArrayX() > 0 && mapactor.getPosArrayY() < (PlayStage.mapHeight-1) && mapactor.getPosArrayY() > 0 &&
                     PlayStage.mapActors[mapactor.getPosArrayX()+1][mapactor.getPosArrayY()] instanceof grassActor &&
                     PlayStage.mapActors[mapactor.getPosArrayX()+1][mapactor.getPosArrayY()+1] instanceof grassActor &&
                     PlayStage.mapActors[mapactor.getPosArrayX()+1][mapactor.getPosArrayY()-1] instanceof grassActor &&
