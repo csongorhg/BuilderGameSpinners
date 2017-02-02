@@ -8,11 +8,11 @@ public class Statistics {
 
     public static int legtobblakos = 5;
 
-    public static int lakosokszama = 5;
-    public static int fa = 20;
-    public static int ko = 20;
-    public static int arany = 10;
-    public static int kaja = 40;
+    public static int lakosokszama = 100;
+    public static int fa = 200;
+    public static int ko = 200;
+    public static int arany = 100;
+    public static int kaja = 400;
 
     public static int lakosokszamaValt = 0;
     public static int faValt = 0;
@@ -27,11 +27,11 @@ public class Statistics {
     public static void setDefaultStatistics() {
         legtobblakos = 5;
 
-        lakosokszama = 5;
-        fa = 20;
-        ko = 20;
-        arany = 10;
-        kaja = 40;
+        lakosokszama = 100;
+        fa = 200;
+        ko = 200;
+        arany = 100;
+        kaja = 400;
 
         lakosokszamaValt = 0;
         faValt = 0;

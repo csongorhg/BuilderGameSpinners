@@ -19,6 +19,8 @@ public class TimeStepper {
     public static boolean tuzvan = false;
     public static boolean megtamadtak = false;
 
+    private static final int max = 9999;
+
     public static void setDefaultTime() {
         elteltido = -1;
         elteltnap = 0;
@@ -98,7 +100,8 @@ public class TimeStepper {
             tuzvaltott = true;
         }
 
-        if(vel(0,30) == 10 && elteltnap > 30){ //30
+        if(megtamadtak) megtamadtak = false;
+        if(vel(0,20) == 10 && elteltnap > 30){ //30
             int egysegek = vel(5,30);
             megtamadtak = true;
             System.out.println("Megtámadott "+egysegek+" barbár!");
@@ -125,6 +128,12 @@ public class TimeStepper {
             System.out.println("Játék vége!");
             vege = true;
         }
+
+        if(fa>max) fa = max;
+        if(ko>max) ko = max;
+        if(arany>max) arany = max;
+        if(kaja>max) kaja = max;
+        if(lakosokszama>max) lakosokszama = max;
     }
 
 

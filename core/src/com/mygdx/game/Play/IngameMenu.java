@@ -64,19 +64,20 @@ public class IngameMenu extends MyStage {
         height = hatter.getHeight() * 1/4;
         float negyed = width/4;
         float fel = height/2;
+        float otkaraktereshossz = new MyLabel("-MMMMM", labelStyle(fel-30,Color.BLACK)).getWidth();
 
-        faLabel = new MyLabel(""+Statistics.fa, labelStyle(fel,false));
-        koLabel = new MyLabel(""+Statistics.ko, labelStyle(fel,false));
-        aranyLabel = new MyLabel(""+Statistics.arany, labelStyle(fel,false));
-        nepLabel = new MyLabel(""+Statistics.lakosokszama, labelStyle(fel,false));
-        etelLabel = new MyLabel(""+Statistics.kaja, labelStyle(fel,false));
-        katonaLabel = new MyLabel(""+Units.getLetszam(), labelStyle(fel,false));
+        faLabel = new MyLabel(""+Statistics.fa, labelStyle(fel-5,Color.WHITE));
+        koLabel = new MyLabel(""+Statistics.ko, labelStyle(fel-5,Color.WHITE));
+        aranyLabel = new MyLabel(""+Statistics.arany, labelStyle(fel-5,Color.WHITE));
+        nepLabel = new MyLabel(""+Statistics.lakosokszama, labelStyle(fel-5,Color.WHITE));
+        etelLabel = new MyLabel(""+Statistics.kaja, labelStyle(fel-5,Color.WHITE));
+        katonaLabel = new MyLabel(""+Units.getLetszam(), labelStyle(fel-5,Color.WHITE));
 
-        faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(fel,true));
-        koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(fel,true));
-        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, labelStyle(fel,true));
-        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, labelStyle(fel,true));
-        etelLabelValt = new MyLabel(""+Statistics.kajaValt, labelStyle(fel,true));
+        faLabelValt = new MyLabel(""+Statistics.faValt, labelStyle(fel-30,(Statistics.faValt>=0?Color.GREEN:Color.RED)));
+        koLabelValt = new MyLabel(""+Statistics.koValt, labelStyle(fel-30,(Statistics.koValt>=0?Color.GREEN:Color.RED)));
+        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, labelStyle(fel-30,(Statistics.aranyValt>=0?Color.GREEN:Color.RED)));
+        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, labelStyle(fel-30,(Statistics.lakosokszamaValt>=0?Color.GREEN:Color.RED)));
+        etelLabelValt = new MyLabel(""+Statistics.kajaValt, labelStyle(fel-30,(Statistics.kajaValt>=0?Color.GREEN:Color.RED)));
 
         addActor(faLabel);
         addActor(koLabel);
@@ -114,27 +115,27 @@ public class IngameMenu extends MyStage {
 
         faActor.setPosition(0,getViewport().getWorldHeight()-fel);
         koActor.setPosition(faActor.getX(),faActor.getY()-koActor.getHeight());
-        faLabel.setPosition(faActor.getX()+(negyed*(1f/3f)),faActor.getY());
-        koLabel.setPosition(koActor.getX()+(negyed*(1f/3f)),koActor.getY());
-        faLabelValt.setPosition(faActor.getX()+(negyed*(2f/3f)),faActor.getY());
-        koLabelValt.setPosition(koActor.getX()+(negyed*(2f/3f)),koActor.getY());
+        faLabel.setPosition(faActor.getX()+otkaraktereshossz+faActor.getWidth(),faActor.getY());
+        koLabel.setPosition(koActor.getX()+otkaraktereshossz+koActor.getWidth(),koActor.getY());
+        faLabelValt.setPosition(faActor.getX()+faActor.getWidth(),faActor.getY());
+        koLabelValt.setPosition(koActor.getX()+koActor.getWidth(),koActor.getY());
 
         aranyActor.setPosition(negyed,faActor.getY());
         etelActor.setPosition(aranyActor.getX(),aranyActor.getY()-etelActor.getHeight());
-        aranyLabel.setPosition(aranyActor.getX()+(negyed*(1f/3f)),aranyActor.getY());
-        etelLabel.setPosition(etelActor.getX()+(negyed*(1f/3f)),etelActor.getY());
-        aranyLabelValt.setPosition(aranyActor.getX()+(negyed*(2f/3f)),aranyActor.getY());
-        etelLabelValt.setPosition(etelActor.getX()+(negyed*(2f/3f)),etelActor.getY());
+        aranyLabel.setPosition(aranyActor.getX()+otkaraktereshossz+aranyActor.getWidth(),aranyActor.getY());
+        etelLabel.setPosition(etelActor.getX()+otkaraktereshossz+etelActor.getWidth(),etelActor.getY());
+        aranyLabelValt.setPosition(aranyActor.getX()+aranyActor.getWidth(),aranyActor.getY());
+        etelLabelValt.setPosition(etelActor.getX()+etelActor.getWidth(),etelActor.getY());
 
         nepActor.setPosition(negyed*2,aranyActor.getY());
         katonaActor.setPosition(nepActor.getX(),nepActor.getY()-katonaActor.getHeight());
-        nepLabel.setPosition(nepActor.getX()+(negyed*(1f/3f)),nepActor.getY());
-        katonaLabel.setPosition(katonaActor.getX()+(negyed*(1f/3f)),katonaActor.getY());
-        nepLabelValt.setPosition(nepActor.getX()+(negyed*(2f/3f)),nepActor.getY());
+        nepLabel.setPosition(nepActor.getX()+otkaraktereshossz+nepActor.getWidth(),nepActor.getY());
+        katonaLabel.setPosition(katonaActor.getX()+otkaraktereshossz+katonaActor.getWidth(),katonaActor.getY());
+        nepLabelValt.setPosition(nepActor.getX()+nepActor.getWidth(),nepActor.getY());
 
-        napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, labelStyle(fel,false));
+        napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, labelStyle(fel,Color.WHITE));
         addActor(napLabel);
-        napLabel.setPosition((width-negyed/2)-napLabel.getWidth()/2,getViewport().getWorldHeight()-(fel+napLabel.getHeight()/2));
+        napLabel.setPosition(width-150,getViewport().getWorldHeight()-(fel+napLabel.getHeight()/2));
 
     }
 
@@ -155,6 +156,13 @@ public class IngameMenu extends MyStage {
         etelLabelValt.setText((Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam())+"");
         nepLabelValt.setText(Statistics.lakosokszamaValt-Statistics.getlakosValt()+"");
 
+        faLabelValt.setColor((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama- Units.getLetszam()))>=0?Color.GREEN:Color.RED);
+        koLabelValt.setColor(Statistics.koValt>=0?Color.GREEN:Color.RED);
+        aranyLabelValt.setColor(Statistics.aranyValt-Units.getZsold()>=0?Color.GREEN:Color.RED);
+        etelLabelValt.setColor(Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam()>=0?Color.GREEN:Color.RED);
+        nepLabelValt.setColor(Statistics.lakosokszamaValt-Statistics.getlakosValt()>=0?Color.GREEN:Color.RED);
+
+
         katonaLabel.setText(Units.getEro()+"");
         napLabel.setText("DAY "+TimeStepper.elteltnap);
 
@@ -169,7 +177,7 @@ public class IngameMenu extends MyStage {
                 tamadasTextActor.setZIndex(Integer.MAX_VALUE);
             }
         }
-        else if(tamadasTextActor != null){
+        else if(tamadasTextActor != null && !b){
             tamadasTextActor.remove();
             tamadasTextActor = null;
         }
@@ -186,14 +194,11 @@ public class IngameMenu extends MyStage {
     }
 
 
-    private Label.LabelStyle labelStyle(float a,boolean green){
+    private Label.LabelStyle labelStyle(float a, Color color){
         Label.LabelStyle style;
         style = new Label.LabelStyle();
-        if(green){
-            style.fontColor = Color.GREEN;
-        }else{
-            style.fontColor = Color.WHITE;
-        }
+
+        style.fontColor = color;
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
