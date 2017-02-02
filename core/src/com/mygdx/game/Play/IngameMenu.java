@@ -158,6 +158,7 @@ public class IngameMenu extends MyStage {
         katonaLabel.setText(Units.getEro()+"");
         napLabel.setText("DAY "+TimeStepper.elteltnap);
 
+
         tamadas(TimeStepper.megtamadtak);
     }
 

@@ -9,8 +9,8 @@ import com.mygdx.game.MyBaseClasses.MyLabel;
 public class TamadasTextActor extends MyLabel {
 
     public TamadasTextActor(LabelStyle style, float x, float y) {
-        super("LOW ENERGY!", style);
-        setPosition(x-this.getWidth()/2,y);
+        super("You have been attacked!", style);
+        setPosition(x-this.getWidth()/2-128,y);
     }
 
     @Override
