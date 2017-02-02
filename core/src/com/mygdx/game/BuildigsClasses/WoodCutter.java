@@ -8,6 +8,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.Play.PlayStage;
 import com.mygdx.game.Play.grassActor;
 import com.mygdx.game.Play.mapActor;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 
 /**
  * Created by Kicsi on 2017. 01. 26..
@@ -19,7 +20,7 @@ public class WoodCutter extends mapActor {
 
 
     public WoodCutter(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
+        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.WOOD_WORKER) : Assets.manager.get(Assets.FAVAGOSNOW)){
             @Override
             public void init() {
                 super.init();

@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.Play.mapActor;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 
 /**
  * Created by Vince on 2017. 01. 28..
@@ -17,7 +18,7 @@ public class Bridge extends mapActor {
 
 
     public Bridge(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(Assets.manager.get(Assets.BRIDGE)){
+        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.BRIDGE) : Assets.manager.get(Assets.HIDSNOW)){
             @Override
             public void init() {
                 super.init();
