@@ -23,7 +23,7 @@ public class TimeStepper {
         elteltnap = 0;
 
         egynap = 10;
-        ev = 4; //tél és nyár = év/2
+        ev = 60; //tél és nyár = év/2
         nyarvan = true;
 
         vege = false;
