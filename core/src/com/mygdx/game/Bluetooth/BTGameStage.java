@@ -2,6 +2,7 @@ package com.mygdx.game.Bluetooth;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -31,6 +32,7 @@ abstract public class BTGameStage extends BluetoothConnectedStage {
     public void init() {
         Gdx.input.setInputProcessor(this);
         addBackEventStackListener();
+
         addActor(new MyButton("Clear", game.getTextButtonStyle()){
             @Override
             public void init() {
@@ -63,6 +65,8 @@ abstract public class BTGameStage extends BluetoothConnectedStage {
                 sendMessage("star:" + x + ";" + y);
             }
         });
+
+
     }
 
     protected void addStar(final float x, final float y){

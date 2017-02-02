@@ -23,7 +23,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Bluetooth.BTGameStage;
 import com.mygdx.game.Bluetooth.BluetoothScreen;
+import com.mygdx.game.Bluetooth.TestScreen;
 import com.mygdx.game.BuildigsClasses.Barrack;
 import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
@@ -306,7 +308,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new BluetoothScreen(game));
+                //game.setScreen(new BluetoothScreen(game));
+                game.setScreen(new TestScreen(game));
             }
         });
 
@@ -337,7 +340,7 @@ public class MapActorStage extends MyStage {
         super.dispose();
     }
 
-    public Label.LabelStyle labelStyle(int a){
+    public static Label.LabelStyle labelStyle(int a){
         Label.LabelStyle style = new Label.LabelStyle();
 
         /*Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
