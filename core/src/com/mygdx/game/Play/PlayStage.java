@@ -178,13 +178,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             varos = false;
         }
 
-        for (int i = 0; i < world.length; i++) {
-            for (int j = 0; j < world[i].length; j++) {
-                System.out.print(world[i][j]);
-            }
-            System.out.println();
-        }
-
         mapActors = new mapActor[mapWidth][mapHeight];
 
 
@@ -202,7 +195,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         v = new Vector<GridPoint2>();
         for (int i = 0; i < world.length; i++) {
-            for (int j = 0; j < world[0].length; j++) {
+            for (int j = 0; j < world[i].length; j++) {
                 switch (world[i][j]){
                     case 0: //fű
                         mapActors[i][j] = new grassActor(i,j, 128, 128);
@@ -317,8 +310,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         ujEpulet(i,j, new MillCircle(i,j,128,128));
                         break;
                 }
-                if(mapActors[i][j].getY()<=0){
+                if(mapActors[i][j].getY()<0){
                     mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,(mapHeight-mapActors[i][j].getPosArrayX())*128-128);
+                    //setCameraMoveToXY(mapActors[i][j].getPosArrayY()*128,mapHeight-mapActors[i][j].getPosArrayX()*128,1,99999);
                 }
             }
         }
@@ -330,7 +324,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         mapActors[i][j] = m;
         addActor(mapActors[i][j]);
         mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,
-                (mapHeight-mapActors[i][j].getPosArrayX())*128);  //helyes pozicionálás
+                (mapHeight-mapActors[i][j].getPosArrayX())*128-128);  //helyes pozicionálás
         final mapActor ww = mapActors[i][j];
         mapActors[i][j].addListener(new ClickListener(){
             @Override
@@ -360,19 +354,21 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         while (points.size>0){
             GridPoint2 p = points.removeFirst();
 
-            if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && (mapActors[p.x+1][p.y] instanceof waterActor)) {
+            if (p.x<mapWidth-2 && mapActors[p.x + 1][p.y].isFog() && (mapActors[p.x+1][p.y] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x + 1, p.y));
                 mapActors[p.x + 1][p.y].setFog(false);
             }
-            if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && (mapActors[p.x-1][p.y] instanceof waterActor)) {
+            if (p.x>1 && mapActors[p.x - 1][p.y].isFog() && (mapActors[p.x-1][p.y] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x - 1, p.y));
                 mapActors[p.x - 1][p.y].setFog(false);
             }
-            if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && (mapActors[p.x][p.y+1] instanceof waterActor)) {
+            //System.out.println("Y: "+p.y+", mapHeight: "+mapHeight);
+            //System.out.println("X: "+p.x+", mapHeight: "+mapWidth);
+            if (p.y<mapHeight-2 && mapActors[p.x][p.y +1 ].isFog() && (mapActors[p.x][p.y+1] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x, p.y + 1));
                 mapActors[p.x][p.y + 1].setFog(false);
             }
-            if (p.y>0 && mapActors[p.x][p.y-1].isFog() && (mapActors[p.x][p.y-1] instanceof waterActor)) {
+            if (p.y>1 && mapActors[p.x][p.y-1].isFog() && (mapActors[p.x][p.y-1] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x, p.y - 1));
                 mapActors[p.x][p.y - 1].setFog(false);
             }
@@ -632,12 +628,12 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom + 256*c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.y < getViewport().getWorldHeight()/2*c.zoom) {
+        if (c.position.y< getViewport().getWorldHeight()/2*c.zoom) {
             c.position.y = getViewport().getWorldHeight()/2*c.zoom;
             setCameraTargetY(c.position.y);
         }
-        if (c.position.y>mapHeight*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom){
-            c.position.y = mapHeight*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom;
+        if (c.position.y>(mapHeight - 1)*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom){
+            c.position.y = (mapHeight - 1)*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom;
             setCameraTargetY(c.position.y);
         }
     }
@@ -693,8 +689,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if (c.zoom<0.5f){
             c.zoom = 0.5f;
         }
-        if (c.zoom>3f){
-            c.zoom = 3f;
+        if (c.zoom>2f){
+            c.zoom = 2f;
         }
         c.update();
         setCameraTargetZoom(c.zoom);
