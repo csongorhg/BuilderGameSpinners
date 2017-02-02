@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.BuildigsClasses.Barrack;
 import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
+import com.mygdx.game.BuildigsClasses.Hamu;
 import com.mygdx.game.BuildigsClasses.House;
 import com.mygdx.game.BuildigsClasses.Mill;
 import com.mygdx.game.BuildigsClasses.MillCircle;
@@ -26,6 +27,7 @@ import com.mygdx.game.mapActorInterface.MapActorBridgeStage;
 import com.mygdx.game.mapActorInterface.MapActorCityHallStage;
 import com.mygdx.game.mapActorInterface.MapActorFishDockStage;
 import com.mygdx.game.mapActorInterface.MapActorGrassStage;
+import com.mygdx.game.mapActorInterface.MapActorHamuStage;
 import com.mygdx.game.mapActorInterface.MapActorHouseStage;
 import com.mygdx.game.mapActorInterface.MapActorMillFieldStage;
 import com.mygdx.game.mapActorInterface.MapActorMillStage;
@@ -144,6 +146,9 @@ public class PlayScreen extends MyScreen{
                 }
                 else if(mapActor instanceof MillCircle){
                     mapActorGlobalStage = new MapActorMillFieldStage(game, (MillCircle)mapActor);
+                }
+                else if(mapActor instanceof Hamu){
+                    mapActorGlobalStage = new MapActorHamuStage(game, (Hamu)mapActor);
                 }
                 else mapActorGlobalStage = new MapActorStage(game, null);
 

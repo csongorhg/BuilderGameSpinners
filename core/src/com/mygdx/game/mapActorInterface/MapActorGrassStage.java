@@ -285,7 +285,7 @@ public class MapActorGrassStage extends MapActorStage {
         getActorGroup().addActor(emberLabel);
 
         //kut
-        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight()+meret/10,"0","0","5","5","0");
+        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight()+meret/10,"5","0","5","0","0");
         getActorGroup().addActor(aranySprite);
         getActorGroup().addActor(koSprite);
         getActorGroup().addActor(faSprite);
@@ -331,8 +331,9 @@ public class MapActorGrassStage extends MapActorStage {
         koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());
         faLabel.setPosition(meret/2+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
 
-        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight());
-        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight()+husSprite.getHeight());
+        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight());
+        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight()+emberLabel.getHeight());
+
     }
 
 }

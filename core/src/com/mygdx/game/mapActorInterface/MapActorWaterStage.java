@@ -197,8 +197,8 @@ public class MapActorWaterStage extends MapActorStage {
         koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());
         faLabel.setPosition(meret/2+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
 
-        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight());
-        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight()+husSprite.getHeight());
+        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight());
+        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight()+emberLabel.getHeight());
     }
 
 }

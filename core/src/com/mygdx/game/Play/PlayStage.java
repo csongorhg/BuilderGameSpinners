@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.BuildigsClasses.Barrack;
 import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
+import com.mygdx.game.BuildigsClasses.Hamu;
 import com.mygdx.game.BuildigsClasses.House;
 import com.mygdx.game.BuildigsClasses.Mill;
 import com.mygdx.game.BuildigsClasses.MillCircle;
@@ -316,6 +317,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                     case 19: //mező
                         ujEpulet(i,j, new MillCircle(i,j,128,128));
                         break;
+                    case 20: // hamu
+                        ujEpulet(i,j, new Hamu(i,j,128,128));
+                        break;
+
                 }
                 if(mapActors[i][j].getY()<0){
                     mapActors[i][j].setPosition((mapActors[i][j].getPosArrayY())*128,(mapHeight-mapActors[i][j].getPosArrayX())*128-128);
@@ -497,12 +502,12 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 if (mapActors[i][j].isFire()) {
                     OneSpriteStaticActor oneSpriteStaticActor;
                     if (mapActors[i][j] instanceof FishDock) {
-                        ujEpulet(i, j, new waterActor(i, j,128,128));
+                        ujEpulet(i, j, new Hamu(i, j,128,128));
                         Statistics.epuletekszama--;
                         Buildings.lerombol("farm");
                     }
                     else {
-                        ujEpulet(i, j, new grassActor(i, j,128,128));
+                        ujEpulet(i, j, new Hamu(i, j,128,128));
                         if(mapActors[i][j] instanceof WoodCutter) {
                             Statistics.epuletekszama--;
                             Buildings.lerombol("faKitermelo");
@@ -533,7 +538,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         && !(mapActors[i][j] instanceof stoneActor) && !(mapActors[i][j] instanceof grassActor)
                         && !(mapActors[i][j] instanceof woodActor) && !(mapActors[i][j] instanceof waterActor)
                         && !(mapActors[i][j] instanceof Bridge) && !(mapActors[i][j] instanceof Mill)
-                        && !(mapActors[i][j] instanceof MillCircle)) {
+                        && !(mapActors[i][j] instanceof MillCircle) && !(mapActors[i][j] instanceof Hamu)) {
                     mapActors[i][j].setFire(TimeStepper.tuzvan);
                     TimeStepper.tuzvan = false;
                 }
