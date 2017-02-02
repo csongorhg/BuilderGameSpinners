@@ -27,11 +27,11 @@ public class Statistics {
     public static void setDefaultStatistics() {
         legtobblakos = 5;
 
-        lakosokszama = 5;
-        fa = 20;
-        ko = 20;
-        arany = 10;
-        kaja = 40;
+        lakosokszama = 50;
+        fa = 2000;
+        ko = 2000;
+        arany = 1000;
+        kaja = 4000;
 
         lakosokszamaValt = 0;
         faValt = 0;
