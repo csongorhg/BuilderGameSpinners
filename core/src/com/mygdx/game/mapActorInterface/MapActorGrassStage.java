@@ -40,6 +40,11 @@ public class MapActorGrassStage extends MapActorStage {
                     if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof woodActor) bWoodCutter = true;
                 }
             }
+            for(int i=-2; i<=2; i++){
+                for(int j=-2; j<=2; j++){
+                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof WoodCutter) bWoodCutter = false;
+                }
+            }
             if(bWoodCutter) {
                 favago.addListener(new ClickListener() {
                     @Override
@@ -68,6 +73,11 @@ public class MapActorGrassStage extends MapActorStage {
             for(int i=-1; i<=1; i++){
                 for(int j=-1; j<=1; j++){
                     if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof stoneActor) bStoneWorker = true;
+                }
+            }
+            for(int i=-2; i<=2; i++){
+                for(int j=-2; j<=2; j++){
+                    if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof StoneWorker) bStoneWorker = false;
                 }
             }
             if(bStoneWorker) {
