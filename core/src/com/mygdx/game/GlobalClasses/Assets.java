@@ -139,6 +139,10 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Interface/fightgreen.png", Texture.class);
 	public static final AssetDescriptor<Texture> FIGHTRED
 			= new AssetDescriptor<Texture>("Interface/fightred.png", Texture.class);
+	public static final AssetDescriptor<Texture> MINUSZ
+			= new AssetDescriptor<Texture>("Interface/sminusz.png", Texture.class);
+	public static final AssetDescriptor<Texture> PLUSZ
+			= new AssetDescriptor<Texture>("Interface/splusz.png", Texture.class);
 
 	public static final AssetDescriptor<Texture> CANNON_MAN
 			= new AssetDescriptor<Texture>("Interface/cannon.png", Texture.class);
@@ -252,6 +256,8 @@ public class Assets {
 		manager.load(FIGHTBLUE);
 		manager.load(FIGHTGREEN);
 		manager.load(FIGHTRED);
+		manager.load(MINUSZ);
+		manager.load(PLUSZ);
 
 		manager.load(FUSNOW_BLOCK);
 		manager.load(VIZSNOW_BLOCK);

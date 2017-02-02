@@ -34,6 +34,7 @@ import com.mygdx.game.PlayingMechanism.Buildings;
 import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.WorldGenerate.Generator;
+import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 import java.util.Vector;
