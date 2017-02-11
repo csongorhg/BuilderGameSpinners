@@ -74,7 +74,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private Vector<GridPoint2> v;
 
-    private boolean nemvolt = true, varos = false, kell = false;
+    private boolean nemvolt = true, varos = false, kell = false, cityIsPositioned = false;
+
+    private cityActor cityActor;
 
     public PlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -257,7 +259,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         if(varos){
                             citycount++;
                             if(citycount == 4) {
-                                mapActors[i][j] = new cityActor(i, j, citycount, 256, 256);
+                                cityActor = new cityActor(i, j, citycount, 256, 256);
+                                mapActors[i][j] = cityActor;
                                 addActor(mapActors[i][j]);
                                 final mapActor c = mapActors[i][j];
                                 mapActors[i][j].addListener(new ClickListener() {
@@ -275,7 +278,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                                 addActor(mapActors[i][j]);
                             }
                         }else {
-                            mapActors[i][j] = new cityActor(i, j, citycount, 256, 256);
+                            cityActor = new cityActor(i, j, citycount, 256, 256);
+                            mapActors[i][j] = cityActor;
                             addActor(mapActors[i][j]);
                             final mapActor c = mapActors[i][j];
                             mapActors[i][j].addListener(new ClickListener() {
@@ -447,7 +451,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     @Override
     public void act(float delta) {
         super.act(delta);
+
         fixCamera();
+
+        //város pozicionálása
+        if (!cityIsPositioned) {
+            setCameraMoveToXY(cityActor.getX(), cityActor.getY() + cityActor.getHeight() + 128, 2, 9999);
+            cityIsPositioned = true;
+        }
 
         if(!MenuStage.music.isPlaying() && MenuStage.playing){
             MenuStage.music.stop();
@@ -626,7 +637,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 //mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
 
             }
-            selectMapActor(mapActors[ujepulet[1]][ujepulet[2]]);
+            //selectMapActor(mapActors[ujepulet[1]][ujepulet[2]]);
         ujepulet[0] = 0;
     }
 
@@ -685,22 +696,22 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     }
 
     private void fixCamera(){
-        OrthographicCamera c = (OrthographicCamera)getCamera();
+        OrthographicCamera c = (OrthographicCamera) getCamera();
 
-        if (c.position.x<getViewport().getWorldWidth()/2*c.zoom){
-            c.position.x = getViewport().getWorldWidth()/2*c.zoom;
+        if (c.position.x < getViewport().getWorldWidth() / 2 * c.zoom) {
+            c.position.x = getViewport().getWorldWidth() / 2 * c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.x>mapWidth*128-getViewport().getWorldWidth()/2*c.zoom + 256*c.zoom){
-            c.position.x = mapWidth*128-getViewport().getWorldWidth()/2*c.zoom + 256*c.zoom;
+        if (c.position.x > mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom) {
+            c.position.x = mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.y< getViewport().getWorldHeight()/2*c.zoom) {
-            c.position.y = getViewport().getWorldHeight()/2*c.zoom;
+        if (c.position.y < getViewport().getWorldHeight() / 2 * c.zoom - 128 * c.zoom) {
+            c.position.y = getViewport().getWorldHeight() / 2 * c.zoom - 128 * c.zoom;
             setCameraTargetY(c.position.y);
         }
-        if (c.position.y>(mapHeight - 1)*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom){
-            c.position.y = (mapHeight - 1)*128-getViewport().getWorldHeight()/2*c.zoom + ingameMenu.getHatterPosition()*c.zoom;
+        if (c.position.y > (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom + 128 * c.zoom) {
+            c.position.y = (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom + 128 * c.zoom;
             setCameraTargetY(c.position.y);
         }
     }

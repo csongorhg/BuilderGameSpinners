@@ -109,18 +109,18 @@ public class MapActorWaterStage extends MapActorStage {
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(halasz.getX(),halasz.getY());
-                getActorGroup().addActor(redX);
+                //getActorGroup().addActor(redX);
 
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(hid.getX(),hid.getY());
-                getActorGroup().addActor(redX);
+                //getActorGroup().addActor(redX);
             }
 
         } else { // ha ködös
             allRemove();
             MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",labelStyle(50));
-            getActorGroup().addActor(label);
+            //getActorGroup().addActor(label);
             label.setAlignment(Align.center);
             label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
         }
@@ -137,6 +137,7 @@ public class MapActorWaterStage extends MapActorStage {
             getActorGroup().removeActor(water);*/
 
         //halasz
+        /*
         alapAnyagok(getViewport().getWorldHeight()/2,"2","0","1","0","1");
         getActorGroup().addActor(aranySprite);
         getActorGroup().addActor(koSprite);
@@ -162,7 +163,7 @@ public class MapActorWaterStage extends MapActorStage {
         getActorGroup().addActor(koLabel);
         getActorGroup().addActor(faLabel);
         getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
+        getActorGroup().addActor(emberLabel);*/
 
     }
 

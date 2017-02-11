@@ -104,8 +104,9 @@ public class PlayScreen extends MyScreen{
                 mapActorGlobalStage.dispose();
                 im.removeProcessor(mapActorGlobalStage);
                 mapActorGlobalStage = null;
-
+                System.out.println("méret: "+getActors().size);
                 if (mapActor instanceof stoneActor) {
+
                     mapActorGlobalStage = new MapActorStoneStage(game, (stoneActor)mapActor);
                 }
                 else if (mapActor instanceof woodActor) {

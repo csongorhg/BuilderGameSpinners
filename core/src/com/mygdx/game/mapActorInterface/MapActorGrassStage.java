@@ -102,7 +102,7 @@ public class MapActorGrassStage extends MapActorStage {
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(favago.getX(),favago.getY());
-                getActorGroup().addActor(redX);
+                //getActorGroup().addActor(redX);
                 favago.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -142,7 +142,7 @@ public class MapActorGrassStage extends MapActorStage {
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(banya.getX(),banya.getY());
-                getActorGroup().addActor(redX);
+                //getActorGroup().addActor(redX);
                 banya.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -198,7 +198,7 @@ public class MapActorGrassStage extends MapActorStage {
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(mezo.getX(),mezo.getY());
-                getActorGroup().addActor(redX);
+                //getActorGroup().addActor(redX);
                 mezo.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -209,13 +209,13 @@ public class MapActorGrassStage extends MapActorStage {
         } else {
             allRemove();
             MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",labelStyle(50));
-            getActorGroup().addActor(label);
+            //getActorGroup().addActor(label);
             label.setAlignment(Align.center);
             label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
         }
 
         //haz
-        alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
+        /*alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
         getActorGroup().addActor(aranySprite);
         getActorGroup().addActor(koSprite);
         getActorGroup().addActor(faSprite);
@@ -296,7 +296,7 @@ public class MapActorGrassStage extends MapActorStage {
         getActorGroup().addActor(koLabel);
         getActorGroup().addActor(faLabel);
         getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
+        getActorGroup().addActor(emberLabel);*/
 
     }
 
