@@ -358,10 +358,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private void setDefaultFog(){
         //Kezdetben minden legyen köd!
-        for (int i = 0; i< mapActors.length; i++){
-            for(int j = 0; j<mapActors[i].length; j++)
-            {
-                mapActors[i][j].setFog(true);
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 0; j < mapActors[i].length; j++) {
+                if ( !(i == cityx && j == cityy) ) //HA nem város AKKOR köd
+                    mapActors[i][j].setFog(true);
             }
         }
     }
