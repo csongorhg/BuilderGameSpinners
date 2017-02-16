@@ -51,7 +51,7 @@ public class MapActorHouseStage extends MapActorStage {
     public void init() {
         super.init();
 
-        coinLabel = new MyLabel("2 / day",labelStyle(80));
+        coinLabel = new MyLabel("2 / day",game.getLabelStyle(80));
         coinLabel.setPosition(meret/2-coinLabel.getWidth()/2, getViewport().getWorldHeight()/2-meret/2);
 
         coin = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
@@ -62,7 +62,7 @@ public class MapActorHouseStage extends MapActorStage {
         person.setSize(meret/2,meret/2);
         person.setPosition(meret/4, getViewport().getWorldHeight()/2-meret/2-person.getHeight());
 
-        label = new MyLabel("1 / day",labelStyle(80));
+        label = new MyLabel("1 / day",game.getLabelStyle(80));
         label.setAlignment(Align.center);
         label.setPosition(meret/2-label.getWidth()/2, getViewport().getWorldHeight()/2-meret/2-person.getHeight()-label.getHeight());
 

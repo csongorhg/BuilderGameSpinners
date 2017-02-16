@@ -53,7 +53,7 @@ public class MapActorStoneWorkerStage extends MapActorStage {
     public void init() {
         super.init();
 
-        coinLabel = new MyLabel("2 / day",labelStyle(80));
+        coinLabel = new MyLabel("2 / day",game.getLabelStyle(80));
         coinLabel.setPosition(meret/2-coinLabel.getWidth()/2, getViewport().getWorldHeight()/2-meret/2);
 
         coin = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
@@ -66,7 +66,7 @@ public class MapActorStoneWorkerStage extends MapActorStage {
         stone.setSize(meret/2,meret/2);
         stone.setPosition(meret/4, getViewport().getWorldHeight()/2-meret/2-stone.getHeight());
 
-        stoneLabel = new MyLabel("3 / day", labelStyle(80));
+        stoneLabel = new MyLabel("3 / day", game.getLabelStyle(80));
         stoneLabel.setPosition(meret/2-stoneLabel.getWidth()/2, getViewport().getWorldHeight()/2-meret/2-stone.getHeight()-stoneLabel.getHeight());
 
     }

@@ -23,16 +23,45 @@ public class MyGdxGame extends Game {
 	public final Stack<Class> backButtonStack = new Stack();
 
 	public Label.LabelStyle getLabelStyle() {
+		return getLabelStyle(100, Color.YELLOW);
+	}
+
+	public Label.LabelStyle getLabelStyle(int size) {
+		return getLabelStyle(size, Color.YELLOW);
+	}
+
+	public Label.LabelStyle getLabelStyle(int size, Color color) {
 		Label.LabelStyle style;
 		style = new com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle();
 		style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT100);
-		style.fontColor = Color.YELLOW;
-		Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
-		p.setColor(0.4f,0.2f,0.8f, 0.5f);
-		p.fill();
+		style.fontColor = color;
+		switch (size){
+			case 10:
+				style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT10);
+				break;
+			case 25:
+				style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT25);
+				break;
+			case 50:
+				style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT50);
+				break;
+			case 80:
+				style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT80);
+				break;
+			case 100:
+				style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT100);
+				break;
+			case 140:
+				style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT140);
+				break;
+			default:
+				new Exception("Nem kezelt betűméret: " + size);
+		}
 		return style;
 	}
 
+
+/*
 	public TextField.TextFieldStyle getTextFieldStyle() {
 		TextField.TextFieldStyle style = new TextField.TextFieldStyle();
 		style.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEST_TEXTURE)));
@@ -49,24 +78,24 @@ public class MyGdxGame extends Game {
 		return style;
 	}
 
-
+*/
 	public TextButton.TextButtonStyle getTextButtonStyle() {
 
 		TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
 		textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT100);
 
-		Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
+		/*Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
 		p.setColor(0.1f,0.2f,0.2f, 0.5f);
-		p.fill();
-		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
+		p.fill();*/
+		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONUP)));
 
-		p.setColor(0.3f,0.5f,0.8f, 0.5f);
-		p.fill();
-		textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
+		/*p.setColor(0.3f,0.5f,0.8f, 0.5f);
+		p.fill();*/
+		textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONOVER)));
 
-		p.setColor(1f,0.5f,0.8f, 1f);
-		p.fill();
-		textButtonStyle.down = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
+		/*p.setColor(1f,0.5f,0.8f, 1f);
+		p.fill();*/
+		textButtonStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONDOWN)));
 
 		return textButtonStyle;
 	}

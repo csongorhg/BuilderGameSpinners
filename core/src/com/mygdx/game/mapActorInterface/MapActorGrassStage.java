@@ -208,7 +208,7 @@ public class MapActorGrassStage extends MapActorStage {
             }
         } else {
             allRemove();
-            MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",labelStyle(50));
+            MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",game.getLabelStyle(50));
             //getActorGroup().addActor(label);
             label.setAlignment(Align.center);
             label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
@@ -321,11 +321,11 @@ public class MapActorGrassStage extends MapActorStage {
         emberSprite.setSize(meretek,meretek);
         emberSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight());
 
-        aranyLabel = new MyLabel(aranyl,labelStyle(25));
-        koLabel = new MyLabel(kol,labelStyle(25));
-        faLabel = new MyLabel(fal,labelStyle(25));
-        husLabel = new MyLabel(husl,labelStyle(25));
-        emberLabel = new MyLabel(emberl,labelStyle(25));
+        aranyLabel = new MyLabel(aranyl,game.getLabelStyle(25));
+        koLabel = new MyLabel(kol,game.getLabelStyle(25));
+        faLabel = new MyLabel(fal,game.getLabelStyle(25));
+        husLabel = new MyLabel(husl,game.getLabelStyle(25));
+        emberLabel = new MyLabel(emberl,game.getLabelStyle(25));
 
         aranyLabel.setPosition(meret/2+aranySprite.getWidth(),yPos);
         koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());

@@ -129,11 +129,11 @@ public class MapActorBarrackStage extends MapActorStage {
         emberSprite.setSize(meretek,meretek);
         emberSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight());
 
-        aranyLabel = new MyLabel(aranyl,labelStyle(25));
-        koLabel = new MyLabel(kol,labelStyle(25));
-        faLabel = new MyLabel(fal,labelStyle(25));
-        husLabel = new MyLabel(husl,labelStyle(25));
-        emberLabel = new MyLabel(emberl,labelStyle(25));
+        aranyLabel = new MyLabel(aranyl,game.getLabelStyle(25));
+        koLabel = new MyLabel(kol,game.getLabelStyle(25));
+        faLabel = new MyLabel(fal,game.getLabelStyle(25));
+        husLabel = new MyLabel(husl,game.getLabelStyle(25));
+        emberLabel = new MyLabel(emberl,game.getLabelStyle(25));
 
         aranyLabel.setPosition(meret/2+aranySprite.getWidth(),yPos);
         koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());

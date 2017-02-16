@@ -341,16 +341,10 @@ public class MapActorStage extends MyStage {
     }
 
 
-
+/*
     public static Label.LabelStyle labelStyle(int a) {
         Label.LabelStyle style = new Label.LabelStyle();
-/*
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        meret.size = a;
-        meret.characters = Assets.CHARS;
-        BitmapFont font = generator.generateFont(meret);
-        generator.dispose();*/
+
         switch (a){
             case 25:
                 style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT25);
@@ -367,6 +361,6 @@ public class MapActorStage extends MyStage {
 
 
         return style;
-    }
+    }*/
 
 }

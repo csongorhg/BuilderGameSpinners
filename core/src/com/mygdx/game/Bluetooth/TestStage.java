@@ -199,7 +199,7 @@ public class TestStage extends MyStage {
             }
         });
 
-        osszesites = new MyLabel(osszesites+"", MapActorStage.labelStyle(100));
+        osszesites = new MyLabel(osszesites+"", game.getLabelStyle(100));
         addActor(osszesites);
         osszesites.setPosition(width/2-osszesites.getWidth()/2, height/4-osszesites.getHeight()/2);
 

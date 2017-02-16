@@ -52,7 +52,7 @@ public class MapActorFishDockStage extends MapActorStage {
         meat.setSize(meret/2,meret/2);
         meat.setPosition(meret/4, getViewport().getWorldHeight()/2);
 
-        label = new MyLabel("3 / day",labelStyle(80));
+        label = new MyLabel("3 / day",game.getLabelStyle(80));
         label.setAlignment(Align.center);
         label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight());
 

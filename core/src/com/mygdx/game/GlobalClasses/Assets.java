@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -101,6 +102,27 @@ public class Assets {
 	}
 	public static final AssetDescriptor<BitmapFont> ACMEREGULAR_FONT140
 			= new AssetDescriptor<BitmapFont>(fontParameterAcme140.fontFileName, BitmapFont.class, fontParameterAcme140);
+
+/*
+	//PIXMAP
+	static Pixmap pixmapTextButtonUp = new Pixmap(1,1, Pixmap.Format.RGB888);
+	static {
+		pixmapTextButtonUp.setColor(0.1f, 0.2f, 0.2f, 0.5f);
+		pixmapTextButtonUp.fill();
+	}
+	static Pixmap pixmapTextButtonOver = new Pixmap(1,1, Pixmap.Format.RGB888);
+	static {
+		pixmapTextButtonOver.setColor(0.1f, 0.2f, 0.2f, 0.5f);
+		pixmapTextButtonOver.fill();
+	}
+	static Pixmap pixmapTextButtonDown = new Pixmap(1,1, Pixmap.Format.RGB888);
+	static {
+		pixmapTextButtonDown.setColor(0.1f, 0.2f, 0.2f, 0.5f);
+		pixmapTextButtonDown.fill();
+	}
+*/
+
+
 
 	//MUSIC
 	//http://www.bensound.com/royalty-free-music/track/relaxing
@@ -262,6 +284,12 @@ public class Assets {
 	public static final AssetDescriptor<Texture> VARSNOW
 			= new AssetDescriptor<Texture>("Buildings/havas/varSnow.png", Texture.class);
 
+	public static final AssetDescriptor<Texture> TEXTBUTTONUP
+			= new AssetDescriptor<Texture>("Buttons/textbuttonup.png", Texture.class);
+	public static final AssetDescriptor<Texture> TEXTBUTTONDOWN
+			= new AssetDescriptor<Texture>("Buttons/textbuttondown.png", Texture.class);
+	public static final AssetDescriptor<Texture> TEXTBUTTONOVER
+			= new AssetDescriptor<Texture>("Buttons/textbuttonover.png", Texture.class);
 
 
 
@@ -350,6 +378,12 @@ public class Assets {
 		manager.load(HAZSNOW);
 		manager.load(HAMU);
 		manager.load(HAMUSNOW);
+
+		//BUTTONS
+		manager.load(TEXTBUTTONDOWN);
+		manager.load(TEXTBUTTONOVER);
+		manager.load(TEXTBUTTONUP);
+
 
 		//ATLAS
 		manager.load(FIRE_TEXTUREATLAS);
