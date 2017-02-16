@@ -39,6 +39,8 @@ import com.mygdx.game.mapActorInterface.MapActorWaterWellStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodCutterStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
 
+import java.lang.management.ManagementFactory;
+
 import sun.rmi.runtime.RuntimeUtil;
 
 /**
@@ -103,12 +105,13 @@ public class PlayScreen extends MyScreen{
         playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game){
             @Override
             public void selectMapActor(mapActor mapActor) {
-                //im.removeProcessor(mapActorGlobalStage);
+                im.removeProcessor(mapActorGlobalStage);
 
                 mapActorGlobalStage.dispose();
                 mapActorGlobalStage = null;
-                //Runtime.getRuntime().gc();
+                Runtime.getRuntime().gc();
                 System.out.println("méret: "+getActors().size);
+                System.out.println("Memory: " + (ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getUsed() / 1024 / 1024) + " MiB" );
                 if (mapActor instanceof stoneActor) {
 
                     mapActorGlobalStage = new MapActorStoneStage(game, (stoneActor)mapActor);
@@ -157,7 +160,7 @@ public class PlayScreen extends MyScreen{
                 }
                 else mapActorGlobalStage = new MapActorStage(game, null);
 
-                //im.addProcessor(0,mapActorGlobalStage);
+                im.addProcessor(0,mapActorGlobalStage);
             }
         };
 
