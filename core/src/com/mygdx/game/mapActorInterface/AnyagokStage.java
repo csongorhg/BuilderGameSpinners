@@ -123,13 +123,13 @@ public class AnyagokStage extends Group {
         style = new Label.LabelStyle();
         style.fontColor = Color.WHITE;
         //átméretezés
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
+/*        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
         meret.size = 25;
         meret.characters = Assets.CHARS;
         BitmapFont font = generator.generateFont(meret);
-        generator.dispose();
-        style.font = font;
+        generator.dispose();*/
+        style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT25);
 
     }
 

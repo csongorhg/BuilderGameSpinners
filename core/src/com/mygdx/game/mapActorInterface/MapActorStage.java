@@ -340,27 +340,31 @@ public class MapActorStage extends MyStage {
         super.dispose();
     }
 
-    public static Label.LabelStyle labelStyle(int a){
+
+
+    public static Label.LabelStyle labelStyle(int a) {
         Label.LabelStyle style = new Label.LabelStyle();
-
-        /*Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
-        p.setColor(0.1f,0.2f,0.2f, 0.5f);
-        p.fill();
-        style.up = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
-        p.setColor(0.3f,0.5f,0.8f, 0.5f);
-        p.fill();
-        style.over = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
-        p.setColor(1f,0.5f,0.8f, 1f);
-        p.fill();
-        style.down = new TextureRegionDrawable(new TextureRegion(new Texture(p)));*/
-
+/*
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter meret = new FreeTypeFontGenerator.FreeTypeFontParameter();
         meret.size = a;
         meret.characters = Assets.CHARS;
         BitmapFont font = generator.generateFont(meret);
-        generator.dispose();
-        style.font = font;
+        generator.dispose();*/
+        switch (a){
+            case 25:
+                style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT25);
+                break;
+            case 50:
+                style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT50);
+                break;
+            case 80:
+                style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT80);
+                break;
+            default:
+                new Exception("Nem kezelt betűméret: " + a);
+        }
+
 
         return style;
     }

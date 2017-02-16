@@ -39,6 +39,8 @@ import com.mygdx.game.mapActorInterface.MapActorWaterWellStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodCutterStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
 
+import sun.rmi.runtime.RuntimeUtil;
+
 /**
  * Created by mordes on 2017.01.14..
  */
@@ -101,9 +103,11 @@ public class PlayScreen extends MyScreen{
         playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game){
             @Override
             public void selectMapActor(mapActor mapActor) {
+                //im.removeProcessor(mapActorGlobalStage);
+
                 mapActorGlobalStage.dispose();
-                im.removeProcessor(mapActorGlobalStage);
                 mapActorGlobalStage = null;
+                //Runtime.getRuntime().gc();
                 System.out.println("méret: "+getActors().size);
                 if (mapActor instanceof stoneActor) {
 
@@ -153,7 +157,7 @@ public class PlayScreen extends MyScreen{
                 }
                 else mapActorGlobalStage = new MapActorStage(game, null);
 
-                im.addProcessor(0,mapActorGlobalStage);
+                //im.addProcessor(0,mapActorGlobalStage);
             }
         };
 
