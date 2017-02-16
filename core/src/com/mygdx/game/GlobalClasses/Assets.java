@@ -285,11 +285,11 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Buildings/havas/varSnow.png", Texture.class);
 
 	public static final AssetDescriptor<Texture> TEXTBUTTONUP
-			= new AssetDescriptor<Texture>("Buttons/textbuttonup.png", Texture.class);
+			= new AssetDescriptor<Texture>("Interface/banya.png", Texture.class);
 	public static final AssetDescriptor<Texture> TEXTBUTTONDOWN
-			= new AssetDescriptor<Texture>("Buttons/textbuttondown.png", Texture.class);
+			= new AssetDescriptor<Texture>("Interface/cannon.png", Texture.class);
 	public static final AssetDescriptor<Texture> TEXTBUTTONOVER
-			= new AssetDescriptor<Texture>("Buttons/textbuttonover.png", Texture.class);
+			= new AssetDescriptor<Texture>("Interface/coin.png", Texture.class);
 
 
 
