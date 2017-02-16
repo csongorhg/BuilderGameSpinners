@@ -29,7 +29,7 @@ public class Assets {
 		fontParameterAcme100.fontParameters.color = Color.WHITE;
 	}
 
-	public static final AssetDescriptor<BitmapFont> ACMEREGULAR_FONT
+	public static final AssetDescriptor<BitmapFont> ACMEREGULAR_FONT100
 			= new AssetDescriptor<BitmapFont>(fontParameterAcme100.fontFileName, BitmapFont.class, fontParameterAcme100);
 
 
@@ -360,7 +360,7 @@ public class Assets {
 
 
 		//BETÜ
-		manager.load(ACMEREGULAR_FONT);
+		manager.load(ACMEREGULAR_FONT100);
 		manager.load(ACMEREGULAR_FONT10);
 		manager.load(ACMEREGULAR_FONT25);
 		manager.load(ACMEREGULAR_FONT50);
