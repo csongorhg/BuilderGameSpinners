@@ -580,7 +580,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 if(Buildings.epuletFejlesztes("hid")){
                     ujEpulet(ujepulet[1], ujepulet[2], new Bridge(ujepulet[1], ujepulet[2],128,128));
                     if(mapActors[ujepulet[1]][ujepulet[2]] != null) {
-                        //fog((byte)ujepulet[1], (byte)ujepulet[2]);
+                        fog((byte)ujepulet[1], (byte)ujepulet[2]);
                         tovabbepit(ujepulet[1], ujepulet[2]);
                     }
                 }
@@ -621,10 +621,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                     }
                     ujEpulet(ujepulet[1], ujepulet[2], new Mill(ujepulet[1], ujepulet[2], 128, 128));
                 }
-                //mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
+                mapActors[ujepulet[1]][ujepulet[2]].setPosition((mapActors[ujepulet[1]][ujepulet[2]].getPosArrayY())*128,(100-mapActors[ujepulet[1]][ujepulet[2]].getPosArrayX())*128-128);
 
             }
-            //selectMapActor(mapActors[ujepulet[1]][ujepulet[2]]);
+            selectMapActor(mapActors[ujepulet[1]][ujepulet[2]]);
         ujepulet[0] = 0;
     }
 
