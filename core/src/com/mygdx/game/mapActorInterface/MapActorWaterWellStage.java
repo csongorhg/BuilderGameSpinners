@@ -45,7 +45,7 @@ public class MapActorWaterWellStage extends MapActorStage {
     public void init() {
         super.init();
 
-        label = new MyLabel("Protect\n5 buildings",game.getLabelStyle(60));
+        label = new MyLabel("Protect\n5 buildings",game.getLabelStyle(50));
         label.setAlignment(Align.center);
         label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
     }

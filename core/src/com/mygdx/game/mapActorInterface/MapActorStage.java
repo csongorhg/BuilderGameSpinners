@@ -54,11 +54,12 @@ public class MapActorStage extends MyStage {
     protected mapActor mapactor;
     protected Actor selectActor = null;
     protected final int meret = 256;
-    private TextButton textButton;
     protected OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
     private static boolean elsoinditas = true;
     private OneSpriteStaticActor oneSpriteStaticActor;
     public static float meretes;
+
+    protected float picSize = getViewport().getWorldHeight()/6 > meret/2 ? meret/2 : getViewport().getWorldHeight()/6; //építős ikonok mérete
 
     public Group getActorGroup() {
         return actorGroup;
@@ -167,137 +168,74 @@ public class MapActorStage extends MyStage {
             @Override
             public void init() {
                 super.init();
-                setSize(meret/2, meret/2);
-                setPosition(0, meret+meret/2);
+                setSize(picSize,picSize);
+                setPosition(0, getViewport().getWorldHeight()/2);
             }
         };
-        /*favago.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 11};
-                ujepuletFeltolt(t);
-            }
-        });*/
         //----------------------------------------
         banya = new OneSpriteStaticActor(Assets.manager.get(Assets.BANYA)){
             @Override
             public void init() {
                 super.init();
-                setSize(meret/2, meret/2);
-                setPosition(meret/2, meret+meret/2);
+                setSize(picSize,picSize);
+                setPosition(meret/2, favago.getY()+favago.getHeight());
             }
         };
-        /*banya.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 16};
-                ujepuletFeltolt(t);
-            }
-        });*/
         //----------------------------------------
         haz = new OneSpriteStaticActor(Assets.manager.get(Assets.HAZ)){
             @Override
             public void init() {
                 super.init();
-                setSize(meret/2, meret/2);
-                setPosition(0, meret);
+                setSize(picSize,picSize);
+                setPosition(0, banya.getY()+banya.getHeight());
             }
         };
-        /*haz.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 14};
-                ujepuletFeltolt(t);
-            }
-        });*/
         //----------------------------------------
         barrak = new OneSpriteStaticActor(Assets.manager.get(Assets.BARAKK)){
             @Override
             public void init() {
                 super.init();
-                setSize(meret/2, meret/2);
-                setPosition(meret/2, meret);
+                setSize(picSize,picSize);
+                setPosition(meret/2, getViewport().getWorldHeight()/2-getHeight());
             }
         };
-        /*barrak.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 15};
-                ujepuletFeltolt(t);
-            }
-        });*/
         //----------------------------------------
         kut = new OneSpriteStaticActor(Assets.manager.get(Assets.KUT)){
             @Override
             public void init() {
                 super.init();
-                setSize(meret/2, meret/2);
-                setPosition(0, meret/2);
+                setSize(picSize,picSize);
+                setPosition(0, barrak.getY()-getHeight());
             }
         };
-        /*kut.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 17};
-                ujepuletFeltolt(t);
-            }
-        });*/
         //----------------------------------------
+        mezo = new OneSpriteStaticActor(Assets.manager.get(Assets.MEZO)){
+        @Override
+        public void init() {
+            super.init();
+            setSize(picSize,picSize);
+            setPosition(0,kut.getY()-getHeight());
+        }
+        };
+        //VÍZ----------------------------------------VÍZ
         halasz = new OneSpriteStaticActor(Assets.manager.get(Assets.HALASZ)){
             @Override
             public void init() {
                 super.init();
-                setSize(meret/2, meret/2);
-                setPosition(meret/2, meret/2);
+                setSize(picSize,picSize);
+                setPosition(0, getViewport().getWorldHeight()/2);
             }
         };
-        /*halasz.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 12};
-                ujepuletFeltolt(t);
-            }
-        });*/
         //----------------------------------------
-        mezo = new OneSpriteStaticActor(Assets.manager.get(Assets.MEZO)){
-            @Override
-            public void init() {
-                super.init();
-                setSize(meret/2, meret/2);
-                setPosition(0,0);
-            }
-        };
-        /*mezo.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 18};
-                ujepuletFeltolt(t);
-            }
-        });*/
-        //----------------------------------------
+
         hid = new OneSpriteStaticActor(Assets.manager.get(Assets.HID)){
             @Override
             public void init() {
                 super.init();
-                setSize(meret/2, meret/2);
-                setPosition(meret/2, 0);
+                setSize(picSize,picSize);
+                setPosition(0, getViewport().getWorldHeight()/2-getHeight());
             }
         };
-        /*hid.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 13};
-                ujepuletFeltolt(t);
-            }
-        });*/
         oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FIGHTBLUE));
         oneSpriteStaticActor.setSize(100, 100);
         meretes = oneSpriteStaticActor.getWidth();

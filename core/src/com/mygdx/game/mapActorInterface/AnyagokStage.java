@@ -129,7 +129,7 @@ public class AnyagokStage extends Group {
         meret.characters = Assets.CHARS;
         BitmapFont font = generator.generateFont(meret);
         generator.dispose();*/
-        style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT25);
+        //style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT25);
 
     }
 
