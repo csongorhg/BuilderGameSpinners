@@ -30,42 +30,9 @@ public class MapActorGrassStage extends MapActorStage {
     private OneSpriteStaticActor redX, faSprite,koSprite,aranySprite,emberSprite,husSprite;
     private MyLabel faLabel,koLabel,aranyLabel,emberLabel,husLabel;
     private float meretek = (meret/2)/4;
-    //private AnyagokStage hazanyag,banyaszanyag,favagoanyag,kardanyag,kapaanyag,kutanyag;
 
     public MapActorGrassStage(MyGdxGame game, grassActor g) {
         super(game, g);
-
-        //f,k,a,h,l
-
-        /*hazanyag = new AnyagokStage(getViewport(),100,100, Buildings.haz.getLetrehoz()[2], Buildings.haz.getLetrehoz()[3], Buildings.haz.getLetrehoz()[4], Buildings.haz.getLetrehoz()[1], Buildings.haz.getLetrehoz()[0]);
-        hazanyag.setSize(100,100);
-        hazanyag.setPosition(0,0);
-        addActor(hazanyag);
-
-        banyaszanyag = new AnyagokStage(getViewport(),100,-28, Buildings.banya.getLetrehoz()[2], Buildings.banya.getLetrehoz()[3], Buildings.banya.getLetrehoz()[4], Buildings.banya.getLetrehoz()[1], Buildings.banya.getLetrehoz()[0]);
-        banyaszanyag.setSize(100,100);
-        banyaszanyag.setPosition(0,0);
-        addActor(banyaszanyag);
-
-        favagoanyag = new AnyagokStage(getViewport(),100,-28-128, Buildings.faKitermelo.getLetrehoz()[2], Buildings.faKitermelo.getLetrehoz()[3], Buildings.faKitermelo.getLetrehoz()[4], Buildings.faKitermelo.getLetrehoz()[1], Buildings.faKitermelo.getLetrehoz()[0]);
-        favagoanyag.setSize(100,100);
-        favagoanyag.setPosition(0,0);
-        addActor(favagoanyag);
-
-        kardanyag = new AnyagokStage(getViewport(),100,-28-(128*2), Buildings.kikepzo.getLetrehoz()[2], Buildings.kikepzo.getLetrehoz()[3], Buildings.kikepzo.getLetrehoz()[4], Buildings.kikepzo.getLetrehoz()[1], Buildings.kikepzo.getLetrehoz()[0]);
-        kardanyag.setSize(100,100);
-        kardanyag.setPosition(0,0);
-        addActor(kardanyag);
-
-        kapaanyag = new AnyagokStage(getViewport(),100,-28-(128*3), Buildings.farmnagy.getLetrehoz()[2], Buildings.farmnagy.getLetrehoz()[3], Buildings.farmnagy.getLetrehoz()[4], Buildings.farmnagy.getLetrehoz()[1], Buildings.farmnagy.getLetrehoz()[0]);
-        kapaanyag.setSize(100,100);
-        kapaanyag.setPosition(0,0);
-        addActor(kapaanyag);
-
-        kutanyag = new AnyagokStage(getViewport(),100,-28-(128*4), Buildings.kut.getLetrehoz()[2], Buildings.kut.getLetrehoz()[3], Buildings.kut.getLetrehoz()[4], Buildings.kut.getLetrehoz()[1], Buildings.kut.getLetrehoz()[0]);
-        kutanyag.setSize(100,100);
-        kutanyag.setPosition(0,0);
-        addActor(kutanyag);*/
 
         if(!g.isFog()){
             standardBuildings();
@@ -74,7 +41,6 @@ public class MapActorGrassStage extends MapActorStage {
             for(int i=-1; i<=1; i++){
                 for(int j=-1; j<=1; j++){
                     if(g.getPosArrayX()+i < PlayStage.mapWidth && g.getPosArrayX()+i > 0 && g.getPosArrayY()+j < PlayStage.mapHeight && g.getPosArrayY()+j > 0)
-                    //if(g.getPosArrayY() < PlayStage.mapHeight-1 && g.getPosArrayY() > 0 && g.getPosArrayX() < PlayStage.mapWidth-1 && g.getPosArrayX() > 0)
                         if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof woodActor) bWoodCutter = true;
                 }
             }
@@ -96,13 +62,13 @@ public class MapActorGrassStage extends MapActorStage {
                         ujepuletFeltolt(t);
                     }
                 });
-                bWoodCutter = false;
+                //bWoodCutter = false;
             }
             else{
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
-                redX.setSize(meret/2,meret/2);
+                redX.setSize(picSize,picSize);
                 redX.setPosition(favago.getX(),favago.getY());
-                //getActorGroup().addActor(redX);
+                getActorGroup().addActor(redX);
                 favago.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -115,7 +81,6 @@ public class MapActorGrassStage extends MapActorStage {
             for(int i=-1; i<=1; i++){
                 for(int j=-1; j<=1; j++){
                     if(g.getPosArrayX()+i < PlayStage.mapWidth && g.getPosArrayX()+i > 0 && g.getPosArrayY()+j < PlayStage.mapHeight && g.getPosArrayY()+j > 0)
-                    //if(g.getPosArrayY() < PlayStage.mapHeight-1 && g.getPosArrayY() > 0 && g.getPosArrayX() < PlayStage.mapWidth-1 && g.getPosArrayX() > 0)
                             if(PlayStage.mapActors[g.getPosArrayX()+i][g.getPosArrayY()+j] instanceof stoneActor) bStoneWorker = true;
                 }
             }
@@ -136,13 +101,13 @@ public class MapActorGrassStage extends MapActorStage {
                         ujepuletFeltolt(t);
                     }
                 });
-                bStoneWorker = false;
+                //bStoneWorker = false;
             }
             else{
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
-                redX.setSize(meret/2,meret/2);
+                redX.setSize(picSize,picSize);
                 redX.setPosition(banya.getX(),banya.getY());
-                //getActorGroup().addActor(redX);
+                getActorGroup().addActor(redX);
                 banya.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -188,7 +153,6 @@ public class MapActorGrassStage extends MapActorStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        System.out.println(mapactor.getPosArrayX()+" asd "+ mapactor.getPosArrayY());
                         int t[] = {1, mapactor.getPosArrayX(), mapactor.getPosArrayY(), 18};
                         ujepuletFeltolt(t);
                     }
@@ -196,9 +160,9 @@ public class MapActorGrassStage extends MapActorStage {
             }
             else{
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
-                redX.setSize(meret/2,meret/2);
+                redX.setSize(picSize,picSize);
                 redX.setPosition(mezo.getX(),mezo.getY());
-                //getActorGroup().addActor(redX);
+                getActorGroup().addActor(redX);
                 mezo.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -209,117 +173,47 @@ public class MapActorGrassStage extends MapActorStage {
         } else {
             allRemove();
             MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",game.getLabelStyle(50));
-            //getActorGroup().addActor(label);
+            getActorGroup().addActor(label);
             label.setAlignment(Align.center);
             label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
         }
 
         //haz
-        /*alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
+        alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
         //banya
         alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight(),"4","0","5","0","2");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
         //fakitermelő
         alapAnyagok(getViewport().getWorldHeight()/2,"2","0","0","0","2");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
         //kaszárnya
         alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","15","15","15","10");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
         //malom
-        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"5","0","5","0","10");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
+        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"5","0","10","0","5");
         //kut
-        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight()+meret/10,"5","0","5","0","0");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
+        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight(),"5","0","5","0","0");
 
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);*/
 
     }
 
     private void alapAnyagok(float yPos, String aranyl, String kol, String fal, String husl, String emberl){
         aranySprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
-        aranySprite.setSize(meretek,meretek);
-        aranySprite.setPosition(meret/2,yPos);
+        aranySprite.setSize(picSize/4,picSize/4);
+        aranySprite.setPosition(picSize,yPos);
 
         koSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
-        koSprite.setSize(meretek,meretek);
-        koSprite.setPosition(meret/2,yPos+aranySprite.getHeight());
+        koSprite.setSize(picSize/4,picSize/4);
+        koSprite.setPosition(picSize,yPos+aranySprite.getHeight());
 
         faSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
-        faSprite.setSize(meretek,meretek);
-        faSprite.setPosition(meret/2,yPos+koSprite.getHeight()+aranySprite.getHeight());
+        faSprite.setSize(picSize/4,picSize/4);
+        faSprite.setPosition(picSize,yPos+koSprite.getHeight()+aranySprite.getHeight());
 
         husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
-        husSprite.setSize(meretek,meretek);
-        husSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight()+aranySprite.getHeight());
+        husSprite.setSize(picSize/4,picSize/4);
+        husSprite.setPosition(picSize+picSize/2, yPos+koSprite.getHeight()+aranySprite.getHeight());
 
         emberSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
-        emberSprite.setSize(meretek,meretek);
-        emberSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight());
+        emberSprite.setSize(picSize/4,picSize/4);
+        emberSprite.setPosition(picSize+picSize/2, yPos+koSprite.getHeight());
 
         aranyLabel = new MyLabel(aranyl,game.getLabelStyle(25));
         koLabel = new MyLabel(kol,game.getLabelStyle(25));
@@ -327,13 +221,25 @@ public class MapActorGrassStage extends MapActorStage {
         husLabel = new MyLabel(husl,game.getLabelStyle(25));
         emberLabel = new MyLabel(emberl,game.getLabelStyle(25));
 
-        aranyLabel.setPosition(meret/2+aranySprite.getWidth(),yPos);
-        koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());
-        faLabel.setPosition(meret/2+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
+        aranyLabel.setPosition(picSize+aranySprite.getWidth(),yPos);
+        koLabel.setPosition(picSize+koSprite.getWidth(), yPos+aranySprite.getHeight());
+        faLabel.setPosition(picSize+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
 
-        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight());
-        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight()+emberLabel.getHeight());
+        emberLabel.setPosition(picSize+picSize/2+emberSprite.getWidth(), yPos+koSprite.getHeight());
+        husLabel.setPosition(picSize+picSize/2+husSprite.getWidth(), yPos+koSprite.getHeight()+emberLabel.getHeight());
 
+
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
     }
 
 }
