@@ -105,13 +105,11 @@ public class PlayScreen extends MyScreen{
         playStage = new PlayStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), spriteBatch, game){
             @Override
             public void selectMapActor(mapActor mapActor) {
-                im.removeProcessor(mapActorGlobalStage);
 
+                im.removeProcessor(mapActorGlobalStage);
                 mapActorGlobalStage.dispose();
                 mapActorGlobalStage = null;
-                Runtime.getRuntime().gc();
-                System.out.println("méret: "+getActors().size);
-                System.out.println("Memory: " + (ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getUsed() / 1024 / 1024) + " MiB" );
+
                 if (mapActor instanceof stoneActor) {
 
                     mapActorGlobalStage = new MapActorStoneStage(game, (stoneActor)mapActor);
