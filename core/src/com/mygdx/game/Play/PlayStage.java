@@ -38,6 +38,7 @@ import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.WorldGenerate.Generator;
 import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
+import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.util.Vector;
 
@@ -58,6 +59,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     public static int mapWidth;
     public static int mapHeight;
     private int citycount = 0;
+    private Vector<GridPoint2> koordinatak;
 
     private boolean updateFustrumNeed = true;
 
@@ -102,32 +104,15 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         addBackEventStackListener();
 
 
-
-
         mapWidth=50;
         mapHeight=50;
         fillArea();
 
-        if(kell)setCameraMoveToXY(cityx*128,cityy*128-128,((OrthographicCamera)getCamera()).zoom,9999);
-        else setCameraMoveToXY(cityx*128+256,(mapHeight-1-cityy)*128+128,((OrthographicCamera)getCamera()).zoom,9999);
-        //kiködösítés
-        int seged;
+        setDefaultFog(); //minden ködös kivéve a város
 
-        seged = cityy;
-        cityy = cityx;
-        cityx = seged;
+        fog((byte)cityx,(byte)cityy); //kiködösités elkezdése a nem vizeken
 
-        setDefaultFog();
-        fog((byte)cityx,(byte)cityy);
-
-        if(v.size() > 0){
-            for (int i = 0; i < v.size(); i++) {
-                GridPoint2 p = v.get(i);
-                waterFog((byte)(p.x+1),(byte)p.y);
-                waterFog((byte)(p.x-1),(byte)p.y);
-            }
-        }
-
+        waterRekurziv(); //vizek kiködösitése a hidak alapján
 
 
     }
@@ -169,6 +154,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private void fillArea() {
 
         int[][] world;
+
+        koordinatak = new Vector<GridPoint2>();
 
         if(preferences.getString(PlayScreen.PREFS,"").equals("")){ //nincs világ
             generator = new Generator(mapWidth,mapHeight); //50x50-as terület
@@ -271,8 +258,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                                     }
                                 });
 
-                                cityx = j;
-                                cityy = i;
+                                cityx = i;
+                                cityy = j;
                             } else {
                                 mapActors[i][j] = new Bridge(i, j, 128, 128);
                                 addActor(mapActors[i][j]);
@@ -289,8 +276,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                                     selectMapActor(c);
                                 }
                             });
-                            cityx = j;
-                            cityy = i;
+                            cityx = i;
+                            cityy = j;
                         }
                         break;
                     case 11: //favágó
@@ -301,7 +288,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         break;
                     case 13: //hid
                         ujEpulet(i,j, new Bridge(i,j,128,128));
-                        v.add(new GridPoint2(i,j));
+                        koordinatak.add(new GridPoint2(i, j));
                         break;
                     case 14: //ház
                         ujEpulet(i,j, new House(i,j,128,128));
@@ -356,7 +343,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     }
 
 
-    private void setDefaultFog(){
+    //KÖD
+    private void setDefaultFog() {
         //Kezdetben minden legyen köd!
         for (int i = 0; i < mapActors.length; i++) {
             for (int j = 0; j < mapActors[i].length; j++) {
@@ -366,87 +354,86 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         }
     }
 
-    private void waterFog(byte x, byte y){
+    private void waterRekurziv() {
+        if(koordinatak.size() > 0){
+            for (int i = 0; i < koordinatak.size(); i++) {
+                GridPoint2 p = koordinatak.get(i);
+                waterFog((byte)(p.x+1),(byte)p.y);
+                waterFog((byte)(p.x-1),(byte)p.y);
+            }
+        }
+    }
+
+    private void waterFog(byte x, byte y) {
         Queue<GridPoint2> points = new Queue<GridPoint2>();
 
-        points.addLast(new GridPoint2(x,y));
+        points.addLast(new GridPoint2(x, y));
 
-        while (points.size>0){
+        while (points.size > 0) {
             GridPoint2 p = points.removeFirst();
 
-            if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && (mapActors[p.x+1][p.y] instanceof waterActor)) {
+            if (p.x < mapWidth - 1 && mapActors[p.x + 1][p.y].isFog() && (mapActors[p.x + 1][p.y] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x + 1, p.y));
                 mapActors[p.x + 1][p.y].setFog(false);
             }
-            if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && (mapActors[p.x-1][p.y] instanceof waterActor)) {
+            if (p.x > 0 && mapActors[p.x - 1][p.y].isFog() && (mapActors[p.x - 1][p.y] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x - 1, p.y));
                 mapActors[p.x - 1][p.y].setFog(false);
             }
-            //System.out.println("Y: "+p.y+", mapHeight: "+mapHeight);
-            //System.out.println("X: "+p.x+", mapHeight: "+mapWidth);
-            if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && (mapActors[p.x][p.y+1] instanceof waterActor)) {
+            if (p.y < mapHeight - 1 && mapActors[p.x][p.y + 1].isFog() && (mapActors[p.x][p.y + 1] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x, p.y + 1));
                 mapActors[p.x][p.y + 1].setFog(false);
             }
-            if (p.y>0 && mapActors[p.x][p.y-1].isFog() && (mapActors[p.x][p.y-1] instanceof waterActor)) {
+            if (p.y > 0 && mapActors[p.x][p.y - 1].isFog() && (mapActors[p.x][p.y - 1] instanceof waterActor)) {
                 points.addLast(new GridPoint2(p.x, p.y - 1));
                 mapActors[p.x][p.y - 1].setFog(false);
             }
         }
     }
 
-    private void fog(byte x, byte y){
+    private void fog(byte x, byte y) {
 
         Queue<GridPoint2> points = new Queue<GridPoint2>();
 
-        points.addLast(new GridPoint2(x,y));
+        points.addLast(new GridPoint2(x, y));
 
-        while (points.size>0){
+        while (points.size > 0) {
             GridPoint2 p = points.removeFirst();
-            //if(!(mapActors[p.x][p.y] instanceof waterActor) && !mapActors[p.x][p.y].isFog()){
-                if (p.x<mapWidth-1 && mapActors[p.x + 1][p.y].isFog() && !(mapActors[p.x+1][p.y] instanceof waterActor)) {
-                    points.addLast(new GridPoint2(p.x + 1, p.y));
-                    mapActors[p.x + 1][p.y].setFog(false);
-                }
-                if (p.x>0 && mapActors[p.x - 1][p.y].isFog() && !(mapActors[p.x-1][p.y] instanceof waterActor)) {
-                    points.addLast(new GridPoint2(p.x - 1, p.y));
-                    mapActors[p.x - 1][p.y].setFog(false);
-                }
-                if (p.y<mapHeight-1 && mapActors[p.x][p.y +1 ].isFog() && !(mapActors[p.x][p.y+1] instanceof waterActor)) {
-                    points.addLast(new GridPoint2(p.x, p.y + 1));
-                    mapActors[p.x][p.y + 1].setFog(false);
-                }
-                if (p.y>0 && mapActors[p.x][p.y-1].isFog() && !(mapActors[p.x][p.y-1] instanceof waterActor)) {
-                    points.addLast(new GridPoint2(p.x, p.y - 1));
-                    mapActors[p.x][p.y - 1].setFog(false);
-                }
-            //}
-            //System.out.println(p.x + " - " + p.y);
+            if (p.x < mapWidth - 1 && mapActors[p.x + 1][p.y].isFog() && !(mapActors[p.x + 1][p.y] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x + 1, p.y));
+                mapActors[p.x + 1][p.y].setFog(false);
+            }
+            if (p.x > 0 && mapActors[p.x - 1][p.y].isFog() && !(mapActors[p.x - 1][p.y] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x - 1, p.y));
+                mapActors[p.x - 1][p.y].setFog(false);
+            }
+            if (p.y < mapHeight - 1 && mapActors[p.x][p.y + 1].isFog() && !(mapActors[p.x][p.y + 1] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x, p.y + 1));
+                mapActors[p.x][p.y + 1].setFog(false);
+            }
+            if (p.y > 0 && mapActors[p.x][p.y - 1].isFog() && !(mapActors[p.x][p.y - 1] instanceof waterActor)) {
+                points.addLast(new GridPoint2(p.x, p.y - 1));
+                mapActors[p.x][p.y - 1].setFog(false);
+            }
         }
 
         boolean[][] isWaterFog = new boolean[mapActors.length][mapActors[0].length];
 
 
-        //System.out.println("Amit csináltam");
 
-        for (int i = 0; i < mapActors.length; i++){
-            for(int j = 1; j < mapActors[i].length - 1; j++) {
+        for (int i = 0; i < mapActors.length; i++) {
+            for (int j = 1; j < mapActors[i].length - 1; j++) {
                 if (mapActors[i][j + 1].isFog() && !mapActors[i][j].isFog() && !isWaterFog[i][j]) {
                     isWaterFog[i][j + 1] = true;
                     mapActors[i][j + 1].setFog(false);
-                }
-                else if (mapActors[i][j - 1].isFog() && !mapActors[i][j].isFog() && !isWaterFog[i][j]) {
+                } else if (mapActors[i][j - 1].isFog() && !mapActors[i][j].isFog() && !isWaterFog[i][j]) {
                     isWaterFog[i][j - 1] = true;
                     mapActors[i][j - 1].setFog(false);
                 }
-                //System.out.print(isWaterFog[i][j] ? "1" : "0");
             }
-            //System.out.println();
         }
-
-
-
     }
+    //KÖD
 
     @Override
     public void act(float delta) {
