@@ -170,6 +170,20 @@ public class MapActorGrassStage extends MapActorStage {
                     }
                 });
             }
+
+            //haz
+            alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
+            //banya
+            alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight(),"4","0","5","0","2");
+            //fakitermelő
+            alapAnyagok(getViewport().getWorldHeight()/2,"2","0","0","0","2");
+            //kaszárnya
+            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","15","15","15","10");
+            //malom
+            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"5","0","10","0","5");
+            //kut
+            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight(),"5","0","5","0","0");
+
         } else {
             allRemove();
             MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",game.getLabelStyle(50));
@@ -178,42 +192,29 @@ public class MapActorGrassStage extends MapActorStage {
             label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
         }
 
-        //haz
-        alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
-        //banya
-        alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight(),"4","0","5","0","2");
-        //fakitermelő
-        alapAnyagok(getViewport().getWorldHeight()/2,"2","0","0","0","2");
-        //kaszárnya
-        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","15","15","15","10");
-        //malom
-        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"5","0","10","0","5");
-        //kut
-        alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight(),"5","0","5","0","0");
-
-
     }
 
     private void alapAnyagok(float yPos, String aranyl, String kol, String fal, String husl, String emberl){
         aranySprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
         aranySprite.setSize(picSize/4,picSize/4);
-        aranySprite.setPosition(picSize,yPos);
+        aranySprite.setPosition(picSize,yPos+picSize/8);
 
         koSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
         koSprite.setSize(picSize/4,picSize/4);
-        koSprite.setPosition(picSize,yPos+aranySprite.getHeight());
+        koSprite.setPosition(picSize,yPos+picSize/8+aranySprite.getHeight());
 
         faSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
         faSprite.setSize(picSize/4,picSize/4);
-        faSprite.setPosition(picSize,yPos+koSprite.getHeight()+aranySprite.getHeight());
-
-        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
-        husSprite.setSize(picSize/4,picSize/4);
-        husSprite.setPosition(picSize+picSize/2, yPos+koSprite.getHeight()+aranySprite.getHeight());
+        faSprite.setPosition(picSize,yPos+picSize/8+koSprite.getHeight()+aranySprite.getHeight());
 
         emberSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
         emberSprite.setSize(picSize/4,picSize/4);
-        emberSprite.setPosition(picSize+picSize/2, yPos+koSprite.getHeight());
+        emberSprite.setPosition(picSize+picSize/2, yPos+picSize/4);
+
+        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
+        husSprite.setSize(picSize/4,picSize/4);
+        husSprite.setPosition(picSize+picSize/2, yPos+emberSprite.getHeight()+picSize/4);
+
 
         aranyLabel = new MyLabel(aranyl,game.getLabelStyle(25));
         koLabel = new MyLabel(kol,game.getLabelStyle(25));
@@ -223,10 +224,10 @@ public class MapActorGrassStage extends MapActorStage {
 
         aranyLabel.setPosition(picSize+aranySprite.getWidth(),yPos);
         koLabel.setPosition(picSize+koSprite.getWidth(), yPos+aranySprite.getHeight());
-        faLabel.setPosition(picSize+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
+        faLabel.setPosition(picSize+faSprite.getWidth(), yPos+koSprite.getHeight()+aranySprite.getHeight());
+        husLabel.setPosition(picSize+picSize/2+husSprite.getWidth(), yPos+emberSprite.getHeight()+picSize/8);
+        emberLabel.setPosition(picSize+picSize/2+emberSprite.getWidth(), yPos+picSize/8);
 
-        emberLabel.setPosition(picSize+picSize/2+emberSprite.getWidth(), yPos+koSprite.getHeight());
-        husLabel.setPosition(picSize+picSize/2+husSprite.getWidth(), yPos+koSprite.getHeight()+emberLabel.getHeight());
 
 
         getActorGroup().addActor(aranySprite);
