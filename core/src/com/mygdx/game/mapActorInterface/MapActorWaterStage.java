@@ -46,16 +46,6 @@ public class MapActorWaterStage extends MapActorStage {
 
             waterbuildings();
 
-            /*halaszanyag = new AnyagokStage(getViewport(),100,-28-(128*1), Buildings.farm.getLetrehoz()[2], Buildings.farm.getLetrehoz()[3], Buildings.farm.getLetrehoz()[4], Buildings.farm.getLetrehoz()[1], Buildings.farm.getLetrehoz()[0]);
-            halaszanyag.setSize(100,100);
-            halaszanyag.setPosition(0,0);
-            addActor(halaszanyag);
-
-            hidanyag = new AnyagokStage(getViewport(),100,-28-(128*2), Buildings.hid.getLetrehoz()[2], Buildings.hid.getLetrehoz()[3], Buildings.hid.getLetrehoz()[4], Buildings.hid.getLetrehoz()[1], Buildings.hid.getLetrehoz()[0]);
-            hidanyag.setSize(100,100);
-            hidanyag.setPosition(0,0);
-            addActor(hidanyag);*/
-
             boolean b = false;
             if(g.getPosArrayX() > PlayStage.mapWidth-3 || g.getPosArrayX() < 2 || g.getPosArrayY() > PlayStage.mapHeight-3 || g.getPosArrayY() < 2)
                 b = false;
@@ -64,7 +54,7 @@ public class MapActorWaterStage extends MapActorStage {
                     PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof grassActor ||
                     PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof grassActor){
                 b = true;
-
+                System.out.println("LÓFASZ");
             }
             /*else if(PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
                     PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge){
@@ -109,36 +99,67 @@ public class MapActorWaterStage extends MapActorStage {
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(halasz.getX(),halasz.getY());
-                //getActorGroup().addActor(redX);
+                getActorGroup().addActor(redX);
 
                 redX = new OneSpriteStaticActor(Assets.manager.get(Assets.REDX));
                 redX.setSize(meret/2,meret/2);
                 redX.setPosition(hid.getX(),hid.getY());
-                //getActorGroup().addActor(redX);
+                getActorGroup().addActor(redX);
             }
+
+            //halasz
+            alapAnyagok(getViewport().getWorldHeight()/2,"2","0","1","0","1");
+            //híd
+            alapAnyagok(getViewport().getWorldHeight()/2-hid.getHeight(),"10","50","0","0","0");
 
         } else { // ha ködös
             allRemove();
             MyLabel label = new MyLabel("You can't\nbuild here!\n\nYou haven't\nexplored\nthis side of\n the map yet!",game.getLabelStyle(50));
-            //getActorGroup().addActor(label);
+            getActorGroup().addActor(label);
             label.setAlignment(Align.center);
             label.setPosition(meret/2-label.getWidth()/2,getViewport().getWorldHeight()/2-label.getHeight()/2);
         }
-        /*if((PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof waterActor &&
-                PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof waterActor &&
-                PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof waterActor &&
-                PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof waterActor) ||
-                (PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof Bridge ||
-                        PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof Bridge) ||
-                (PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()+1] instanceof FishDock ||
-                        PlayStage.mapActors[g.getPosArrayX()][g.getPosArrayY()-1] instanceof FishDock ||
-                        PlayStage.mapActors[g.getPosArrayX()-1][g.getPosArrayY()] instanceof FishDock||
-                        PlayStage.mapActors[g.getPosArrayX()+1][g.getPosArrayY()] instanceof FishDock)){
-            getActorGroup().removeActor(water);*/
 
-        //halasz
-        /*
-        alapAnyagok(getViewport().getWorldHeight()/2,"2","0","1","0","1");
+
+
+    }
+
+    private void alapAnyagok(float yPos, String aranyl, String kol, String fal, String husl, String emberl){
+        aranySprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
+        aranySprite.setSize(picSize/4,picSize/4);
+        aranySprite.setPosition(picSize,yPos+picSize/8);
+
+        koSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
+        koSprite.setSize(picSize/4,picSize/4);
+        koSprite.setPosition(picSize,yPos+picSize/8+aranySprite.getHeight());
+
+        faSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
+        faSprite.setSize(picSize/4,picSize/4);
+        faSprite.setPosition(picSize,yPos+picSize/8+koSprite.getHeight()+aranySprite.getHeight());
+
+        emberSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
+        emberSprite.setSize(picSize/4,picSize/4);
+        emberSprite.setPosition(picSize+picSize/2, yPos+picSize/4);
+
+        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
+        husSprite.setSize(picSize/4,picSize/4);
+        husSprite.setPosition(picSize+picSize/2, yPos+emberSprite.getHeight()+picSize/4);
+
+
+        aranyLabel = new MyLabel(aranyl,game.getLabelStyle(25));
+        koLabel = new MyLabel(kol,game.getLabelStyle(25));
+        faLabel = new MyLabel(fal,game.getLabelStyle(25));
+        husLabel = new MyLabel(husl,game.getLabelStyle(25));
+        emberLabel = new MyLabel(emberl,game.getLabelStyle(25));
+
+        aranyLabel.setPosition(picSize+aranySprite.getWidth(),yPos);
+        koLabel.setPosition(picSize+koSprite.getWidth(), yPos+aranySprite.getHeight());
+        faLabel.setPosition(picSize+faSprite.getWidth(), yPos+koSprite.getHeight()+aranySprite.getHeight());
+        husLabel.setPosition(picSize+picSize/2+husSprite.getWidth(), yPos+emberSprite.getHeight()+picSize/8);
+        emberLabel.setPosition(picSize+picSize/2+emberSprite.getWidth(), yPos+picSize/8);
+
+
+
         getActorGroup().addActor(aranySprite);
         getActorGroup().addActor(koSprite);
         getActorGroup().addActor(faSprite);
@@ -150,56 +171,6 @@ public class MapActorWaterStage extends MapActorStage {
         getActorGroup().addActor(faLabel);
         getActorGroup().addActor(husLabel);
         getActorGroup().addActor(emberLabel);
-
-        //híd
-        alapAnyagok(getViewport().getWorldHeight()/2-hid.getHeight(),"10","50","0","0","0");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);*/
-
-    }
-
-    private void alapAnyagok(float yPos, String aranyl, String kol, String fal, String husl, String emberl){
-        aranySprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
-        aranySprite.setSize(meretek,meretek);
-        aranySprite.setPosition(meret/2,yPos);
-
-        koSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
-        koSprite.setSize(meretek,meretek);
-        koSprite.setPosition(meret/2,yPos+aranySprite.getHeight());
-
-        faSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
-        faSprite.setSize(meretek,meretek);
-        faSprite.setPosition(meret/2,yPos+koSprite.getHeight()+aranySprite.getHeight());
-
-        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
-        husSprite.setSize(meretek,meretek);
-        husSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight()+aranySprite.getHeight());
-
-        emberSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
-        emberSprite.setSize(meretek,meretek);
-        emberSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight());
-
-        aranyLabel = new MyLabel(aranyl,game.getLabelStyle(25));
-        koLabel = new MyLabel(kol,game.getLabelStyle(25));
-        faLabel = new MyLabel(fal,game.getLabelStyle(25));
-        husLabel = new MyLabel(husl,game.getLabelStyle(25));
-        emberLabel = new MyLabel(emberl,game.getLabelStyle(25));
-
-        aranyLabel.setPosition(meret/2+aranySprite.getWidth(),yPos);
-        koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());
-        faLabel.setPosition(meret/2+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
-
-        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight());
-        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight()+emberLabel.getHeight());
     }
 
 }
