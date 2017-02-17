@@ -689,16 +689,16 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             c.position.x = getViewport().getWorldWidth() / 2 * c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.x > mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom) {
-            c.position.x = mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom;
+        if (c.position.x > mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom + 256 * c.zoom) {
+            c.position.x = mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom + 256 * c.zoom;
             setCameraTargetX(c.position.x);
         }
-        if (c.position.y < getViewport().getWorldHeight() / 2 * c.zoom - 128 * c.zoom) {
-            c.position.y = getViewport().getWorldHeight() / 2 * c.zoom - 128 * c.zoom;
+        if (c.position.y < getViewport().getWorldHeight() / 2 * c.zoom) {
+            c.position.y = getViewport().getWorldHeight() / 2 * c.zoom;
             setCameraTargetY(c.position.y);
         }
-        if (c.position.y > (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom + 128 * c.zoom) {
-            c.position.y = (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom + 128 * c.zoom;
+        if (c.position.y > (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom) {
+            c.position.y = (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom;
             setCameraTargetY(c.position.y);
         }
     }
