@@ -107,7 +107,7 @@ public class MapActorWaterStage extends MapActorStage {
             }
 
             //halasz
-            alapAnyagok(getViewport().getWorldHeight()/2,"2","0","1","0","1");
+            alapAnyagok(getViewport().getWorldHeight()/2,"2","3","3","0","1");
             //híd
             alapAnyagok(getViewport().getWorldHeight()/2-hid.getHeight(),"10","50","0","0","0");
 

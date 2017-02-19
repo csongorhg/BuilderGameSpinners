@@ -172,17 +172,17 @@ public class MapActorGrassStage extends MapActorStage {
             }
 
             //haz
-            alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","0","3","6","2");
+            alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","2","3","6","2");
             //banya
             alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight(),"4","0","5","0","2");
             //fakitermelő
-            alapAnyagok(getViewport().getWorldHeight()/2,"2","0","0","0","2");
+            alapAnyagok(getViewport().getWorldHeight()/2,"2","3","0","0","2");
             //kaszárnya
-            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","15","15","15","10");
+            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","15","15","15","15");
             //malom
-            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"5","0","10","0","5");
+            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"10","0","10","0","5");
             //kut
-            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight(),"5","0","5","0","0");
+            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight()-kut.getHeight(),"1","5","5","0","0");
 
         } else {
             allRemove();

@@ -405,9 +405,9 @@ public class Assets {
 
 
 		//BETÜ
-		manager.load(ACMEREGULAR_FONT50);
+		//manager.load(ACMEREGULAR_FONT50);
 
-		manager.load(ACMEREGULAR_FONT10);
+		//manager.load(ACMEREGULAR_FONT10);
 		manager.load(ACMEREGULAR_FONT25);
 		manager.load(ACMEREGULAR_FONT75);
 		manager.load(ACMEREGULAR_FONT80);
