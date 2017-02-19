@@ -58,6 +58,7 @@ public class MapActorStage extends MyStage {
     private static boolean elsoinditas = true;
     private OneSpriteStaticActor oneSpriteStaticActor;
     public static float meretes;
+    public static float fightSize = 100;
 
     protected float picSize = getViewport().getWorldHeight()/6 > meret/2 ? meret/2 : getViewport().getWorldHeight()/6; //építős ikonok mérete
 
@@ -237,7 +238,7 @@ public class MapActorStage extends MyStage {
             }
         };
         oneSpriteStaticActor = new OneSpriteStaticActor(Assets.manager.get(Assets.FIGHTBLUE));
-        oneSpriteStaticActor.setSize(100, 100);
+        oneSpriteStaticActor.setSize(fightSize, fightSize);
         meretes = oneSpriteStaticActor.getWidth();
         oneSpriteStaticActor.setPosition(getViewport().getWorldWidth() - oneSpriteStaticActor.getWidth() - 256,
                 getViewport().getWorldHeight() - oneSpriteStaticActor.getHeight());

@@ -34,6 +34,7 @@ import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.WorldGenerate.Generator;
+import com.mygdx.game.mapActorInterface.MapActorStage;
 
 import java.util.Vector;
 
@@ -698,8 +699,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             setCameraTargetY(c.position.y);
         }
         //felül
-        if (c.position.y > (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom) {
-            c.position.y = (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom;
+        if (c.position.y > (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom + MapActorStage.fightSize * c.zoom) {
+            c.position.y = (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom + MapActorStage.fightSize * c.zoom;
             setCameraTargetY(c.position.y);
         }
     }
