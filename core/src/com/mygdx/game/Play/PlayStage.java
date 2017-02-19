@@ -684,18 +684,22 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private void fixCamera(){
         OrthographicCamera c = (OrthographicCamera) getCamera();
 
+        //bal oldal
         if (c.position.x < getViewport().getWorldWidth() / 2 * c.zoom) {
             c.position.x = getViewport().getWorldWidth() / 2 * c.zoom;
             setCameraTargetX(c.position.x);
         }
+        //jobb oldal
         if (c.position.x > mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom + 256 * c.zoom) {
             c.position.x = mapWidth * 128 - getViewport().getWorldWidth() / 2 * c.zoom + 256 * c.zoom;
             setCameraTargetX(c.position.x);
         }
+        //alul
         if (c.position.y < getViewport().getWorldHeight() / 2 * c.zoom) {
             c.position.y = getViewport().getWorldHeight() / 2 * c.zoom;
             setCameraTargetY(c.position.y);
         }
+        //felül
         if (c.position.y > (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom) {
             c.position.y = (mapHeight - 1) * 128 - getViewport().getWorldHeight() / 2 * c.zoom;
             setCameraTargetY(c.position.y);

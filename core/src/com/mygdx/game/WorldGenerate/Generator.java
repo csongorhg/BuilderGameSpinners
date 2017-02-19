@@ -37,7 +37,7 @@ public class Generator {
         for(int i = 0; i<folyoszam; i++){
             int elso = -1;
             if(i == 0) elso = vel(WORLD[0].length/3,WORLD[0].length/3*2);
-            else elso = vel(0, WORLD[0].length-1);
+            else elso = vel(6, WORLD[0].length-7);
             for(int j = 0; j<WORLD[0].length;j++){
                 WORLD[j][elso]= 1;
                 //szélesítés
