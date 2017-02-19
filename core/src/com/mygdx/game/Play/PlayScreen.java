@@ -5,43 +5,37 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
-import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.BuildigsClasses.Barrack;
 import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
-import com.mygdx.game.BuildigsClasses.Hamu;
+import com.mygdx.game.BuildigsClasses.Ash;
 import com.mygdx.game.BuildigsClasses.House;
 import com.mygdx.game.BuildigsClasses.Mill;
 import com.mygdx.game.BuildigsClasses.MillCircle;
 import com.mygdx.game.BuildigsClasses.StoneWorker;
+import com.mygdx.game.BuildigsClasses.WaterAsh;
 import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.MyBaseClasses.MyScreen;
-import com.mygdx.game.MyBaseClasses.MyStage;
-import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.mapActorInterface.MapActorBarrackStage;
 import com.mygdx.game.mapActorInterface.MapActorBridgeStage;
 import com.mygdx.game.mapActorInterface.MapActorCityHallStage;
 import com.mygdx.game.mapActorInterface.MapActorFishDockStage;
 import com.mygdx.game.mapActorInterface.MapActorGrassStage;
-import com.mygdx.game.mapActorInterface.MapActorHamuStage;
+import com.mygdx.game.mapActorInterface.MapActorAshStage;
 import com.mygdx.game.mapActorInterface.MapActorHouseStage;
 import com.mygdx.game.mapActorInterface.MapActorMillFieldStage;
 import com.mygdx.game.mapActorInterface.MapActorMillStage;
 import com.mygdx.game.mapActorInterface.MapActorStoneStage;
 import com.mygdx.game.mapActorInterface.MapActorStage;
 import com.mygdx.game.mapActorInterface.MapActorStoneWorkerStage;
+import com.mygdx.game.mapActorInterface.MapActorWaterAshStage;
 import com.mygdx.game.mapActorInterface.MapActorWaterStage;
 import com.mygdx.game.mapActorInterface.MapActorWaterWellStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodCutterStage;
 import com.mygdx.game.mapActorInterface.MapActorWoodStage;
-
-import java.lang.management.ManagementFactory;
-
-import sun.rmi.runtime.RuntimeUtil;
 
 /**
  * Created by mordes on 2017.01.14..
@@ -153,8 +147,11 @@ public class PlayScreen extends MyScreen{
                 else if(mapActor instanceof MillCircle){
                     mapActorGlobalStage = new MapActorMillFieldStage(game, (MillCircle)mapActor);
                 }
-                else if(mapActor instanceof Hamu){
-                    mapActorGlobalStage = new MapActorHamuStage(game, (Hamu)mapActor);
+                else if(mapActor instanceof Ash){
+                    mapActorGlobalStage = new MapActorAshStage(game, (Ash)mapActor);
+                }
+                else if(mapActor instanceof WaterAsh){
+                    mapActorGlobalStage = new MapActorWaterAshStage(game, (WaterAsh)mapActor);
                 }
                 else mapActorGlobalStage = new MapActorStage(game, null);
 

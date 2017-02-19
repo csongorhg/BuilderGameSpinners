@@ -6,13 +6,13 @@ import com.mygdx.game.Play.mapActor;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 
 /**
- * Created by Vince on 2017. 02. 02..
+ * Created by Vince on 2017. 02. 19..
  */
 
-public class Hamu extends mapActor {
+public class WaterAsh extends mapActor {
 
-    public Hamu(int x, int y, final float w, final float h) {
-        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.HAMU) : Assets.manager.get(Assets.HAMUSNOW)){
+    public WaterAsh(int x, int y, final float w, final float h) {
+        super(new OneSpriteStaticActor(TimeStepper.nyarvan ? Assets.manager.get(Assets.VIZ_HAMU) : Assets.manager.get(Assets.VIZ_HAMUSNOW)){
             @Override
             public void init() {
                 super.init();
@@ -24,16 +24,16 @@ public class Hamu extends mapActor {
 
     @Override
     public String toString() {
-        return "20";
+        return "21";
     }
 
     @Override
     public void setSummer() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.HAMU));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.VIZ_HAMU));
     }
 
     @Override
     public void setWinter() {
-        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.HAMUSNOW));
+        ((OneSpriteStaticActor)getActor()).getSprite().setTexture(Assets.manager.get(Assets.VIZ_HAMUSNOW));
     }
 }

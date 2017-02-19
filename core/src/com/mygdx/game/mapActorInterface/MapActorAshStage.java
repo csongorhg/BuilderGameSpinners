@@ -2,8 +2,7 @@ package com.mygdx.game.mapActorInterface;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.BuildigsClasses.Hamu;
-import com.mygdx.game.BuildigsClasses.Mill;
+import com.mygdx.game.BuildigsClasses.Ash;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -13,13 +12,9 @@ import com.mygdx.game.MyGdxGame;
  * Created by Vince on 2017. 02. 02..
  */
 
-public class MapActorHamuStage extends MapActorStage {
+public class MapActorAshStage extends MapActorStage {
 
-    private Hamu mapactor;
-    private OneSpriteStaticActor meat;
-    private MyLabel label;
-
-    public MapActorHamuStage(MyGdxGame game, Hamu h) {
+    public MapActorAshStage(MyGdxGame game, Ash h) {
         super(game, h);
         getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.HAMU)) {
             @Override

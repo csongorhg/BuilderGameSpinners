@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.GridPoint2;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Queue;
@@ -18,11 +15,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.BuildigsClasses.Barrack;
 import com.mygdx.game.BuildigsClasses.Bridge;
 import com.mygdx.game.BuildigsClasses.FishDock;
-import com.mygdx.game.BuildigsClasses.Hamu;
+import com.mygdx.game.BuildigsClasses.Ash;
 import com.mygdx.game.BuildigsClasses.House;
 import com.mygdx.game.BuildigsClasses.Mill;
 import com.mygdx.game.BuildigsClasses.MillCircle;
 import com.mygdx.game.BuildigsClasses.StoneWorker;
+import com.mygdx.game.BuildigsClasses.WaterAsh;
 import com.mygdx.game.BuildigsClasses.WaterWell;
 import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.End.EndScreen;
@@ -36,9 +34,6 @@ import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.WorldGenerate.Generator;
-import com.mygdx.game.mapActorInterface.MapActorStage;
-import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.util.Vector;
 
@@ -309,7 +304,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         ujEpulet(i,j, new MillCircle(i,j,128,128));
                         break;
                     case 20: // hamu
-                        ujEpulet(i,j, new Hamu(i,j,128,128));
+                        ujEpulet(i,j, new Ash(i,j,128,128));
+                        break;
+                    case 21: //vízi hamu
+                        ujEpulet(i,j, new WaterAsh(i,j,128,128));
                         break;
 
                 }
@@ -498,14 +496,13 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         for (int i = 0; i < mapActors.length; i++) {
             for (int j = 0; j < mapActors[i].length; j++) {
                 if (mapActors[i][j].isFire()) {
-                    OneSpriteStaticActor oneSpriteStaticActor;
                     if (mapActors[i][j] instanceof FishDock) {
-                        ujEpulet(i, j, new Hamu(i, j,128,128));
+                        ujEpulet(i, j, new WaterAsh(i, j,128,128));
                         Statistics.epuletekszama--;
                         Buildings.lerombol("farm");
                     }
                     else {
-                        ujEpulet(i, j, new Hamu(i, j,128,128));
+                        ujEpulet(i, j, new Ash(i, j,128,128));
                         if(mapActors[i][j] instanceof WoodCutter) {
                             Statistics.epuletekszama--;
                             Buildings.lerombol("faKitermelo");
@@ -536,7 +533,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                         && !(mapActors[i][j] instanceof stoneActor) && !(mapActors[i][j] instanceof grassActor)
                         && !(mapActors[i][j] instanceof woodActor) && !(mapActors[i][j] instanceof waterActor)
                         && !(mapActors[i][j] instanceof Bridge) && !(mapActors[i][j] instanceof Mill)
-                        && !(mapActors[i][j] instanceof MillCircle) && !(mapActors[i][j] instanceof Hamu)) {
+                        && !(mapActors[i][j] instanceof MillCircle) && !(mapActors[i][j] instanceof Ash)
+                        && !(mapActors[i][j] instanceof WaterAsh)) {
                     mapActors[i][j].setFire(TimeStepper.tuzvan);
                     TimeStepper.tuzvan = false;
                 }
