@@ -502,12 +502,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         if(tipNap == 3){
             tipNap = 0;
-            System.out.println("LÓFASZ");
             tipStage.Visibility(true);
         }
         else if(tipNap == 1 && tipStage.getVisibility()){
+            tipNap = 0;
             tipStage.Visibility(false);
-            System.out.println("GECI");
         }
 
     }
