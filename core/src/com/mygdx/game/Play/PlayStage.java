@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -26,6 +27,7 @@ import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.End.EndScreen;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuStage;
+import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
@@ -36,6 +38,7 @@ import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.WorldGenerate.Generator;
 import com.mygdx.game.mapActorInterface.MapActorStage;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -45,6 +48,7 @@ import java.util.Vector;
 abstract public class PlayStage extends MyStage implements GestureDetector.GestureListener{
 
     private IngameMenu ingameMenu;
+    private TipStage tipStage;
 
     public static mapActor[][] mapActors;
 
@@ -58,6 +62,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private Vector<GridPoint2> koordinatak;
 
     private boolean updateFustrumNeed = true;
+
+    private Array<String> tips; //tippes tömb
+    private MyLabel tipLabel;
+    private OneSpriteStaticActor tipBackgound;
+    private int tipNap=0;
 
     //pref
     public static final String PREFS = "MAP";
@@ -82,11 +91,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     abstract public void selectMapActor(mapActor mapActor);
 
-
-
     public void init() {
 
         ingameMenu = new IngameMenu(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
+        tipStage = new TipStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
 
         prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
         preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
@@ -109,7 +117,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         fog((byte)cityx,(byte)cityy); //kiködösités elkezdése a nem vizeken
 
         waterRekurziv(); //vizek kiködösitése a hidak alapján
-
 
     }
 
@@ -491,6 +498,18 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if (TimeStepper.tuzvan) {
             tuz();
         }
+
+
+        if(tipNap == 3){
+            tipNap = 0;
+            System.out.println("LÓFASZ");
+            tipStage.Visibility(true);
+        }
+        else if(tipNap == 1 && tipStage.getVisibility()){
+            tipStage.Visibility(false);
+            System.out.println("GECI");
+        }
+
     }
 
     private void tuzTorles() {
@@ -646,6 +665,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     private void mapSave(){
         System.out.println("Saving game...");
         nap = TimeStepper.elteltnap;
+        tipNap++;
+        System.out.println(tipNap);
 
         saveMap = "";
         for (int i = 0; i < mapActors.length; i++) {
@@ -779,12 +800,13 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     public void draw() {
         super.draw();
         ingameMenu.draw();
+        tipStage.draw();
     }
 
     @Override
     public void dispose() {
         ingameMenu.dispose();
-
+        tipStage.dispose();
         super.dispose();
 
     }

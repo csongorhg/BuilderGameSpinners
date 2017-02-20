@@ -295,6 +295,10 @@ public class Assets {
 	public static final AssetDescriptor<Texture> TEXTBUTTONOVER
 			= new AssetDescriptor<Texture>("Buttons/textbuttonover.png", Texture.class);
 
+	//tip
+	public static final AssetDescriptor<Texture> TIP_BG
+			= new AssetDescriptor<Texture>("Interface/tipBackground.png", Texture.class);
+
 
 
 	public static void prepare() {
@@ -402,6 +406,9 @@ public class Assets {
 
 		//ZENE
 		manager.load(RELAXING);
+
+		//TIP
+		manager.load(TIP_BG);
 
 
 		//BETÜ
