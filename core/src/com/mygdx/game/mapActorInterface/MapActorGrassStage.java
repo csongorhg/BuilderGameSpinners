@@ -222,11 +222,11 @@ public class MapActorGrassStage extends MapActorStage {
         husLabel = new MyLabel(husl,game.getLabelStyle(25));
         emberLabel = new MyLabel(emberl,game.getLabelStyle(25));
 
-        aranyLabel.setPosition(picSize+aranySprite.getWidth(),yPos);
-        koLabel.setPosition(picSize+koSprite.getWidth(), yPos+aranySprite.getHeight());
-        faLabel.setPosition(picSize+faSprite.getWidth(), yPos+koSprite.getHeight()+aranySprite.getHeight());
-        husLabel.setPosition(picSize+picSize/2+husSprite.getWidth(), yPos+emberSprite.getHeight()+picSize/8);
-        emberLabel.setPosition(picSize+picSize/2+emberSprite.getWidth(), yPos+picSize/8);
+        aranyLabel.setPosition(picSize+aranySprite.getWidth(),aranySprite.getY());
+        koLabel.setPosition(picSize+koSprite.getWidth(), koSprite.getY());
+        faLabel.setPosition(picSize+faSprite.getWidth(), faSprite.getY());
+        husLabel.setPosition(picSize+picSize/2+husSprite.getWidth(), husSprite.getY());
+        emberLabel.setPosition(picSize+picSize/2+emberSprite.getWidth(), emberSprite.getY());
 
 
 
