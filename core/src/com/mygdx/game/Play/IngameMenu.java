@@ -115,22 +115,22 @@ public class IngameMenu extends MyStage {
 
         faActor.setPosition(0,getViewport().getWorldHeight()-fel);
         koActor.setPosition(faActor.getX(),faActor.getY()-koActor.getHeight());
-        faLabel.setPosition(faActor.getX()+otkaraktereshossz+faActor.getWidth(),faActor.getY());
-        koLabel.setPosition(koActor.getX()+otkaraktereshossz+koActor.getWidth(),koActor.getY());
+        faLabel.setPosition(faActor.getX()+otkaraktereshossz,faActor.getY());
+        koLabel.setPosition(koActor.getX()+otkaraktereshossz,koActor.getY());
         faLabelValt.setPosition(faActor.getX()+faActor.getWidth(),faActor.getY());
         koLabelValt.setPosition(koActor.getX()+koActor.getWidth(),koActor.getY());
 
         aranyActor.setPosition(negyed,faActor.getY());
         etelActor.setPosition(aranyActor.getX(),aranyActor.getY()-etelActor.getHeight());
-        aranyLabel.setPosition(aranyActor.getX()+otkaraktereshossz+aranyActor.getWidth(),aranyActor.getY());
-        etelLabel.setPosition(etelActor.getX()+otkaraktereshossz+etelActor.getWidth(),etelActor.getY());
+        aranyLabel.setPosition(aranyActor.getX()+otkaraktereshossz,aranyActor.getY());
+        etelLabel.setPosition(etelActor.getX()+otkaraktereshossz,etelActor.getY());
         aranyLabelValt.setPosition(aranyActor.getX()+aranyActor.getWidth(),aranyActor.getY());
         etelLabelValt.setPosition(etelActor.getX()+etelActor.getWidth(),etelActor.getY());
 
         nepActor.setPosition(negyed*2,aranyActor.getY());
         katonaActor.setPosition(nepActor.getX(),nepActor.getY()-katonaActor.getHeight());
-        nepLabel.setPosition(nepActor.getX()+otkaraktereshossz+nepActor.getWidth(),nepActor.getY());
-        katonaLabel.setPosition(katonaActor.getX()+otkaraktereshossz+katonaActor.getWidth(),katonaActor.getY());
+        nepLabel.setPosition(nepActor.getX()+otkaraktereshossz,nepActor.getY());
+        katonaLabel.setPosition(katonaActor.getX()+otkaraktereshossz,katonaActor.getY());
         nepLabelValt.setPosition(nepActor.getX()+nepActor.getWidth(),nepActor.getY());
 
         napLabel = new MyLabel("DAY "+TimeStepper.elteltnap, game.getLabelStyle(25,Color.WHITE));
