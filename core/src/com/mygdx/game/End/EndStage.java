@@ -86,7 +86,7 @@ public class EndStage extends MyStage {
         meret.characters = Assets.CHARS;
         BitmapFont font = generator.generateFont(meret);
         generator.dispose();*/
-        style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT75);
+        style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT80);
 
     }
 

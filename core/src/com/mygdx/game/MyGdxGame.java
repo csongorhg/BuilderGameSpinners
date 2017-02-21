@@ -54,7 +54,7 @@ public class MyGdxGame extends Game {
 				style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT140);
 				break;
 			default:
-				new Exception("Nem kezelt betűméret: " + size);
+				System.out.println("Nem kezelt betűméret!");
 		}
 		return style;
 	}

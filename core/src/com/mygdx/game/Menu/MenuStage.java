@@ -25,7 +25,6 @@ public class MenuStage extends MyStage {
     private TextButton playTextButton, mapTextButton, quitTextButton;
 
 
-    private TextButton.TextButtonStyle textButtonStyle;
     private OneSpriteStaticActor musicButton;
 
 

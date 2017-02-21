@@ -24,7 +24,7 @@ public class Assets {
 	//FONT
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameterAcme100 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
-		fontParameterAcme100.fontFileName = "Font/acmeregular.ttf";
+		fontParameterAcme100.fontFileName = "Font/acmeregular100.ttf";
 		fontParameterAcme100.fontParameters.size = 100;
 		fontParameterAcme100.fontParameters.characters = CHARS;
 		fontParameterAcme100.fontParameters.color = Color.WHITE;
@@ -36,7 +36,7 @@ public class Assets {
 
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameterAcme25 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
-		fontParameterAcme25.fontFileName = "Font/acmeregular.ttf";
+		fontParameterAcme25.fontFileName = "Font/acmeregular25.ttf";
 		fontParameterAcme25.fontParameters.size = 25;
 		fontParameterAcme25.fontParameters.characters = CHARS;
 		//fontParameterAcme100.fontParameters.color = Color.WHITE;
@@ -48,7 +48,7 @@ public class Assets {
 
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameterAcme10 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
-		fontParameterAcme10.fontFileName = "Font/acmeregular.ttf";
+		fontParameterAcme10.fontFileName = "Font/acmeregular10.ttf";
 		fontParameterAcme10.fontParameters.size = 10;
 		fontParameterAcme10.fontParameters.characters = CHARS;
 		//fontParameterAcme100.fontParameters.color = Color.WHITE;
@@ -61,7 +61,7 @@ public class Assets {
 
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameterAcme50 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
-		fontParameterAcme50.fontFileName = "Font/acmeregular.ttf";
+		fontParameterAcme50.fontFileName = "Font/acmeregular50.ttf";
 		fontParameterAcme50.fontParameters.size = 50;
 		fontParameterAcme50.fontParameters.characters = CHARS;
 		//fontParameterAcme100.fontParameters.color = Color.WHITE;
@@ -69,7 +69,7 @@ public class Assets {
 	public static final AssetDescriptor<BitmapFont> ACMEREGULAR_FONT50
 			= new AssetDescriptor<BitmapFont>(fontParameterAcme50.fontFileName, BitmapFont.class, fontParameterAcme50);
 
-
+/*
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameterAcme75 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
 		fontParameterAcme75.fontFileName = "Font/acmeregular.ttf";
@@ -79,12 +79,12 @@ public class Assets {
 	}
 	public static final AssetDescriptor<BitmapFont> ACMEREGULAR_FONT75
 			= new AssetDescriptor<BitmapFont>(fontParameterAcme75.fontFileName, BitmapFont.class, fontParameterAcme75);
-
+*/
 
 
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameterAcme80 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
-		fontParameterAcme80.fontFileName = "Font/acmeregular.ttf";
+		fontParameterAcme80.fontFileName = "Font/acmeregular80.ttf";
 		fontParameterAcme80.fontParameters.size = 80;
 		fontParameterAcme80.fontParameters.characters = CHARS;
 		//fontParameterAcme100.fontParameters.color = Color.WHITE;
@@ -95,7 +95,7 @@ public class Assets {
 
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameterAcme140 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
-		fontParameterAcme140.fontFileName = "Font/acmeregular.ttf";
+		fontParameterAcme140.fontFileName = "Font/acmeregular140.ttf";
 		fontParameterAcme140.fontParameters.size = 140;
 		fontParameterAcme140.fontParameters.characters = CHARS;
 		//fontParameterAcme100.fontParameters.color = Color.WHITE;
@@ -414,9 +414,9 @@ public class Assets {
 		//BETÜ
 		//manager.load(ACMEREGULAR_FONT50);
 
-		//manager.load(ACMEREGULAR_FONT10);
+		manager.load(ACMEREGULAR_FONT10);
 		manager.load(ACMEREGULAR_FONT25);
-		manager.load(ACMEREGULAR_FONT75);
+		manager.load(ACMEREGULAR_FONT50);
 		manager.load(ACMEREGULAR_FONT80);
 		manager.load(ACMEREGULAR_FONT100);
 		manager.load(ACMEREGULAR_FONT140);
