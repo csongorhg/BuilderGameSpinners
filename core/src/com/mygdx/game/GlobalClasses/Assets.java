@@ -299,6 +299,10 @@ public class Assets {
 	public static final AssetDescriptor<Texture> TIP_BG
 			= new AssetDescriptor<Texture>("Interface/tipBackground.png", Texture.class);
 
+	//web háttér
+	public static final AssetDescriptor<Texture> WEB_BG
+			= new AssetDescriptor<Texture>("Web/worldmap.png", Texture.class);
+
 
 
 	public static void prepare() {
@@ -409,6 +413,9 @@ public class Assets {
 
 		//TIP
 		manager.load(TIP_BG);
+
+		//WEB
+		manager.load(WEB_BG);
 
 
 		//BETÜ

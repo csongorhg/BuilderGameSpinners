@@ -50,7 +50,7 @@ public class ConnectionScreen extends MyScreen {
                 r = 0;
                 g = 0;
                 b = 0;
-                backGroudActor = new OneSpriteStaticActor(Assets.manager.get(Assets.KIJELOLES));
+                backGroudActor = new OneSpriteStaticActor(Assets.manager.get(Assets.WEB_BG));
                 backGroudActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                 addActor(backGroudActor);
             }
