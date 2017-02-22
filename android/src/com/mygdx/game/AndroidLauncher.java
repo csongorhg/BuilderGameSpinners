@@ -5,7 +5,6 @@ import android.os.Handler;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.mygdx.game.MyBaseClasses.BluetoothSingleton;
 
 public class AndroidLauncher extends AndroidApplication {
 
@@ -22,10 +21,6 @@ public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		BluetoothManager btm = new BluetoothManager(this, new Handler());
-		btm.getAdapter();
-		BluetoothSingleton.getInstance().bluetoothManager = btm;
 
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useWakelock = true;

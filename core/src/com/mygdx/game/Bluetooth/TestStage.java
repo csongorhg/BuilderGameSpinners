@@ -1,5 +1,10 @@
 package com.mygdx.game.Bluetooth;
 
+/**
+ * Created by tanulo on 2017. 02. 22..
+ */
+
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,11 +17,6 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Units;
-import com.mygdx.game.mapActorInterface.MapActorStage;
-
-/**
- * Created by Kicsi on 2017. 02. 02..
- */
 
 public class TestStage extends MyStage {
 
@@ -210,7 +210,6 @@ public class TestStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new BluetoothScreen(game));
             }
         });
 

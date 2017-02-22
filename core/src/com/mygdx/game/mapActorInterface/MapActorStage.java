@@ -1,48 +1,20 @@
 package com.mygdx.game.mapActorInterface;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Bluetooth.BTGameStage;
-import com.mygdx.game.Bluetooth.BluetoothScreen;
 import com.mygdx.game.Bluetooth.TestScreen;
-import com.mygdx.game.BuildigsClasses.Barrack;
-import com.mygdx.game.BuildigsClasses.Bridge;
-import com.mygdx.game.BuildigsClasses.FishDock;
-import com.mygdx.game.BuildigsClasses.House;
-import com.mygdx.game.BuildigsClasses.Mill;
-import com.mygdx.game.BuildigsClasses.StoneWorker;
-import com.mygdx.game.BuildigsClasses.WaterWell;
-import com.mygdx.game.BuildigsClasses.WoodCutter;
 import com.mygdx.game.GlobalClasses.Assets;
-import com.mygdx.game.Menu.MenuScreen;
-import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayStage;
-import com.mygdx.game.Play.cityActor;
-import com.mygdx.game.Play.grassActor;
 import com.mygdx.game.Play.mapActor;
 
 /**
@@ -247,7 +219,6 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                //game.setScreen(new BluetoothScreen(game));
                 game.setScreen(new TestScreen(game));
             }
         });
