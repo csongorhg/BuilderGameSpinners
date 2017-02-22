@@ -29,7 +29,7 @@ public class TipStage extends MyStage {
     @Override
     public void init() {
         tips = new Array<String>();
-        tips.add("Water well protects your houses.");
+        tips.add("Water well protects 5 houses.");
         tips.add("Barbarians can attack you.");
         tips.add("Fish dock and Mill create food.");
         tips.add("Build bridge to cross the river.");
@@ -37,6 +37,10 @@ public class TipStage extends MyStage {
         tips.add("Do online battle.");
         tips.add("House pays 1 coin every day.");
         tips.add("You need to pay service pay to soldiers.");
+        tips.add("Mine produces 3 stones, 1 coin each day.");
+        tips.add("Woodcuter produces 3 stones each day.");
+        tips.add("People consume 1 wood/day during winter.");
+
 
 
         tipBackgound = new OneSpriteStaticActor(Assets.manager.get(Assets.TIP_BG));

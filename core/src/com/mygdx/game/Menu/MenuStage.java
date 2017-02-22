@@ -78,7 +78,7 @@ public class MenuStage extends MyStage {
 
 
         //MAPS
-        mapTextButton = new MyButton("New World", game.getTextButtonStyle());
+        mapTextButton = new MyButton("New World", game.getTextButtonStyle(100));
         mapTextButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -94,7 +94,7 @@ public class MenuStage extends MyStage {
 
 
         //PLAYS
-        playTextButton = new MyButton("Play", game.getTextButtonStyle());
+        playTextButton = new MyButton("Play", game.getTextButtonStyle(100));
         playTextButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -110,7 +110,7 @@ public class MenuStage extends MyStage {
 
 
         //QUIT
-        quitTextButton = new MyButton("Quit", game.getTextButtonStyle());
+        quitTextButton = new MyButton("Quit", game.getTextButtonStyle(100));
         quitTextButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

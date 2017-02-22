@@ -51,7 +51,7 @@ public class OtherStage extends MyStage {
         myLabel.setPosition(0,getViewport().getWorldHeight()/5*3);
         addActor(myLabel);
 
-        yesButton = new MyButton("YES", game.getTextButtonStyle());
+        yesButton = new MyButton("YES", game.getTextButtonStyle(100));
         yesButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -70,7 +70,7 @@ public class OtherStage extends MyStage {
         yesButton.setPosition(getViewport().getWorldWidth()/5-yesButton.getWidth()/2,getViewport().getWorldHeight()/5*2-yesButton.getHeight()/2);
         addActor(yesButton);
 
-        noButton = new MyButton("NO", game.getTextButtonStyle());
+        noButton = new MyButton("NO", game.getTextButtonStyle(100));
         noButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

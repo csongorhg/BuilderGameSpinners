@@ -60,7 +60,7 @@ public class EndStage extends MyStage {
         myLabel1.setPosition(0,getViewport().getWorldHeight()/5*2);
         addActor(myLabel1);
 
-        button = new MyButton("Back To Menu", game.getTextButtonStyle());
+        button = new MyButton("Back To Menu", game.getTextButtonStyle(100));
         button.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

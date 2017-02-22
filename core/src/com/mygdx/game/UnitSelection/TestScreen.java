@@ -1,4 +1,4 @@
-package com.mygdx.game.Bluetooth;
+package com.mygdx.game.UnitSelection;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;

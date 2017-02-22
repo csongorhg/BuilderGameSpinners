@@ -1,4 +1,4 @@
-package com.mygdx.game.Bluetooth;
+package com.mygdx.game.UnitSelection;
 
 /**
  * Created by tanulo on 2017. 02. 22..
@@ -20,12 +20,12 @@ import com.mygdx.game.PlayingMechanism.Units;
 
 public class TestStage extends MyStage {
 
-    private OneSpriteStaticActor harc1, harc2, harc3, harc4;
-    private OneSpriteStaticActor plusz1, minusz1, plusz2, minusz2, plusz3, minusz3, plusz4, minusz4;
-    private MyLabel osszesites;
+    private OneSpriteStaticActor harc1, harc2, harc4, harc3;
+    private OneSpriteStaticActor plusz1, minusz1, plusz2, minusz2, plusz4, minusz4, plusz3, minusz3;
+    private MyLabel osszesites, maxunit1, maxunit2, maxunit3, maxunit4;
     public static int osszletszam;
     public static int harc1letszam, harc2letszam, harc3letszam, harc4letszam;
-    private MyButton fight;
+    private MyButton fight, min1, max1, min2, max2, min3, max3, min4, max4;
     private float width, height;
 
     public TestStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -69,6 +69,7 @@ public class TestStage extends MyStage {
                     harc1letszam --;
                     osszletszam --;
                     osszesites.setText(osszletszam+"");
+                    maxunit1.setText(Units.kardosLetszam - harc1letszam+"");
                 }
             }
         });
@@ -85,9 +86,52 @@ public class TestStage extends MyStage {
                     harc1letszam ++;
                     osszletszam ++;
                     osszesites.setText(osszletszam+"");
+                    maxunit1.setText(Units.kardosLetszam - harc1letszam+"");
                 }
             }
         });
+
+        min1 = new MyButton("Min",game.getTextButtonStyle(25));
+        min1.setSize(harc1.getWidth()/2, harc1.getWidth()/2);
+        min1.setPosition(minusz1.getX(), minusz1.getY()-min1.getHeight());
+        min1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if((harc1letszam - 1) >= 0){
+                    osszletszam -= harc1letszam;
+                    harc1letszam = 0;
+                    osszesites.setText(osszletszam+"");
+                    maxunit1.setText(Units.kardosLetszam+"");
+                }
+            }
+        });
+        addActor(min1);
+
+        max1 = new MyButton("Max",game.getTextButtonStyle(25));
+        max1.setSize(harc1.getWidth()/2, harc1.getWidth()/2);
+        max1.setPosition(plusz1.getX(), plusz1.getY()-max1.getHeight());
+        max1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if((harc1letszam + 1) <= Units.kardosLetszam){
+                    harc1letszam = Units.kardosLetszam - harc1letszam;
+                    osszletszam += harc1letszam;
+                    osszesites.setText(osszletszam+"");
+                    maxunit1.setText(0+"");
+                }
+            }
+        });
+        addActor(max1);
+
+        maxunit1 = new MyLabel(Units.kardosLetszam == 0 ? "0" : Units.kardosLetszam+"", game.getLabelStyle(50));
+        addActor(maxunit1);
+        maxunit1.setPosition(harc1.getX() + harc1.getWidth() / 2 - (int)maxunit1.getWidth()/2,
+                harc1.getY() + harc1.getHeight());
+
+
+
 
         harc2 = new OneSpriteStaticActor(Assets.manager.get(Assets.BOW_MAN));
         addActor(harc2);
@@ -125,53 +169,20 @@ public class TestStage extends MyStage {
             }
         });
 
-        harc3 = new OneSpriteStaticActor(Assets.manager.get(Assets.CANNON_MAN));
+
+
+
+
+        harc3 = new OneSpriteStaticActor(Assets.manager.get(Assets.HORSE_MAN));
         addActor(harc3);
         harc3.setSize(hatod*0.8f, hatod*0.8f);
-        harc3.setPosition(3*hatod+(hatod/2)-harc3.getWidth()/2, height/2);
+        harc3.setPosition(4*hatod+(hatod/2)- harc3.getWidth()/2, height/2);
 
         minusz3 = new OneSpriteStaticActor(Assets.manager.get(Assets.MINUSZ));
         addActor(minusz3);
         minusz3.setSize(harc3.getWidth()/2, harc3.getWidth()/2);
-        minusz3.setPosition(harc3.getX(), harc3.getY()-minusz3.getHeight());
+        minusz3.setPosition(harc3.getX(), harc3.getY()- minusz3.getHeight());
         minusz3.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                if((harc3letszam - 1) >= 0){
-                    harc3letszam --;
-                    osszletszam -= 4;
-                    osszesites.setText(osszletszam+"");
-                }
-            }
-        });
-
-        plusz3 = new OneSpriteStaticActor(Assets.manager.get(Assets.PLUSZ));
-        addActor(plusz3);
-        plusz3.setSize(harc3.getWidth()/2, harc3.getWidth()/2);
-        plusz3.setPosition(minusz3.getX()+plusz3.getWidth(), harc3.getY()-plusz3.getHeight());
-        plusz3.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                if((harc3letszam + 1) <= Units.agyusLetszam){
-                    harc3letszam ++;
-                    osszletszam += 4;
-                    osszesites.setText(osszletszam+"");
-                }
-            }
-        });
-
-        harc4 = new OneSpriteStaticActor(Assets.manager.get(Assets.HORSE_MAN));
-        addActor(harc4);
-        harc4.setSize(hatod*0.8f, hatod*0.8f);
-        harc4.setPosition(4*hatod+(hatod/2)-harc4.getWidth()/2, height/2);
-
-        minusz4 = new OneSpriteStaticActor(Assets.manager.get(Assets.MINUSZ));
-        addActor(minusz4);
-        minusz4.setSize(harc4.getWidth()/2, harc4.getWidth()/2);
-        minusz4.setPosition(harc4.getX(), harc4.getY()-minusz4.getHeight());
-        minusz4.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -183,11 +194,11 @@ public class TestStage extends MyStage {
             }
         });
 
-        plusz4 = new OneSpriteStaticActor(Assets.manager.get(Assets.PLUSZ));
-        addActor(plusz4);
-        plusz4.setSize(harc4.getWidth()/2, harc4.getWidth()/2);
-        plusz4.setPosition(minusz4.getX()+plusz4.getWidth(), harc4.getY()-plusz4.getHeight());
-        plusz4.addListener(new ClickListener(){
+        plusz3 = new OneSpriteStaticActor(Assets.manager.get(Assets.PLUSZ));
+        addActor(plusz3);
+        plusz3.setSize(harc3.getWidth()/2, harc3.getWidth()/2);
+        plusz3.setPosition(minusz3.getX()+ plusz3.getWidth(), harc3.getY()- plusz3.getHeight());
+        plusz3.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -199,11 +210,54 @@ public class TestStage extends MyStage {
             }
         });
 
-        osszesites = new MyLabel(osszesites+"", game.getLabelStyle(100));
+
+
+
+
+        harc4 = new OneSpriteStaticActor(Assets.manager.get(Assets.CANNON_MAN));
+        addActor(harc4);
+        harc4.setSize(hatod*0.8f, hatod*0.8f);
+        harc4.setPosition(3*hatod+(hatod/2)- harc4.getWidth()/2, height/2);
+
+        minusz4 = new OneSpriteStaticActor(Assets.manager.get(Assets.MINUSZ));
+        addActor(minusz4);
+        minusz4.setSize(harc4.getWidth()/2, harc4.getWidth()/2);
+        minusz4.setPosition(harc4.getX(), harc4.getY()- minusz4.getHeight());
+        minusz4.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if((harc3letszam - 1) >= 0){
+                    harc3letszam --;
+                    osszletszam -= 4;
+                    osszesites.setText(osszletszam+"");
+                }
+            }
+        });
+
+        plusz4 = new OneSpriteStaticActor(Assets.manager.get(Assets.PLUSZ));
+        addActor(plusz4);
+        plusz4.setSize(harc4.getWidth()/2, harc4.getWidth()/2);
+        plusz4.setPosition(minusz4.getX()+ plusz4.getWidth(), harc4.getY()- plusz4.getHeight());
+        plusz4.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if((harc3letszam + 1) <= Units.agyusLetszam){
+                    harc3letszam ++;
+                    osszletszam += 4;
+                    osszesites.setText(osszletszam+"");
+                }
+            }
+        });
+
+
+
+        osszesites = new MyLabel(osszesites == null ? "0" : osszesites+"", game.getLabelStyle(100));
         addActor(osszesites);
         osszesites.setPosition(width/2-osszesites.getWidth()/2, height/4-osszesites.getHeight()/2);
 
-        fight = new MyButton("Fight", game.getTextButtonStyle());
+        fight = new MyButton("Fight", game.getTextButtonStyle(100));
         addActor(fight);
         fight.setPosition(width/2-fight.getWidth()/2, 0);
         fight.addListener(new ClickListener(){

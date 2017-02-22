@@ -59,14 +59,36 @@ public class MyGdxGame extends Game {
 		return style;
 	}
 
-	public TextButton.TextButtonStyle getTextButtonStyle() {
+	public TextButton.TextButtonStyle getTextButtonStyle(int size) {
 
 		TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-		textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT100);
 
 		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONUP)));
 		textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONOVER)));
 		textButtonStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONDOWN)));
+
+		switch (size){
+			case 10:
+				textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT10);
+				break;
+			case 25:
+				textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT25);
+				break;
+			case 50:
+				textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT50);
+				break;
+			case 80:
+				textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT80);
+				break;
+			case 100:
+				textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT100);
+				break;
+			case 140:
+				textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT140);
+				break;
+			default:
+				System.out.println("Nem kezelt betűméret!");
+		}
 
 		return textButtonStyle;
 	}

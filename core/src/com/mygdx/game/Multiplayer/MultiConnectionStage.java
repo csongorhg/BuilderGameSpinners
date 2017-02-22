@@ -22,7 +22,7 @@ public class MultiConnectionStage extends MyStage {
 
     public MultiConnectionStage(MyGdxGame game) {
         super(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), new SpriteBatch(), game);
-        addActor(new MyButton("Connect", game.getTextButtonStyle()){
+        addActor(new MyButton("Connect", game.getTextButtonStyle(100)){
             @Override
             public void init() {
                 super.init();
