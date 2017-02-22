@@ -22,7 +22,7 @@ public class MapActorWoodCutterStage extends MapActorStage {
 
     public MapActorWoodCutterStage(MyGdxGame game, WoodCutter g) {
         super(game, g);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD_WORKER)){
+        getActorGroup().addActor(new OneSpriteStaticActor(g.getWoodCutter()){
             @Override
             public void init() {
                 super.init();

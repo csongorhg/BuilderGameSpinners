@@ -22,7 +22,7 @@ public class MapActorMillStage extends MapActorStage {
 
     public MapActorMillStage(MyGdxGame game, Mill m) {
         super(game, m);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.MILL)){
+        getActorGroup().addActor(new OneSpriteStaticActor(m.getMill()){
             @Override
             public void init() {
                 super.init();

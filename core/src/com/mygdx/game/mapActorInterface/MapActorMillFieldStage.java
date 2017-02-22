@@ -18,7 +18,7 @@ public class MapActorMillFieldStage extends MapActorStage {
 
     public MapActorMillFieldStage(MyGdxGame game, MillCircle m) {
         super(game, m);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.MILLMEZO)){
+        getActorGroup().addActor(new OneSpriteStaticActor(m.getMillCircle()){
             @Override
             public void init() {
                 super.init();

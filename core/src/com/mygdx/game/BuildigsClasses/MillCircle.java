@@ -1,5 +1,6 @@
 package com.mygdx.game.BuildigsClasses;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.Play.mapActor;
@@ -28,6 +29,8 @@ public class MillCircle extends mapActor {
     public String toString() {
         return "19";
     }
+
+    public Texture getMillCircle(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
 
     @Override
     public void setSummer() {

@@ -17,7 +17,7 @@ public class MapActorWaterAshStage extends MapActorStage {
 
     public MapActorWaterAshStage(MyGdxGame game, WaterAsh h) {
         super(game, h);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.VIZ_HAMU)) {
+        getActorGroup().addActor(new OneSpriteStaticActor(h.getWaterAsh()) {
             @Override
             public void init() {
                 super.init();

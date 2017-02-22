@@ -17,6 +17,7 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Units;
+import com.mygdx.game.Web.ConnectionScreen;
 
 public class TestStage extends MyStage {
 
@@ -257,13 +258,14 @@ public class TestStage extends MyStage {
         addActor(osszesites);
         osszesites.setPosition(width/2-osszesites.getWidth()/2, height/4-osszesites.getHeight()/2);
 
-        fight = new MyButton("Fight", game.getTextButtonStyle(100));
+        fight = new MyButton("Go Online", game.getTextButtonStyle(100));
         addActor(fight);
         fight.setPosition(width/2-fight.getWidth()/2, 0);
         fight.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                game.setScreen(new ConnectionScreen(game));
             }
         });
 

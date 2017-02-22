@@ -21,7 +21,7 @@ public class MapActorWaterWellStage extends MapActorStage {
 
     public MapActorWaterWellStage(MyGdxGame game, WaterWell w) {
         super(game, w);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.WATER_WELL)){
+        getActorGroup().addActor(new OneSpriteStaticActor(w.getWaterWell()){
             @Override
             public void init() {
                 super.init();

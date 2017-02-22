@@ -23,7 +23,7 @@ public class MapActorFishDockStage extends MapActorStage {
 
     public MapActorFishDockStage(MyGdxGame game, FishDock f) {
         super(game, f);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.FISHDOCK)){
+        getActorGroup().addActor(new OneSpriteStaticActor(f.getFishDock()){
             @Override
             public void init() {
                 super.init();

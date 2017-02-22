@@ -1,5 +1,6 @@
 package com.mygdx.game.BuildigsClasses;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -32,6 +33,8 @@ public class WaterWell extends mapActor {
     public String toString() {
         return "17";
     }
+
+    public Texture getWaterWell(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
 
     @Override
     public void setSummer() {

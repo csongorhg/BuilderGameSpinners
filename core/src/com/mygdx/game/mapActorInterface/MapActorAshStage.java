@@ -16,7 +16,7 @@ public class MapActorAshStage extends MapActorStage {
 
     public MapActorAshStage(MyGdxGame game, Ash h) {
         super(game, h);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.HAMU)) {
+        getActorGroup().addActor(new OneSpriteStaticActor(h.getAsh()) {
             @Override
             public void init() {
                 super.init();

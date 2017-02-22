@@ -19,7 +19,7 @@ public class MapActorBridgeStage extends MapActorStage {
 
     public MapActorBridgeStage(MyGdxGame game, Bridge b) {
         super(game, b);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.BRIDGE)){
+        getActorGroup().addActor(new OneSpriteStaticActor(b.getBridge()){
             @Override
             public void init() {
                 super.init();

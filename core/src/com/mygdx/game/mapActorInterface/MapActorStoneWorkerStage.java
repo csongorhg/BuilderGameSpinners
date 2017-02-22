@@ -23,7 +23,7 @@ public class MapActorStoneWorkerStage extends MapActorStage {
 
     public MapActorStoneWorkerStage(MyGdxGame game, StoneWorker s) {
         super(game, s);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.STONE_WORKER)){
+        getActorGroup().addActor(new OneSpriteStaticActor(s.getStoneWorker()){
             @Override
             public void init() {
                 super.init();

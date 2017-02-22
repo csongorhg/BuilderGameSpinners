@@ -6,7 +6,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -62,9 +64,19 @@ public class MyGdxGame extends Game {
 	public TextButton.TextButtonStyle getTextButtonStyle(int size) {
 
 		TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+		textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT100);
 
+		/*Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
+		p.setColor(0.1f,0.2f,0.2f, 0.5f);
+		p.fill();*/
 		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONUP)));
+
+		/*p.setColor(0.3f,0.5f,0.8f, 0.5f);
+		p.fill();*/
 		textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONOVER)));
+
+		/*p.setColor(1f,0.5f,0.8f, 1f);
+		p.fill();*/
 		textButtonStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONDOWN)));
 
 		switch (size){
@@ -91,6 +103,26 @@ public class MyGdxGame extends Game {
 		}
 
 		return textButtonStyle;
+	}
+
+	public TextField.TextFieldStyle getTextFieldStyle(){
+		TextField.TextFieldStyle style;
+		style = new TextField.TextFieldStyle();
+		style.font = Assets.manager.get(Assets.ACMEREGULAR_FONT50);
+
+		style.fontColor = Color.BLACK;
+		Pixmap p = new Pixmap(1,1, Pixmap.Format.RGBA8888);
+
+		p.setColor(Color.BLACK);
+		p.fill();
+		style.cursor = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
+		style.cursor.setMinWidth(20);
+
+		p.setColor(Color.WHITE);
+		p.fill();
+		style.background = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
+
+		return style;
 	}
 
 

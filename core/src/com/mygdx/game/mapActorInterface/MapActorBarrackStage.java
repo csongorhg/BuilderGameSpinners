@@ -27,7 +27,7 @@ public class MapActorBarrackStage extends MapActorStage {
 
     public MapActorBarrackStage(MyGdxGame game, Barrack b) {
         super(game, b);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.BARRACK)){
+        getActorGroup().addActor(new OneSpriteStaticActor(b.getBarrack()){
             @Override
             public void init() {
                 super.init();

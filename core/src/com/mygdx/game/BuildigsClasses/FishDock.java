@@ -1,5 +1,6 @@
 package com.mygdx.game.BuildigsClasses;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -31,6 +32,8 @@ public class FishDock extends mapActor {
     public String toString() {
         return "12";
     }
+
+    public Texture getFishDock(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
 
     @Override
     public void setSummer() {

@@ -1,5 +1,6 @@
 package com.mygdx.game.BuildigsClasses;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.Play.mapActor;
@@ -26,6 +27,8 @@ public class WaterAsh extends mapActor {
     public String toString() {
         return "21";
     }
+
+    public Texture getWaterAsh(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
 
     @Override
     public void setSummer() {

@@ -23,7 +23,7 @@ public class MapActorHouseStage extends MapActorStage {
 
     public MapActorHouseStage(MyGdxGame game, House h) {
         super(game, h);
-        getActorGroup().addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.HOUSE)){
+        getActorGroup().addActor(new OneSpriteStaticActor(h.getHouse()){
             @Override
             public void init() {
                 super.init();

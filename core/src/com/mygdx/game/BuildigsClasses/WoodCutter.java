@@ -1,6 +1,7 @@
 package com.mygdx.game.BuildigsClasses;
 
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -37,6 +38,8 @@ public class WoodCutter extends mapActor {
     public String toString() {
         return "11";
     }
+
+    public Texture getWoodCutter(){return ((OneSpriteStaticActor)getActor()).getSprite().getTexture();}
 
     @Override
     public void setSummer() {
