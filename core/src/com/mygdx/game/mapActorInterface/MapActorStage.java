@@ -16,6 +16,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayStage;
 import com.mygdx.game.Play.mapActor;
+import com.mygdx.game.Web.LostConnectionScreen;
 
 /**
  * Created by tuskeb on 2017. 01. 26..
@@ -219,7 +220,8 @@ public class MapActorStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new TestScreen(game));
+                //game.setScreen(new TestScreen(game));
+                game.setScreen(new LostConnectionScreen(game));
             }
         });
 

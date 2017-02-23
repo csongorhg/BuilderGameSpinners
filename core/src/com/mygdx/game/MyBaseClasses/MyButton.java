@@ -17,6 +17,6 @@ public class MyButton extends TextButton implements InitableInterface{
     }
 
     public void init() {
-        debug();
+        //debug();
     }
 }

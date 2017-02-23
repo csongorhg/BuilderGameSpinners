@@ -27,12 +27,12 @@ abstract public class MyStage extends Stage implements InitableInterface {
         //setDebugAll(true);
     }
 
-    public void addBackEventStackListener()    {
+    public void addBackEventStackListener() {
         addListener(new InputListener() {
 
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
-                if(keycode== Input.Keys.BACK) {
+                if(keycode== Input.Keys.BACK || keycode == Input.Keys.BACKSPACE) {
                     game.setScreenBackByStackPop();
                 }
                 return true;

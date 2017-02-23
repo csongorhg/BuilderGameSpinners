@@ -1,5 +1,7 @@
 package com.mygdx.game.Web;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -10,6 +12,7 @@ import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.MyTextField;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Play.PlayScreen;
 
 /**
  * Created by tanulo on 2017. 02. 22..
@@ -20,19 +23,26 @@ public class ConnectionStage extends MyStage{
     private MyLabel userLabel, passwordLabel, title;
     private MyButton submit;
 
+    //pref
+    private Preferences pref_user_pw;
+    private static String save = "";
+
     public ConnectionStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
 
     @Override
     public void init() {
+
+        pref_user_pw = Gdx.app.getPreferences(ConnectionScreen.PREFS);
+
         userLabel = new MyLabel("Username: ",game.getLabelStyle(50));
         userLabel.setAlignment(Align.center);
         userLabel.setSize(getViewport().getWorldWidth()/2,userLabel.getHeight());
         userLabel.setPosition(0,getViewport().getWorldHeight()/2);
         addActor(userLabel);
 
-        user = new MyTextField("",game.getTextFieldStyle());
+        user = new MyTextField(pref_user_pw.getString(ConnectionScreen.PREFS,"").equals("") ? "" : pref_user_pw.getString(ConnectionScreen.PREFS,"").split("\t")[0],game.getTextFieldStyle());
         user.setWidth(getViewport().getWorldWidth()/8*3);
         user.setPosition(getViewport().getWorldWidth()/2,userLabel.getY());
         addActor(user);
@@ -43,7 +53,7 @@ public class ConnectionStage extends MyStage{
         passwordLabel.setPosition(0,getViewport().getWorldHeight()/2-passwordLabel.getHeight());
         addActor(passwordLabel);
 
-        password = new MyTextField("",game.getTextFieldStyle());
+        password = new MyTextField(pref_user_pw.getString(ConnectionScreen.PREFS,"").equals("") ? "" : pref_user_pw.getString(ConnectionScreen.PREFS,"").split("\t")[1], game.getTextFieldStyle());
         password.setWidth(getViewport().getWorldWidth()/8*3);
         password.setPosition(getViewport().getWorldWidth()/2,passwordLabel.getY());
         addActor(password);
@@ -59,6 +69,7 @@ public class ConnectionStage extends MyStage{
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 System.out.println("OKÉ");
+                pref_user_pw.putString(ConnectionScreen.PREFS,user.getText()+"\t"+password.getText());
             }
         });
         addActor(submit);

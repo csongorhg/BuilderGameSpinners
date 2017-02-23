@@ -1,7 +1,6 @@
 package com.mygdx.game.Menu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -15,7 +14,6 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.OtherScr.OtherScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayScreen;
-import com.mygdx.game.WorldGenerate.Generator;
 
 /**
  * Created by tuskeb on 2016. 09. 30..

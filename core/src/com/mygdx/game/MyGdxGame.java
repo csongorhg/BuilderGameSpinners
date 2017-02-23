@@ -71,6 +71,7 @@ public class MyGdxGame extends Game {
 		p.fill();*/
 		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONUP)));
 
+
 		/*p.setColor(0.3f,0.5f,0.8f, 0.5f);
 		p.fill();*/
 		textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONOVER)));
@@ -116,7 +117,7 @@ public class MyGdxGame extends Game {
 		p.setColor(Color.BLACK);
 		p.fill();
 		style.cursor = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
-		style.cursor.setMinWidth(20);
+		style.cursor.setMinWidth(10);
 
 		p.setColor(Color.WHITE);
 		p.fill();

@@ -1,7 +1,6 @@
 package com.mygdx.game.Web;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -12,18 +11,13 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 
 /**
- * Created by tanulo on 2017. 02. 22..
+ * Created by tanulo on 2017. 02. 23..
  */
-public class ConnectionScreen extends MyScreen {
-
-    private ConnectionStage connectionStage;
+public class LostConnectionScreen extends MyScreen {
+    private LostConnectionStage lostConnectionStage;
     private MyStage bgStage;
 
-    public static final String PREFS = "USER_PW";
-
-    private Preferences preferences = Gdx.app.getPreferences(PREFS);
-
-    public ConnectionScreen(MyGdxGame game) {
+    public LostConnectionScreen(MyGdxGame game) {
         super(game);
     }
 
@@ -34,8 +28,8 @@ public class ConnectionScreen extends MyScreen {
         bgStage.act();
         bgStage.draw();
 
-        connectionStage.act(delta);
-        connectionStage.draw();
+        lostConnectionStage.act(delta);
+        lostConnectionStage.draw();
 
 
     }
@@ -71,20 +65,13 @@ public class ConnectionScreen extends MyScreen {
             }
         };
 
-        connectionStage = new ConnectionStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(connectionStage);
+        lostConnectionStage = new LostConnectionStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
+        Gdx.input.setInputProcessor(lostConnectionStage);
 
     }
 
     @Override
     public void dispose() {
-        preferences.flush();
         super.dispose();
-    }
-
-    @Override
-    public void hide() {
-        preferences.flush();
-        super.hide();
     }
 }
