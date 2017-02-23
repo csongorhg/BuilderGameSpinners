@@ -64,7 +64,6 @@ public class BattleListScreen extends MyScreen{
                 super.act(delta);
             }
         };
-
         battleListStage = new BattleListStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
         Gdx.input.setInputProcessor(battleListStage);
 
@@ -72,6 +71,7 @@ public class BattleListScreen extends MyScreen{
 
     @Override
     public void dispose() {
+        battleListStage.dispose();
         super.dispose();
     }
 }

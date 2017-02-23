@@ -1,4 +1,4 @@
-package com.mygdx.game.Multiplayer;
+package com.mygdx.game.Web;
 
 /**
  * Created by tuskeb on 2017. 02. 22..
@@ -53,6 +53,11 @@ public enum MessageTypes {
     CONNECT(40),
 
     /**
+     * SZERVER: Már kapcsolatban van. Amíg a hello üzenetek miatt ki nbem dobja, nem tud újra csatlakozni.
+     */
+    ALREADYCONNECTED(42),
+
+    /**
      * SZERVER: Kapcsolódás sikeres, adatokat a szerver feldolgozta.
      */
     CONNECTACK(41),
@@ -98,7 +103,7 @@ public enum MessageTypes {
      */
     UNKNOWN(101010);
 
-    private int value;
+    public int value;
 
     private MessageTypes(int value) {
         this.value = value;

@@ -28,7 +28,7 @@ public class HttpMapUtil {
 
     public static HashMap<String, String> stringToMap(String input) {
         HashMap<String, String> map = new HashMap<String, String>();
-
+        //System.out.println("Ez jött ide: " + input);
         String[] nameValuePairs = input.split("&");
         for (String nameValuePair : nameValuePairs) {
             String[] nameValue = nameValuePair.split("=");
@@ -39,7 +39,7 @@ public class HttpMapUtil {
                 throw new RuntimeException("This method requires UTF-8 encoding support", e);
             }
         }
-
+        //map.put("asdf","1111112");
         return map;
     }
 }

@@ -4,13 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by tuskeb on 2017. 02. 12..
  */
 
-public class HttpCommand extends HttpConnect {
-    private boolean locked = false;
+abstract public class HttpCommand extends HttpConnect {
+    private static boolean locked = false;
     private HashMap<String, String> send = new HashMap<String, String>();
     private HashMap<String, String> receive = new HashMap<String, String>();
 
@@ -26,40 +29,70 @@ public class HttpCommand extends HttpConnect {
         super(Url);
     }
 
-    public String sendCommand(){
-        System.out.println("Flush start");
+    public void sendCommand(){
+        waitingWhileLocked();
+        locked = true;
+        System.out.println("Send start");
         httpRequest.setContent(HttpMapUtil.mapToString(send));
+        System.out.println(httpRequest.getContent());
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             @Override
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
-                System.out.println("Result:\n" + httpResponse.getResultAsString());
-                HttpCommand.this.response(HttpMapUtil.stringToMap(httpResponse.getResultAsString()));
+                String s;
+                System.out.println("Result:\n" + (s = httpResponse.getResultAsString()));
+                HttpCommand.this.response(HttpMapUtil.stringToMap(s));
+                locked = false;
             }
 
             @Override
             public void failed(Throwable t) {
                 System.out.println("Send command failed: " + t.getMessage());
                 HttpCommand.this.failed(HttpErrors.timeout);
+                locked = false;
             }
 
             @Override
             public void cancelled() {
                 System.out.println("Send command cancelled");
                 HttpCommand.this.failed(HttpErrors.cancelled);
+                locked = false;
             }
         });
         System.out.println("Send done");
-
-        return "";
     }
 
-    protected void response(HashMap<String, String> map){
+    private void response(HashMap<String, String> map){
+
+
+        Set set = map.entrySet();
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()) {
+            Map.Entry mentry = (Map.Entry)iterator.next();
+            System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+            System.out.println(mentry.getValue());
+            //m.put(String.valueOf(mentry.getKey().toString().trim().substring(1)), mentry.getValue().toString());
+        }
+        //System.out.println("Response: " + m.get("message"));
         receive = map;
+        responsed();
     }
 
-    protected void failed(HttpErrors httpErrors) {
+    abstract protected void responsed();
 
+    abstract protected void failed(HttpErrors httpErrors);
+
+
+    protected void waitingWhileLocked() {
+        while (isLocked()) {
+            try {
+                System.out.println("Waiting (Http req)");
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     public boolean isLocked() {
         return locked;
