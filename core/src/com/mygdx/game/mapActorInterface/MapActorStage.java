@@ -29,9 +29,9 @@ public class MapActorStage extends MyStage {
     protected Actor selectActor = null;
     protected final int meret = 256;
     protected OneSpriteStaticActor banya, barrak, favago, halasz, haz, kut, mezo, hid;
-    private static boolean elsoinditas = true;
     private OneSpriteStaticActor oneSpriteStaticActor;
     public static float meretes;
+    private boolean elsoinditas = false;
     public static float fightSize = 100;
 
     protected float picSize = getViewport().getWorldHeight()/6 > meret/2 ? meret/2 : getViewport().getWorldHeight()/6; //építős ikonok mérete
@@ -47,6 +47,9 @@ public class MapActorStage extends MyStage {
         if (g != null) {
             mapactor = g;
             addSelectActor(g.getStage());
+        }
+        else{
+            elsoinditas = true;
         }
 
         addActor(actorGroup = new Group());
@@ -81,13 +84,12 @@ public class MapActorStage extends MyStage {
         actorGroup.addActor(mezo);
         actorGroup.addActor(hid);
 
-        /*if(g != null)
-            if(g.isFog()) allRemove();*/
-
         if(elsoinditas){
             allRemove();
             elsoinditas = false;
         }
+        /*if(g != null)
+            if(g.isFog()) allRemove();*/
     }
 
     public void redXmaker(float posx,float posy){
@@ -226,7 +228,7 @@ public class MapActorStage extends MyStage {
 
             }
         });
-
+        allRemove();
     }
 
 

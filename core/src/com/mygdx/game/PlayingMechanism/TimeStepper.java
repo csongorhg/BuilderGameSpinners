@@ -11,6 +11,8 @@ public class TimeStepper {
     public static float elteltido = -1;
     public static int elteltnap = 0;
 
+    public static int barbarSzam = 0;
+
     public static int egynap = 10;
     public static int ev = 10; //tél és nyár = év/2
     public static boolean nyarvan = true;
@@ -98,15 +100,15 @@ public class TimeStepper {
             tuzvan = false;
         }
 
-        /*if(megtamadtak) megtamadtak = false;
-        if(vel(20,20) == 20 && elteltnap > 2){ //30
-            int egysegek = vel(5,30);
+        if(megtamadtak) megtamadtak = false;
+        if(vel(10,30) == 20 && elteltnap > 30){ //30
+            barbarSzam = vel(5,30);
             megtamadtak = true;
-            System.out.println("Megtámadott "+egysegek+" barbár!");
-            if(egysegek/2 < Units.getLetszam()){
-                Units.kivon(egysegek/2);
+            System.out.println("Megtámadott "+barbarSzam+" barbár!");
+            if(barbarSzam/2 < Units.getLetszam()){
+                Units.kivon(barbarSzam/2);
             }else{
-                int minusz =(egysegek/2-Units.getLetszam())*2;
+                int minusz =(barbarSzam/2-Units.getLetszam())*2;
                 arany-=minusz;
                 if(arany<0) arany = 0;
                 fa-=minusz;
@@ -120,7 +122,7 @@ public class TimeStepper {
                 else lakosokszama-=minusz;
 
             }
-        }*/
+        }
 
         //---------------------------------------
 

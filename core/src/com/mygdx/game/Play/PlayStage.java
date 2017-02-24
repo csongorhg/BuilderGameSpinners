@@ -2,6 +2,7 @@ package com.mygdx.game.Play;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.input.GestureDetector;
@@ -38,6 +39,7 @@ import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.WorldGenerate.Generator;
 import com.mygdx.game.mapActorInterface.MapActorStage;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -49,6 +51,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     private IngameMenu ingameMenu;
     private TipStage tipStage;
+    private BarbarianAttackStage barbarianAttackStage;
 
     public static mapActor[][] mapActors;
 
@@ -95,6 +98,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         ingameMenu = new IngameMenu(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
         tipStage = new TipStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
+        barbarianAttackStage = new BarbarianAttackStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280,720)), getBatch(), game);
 
         prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
         preferences = Gdx.app.getPreferences(PlayScreen.PREFS);
@@ -465,6 +469,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         if(TimeStepper.vege){
             preferences.putString(PlayScreen.PREFS,"");
             prefstatistic.putString(PlayScreen.PREFstatistic,"");
+            //tamadasTextActor.remove();
             dispose();
             game.setScreen(new EndScreen(game), false);
         }
@@ -502,7 +507,6 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             tuz();
         }
 
-
         if(tipNap == 3){
             tipNap = 0;
             tipStage.Visibility(true);
@@ -511,6 +515,8 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
             tipNap = 0;
             tipStage.Visibility(false);
         }
+
+        barbarianAttackStage.setVisibiliy(TimeStepper.megtamadtak);
 
     }
 
@@ -801,12 +807,14 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
     @Override
     public void draw() {
         super.draw();
+        barbarianAttackStage.draw();
         ingameMenu.draw();
         tipStage.draw();
     }
 
     @Override
     public void dispose() {
+        barbarianAttackStage.dispose();
         ingameMenu.dispose();
         tipStage.dispose();
         super.dispose();

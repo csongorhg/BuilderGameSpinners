@@ -11,8 +11,8 @@ public class TamadasTextActor extends MyLabel {
 
     private float elapseTime;
 
-    public TamadasTextActor(LabelStyle style, float x, float y) {
-        super("You have been attacked!", style);
+    public TamadasTextActor(String s,LabelStyle style, float x, float y) {
+        super(s, style);
         this.elapseTime = 0;
         setPosition(x-this.getWidth()/2-128,y);
     }
@@ -24,6 +24,8 @@ public class TamadasTextActor extends MyLabel {
         elapseTime += delta;
         if (elapseTime > 2) {
             TimeStepper.megtamadtak = false;
+            System.out.println("Törölt?");
+            this.remove();
         }
 
     }

@@ -41,6 +41,7 @@ public class IngameMenu extends MyStage {
     private OneSpriteStaticActor faActor, koActor, aranyActor, nepActor, etelActor, katonaActor;
     private float width, height;
 
+
     public IngameMenu(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
         Gdx.input.setInputProcessor(this);
@@ -139,7 +140,6 @@ public class IngameMenu extends MyStage {
 
     }
 
-    TamadasTextActor tamadasTextActor = null;
 
     @Override
     public void act(float delta) {
@@ -165,22 +165,6 @@ public class IngameMenu extends MyStage {
 
         katonaLabel.setText(Units.getEro()+"");
         napLabel.setText("DAY "+TimeStepper.elteltnap);
-
-
-        tamadas(TimeStepper.megtamadtak);
-    }
-
-    private void tamadas(boolean b){
-        if(b) {
-            if (tamadasTextActor == null) {
-                addActor(tamadasTextActor = new TamadasTextActor(game.getLabelStyle(80), getViewport().getWorldWidth()/2, getViewport().getWorldHeight()/2));
-                tamadasTextActor.setZIndex(Integer.MAX_VALUE);
-            }
-        }
-        else if(tamadasTextActor != null && !b){
-            tamadasTextActor.remove();
-            tamadasTextActor = null;
-        }
     }
 
     @Override
