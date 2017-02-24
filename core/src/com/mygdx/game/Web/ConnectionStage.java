@@ -81,7 +81,8 @@ public class ConnectionStage extends MyStage{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                httpCommand = new HttpCommand("http://spinner.localhost/index.php"){
+                //httpCommand = new HttpCommand("http://spinner.localhost/index.php"){
+                httpCommand = new HttpCommand("http://193.224.143.135:9999"){
                     @Override
                     protected void failed(HttpErrors httpErrors) {
 

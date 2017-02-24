@@ -24,7 +24,7 @@ private MyTimerActor myTimerActor;
     public BattleListStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
         pref_user_pw = Gdx.app.getPreferences(ConnectionScreen.PREFS);
-        httpCommand = new HttpCommand("http://spinner.localhost/index.php") {
+        httpCommand = new HttpCommand("http://193.224.143.135:9999"){
             @Override
             protected void failed(HttpErrors httpErrors) {
 
