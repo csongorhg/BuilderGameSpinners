@@ -17,10 +17,11 @@ import com.mygdx.game.MyGdxGame;
 public class ConnectionScreen extends MyScreen {
 
     private ConnectionStage connectionStage;
+
+
     private MyStage bgStage;
 
     public static final String PREFS = "USER_PW";
-
     private Preferences preferences = Gdx.app.getPreferences(PREFS);
 
     public ConnectionScreen(MyGdxGame game) {
@@ -36,7 +37,6 @@ public class ConnectionScreen extends MyScreen {
 
         connectionStage.act(delta);
         connectionStage.draw();
-
 
     }
 
@@ -74,18 +74,19 @@ public class ConnectionScreen extends MyScreen {
         connectionStage = new ConnectionStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
         Gdx.input.setInputProcessor(connectionStage);
 
+
     }
 
     @Override
     public void dispose() {
-        preferences.flush();
         connectionStage.dispose();
         super.dispose();
+        preferences.flush();
     }
 
     @Override
     public void hide() {
-        preferences.flush();
         super.hide();
+        preferences.flush();
     }
 }

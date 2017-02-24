@@ -449,7 +449,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         //város pozicionálása
         if (!cityIsPositioned) {
-            setCameraMoveToXY(cityActor.getX(), cityActor.getY() + cityActor.getHeight() + 128, 2, 9999);
+            //System.out.println(cityActor.getWidth()+","+cityActor.getHeight());
+            //valamiért 256ot nem adja vissza a getwidth, getheight
+            setCameraMoveToXY(cityActor.getX() +256, cityActor.getY() + 256 , 2, 9999);
             cityIsPositioned = true;
         }
 

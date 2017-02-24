@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Created by tanulo on 2017. 02. 22..
  */
-public class ConnectionStage extends MyStage{
+public class ConnectionStage extends MyStage {
 
     private MyTextField user, password;
     private MyLabel userLabel, passwordLabel, title;
@@ -37,61 +37,69 @@ public class ConnectionStage extends MyStage{
 
     private HttpCommand httpCommand = null;
 
+    private MyLabel informLabel;
+
     public ConnectionStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
 
     @Override
     public void init() {
-
-
-
         pref_user_pw = Gdx.app.getPreferences(ConnectionScreen.PREFS);
 
-        userLabel = new MyLabel("Username: ",game.getLabelStyle(50));
+        userLabel = new MyLabel("Username: ", game.getLabelStyle(50));
         userLabel.setAlignment(Align.center);
-        userLabel.setSize(getViewport().getWorldWidth()/2,userLabel.getHeight());
-        userLabel.setPosition(0,getViewport().getWorldHeight()/2);
+        userLabel.setSize(getViewport().getWorldWidth() / 2, userLabel.getHeight());
+        userLabel.setPosition(0, getViewport().getWorldHeight() / 2);
         addActor(userLabel);
 
         //user = new MyTextField(pref_user_pw.getString(ConnectionScreen.PREFS,"").equals("") ? "" : pref_user_pw.getString(ConnectionScreen.PREFS,"").split("\t")[0],game.getTextFieldStyle());
-        user = new MyTextField(pref_user_pw.getString("user",""),game.getTextFieldStyle());
-        user.setWidth(getViewport().getWorldWidth()/8*3);
-        user.setPosition(getViewport().getWorldWidth()/2,userLabel.getY());
+        user = new MyTextField(pref_user_pw.getString("user", ""), game.getTextFieldStyle());
+        user.setWidth(getViewport().getWorldWidth() / 8 * 3);
+        user.setPosition(getViewport().getWorldWidth() / 2, userLabel.getY());
         addActor(user);
 
-        passwordLabel = new MyLabel("Password:",game.getLabelStyle(50));
+        passwordLabel = new MyLabel("Password:", game.getLabelStyle(50));
         passwordLabel.setAlignment(Align.center);
-        passwordLabel.setSize(getViewport().getWorldWidth()/2,passwordLabel.getHeight());
-        passwordLabel.setPosition(0,getViewport().getWorldHeight()/2-passwordLabel.getHeight());
+        passwordLabel.setSize(getViewport().getWorldWidth() / 2, passwordLabel.getHeight());
+        passwordLabel.setPosition(0, getViewport().getWorldHeight() / 2 - passwordLabel.getHeight());
         addActor(passwordLabel);
 
-        password = new MyTextField(pref_user_pw.getString("password",""),game.getTextFieldStyle());
-        password.setWidth(getViewport().getWorldWidth()/8*3);
-        password.setPosition(getViewport().getWorldWidth()/2,passwordLabel.getY());
+        password = new MyTextField(pref_user_pw.getString("password", ""), game.getTextFieldStyle());
+        password.setWidth(getViewport().getWorldWidth() / 8 * 3);
+        password.setPosition(getViewport().getWorldWidth() / 2, passwordLabel.getY());
         addActor(password);
 
-        title = new MyLabel("Connect to online battle",game.getLabelStyle(100));
-        title.setPosition(getViewport().getWorldWidth()/2-title.getWidth()/2,userLabel.getY()+userLabel.getHeight() + (getViewport().getWorldHeight() - (userLabel.getY()+userLabel.getHeight()))/2 - title.getHeight()/2);
+        title = new MyLabel("Connect to online battle", game.getLabelStyle(100));
+        title.setPosition(getViewport().getWorldWidth() / 2 - title.getWidth() / 2, userLabel.getY() + userLabel.getHeight() + (getViewport().getWorldHeight() - (userLabel.getY() + userLabel.getHeight())) / 2 - title.getHeight() / 2);
         addActor(title);
 
-        submit = new MyButton("CONNECT",game.getTextButtonStyle(100));
-        submit.setPosition(getViewport().getWorldWidth()/2-submit.getWidth()/2, 10);
-        submit.addListener(new ClickListener(){
+        submit = new MyButton("CONNECT", game.getTextButtonStyle(100));
+        submit.setPosition(getViewport().getWorldWidth() / 2 - submit.getWidth() / 2, 10);
+        submit.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                //httpCommand = new HttpCommand("http://spinner.localhost/index.php"){
-                httpCommand = new HttpCommand("http://193.224.143.135:9999"){
-                    @Override
-                    protected void failed(HttpErrors httpErrors) {
 
-                    }
+                if (!user.getText().equals("") && !password.getText().equals("") &&
+                        user.getText().length() >= 4 && user.getText().length() <= 10 &&
+                        password.getText().length() >= 4 && password.getText().length() <= 10) {
 
-                    @Override
-                    protected void responsed() {
-                        System.out.println("Üzenet: " + getReceive().get("message"));
-                        int m = Integer.valueOf(getReceive().get("message"));
+                    informLabel.setText("Connecting...");
+                    informLabel.setPosition(getViewport().getWorldWidth() / 2 - informLabel.getWidth() / 2, submit.getY() + submit.getHeight() + informLabel.getHeight());
+                    informLabel.setAlignment(Align.center);
+
+                    //httpCommand = new HttpCommand("http://spinner.localhost/index.php"){
+                    httpCommand = new HttpCommand("http://193.224.143.135:9999") {
+                        @Override
+                        protected void failed(HttpErrors httpErrors) {
+
+                        }
+
+                        @Override
+                        protected void responsed() {
+                            System.out.println("Üzenet: " + getReceive().get("message"));
+                            int m = Integer.valueOf(getReceive().get("message"));
                             switch (m) {
                                 case 41:
                                     nextScreen = 41;
@@ -104,27 +112,38 @@ public class ConnectionStage extends MyStage{
                                     break;
 
                             }
-                    }
-                };
-                httpCommand.getSend().put("user",user.getText());
-                httpCommand.getSend().put("password",password.getText());
-                httpCommand.getSend().put("message", String.valueOf(MessageTypes.CONNECT.value));
-                httpCommand.getSend().put("offense_soldier","99");
-                httpCommand.getSend().put("defense_soldier","111");
-                httpCommand.sendCommand();
-                pref_user_pw.putString("user", user.getText());
-                pref_user_pw.putString("password", password.getText());
+                        }
+                    };
+                    httpCommand.getSend().put("user", user.getText());
+                    httpCommand.getSend().put("password", password.getText());
+                    httpCommand.getSend().put("message", String.valueOf(MessageTypes.CONNECT.value));
+                    httpCommand.getSend().put("offense_soldier", "99");
+                    httpCommand.getSend().put("defense_soldier", "111");
+                    httpCommand.sendCommand();
+                    pref_user_pw.putString("user", user.getText());
+                    pref_user_pw.putString("password", password.getText());
+                } else {
+                    informLabel.setText("Bad incredential(s)!");
+                    informLabel.setPosition(getViewport().getWorldWidth() / 2 - informLabel.getWidth() / 2, submit.getY() + submit.getHeight() + informLabel.getHeight());
+                    informLabel.setAlignment(Align.center);
+                }
+
+
             }
         });
         addActor(submit);
+
+        informLabel = new MyLabel("Enter your username & password", game.getLabelStyle(50));
+        informLabel.setPosition(getViewport().getWorldWidth() / 2 - informLabel.getWidth() / 2, submit.getY() + submit.getHeight() + informLabel.getHeight());
+        addActor(informLabel);
     }
 
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (nextScreen!=0){
-            switch (nextScreen){
+        if (nextScreen != 0) {
+            switch (nextScreen) {
                 case 41:
                     game.setScreen(new BattleListScreen(game));
                     break;
