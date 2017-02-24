@@ -22,6 +22,12 @@ import java.util.Stack;
 
 public class MyGdxGame extends Game {
 
+	//tél-nyár javitás
+	//connecting.. ablak
+	//zene?
+	//csata
+	//betöltéskor az épitőmenü
+
 	public final Stack<Class> backButtonStack = new Stack();
 
 	public Label.LabelStyle getLabelStyle() {

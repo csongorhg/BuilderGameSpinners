@@ -469,6 +469,7 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
         if (TimeStepper.elteltnap != nap) {
             tuzTorles();
+            if (Statistics.epuletekszama <= Statistics.kutakszama * 5) TimeStepper.tuzvan = false;
             mapSave();
             statisticSave();
         }
@@ -517,28 +518,28 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
                 if (mapActors[i][j].isFire()) {
                     if (mapActors[i][j] instanceof FishDock) {
                         ujEpulet(i, j, new WaterAsh(i, j,128,128));
-                        Statistics.epuletekszama--;
+                        //Statistics.epuletekszama--;
                         Buildings.lerombol("farm");
+                        System.out.println("éljenek a staticok");
                     }
                     else {
-                        ujEpulet(i, j, new Ash(i, j,128,128));
                         if(mapActors[i][j] instanceof WoodCutter) {
-                            Statistics.epuletekszama--;
+                            //Statistics.epuletekszama--;
                             Buildings.lerombol("faKitermelo");
                         }
                         else if(mapActors[i][j] instanceof StoneWorker){
-                            Statistics.epuletekszama--;
+                            //Statistics.epuletekszama--;
                             Buildings.lerombol("banya");
                         }
                         else if(mapActors[i][j] instanceof Barrack){
-                            Statistics.epuletekszama--;
+                            //Statistics.epuletekszama--;
                             Buildings.lerombol("kikepzo");
                         }
                         else if(mapActors[i][j] instanceof House){
-                            Statistics.epuletekszama--;
+                            //Statistics.epuletekszama--;
                             Buildings.lerombol("haz");
                         }
-
+                        ujEpulet(i, j, new Ash(i, j,128,128));
                     }
                 }
             }

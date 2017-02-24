@@ -38,7 +38,7 @@ public class TipStage extends MyStage {
         tips.add("House pays 1 coin every day.");
         tips.add("You need to pay service pay to soldiers.");
         tips.add("Mine produces 3 stones, 1 coin each day.");
-        tips.add("Woodcuter produces 3 stones each day.");
+        tips.add("Woodcutter produces 3 woods each day.");
         tips.add("People consume 1 wood/day during winter.");
 
 

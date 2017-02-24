@@ -15,7 +15,7 @@ public class FireAtlas extends OneSpriteAnimatedActor{
         //super("explosion.atlas");
         super(Assets.manager.get(Assets.FIRE_TEXTUREATLAS));
         setSize(128,128);
-        setFps(10);
+        setFps(6);
         dx = (float)Math.random()*400f-200f;
         dy = (float)Math.random()*100f-30f;
     }

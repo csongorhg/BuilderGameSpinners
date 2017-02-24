@@ -5,15 +5,15 @@ package com.mygdx.game.PlayingMechanism;
  */
 
 public class Buildings {
-
-    public static Building haz = new Building(-2,-6,-3,-2,-5,1,-2,0,0,1,0,0,0,0,0);
-    public static Building banya =new Building(-2,0,-5,0,-4,0,0,0,3,2,0,0,0,0,0);
-    public static Building farm =new Building(-1,0,-3,-3,-2,0,2,0,0,0,0,0,0,0,0);
-    public static Building farmnagy =new Building(-5,0,-10,0,-10,0,10,0,0,0,0,0,0,0,0);
-    public static Building faKitermelo =new Building(-2,0,0,-3,-2,0,0,3,0,0,0,0,0,0,0);
-    public static Building kut = new Building(0,0,-5,-5,-1,0,0,0,0,0,0,0,0,0,0);
-    public static Building hid = new Building(0,0,-10,-50,0,0,0,0,0,0,0,0,0,0,0);
-    public static Building kikepzo = new Building(-15,-15,-15,-15,-15,0,0,0,0,0,0,0,0,0,0);
+    //populáció, hus, fa, kö, arany
+    public static Building haz = new Building(-2,-6,-3,-2,-5,           1,0,0,0,1,0,0,0,0,0);
+    public static Building banya =new Building(-2,0,-5,0,-4,            0,0,0,3,2,0,0,0,0,0);
+    public static Building farm =new Building(-1,0,-3,-3,-2,            0,2,0,0,0,0,0,0,0,0);
+    public static Building farmnagy =new Building(-5,0,-10,0,-10,       0,10,0,0,0,0,0,0,0,0);
+    public static Building faKitermelo =new Building(-2,0,0,-3,-2,      0,0,3,0,0,0,0,0,0,0);
+    public static Building kut = new Building(0,0,-5,-5,-1,             0,0,0,0,0,0,0,0,0,0);
+    public static Building hid = new Building(0,0,-10,-50,0,            0,0,0,0,0,0,0,0,0,0);
+    public static Building kikepzo = new Building(-15,-15,-15,-15,-15,  0,0,0,0,0,0,0,0,0,0);
 
     public static boolean epuletFejlesztes(String kod){
         Building b = null;
@@ -89,6 +89,8 @@ public class Buildings {
         Statistics.koValt += -b.koNaponta;
         Statistics.kajaValt += -b.kajaNaponta;
         Statistics.lakosokszamaValt += -b.lakossagNaponta;
+        Statistics.epuletekszama--; //1épület lebontása a tüz által
+        System.out.println("épületszám "+Statistics.epuletekszama);
     }
 
 }
