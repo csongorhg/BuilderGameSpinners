@@ -41,13 +41,16 @@ public class Generator {
             for(int j = 0; j<WORLD[0].length;j++){
                 WORLD[j][elso]= 1;
                 //szélesítés
-                if(elso > 1)WORLD[j][elso-1] = 1;
-                if(elso > 2)WORLD[j][elso-2] = 1;
-                if(elso < WORLD.length-2)WORLD[j][elso+1] = 1;
+                if(elso > 4)WORLD[j][elso-1] = 1;
+                else WORLD[j][elso+1] = 1;
+                if(elso > 5)WORLD[j][elso-2] = 1;
+                else WORLD[j][elso+2] = 1;
+                if(elso < WORLD.length-5)WORLD[j][elso+1] = 1;
+                else WORLD[j][elso-1] = 1;
                 //if(elso < WORLD.length-3)WORLD[j][elso+2] = 1;
                 //lefele
-                if(elso == 0) elso += vel(0,1);
-                else if (elso == WORLD.length-1) elso -=vel(0,1);
+                if(elso < 5) elso += vel(0,1);
+                else if (elso > WORLD.length-6) elso -=vel(0,1);
                 else elso+= gachivel();
             }
 

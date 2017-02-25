@@ -47,6 +47,7 @@ public class ConnectionStage extends MyStage {
 
     @Override
     public void init() {
+        addBackEventStackListener();
         pref_user_pw = Gdx.app.getPreferences(ConnectionScreen.PREFS);
 
         userLabel = new MyLabel("Username: ", game.getLabelStyle(50));
