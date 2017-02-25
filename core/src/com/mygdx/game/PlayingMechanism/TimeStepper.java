@@ -82,8 +82,12 @@ public class TimeStepper {
             Units.kivon(Units.getLetszam() - kaja);
             kaja = 0;
         }
-
-        arany -= Units.getZsold();
+        if(arany > Units.getZsold()){
+            arany -= Units.getZsold();
+        } else {
+            Units.kivon(Units.getLetszam() - arany);
+            arany = 0;
+        }
 
         if (kaja > lakosokszama) {
             kaja -= lakosokszama;

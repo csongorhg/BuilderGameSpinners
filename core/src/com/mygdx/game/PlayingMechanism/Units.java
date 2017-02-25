@@ -93,6 +93,7 @@ public class Units {
             fa -= agyusKoltseg[1];
             ko -= agyusKoltseg[2];
             arany -= agyusKoltseg[3];
+            aranyValt -= 4;
             agyusLetszam++;
         }
     }
@@ -103,6 +104,7 @@ public class Units {
             fa -= lovasKoltseg[1];
             ko -= lovasKoltseg[2];
             arany -= lovasKoltseg[3];
+            aranyValt -=3;
             lovasLetszam++;
         }
     }
@@ -113,6 +115,7 @@ public class Units {
             fa -= kardosKoltseg[1];
             ko -= kardosKoltseg[2];
             arany -= kardosKoltseg[3];
+            aranyValt --;
             kardosLetszam++;
         }
     }
@@ -123,6 +126,7 @@ public class Units {
             fa -= ijjaszKoltseg[1];
             ko -= ijjaszKoltseg[2];
             arany -= ijjaszKoltseg[3];
+            aranyValt -= 2;
             ijjaszLetszam++;
         }
     }
