@@ -174,11 +174,11 @@ public class MapActorGrassStage extends MapActorStage {
             //haz
             alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight()+banya.getHeight(),"5","2","3","6","2");
             //banya
-            alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight(),"4","0","5","0","2");
+            alapAnyagok(getViewport().getWorldHeight()/2+favago.getHeight(),"1","0","7","2","2");
             //fakitermelő
             alapAnyagok(getViewport().getWorldHeight()/2,"2","3","0","0","2");
             //kaszárnya
-            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","15","15","15","15");
+            alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight(),"15","10","5","15","5");
             //malom
             alapAnyagok(getViewport().getWorldHeight()/2-barrak.getHeight()-mezo.getHeight(),"10","0","10","0","5");
             //kut

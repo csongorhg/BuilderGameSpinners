@@ -51,83 +51,37 @@ public class MapActorBarrackStage extends MapActorStage {
 
 
         //sword
-        alapAnyagok(getViewport().getWorldHeight()/2-meret/3+bow.getHeight(),"3","1","3","1","0");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
+        alapAnyagok(getViewport().getWorldHeight()/2-meret/3+bow.getHeight(),"2","4","3","0","1");
         //bow
-        alapAnyagok(getViewport().getWorldHeight()/2-meret/3,"1","1","2","1","0");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
+        alapAnyagok(getViewport().getWorldHeight()/2-meret/3,"6","2","7","0","1");
         //horse
-        alapAnyagok(getViewport().getWorldHeight()/2-meret/3-horse.getHeight(),"1","1","4","2","0");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
-
+        alapAnyagok(getViewport().getWorldHeight()/2-meret/3-horse.getHeight(),"9","8","9","0","3");
         //cannon
-        alapAnyagok(getViewport().getWorldHeight()/2-meret/3-horse.getHeight()-cannon.getHeight(),"2","3","5","3","0");
-        getActorGroup().addActor(aranySprite);
-        getActorGroup().addActor(koSprite);
-        getActorGroup().addActor(faSprite);
-        getActorGroup().addActor(husSprite);
-        getActorGroup().addActor(emberSprite);
-
-        getActorGroup().addActor(aranyLabel);
-        getActorGroup().addActor(koLabel);
-        getActorGroup().addActor(faLabel);
-        getActorGroup().addActor(husLabel);
-        getActorGroup().addActor(emberLabel);
+        alapAnyagok(getViewport().getWorldHeight()/2-meret/3-horse.getHeight()-cannon.getHeight(),"10","13","9","0","4");
 
     }
 
     private void alapAnyagok(float yPos, String aranyl, String kol, String fal, String husl, String emberl){
         aranySprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
-        aranySprite.setSize(meretek,meretek);
-        aranySprite.setPosition(meret/2,yPos);
+        aranySprite.setSize(picSize/4,picSize/4);
+        aranySprite.setPosition(picSize,yPos+picSize/8);
 
         koSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
-        koSprite.setSize(meretek,meretek);
-        koSprite.setPosition(meret/2,yPos+aranySprite.getHeight());
+        koSprite.setSize(picSize/4,picSize/4);
+        koSprite.setPosition(picSize,yPos+picSize/8+aranySprite.getHeight());
 
         faSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
-        faSprite.setSize(meretek,meretek);
-        faSprite.setPosition(meret/2,yPos+koSprite.getHeight()+aranySprite.getHeight());
-
-        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
-        husSprite.setSize(meretek,meretek);
-        husSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight()+aranySprite.getHeight());
+        faSprite.setSize(picSize/4,picSize/4);
+        faSprite.setPosition(picSize,yPos+picSize/8+koSprite.getHeight()+aranySprite.getHeight());
 
         emberSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
-        emberSprite.setSize(meretek,meretek);
-        emberSprite.setPosition(meret/2+meret/4, yPos+koSprite.getHeight());
+        emberSprite.setSize(picSize/4,picSize/4);
+        emberSprite.setPosition(picSize+picSize/2, yPos+picSize/4);
+
+        husSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
+        husSprite.setSize(picSize/4,picSize/4);
+        husSprite.setPosition(picSize+picSize/2, yPos+emberSprite.getHeight()+picSize/4);
+
 
         aranyLabel = new MyLabel(aranyl,game.getLabelStyle(25));
         koLabel = new MyLabel(kol,game.getLabelStyle(25));
@@ -135,12 +89,25 @@ public class MapActorBarrackStage extends MapActorStage {
         husLabel = new MyLabel(husl,game.getLabelStyle(25));
         emberLabel = new MyLabel(emberl,game.getLabelStyle(25));
 
-        aranyLabel.setPosition(meret/2+aranySprite.getWidth(),yPos);
-        koLabel.setPosition(meret/2+koSprite.getWidth(), yPos+aranySprite.getHeight());
-        faLabel.setPosition(meret/2+faSprite.getWidth(), yPos+aranySprite.getHeight()+koSprite.getHeight());
+        aranyLabel.setPosition(picSize+aranySprite.getWidth(),aranySprite.getY());
+        koLabel.setPosition(picSize+koSprite.getWidth(), koSprite.getY());
+        faLabel.setPosition(picSize+faSprite.getWidth(), faSprite.getY());
+        husLabel.setPosition(picSize+picSize/2+husSprite.getWidth(), husSprite.getY());
+        emberLabel.setPosition(picSize+picSize/2+emberSprite.getWidth(), emberSprite.getY());
 
-        husLabel.setPosition(meret/2+meret/4+husSprite.getWidth(), yPos+koSprite.getHeight());
-        emberLabel.setPosition(meret/2+meret/4+emberSprite.getWidth(), yPos+koSprite.getHeight()+husSprite.getHeight());
+
+
+        getActorGroup().addActor(aranySprite);
+        getActorGroup().addActor(koSprite);
+        getActorGroup().addActor(faSprite);
+        getActorGroup().addActor(husSprite);
+        getActorGroup().addActor(emberSprite);
+
+        getActorGroup().addActor(aranyLabel);
+        getActorGroup().addActor(koLabel);
+        getActorGroup().addActor(faLabel);
+        getActorGroup().addActor(husLabel);
+        getActorGroup().addActor(emberLabel);
     }
 
     @Override

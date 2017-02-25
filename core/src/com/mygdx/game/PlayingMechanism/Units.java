@@ -18,18 +18,18 @@ public class Units {
     static int agyusEro = 4;
 
 
-    //lakos,fa,ko,arany
-    public static int[] kardosKoltseg = {1,1,1,2};
-    public static int[] ijjaszKoltseg = {1,3,1,3};
-    public static int[] lovasKoltseg = {2,1,1,4};
-    public static int[] agyusKoltseg = {3,2,3,5};
+                                  //lakos,fa,ko,arany  2      3        4           12            4
+    public static int[] kardosKoltseg = {1,3,4,2}; //6,8,4  9,12,6  12,16, 8   12,36,48,24
+    public static int[] ijjaszKoltseg = {1,7,2,6}; //       10,6,8  14, 4,12    6,42,12,36   13,10,10
+    public static int[] lovasKoltseg = {3,9,8,9};  //               12,12,11   12,36,32,36
+    public static int[] agyusKoltseg = {4,9,13,10};//                9,13,10   12,27,39,30
 
     static public int getLetszam(){
         int i = 0;
         i+=kardosLetszam;
         i+=ijjaszLetszam;
-        i+=lovasLetszam*lovasKoltseg[0];
-        i+=agyusLetszam*agyusKoltseg[0];
+        i+=lovasLetszam*(lovasKoltseg[0]-1);
+        i+=agyusLetszam*(agyusKoltseg[0]-1);
         return i;
     }
     
