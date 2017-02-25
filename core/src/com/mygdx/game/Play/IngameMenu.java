@@ -152,7 +152,7 @@ public class IngameMenu extends MyStage {
 
         faLabelValt.setText((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama- Units.getLetszam()))+"");
         koLabelValt.setText(Statistics.koValt+"");
-        aranyLabelValt.setText(Statistics.aranyValt-Units.getZsold()+"");
+        aranyLabelValt.setText(Statistics.aranyValt+"");
         etelLabelValt.setText((Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam())+"");
         nepLabelValt.setText(Statistics.lakosokszamaValt-Statistics.getlakosValt()+"");
 
