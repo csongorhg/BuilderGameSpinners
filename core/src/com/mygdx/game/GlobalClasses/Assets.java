@@ -8,7 +8,6 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -212,18 +211,7 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Interface/hid.png", Texture.class);
 	public static final AssetDescriptor<Texture> REDX
 			= new AssetDescriptor<Texture>("Interface/redX.png", Texture.class);
-	public static final AssetDescriptor<Texture> FIGHT
-			= new AssetDescriptor<Texture>("Interface/fight.png", Texture.class);
-	public static final AssetDescriptor<Texture> FIGHTBLUE
-			= new AssetDescriptor<Texture>("Interface/fightblue.png", Texture.class);
-	public static final AssetDescriptor<Texture> FIGHTGREEN
-			= new AssetDescriptor<Texture>("Interface/fightgreen.png", Texture.class);
-	public static final AssetDescriptor<Texture> FIGHTRED
-			= new AssetDescriptor<Texture>("Interface/fightred.png", Texture.class);
-	public static final AssetDescriptor<Texture> MINUSZ
-			= new AssetDescriptor<Texture>("Interface/sminusz.png", Texture.class);
-	public static final AssetDescriptor<Texture> PLUSZ
-			= new AssetDescriptor<Texture>("Interface/splusz.png", Texture.class);
+
 	//barrackban képezhető egységek
 	public static final AssetDescriptor<Texture> CANNON_MAN
 			= new AssetDescriptor<Texture>("Interface/cannon.png", Texture.class);
@@ -299,10 +287,27 @@ public class Assets {
 	public static final AssetDescriptor<Texture> TIP_BG
 			= new AssetDescriptor<Texture>("Interface/tipBackground.png", Texture.class);
 
-	//web háttér
+	//web
 	public static final AssetDescriptor<Texture> WEB_BG
 			= new AssetDescriptor<Texture>("Web/worldmap.png", Texture.class);
-
+	public static final AssetDescriptor<Texture> MIN
+			= new AssetDescriptor<Texture>("Web/min.png", Texture.class);
+	public static final AssetDescriptor<Texture> MAX
+			= new AssetDescriptor<Texture>("Web/max.png", Texture.class);
+	public static final AssetDescriptor<Texture> MINUSZ_JEL
+			= new AssetDescriptor<Texture>("Web/sminusz.png", Texture.class);
+	public static final AssetDescriptor<Texture> PLUSZ_JEL
+			= new AssetDescriptor<Texture>("Web/splusz.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHT
+			= new AssetDescriptor<Texture>("Web/fight.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHTBLUE
+			= new AssetDescriptor<Texture>("Web/fightblue.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHTGREEN
+			= new AssetDescriptor<Texture>("Web/fightgreen.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIGHTRED
+			= new AssetDescriptor<Texture>("Web/fightred.png", Texture.class);
+	public static final AssetDescriptor<Texture> TEXT_BG
+			= new AssetDescriptor<Texture>("Web/textbackground.png", Texture.class);
 
 
 	public static void prepare() {
@@ -320,13 +325,14 @@ public class Assets {
 
 
 
-		//TEXTURA
+		//MENU
 		manager.load(SOUND);
 		manager.load(NOSOUND);
 		manager.load(GATEWALL);
 		manager.load(GRID);
 		manager.load(WALL);
 
+		//TILES
 		manager.load(FOG);
 		manager.load(GRASS_BLOCK);
 		manager.load(WATER_BLOCK);
@@ -340,6 +346,7 @@ public class Assets {
 		manager.load(KO1_SNOW);
 		manager.load(KO2_SNOW);
 
+		//BUILDINGS
 		manager.load(HOUSE);
 		manager.load(STONE_WORKER);
 		manager.load(WOOD_WORKER);
@@ -349,40 +356,9 @@ public class Assets {
 		manager.load(FAVAGO);
 		manager.load(HALASZ);
 		manager.load(KUT);
+		manager.load(HAMU);
 
-		manager.load(ARANY);
-		manager.load(HAZ);
-		manager.load(MEAT);
-		manager.load(MEZO);
-		manager.load(PEOPLE);
-		manager.load(STONE);
-		manager.load(WOOD);
-
-		manager.load(FAHATTER);
-		manager.load(KIJELOLES);
-		manager.load(REDX);
-
-		manager.load(MILL);
-		manager.load(MILLMEZO);
-		manager.load(BRIDGE);
-		manager.load(BARRACK);
-		manager.load(FISHDOCK);
-		manager.load(WATER_WELL);
-		manager.load(HID);
-
-		manager.load(CANNON_MAN);
-		manager.load(HORSE_MAN);
-		manager.load(SWORD_MAN);
-		manager.load(BOW_MAN);
-
-		manager.load(FIGHT);
-		manager.load(FIGHTBLUE);
-		manager.load(FIGHTGREEN);
-		manager.load(FIGHTRED);
-
-		manager.load(MINUSZ);
-		manager.load(PLUSZ);
-
+		//WINTER BUILDINGS
 		manager.load(FAVAGOSNOW);
 		manager.load(HALASZSNOW);
 		manager.load(HIDSNOW);
@@ -393,10 +369,38 @@ public class Assets {
 		manager.load(MEZOSNOW);
 		manager.load(VARSNOW);
 		manager.load(HAZSNOW);
-		manager.load(HAMU);
 		manager.load(HAMUSNOW);
 		manager.load(VIZ_HAMU);
 		manager.load(VIZ_HAMUSNOW);
+
+		//ICONS - INGAMEMENU
+		manager.load(ARANY);
+		manager.load(HAZ);
+		manager.load(MEAT);
+		manager.load(MEZO);
+		manager.load(PEOPLE);
+		manager.load(STONE);
+		manager.load(WOOD);
+
+		//ICONS - MAPACTORSTAGE
+		manager.load(MILL);
+		manager.load(MILLMEZO);
+		manager.load(BRIDGE);
+		manager.load(BARRACK);
+		manager.load(FISHDOCK);
+		manager.load(WATER_WELL);
+		manager.load(HID);
+
+		//ICONS - BARRACK
+		manager.load(CANNON_MAN);
+		manager.load(HORSE_MAN);
+		manager.load(SWORD_MAN);
+		manager.load(BOW_MAN);
+
+		//MAPACTORSTAGE
+		manager.load(FAHATTER);
+		manager.load(KIJELOLES);
+		manager.load(REDX);
 
 		//BUTTONS
 		manager.load(TEXTBUTTONDOWN);
@@ -407,7 +411,6 @@ public class Assets {
 		//ATLAS
 		manager.load(FIRE_TEXTUREATLAS);
 
-
 		//ZENE
 		manager.load(RELAXING);
 
@@ -415,12 +418,18 @@ public class Assets {
 		manager.load(TIP_BG);
 
 		//WEB
+		manager.load(FIGHT);
+		manager.load(FIGHTBLUE);
+		manager.load(FIGHTGREEN);
+		manager.load(FIGHTRED);
 		manager.load(WEB_BG);
+		manager.load(MAX);
+		manager.load(MIN);
+		manager.load(MINUSZ_JEL);
+		manager.load(PLUSZ_JEL);
+		manager.load(TEXT_BG);
 
-
-		//BETÜ
-		//manager.load(ACMEREGULAR_FONT50);
-
+		//FONTS
 		manager.load(ACMEREGULAR_FONT10);
 		manager.load(ACMEREGULAR_FONT25);
 		manager.load(ACMEREGULAR_FONT50);
