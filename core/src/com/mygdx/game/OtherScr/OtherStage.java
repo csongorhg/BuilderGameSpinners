@@ -105,4 +105,9 @@ public class OtherStage extends MyStage {
             MenuStage.music.play();
         }
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

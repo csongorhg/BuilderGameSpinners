@@ -25,6 +25,8 @@ public class LostConnectionStage extends MyStage {
 
     @Override
     public void init() {
+        addBackEventStackListener();
+
         MyLabel label = new MyLabel("You have lost your connection!",game.getLabelStyle(100));
         label.setPosition(getViewport().getWorldWidth()/2 - label.getWidth()/2, getViewport().getWorldHeight()/2 - label.getHeight()/2);
         addActor(label);
@@ -45,19 +47,23 @@ public class LostConnectionStage extends MyStage {
 
     }
 
-    /*@Override
+    @Override
     public void addBackEventStackListener() {
         addListener(new InputListener() {
 
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
                 if(keycode== Input.Keys.BACK || keycode == Input.Keys.BACKSPACE) {
-                    dispose();
                     game.backButtonStack.removeAllElements();
                     game.setScreen(new MenuScreen(game));
                 }
                 return true;
             }
         });
-    }*/
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

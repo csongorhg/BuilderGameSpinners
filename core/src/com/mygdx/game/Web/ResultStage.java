@@ -18,4 +18,9 @@ public class ResultStage extends MyStage {
     public void init() {
 
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

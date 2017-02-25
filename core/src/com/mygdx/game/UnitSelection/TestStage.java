@@ -19,6 +19,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.Web.ConnectionScreen;
+import com.mygdx.game.Web.LostConnectionScreen;
 
 public class TestStage extends MyStage {
 
@@ -74,7 +75,8 @@ public class TestStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new ConnectionScreen(game));
+                //game.setScreen(new ConnectionScreen(game));
+                game.setScreen(new LostConnectionScreen(game));
             }
         });
 
@@ -456,4 +458,8 @@ public class TestStage extends MyStage {
         super.act(delta);
     }
 
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

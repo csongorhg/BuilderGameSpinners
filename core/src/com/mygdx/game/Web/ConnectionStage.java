@@ -155,4 +155,9 @@ public class ConnectionStage extends MyStage {
 
         }
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }
