@@ -17,6 +17,8 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.MyTextField;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayScreen;
+import com.mygdx.game.PlayingMechanism.Units;
+import com.mygdx.game.UnitSelection.TestStage;
 
 import java.util.Map;
 
@@ -75,6 +77,7 @@ public class ConnectionStage extends MyStage {
         addActor(title);
 
         submit = new MyButton("CONNECT", game.getTextButtonStyle(100));
+        submit.setSize(submit.getWidth()+submit.getWidth()/4,submit.getHeight());
         submit.setPosition(getViewport().getWorldWidth() / 2 - submit.getWidth() / 2, 10);
         submit.addListener(new ClickListener() {
             @Override
@@ -117,8 +120,8 @@ public class ConnectionStage extends MyStage {
                     httpCommand.getSend().put("user", user.getText());
                     httpCommand.getSend().put("password", password.getText());
                     httpCommand.getSend().put("message", String.valueOf(MessageTypes.CONNECT.value));
-                    httpCommand.getSend().put("offense_soldier", "99");
-                    httpCommand.getSend().put("defense_soldier", "111");
+                    httpCommand.getSend().put("offense_soldier", TestStage.osszletszam+"");
+                    httpCommand.getSend().put("defense_soldier", (int)(Units.getEro()*1.2)+"");
                     httpCommand.sendCommand();
                     pref_user_pw.putString("user", user.getText());
                     pref_user_pw.putString("password", password.getText());

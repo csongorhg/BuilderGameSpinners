@@ -434,13 +434,13 @@ public class TestStage extends MyStage {
 
         fight = new MyButton("Go Online", game.getTextButtonStyle(100));
         addActor(fight);
+        fight.setSize(fight.getWidth()+fight.getWidth()/4,fight.getHeight());
         fight.setPosition(width/2-fight.getWidth()/2, 0);
         fight.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setScreen(new ConnectionScreen(game));
-
             }
         });
 

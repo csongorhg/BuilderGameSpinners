@@ -72,7 +72,7 @@ public class IngameMenu extends MyStage {
         aranyLabel = new MyLabel(""+Statistics.arany, game.getLabelStyle(25,Color.WHITE));
         nepLabel = new MyLabel(""+Statistics.lakosokszama, game.getLabelStyle(25,Color.WHITE));
         etelLabel = new MyLabel(""+Statistics.kaja, game.getLabelStyle(25,Color.WHITE));
-        katonaLabel = new MyLabel(""+Units.getLetszam(), game.getLabelStyle(25,Color.WHITE));
+        katonaLabel = new MyLabel(""+Units.getEro(), game.getLabelStyle(25,Color.WHITE));
 
         faLabelValt = new MyLabel(""+Statistics.faValt, game.getLabelStyle(25,(Statistics.faValt>=0?Color.GREEN:Color.RED)));
         koLabelValt = new MyLabel(""+Statistics.koValt, game.getLabelStyle(25,(Statistics.koValt>=0?Color.GREEN:Color.RED)));
