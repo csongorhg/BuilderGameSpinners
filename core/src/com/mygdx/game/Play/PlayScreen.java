@@ -76,18 +76,18 @@ public class PlayScreen extends MyScreen{
 
     @Override
     public void dispose() {
+        super.dispose();
+        mapActorGlobalStage.dispose();
         playStage.dispose();
         prefstatistic.flush();
         preferences.flush();
-        mapActorGlobalStage.dispose();
-        super.dispose();
     }
 
     @Override
     public void hide() {
+        super.hide();
         prefstatistic.flush();
         preferences.flush();
-        super.hide();
     }
 
     @Override

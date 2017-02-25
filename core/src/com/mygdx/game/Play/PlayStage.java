@@ -450,12 +450,11 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
         super.act(delta);
 
         fixCamera();
-
         //város pozicionálása
         if (!cityIsPositioned) {
-            //System.out.println(cityActor.getWidth()+","+cityActor.getHeight());
             //valamiért 256ot nem adja vissza a getwidth, getheight
-            setCameraMoveToXY(cityActor.getX() +256, cityActor.getY() + 256 , 2, 9999);
+            setCameraMoveToXY(cityActor.getX() + mapActors[cityx][cityy].getActor().getWidth() * 2,
+                    cityActor.getY() + mapActors[cityx][cityy].getActor().getHeight() * 2, 2, 9999);
             cityIsPositioned = true;
         }
 
@@ -814,10 +813,9 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     @Override
     public void dispose() {
+        super.dispose();
         barbarianAttackStage.dispose();
         ingameMenu.dispose();
         tipStage.dispose();
-        super.dispose();
-
     }
 }
