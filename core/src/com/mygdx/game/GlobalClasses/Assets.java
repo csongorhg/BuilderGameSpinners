@@ -14,6 +14,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.physics.box2d.Joint;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
+
+import jdk.nashorn.api.scripting.JSObject;
+import jdk.nashorn.internal.ir.debug.JSONWriter;
+import jdk.nashorn.internal.parser.JSONParser;
 
 public class Assets {
 
@@ -309,6 +316,10 @@ public class Assets {
 	public static final AssetDescriptor<Texture> TEXT_BG
 			= new AssetDescriptor<Texture>("Web/textbackground.png", Texture.class);
 
+	//Dzsézön
+	/*public static final AssetDescriptor<Json> SCROLLLIST
+			= new AssetDescriptor<Json>("uiskin.json", Json.class);*/
+
 
 	public static void prepare() {
 		manager = new AssetManager();
@@ -436,6 +447,9 @@ public class Assets {
 		manager.load(ACMEREGULAR_FONT80);
 		manager.load(ACMEREGULAR_FONT100);
 		manager.load(ACMEREGULAR_FONT140);
+
+		//Dzsézön Sztetem
+		//manager.load(SCROLLLIST);
 	}
 
     public static void afterLoaded() {

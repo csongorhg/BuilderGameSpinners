@@ -14,6 +14,7 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.OtherScr.OtherScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayScreen;
+import com.mygdx.game.Web.BattleListScreen;
 import com.mygdx.game.Web.ConnectionScreen;
 
 /**
@@ -222,7 +223,8 @@ public class MenuStage extends MyStage {
                 switch (enumButton) {
                     case PLAY: game.setScreen(new PlayScreen(game)); break;
                     case MAPS: game.setScreen(new OtherScreen(game)); break;
-                    case QUIT: game.dispose(); System.exit(0);
+                    case QUIT: //game.dispose(); System.exit(0);
+                        game.setScreen(new BattleListScreen(game)); break;
                 }
             }
 
