@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -29,6 +30,11 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.MyTimerActor;
 import com.mygdx.game.MyGdxGame;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 /**
  * Created by tanulo on 2017. 02. 22..
  */
@@ -39,11 +45,9 @@ private MyTimerActor myTimerActor;
 
     private HttpCommand httpCommand = null;
     private Preferences pref_user_pw;
-
-    private static final String reallyLongString = "This\nIs\nA\nReally\nLong\nString\nThat\nHas\nLots\nOf\nLines\nAnd\nRepeats.\n"
-            + "This\nIs\nA\nReally\nLong\nString\nThat\nHas\nLots\nOf\nLines\nAnd\nRepeats.\n"
-            + "This\nIs\nA\nReally\nLong\nString\nThat\nHas\nLots\nOf\nLines\nAnd\nRepeats.\n";
-
+    List<String> list = new List<String>(game.getListStyle());
+    final MyLabel label = new MyLabel("", game.getLabelStyle());
+    final MyButton button = new MyButton("Play", game.getTextButtonStyle(140));
 
     public BattleListStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -56,6 +60,40 @@ private MyTimerActor myTimerActor;
 
             @Override
             protected void responsed() {
+
+                HashMap<String, String> hm = getReceive();
+                int m = Integer.valueOf(getReceive().get("message"));
+                switch (m) {
+                    case 404:
+                        break;
+                    case 11:
+                        /*
+                        final Random r = new Random();
+                        int rn;
+                        for(int i = 0; i<7; i++){
+                            hm.put("user" + i, String.valueOf(rn = r.nextInt(10)));
+                            System.out.print(rn);
+                        }
+                        */
+
+                        System.out.println();
+                        Array<String> users = new Array<String>();
+                        for (Map.Entry<String, String> entry : hm.entrySet()) {
+                            if (entry.getKey().contains("user") && entry.getKey().compareTo("user") != 0) {
+                                users.add(entry.getValue());
+                            }
+                        }
+                        list.getItems().clear();
+                        for (String s : users) {
+                            if (!list.getItems().contains(s, false)) {
+                                list.getItems().add(s);
+                            }
+                        }
+                        label.setVisible(list.getSelected() != null && list.getItems().contains(label.getText().toString(), false));
+                        button.setVisible(label.isVisible());
+                        break;
+
+                }
 
             }
         };
@@ -79,12 +117,14 @@ private MyTimerActor myTimerActor;
         myTimerActor.start();
         myTimerActor.setInterval(4);
 
-        final MyLabel label = new MyLabel("", game.getLabelStyle());
-        label.setPosition(700,500);
 
-        final MyButton button = new MyButton("Play", game.getTextButtonStyle(140));
+        label.setPosition(700,500);
+        label.setVisible(false);
+
+
         button.setSize(300,160);
         button.setPosition(700,300);
+        button.setVisible(false);
         button.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -92,31 +132,13 @@ private MyTimerActor myTimerActor;
             }
         });
 
-        final List list = new List(game.getListStyle());
-        list.getItems().add("asd");
-        list.getItems().add("123");
-        list.getItems().add("asdfgsd");
-        list.getItems().add("cvbvxckbmlcv");
-        list.getItems().add("aesd");
-        list.getItems().add("12xd3");
-        list.getItems().add("asxsdfgsd");
-        list.getItems().add("cdvdbvxckbmlcv");
-        list.getItems().add("axcsd");
-        list.getItems().add("1sc23");
-        list.getItems().add("asvsdfgsd");
-        list.getItems().add("cvxbvxckbmlcv");
-        list.getItems().add("asyxd");
-        list.getItems().add("12d3");
-        list.getItems().add("ascddfgsd");
-        list.getItems().add("cvvbavxckbmlcv");
         list.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println((String)list.getSelected());
-                label.setText((String)list.getSelected());
-                if (button.getStage()==null){
-                    BattleListStage.this.addActor(button);
-                }
+                System.out.println(list.getSelected());
+                label.setText(list.getSelected());
+                label.setVisible(true);
+                button.setVisible(true);
             }
         });
         ScrollPane scrollPane = new ScrollPane(list, game.getScrollPaneStyle());
@@ -125,6 +147,7 @@ private MyTimerActor myTimerActor;
         //scrollPane.setOverscroll(false, false);
         addActor(scrollPane);
         addActor(label);
+        addActor(button);
         list.setSize(640,list.getItems().size*list.getStyle().font.getLineHeight());
     }
 

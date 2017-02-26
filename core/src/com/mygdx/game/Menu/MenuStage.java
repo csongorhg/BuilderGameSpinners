@@ -224,7 +224,9 @@ public class MenuStage extends MyStage {
                     case PLAY: game.setScreen(new PlayScreen(game)); break;
                     case MAPS: game.setScreen(new OtherScreen(game)); break;
                     case QUIT: //game.dispose(); System.exit(0);
-                        game.setScreen(new BattleListScreen(game)); break;
+                        //game.setScreen(new BattleListScreen(game));
+                        game.setScreen(new ConnectionScreen(game));
+                        break;
                 }
             }
 

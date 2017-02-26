@@ -84,7 +84,6 @@ public class ConnectionStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-
                 if (!user.getText().equals("") && !password.getText().equals("") &&
                         user.getText().length() >= 4 && user.getText().length() <= 10 &&
                         password.getText().length() >= 4 && password.getText().length() <= 10) {
@@ -158,6 +157,7 @@ public class ConnectionStage extends MyStage {
 
     @Override
     public void dispose() {
+        pref_user_pw.flush();
         super.dispose();
     }
 }

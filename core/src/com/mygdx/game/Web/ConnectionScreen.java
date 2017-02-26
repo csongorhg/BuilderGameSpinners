@@ -79,13 +79,14 @@ public class ConnectionScreen extends MyScreen {
 
     @Override
     public void dispose() {
-        super.dispose();
         preferences.flush();
+        connectionStage.dispose();
+        super.dispose();
     }
 
     @Override
     public void hide() {
-        super.hide();
         preferences.flush();
+        super.hide();
     }
 }

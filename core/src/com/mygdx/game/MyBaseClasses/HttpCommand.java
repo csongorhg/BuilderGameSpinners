@@ -13,7 +13,7 @@ import java.util.Set;
  */
 
 abstract public class HttpCommand extends HttpConnect {
-    private static boolean locked = false;
+    private volatile static boolean locked = false;
     private HashMap<String, String> send = new HashMap<String, String>();
     private HashMap<String, String> receive = new HashMap<String, String>();
 
@@ -35,11 +35,13 @@ abstract public class HttpCommand extends HttpConnect {
         System.out.println("Send start");
         httpRequest.setContent(HttpMapUtil.mapToString(send));
         System.out.println(httpRequest.getContent());
+        Gdx.app.error("http", httpRequest.getContent());
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             @Override
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
                 String s;
                 System.out.println("Result:\n" + (s = httpResponse.getResultAsString()));
+                Gdx.app.error("http", s);
                 HttpCommand.this.response(HttpMapUtil.stringToMap(s));
                 locked = false;
             }
@@ -47,6 +49,7 @@ abstract public class HttpCommand extends HttpConnect {
             @Override
             public void failed(Throwable t) {
                 System.out.println("Send command failed: " + t.getMessage());
+                Gdx.app.error("http", "Send command failed: " + t.getMessage());
                 HttpCommand.this.failed(HttpErrors.timeout);
                 locked = false;
             }
