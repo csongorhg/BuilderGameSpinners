@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -63,6 +65,24 @@ public class MyGdxGame extends Game {
 				System.out.println("Nem kezelt betűméret!");
 		}
 		return style;
+	}
+
+
+	public List.ListStyle getListStyle(){
+		List.ListStyle l = new List.ListStyle();
+		l.selection = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXTBUTTONUP)));
+		l.font =  Assets.manager.get(Assets.ACMEREGULAR_FONT50);
+		l.fontColorSelected = Color.CYAN;
+		l.fontColorUnselected = Color.GOLD;
+		//l.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXT_BG)));
+
+		return l;
+	}
+
+	public ScrollPane.ScrollPaneStyle getScrollPaneStyle(){
+		ScrollPane.ScrollPaneStyle s = new ScrollPane.ScrollPaneStyle();
+		s.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXT_BG)));
+		return s;
 	}
 
 	public TextButton.TextButtonStyle getTextButtonStyle(int size) {
