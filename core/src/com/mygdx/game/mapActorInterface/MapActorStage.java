@@ -9,6 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.Play.PlayScreen;
+import com.mygdx.game.PlayingMechanism.Statistics;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
+import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.UnitSelection.TestScreen;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyStage;
@@ -224,8 +228,6 @@ public class MapActorStage extends MyStage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setScreen(new TestScreen(game));
-                //game.setScreen(new LostConnectionScreen(game));
-
             }
         });
         allRemove();
