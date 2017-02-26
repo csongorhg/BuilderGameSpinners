@@ -98,7 +98,7 @@ public class IngameMenu extends MyStage {
         aranyActor = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
         nepActor = new OneSpriteStaticActor(Assets.manager.get(Assets.PEOPLE));
         etelActor = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
-        katonaActor = new OneSpriteStaticActor(Assets.manager.get(Assets.BARAKK));
+        katonaActor = new OneSpriteStaticActor(Assets.manager.get(Assets.KARD_FENN));
 
         addActor(faActor);
         addActor(koActor);

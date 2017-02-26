@@ -218,6 +218,8 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Interface/hid.png", Texture.class);
 	public static final AssetDescriptor<Texture> REDX
 			= new AssetDescriptor<Texture>("Interface/redX.png", Texture.class);
+	public static final AssetDescriptor<Texture> KARD_FENN
+			= new AssetDescriptor<Texture>("Interface/kardfennt.png", Texture.class);
 
 	//barrackban képezhető egységek
 	public static final AssetDescriptor<Texture> CANNON_MAN
@@ -392,6 +394,7 @@ public class Assets {
 		manager.load(PEOPLE);
 		manager.load(STONE);
 		manager.load(WOOD);
+		manager.load(KARD_FENN);
 
 		//ICONS - MAPACTORSTAGE
 		manager.load(MILL);
