@@ -75,8 +75,8 @@ public class TestStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                //game.setScreen(new ConnectionScreen(game));
-                game.setScreen(new LostConnectionScreen(game));
+                game.setScreen(new ConnectionScreen(game));
+                //game.setScreen(new LostConnectionScreen(game));
             }
         });
 

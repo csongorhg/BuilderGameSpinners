@@ -30,6 +30,7 @@ public class ConnectionStage extends MyStage {
     private MyTextField user, password;
     private MyLabel userLabel, passwordLabel, title;
     private MyButton submit;
+    private volatile String info = "";
 
     private int nextScreen = 0;
 
@@ -88,10 +89,10 @@ public class ConnectionStage extends MyStage {
                         user.getText().length() >= 4 && user.getText().length() <= 10 &&
                         password.getText().length() >= 4 && password.getText().length() <= 10) {
 
+                    info = "";
                     informLabel.setText("Connecting...");
                     informLabel.setPosition(getViewport().getWorldWidth() / 2 - informLabel.getWidth() / 2, submit.getY() + submit.getHeight() + informLabel.getHeight());
                     informLabel.setAlignment(Align.center);
-
                     //httpCommand = new HttpCommand("http://spinner.localhost/index.php"){
                     httpCommand = new HttpCommand("http://193.224.143.135:9999") {
                         @Override
@@ -108,12 +109,18 @@ public class ConnectionStage extends MyStage {
                                     nextScreen = 41;
                                     break;
                                 case 42:
+                                    info = "You already connected.";
                                     break;
                                 case 60:
+                                    info = "Password or username error.";
                                     break;
                                 case 62:
+                                    info = "Username already used.";
                                     break;
-
+                                case 404:
+                                case 101010:
+                                    game.setScreen(new LostConnectionScreen(game));
+                                    break;
                             }
                         }
                     };
@@ -151,7 +158,10 @@ public class ConnectionStage extends MyStage {
                     game.setScreen(new BattleListScreen(game));
                     break;
             }
-
+        }
+        if (info.compareTo("")!=0){
+            informLabel.setText(info);
+            info = "";
         }
     }
 

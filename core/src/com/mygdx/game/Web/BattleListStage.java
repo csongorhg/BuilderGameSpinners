@@ -48,6 +48,7 @@ private MyTimerActor myTimerActor;
     List<String> list = new List<String>(game.getListStyle());
     final MyLabel label = new MyLabel("", game.getLabelStyle());
     final MyButton button = new MyButton("Play", game.getTextButtonStyle(140));
+    int nextScreen = 0;
 
     public BattleListStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -64,7 +65,20 @@ private MyTimerActor myTimerActor;
                 HashMap<String, String> hm = getReceive();
                 int m = Integer.valueOf(getReceive().get("message"));
                 switch (m) {
+                    case 60:
+                        nextScreen = 60;
+                        break;
+                    case 62:
+                        nextScreen = 62;
+                        break;
+                    case 42:
+                        nextScreen = 42;
+                        break;
                     case 404:
+                        nextScreen = 404;
+                        break;
+                    case 101010:
+                        nextScreen = 101010;
                         break;
                     case 11:
                         /*
@@ -92,7 +106,9 @@ private MyTimerActor myTimerActor;
                         label.setVisible(list.getSelected() != null && list.getItems().contains(label.getText().toString(), false));
                         button.setVisible(label.isVisible());
                         break;
-
+                    case 20:
+                        nextScreen = 20;
+                        break;
                 }
 
             }
@@ -129,6 +145,9 @@ private MyTimerActor myTimerActor;
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                httpCommand.getSend().put("defendername", label.getText().toString());
+                httpCommand.getSend().put("message", "20");
+                httpCommand.sendCommand();
             }
         });
 
@@ -155,7 +174,21 @@ private MyTimerActor myTimerActor;
     @Override
     public void act(float delta) {
         super.act(delta);
-
+        if (nextScreen != 0) {
+            switch (nextScreen) {
+                case 20: //Megtámadtak
+                case 21: //Saját támadás nyugtázva
+                    game.setScreen(new ResultScreen(game));
+                    break;
+                case 404:
+                case 60:
+                case 62:
+                case 42:
+                case 101010:
+                    game.setScreen(new LostConnectionScreen(game));
+                    break;
+            }
+        }
     }
 
 

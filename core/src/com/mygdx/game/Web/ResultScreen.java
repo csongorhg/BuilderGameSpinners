@@ -1,14 +1,21 @@
 package com.mygdx.game.Web;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.MyBaseClasses.HttpCommand;
+import com.mygdx.game.MyBaseClasses.HttpErrors;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by tanulo on 2017. 02. 22..
@@ -16,6 +23,7 @@ import com.mygdx.game.MyGdxGame;
 public class ResultScreen extends MyScreen{
     private ResultStage resultStage;
     private MyStage bgStage;
+
 
     public ResultScreen(MyGdxGame game) {
         super(game);
@@ -70,8 +78,11 @@ public class ResultScreen extends MyScreen{
 
     }
 
+
+
     @Override
     public void dispose() {
+        resultStage.dispose();
         super.dispose();
     }
 }
