@@ -158,7 +158,7 @@ public class IngameMenu extends MyStage {
 
         faLabelValt.setColor((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama- Units.getLetszam()))>=0?Color.GREEN:Color.RED);
         koLabelValt.setColor(Statistics.koValt>=0?Color.GREEN:Color.RED);
-        aranyLabelValt.setColor(Statistics.aranyValt-Units.getZsold()>=0?Color.GREEN:Color.RED);
+        aranyLabelValt.setColor(Statistics.aranyValt>=0?Color.GREEN:Color.RED);
         etelLabelValt.setColor(Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam()>=0?Color.GREEN:Color.RED);
         nepLabelValt.setColor(Statistics.lakosokszamaValt-Statistics.getlakosValt()>=0?Color.GREEN:Color.RED);
 

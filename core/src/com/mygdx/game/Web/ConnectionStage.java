@@ -17,6 +17,7 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.MyTextField;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayScreen;
+import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.Units;
 import com.mygdx.game.UnitSelection.TestStage;
 
@@ -129,6 +130,10 @@ public class ConnectionStage extends MyStage {
                     httpCommand.getSend().put("message", String.valueOf(MessageTypes.CONNECT.value));
                     httpCommand.getSend().put("offense_soldier", Units.getAttack()+"");
                     httpCommand.getSend().put("defense_soldier", Units.getDeffense()+"");
+                    httpCommand.getSend().put("gold", Statistics.arany+"");
+                    httpCommand.getSend().put("wood", Statistics.fa+"");
+                    httpCommand.getSend().put("stone", Statistics.ko+"");
+                    httpCommand.getSend().put("food", Statistics.kaja+"");
                     httpCommand.sendCommand();
                     pref_user_pw.putString("user", user.getText());
                     pref_user_pw.putString("password", password.getText());

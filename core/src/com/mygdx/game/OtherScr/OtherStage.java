@@ -21,6 +21,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayScreen;
 import com.mygdx.game.PlayingMechanism.Statistics;
 import com.mygdx.game.PlayingMechanism.TimeStepper;
+import com.mygdx.game.PlayingMechanism.Units;
 
 /**
  * Created by tuskeb on 2016. 09. 30..
@@ -61,6 +62,7 @@ public class OtherStage extends MyStage {
                 preferences.flush();
                 prefstatistic.flush();
                 Statistics.setDefaultStatistics(); //statisztikák nullázása
+                Units.setDefaultUnits(); // katonák nullázása
                 TimeStepper.setDefaultTime(); //idő nullázása
 
                 game.setScreen(new PlayScreen(game), false);

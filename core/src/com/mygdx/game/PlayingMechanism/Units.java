@@ -24,6 +24,13 @@ public class Units {
     public static int[] lovasKoltseg = {3,9,8,9};  //               12,12,11   12,36,32,36
     public static int[] agyusKoltseg = {4,9,13,10};//                9,13,10   12,27,39,30
 
+    public static void setDefaultUnits(){
+        kardosLetszam = 0;
+        ijjaszLetszam = 0;
+        lovasLetszam = 0;
+        agyusLetszam = 0;
+    }
+
     static public int getLetszam(){
         int i = 0;
         i+=kardosLetszam;

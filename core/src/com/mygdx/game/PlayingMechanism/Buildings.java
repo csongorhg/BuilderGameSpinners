@@ -7,7 +7,7 @@ package com.mygdx.game.PlayingMechanism;
 public class Buildings {
                                                       //építés            napi         lerombol
                                             //ember, hús, fa, kő, arany
-    public static Building haz = new Building(       -2,-6,-3,-2,-5,    1,-2,0,0,1,  0,0,0,0,0);
+    public static Building haz = new Building(       -2,-6,-3,-2,-5,    1,0,0,0,1,  0,0,0,0,0);
     public static Building banya =new Building(      -2,-2,-7,0,-1,     0,0,0,3,2,   0,0,0,0,0);
     public static Building farm =new Building(       -1,0,-3,-3,-2,     0,2,0,0,0,   0,0,0,0,0);
     public static Building farmnagy =new Building(   -5,0,-10,0,-10,    0,10,0,0,0,  0,0,0,0,0);
@@ -40,11 +40,11 @@ public class Buildings {
 
     private static boolean epul(Building b){
         if(
-            Statistics.arany + b.aranyLetrehoz >= 0 &&
-            Statistics.fa + b.faLetrehoz >= 0 &&
-            Statistics.ko + b.koLetrehoz >= 0 &&
-            Statistics.kaja + b.kajaLetrehoz >= 0 &&
-            Statistics.lakosokszama + b.lakossagLetrehoz >= 0
+            Statistics.arany + b.aranyLetrehoz > 0 &&
+            Statistics.fa + b.faLetrehoz > 0 &&
+            Statistics.ko + b.koLetrehoz > 0 &&
+            Statistics.kaja + b.kajaLetrehoz > 0 &&
+            Statistics.lakosokszama + b.lakossagLetrehoz > 0
                 ){
             Statistics.arany += b.aranyLetrehoz;
             Statistics.fa += b.faLetrehoz;

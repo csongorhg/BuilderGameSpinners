@@ -22,7 +22,7 @@ public class Statistics {
 
     public static int epuletekszama = 1;
     public static int kutakszama = 1;
-    public static int katonakszama = 0;
+    public static int katonakszama = 5;
 
     public static void setDefaultStatistics() {
         legtobblakos = 10;
