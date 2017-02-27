@@ -172,6 +172,7 @@ private MyTimerActor myTimerActor;
         addActor(button);
         list.setSize(scrollPane.getWidth()/2,list.getItems().size*list.getStyle().font.getLineHeight());
         list.setX(scrollPane.getX()+scrollPane.getWidth()/2);
+        httpCommand.sendCommand();
     }
 
 
