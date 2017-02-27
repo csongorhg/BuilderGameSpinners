@@ -150,7 +150,6 @@ private MyTimerActor myTimerActor;
                 httpCommand.sendCommand();
             }
         });
-
         list.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -167,7 +166,8 @@ private MyTimerActor myTimerActor;
         addActor(scrollPane);
         addActor(label);
         addActor(button);
-        list.setSize(640,list.getItems().size*list.getStyle().font.getLineHeight());
+        list.setSize(scrollPane.getWidth()/2,list.getItems().size*list.getStyle().font.getLineHeight());
+        list.setX(scrollPane.getX()+scrollPane.getWidth()/2);
     }
 
 

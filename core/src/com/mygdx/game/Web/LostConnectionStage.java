@@ -53,7 +53,7 @@ public class LostConnectionStage extends MyStage {
 
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
-                if(keycode== Input.Keys.BACK || keycode == Input.Keys.BACKSPACE) {
+                if(keycode== Input.Keys.BACK || keycode == Input.Keys.ESCAPE) {
                     game.backButtonStack.removeAllElements();
                     game.setScreen(new MenuScreen(game));
                 }

@@ -17,7 +17,7 @@ public class Units {
     static int lovasEro = 3;
     static int agyusEro = 4;
 
-
+    private static int attack = 0;
                                   //lakos,fa,ko,arany  2      3        4           12            4
     public static int[] kardosKoltseg = {1,3,4,2}; //6,8,4  9,12,6  12,16, 8   12,36,48,24
     public static int[] ijjaszKoltseg = {1,7,2,6}; //       10,6,8  14, 4,12    6,42,12,36   13,10,10
@@ -134,6 +134,20 @@ public class Units {
     public static int getZsold() {
         int zsold = kardosLetszam*kardosKoltseg[0] + ijjaszLetszam*ijjaszKoltseg[0] + lovasLetszam*lovasKoltseg[0] + agyusLetszam*agyusKoltseg[0];
         return zsold;
+    }
+
+
+    public static int getDeffense(){
+        int deff = (int)(getEro()*1.2);
+        return deff;
+    }
+
+    public static void setAttack(int a){
+        attack = a;
+    }
+
+    public static int getAttack(){
+        return attack;
     }
 }
 

@@ -317,6 +317,8 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Web/fightred.png", Texture.class);
 	public static final AssetDescriptor<Texture> TEXT_BG
 			= new AssetDescriptor<Texture>("Web/textbackground.png", Texture.class);
+	public static final AssetDescriptor<Texture> BATTLE_BG
+			= new AssetDescriptor<Texture>("Web/battlebackground.png", Texture.class);
 
 	//Dzsézön
 	/*public static final AssetDescriptor<Json> SCROLLLIST
@@ -442,6 +444,7 @@ public class Assets {
 		manager.load(MINUSZ_JEL);
 		manager.load(PLUSZ_JEL);
 		manager.load(TEXT_BG);
+		manager.load(BATTLE_BG);
 
 		//FONTS
 		manager.load(ACMEREGULAR_FONT10);

@@ -81,7 +81,7 @@ public class MyGdxGame extends Game {
 
 	public ScrollPane.ScrollPaneStyle getScrollPaneStyle(){
 		ScrollPane.ScrollPaneStyle s = new ScrollPane.ScrollPaneStyle();
-		s.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEXT_BG)));
+		s.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.BATTLE_BG)));
 		return s;
 	}
 

@@ -127,8 +127,8 @@ public class ConnectionStage extends MyStage {
                     httpCommand.getSend().put("user", user.getText());
                     httpCommand.getSend().put("password", password.getText());
                     httpCommand.getSend().put("message", String.valueOf(MessageTypes.CONNECT.value));
-                    httpCommand.getSend().put("offense_soldier", TestStage.osszletszam+"");
-                    httpCommand.getSend().put("defense_soldier", (int)(Units.getEro()*1.2)+"");
+                    httpCommand.getSend().put("offense_soldier", Units.getAttack()+"");
+                    httpCommand.getSend().put("defense_soldier", Units.getDeffense()+"");
                     httpCommand.sendCommand();
                     pref_user_pw.putString("user", user.getText());
                     pref_user_pw.putString("password", password.getText());
