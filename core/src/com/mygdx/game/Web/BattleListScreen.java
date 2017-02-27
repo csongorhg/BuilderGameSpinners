@@ -71,7 +71,6 @@ public class BattleListScreen extends MyScreen{
 
     @Override
     public void dispose() {
-        battleListStage.dispose();
         super.dispose();
     }
 }

@@ -86,7 +86,7 @@ public class ConnectionStage extends MyStage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 if (!user.getText().equals("") && !password.getText().equals("") &&
-                        user.getText().length() >= 4 && user.getText().length() <= 10 &&
+                        user.getText().length() >= 4 && user.getText().length() <= 18 &&
                         password.getText().length() >= 4 && password.getText().length() <= 10) {
 
                     info = "";

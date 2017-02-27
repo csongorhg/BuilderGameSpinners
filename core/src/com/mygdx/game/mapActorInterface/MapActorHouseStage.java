@@ -10,6 +10,7 @@ import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 
 /**
  * Created by Vince on 2017. 01. 28..

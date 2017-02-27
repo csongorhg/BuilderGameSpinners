@@ -1,6 +1,7 @@
 package com.mygdx.game.Web;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,6 +23,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.MyBaseClasses.HttpCommand;
 import com.mygdx.game.MyBaseClasses.HttpErrors;
 import com.mygdx.game.MyBaseClasses.MyButton;
@@ -198,7 +200,9 @@ private MyTimerActor myTimerActor;
 
 
     @Override
-    public void init() {//nem volt jó az assetsmanagerben a json
+    public void init() {
+        addBackEventStackListener();
+        //nem volt jó az assetsmanagerben a json
 /*        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         Label text = new Label(reallyLongString, skin);
@@ -226,5 +230,25 @@ private MyTimerActor myTimerActor;
 
         addActor(table);*/
 
+    }
+
+    @Override
+    public void addBackEventStackListener() {
+        addListener(new InputListener() {
+
+            @Override
+            public boolean keyDown(InputEvent event, int keycode) {
+                if(keycode== Input.Keys.BACK || keycode == Input.Keys.ESCAPE) {
+                    game.backButtonStack.removeAllElements();
+                    game.setScreen(new MenuScreen(game));
+                }
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
     }
 }
