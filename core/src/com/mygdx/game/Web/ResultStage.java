@@ -60,7 +60,7 @@ public class ResultStage extends MyStage {
         httpCommand.getSend().put("user",pref_user_pw.getString("user"));
         httpCommand.getSend().put("password",pref_user_pw.getString("password"));
         httpCommand.getSend().put("message", String.valueOf(MessageTypes.GETDATA));
-
+        httpCommand.sendCommand();
 
     }
 

@@ -109,6 +109,9 @@ private MyTimerActor myTimerActor;
                     case 20:
                         nextScreen = 20;
                         break;
+                    case 21:
+                        nextScreen = 21;
+                        break;
                 }
 
             }
@@ -148,6 +151,7 @@ private MyTimerActor myTimerActor;
                 httpCommand.getSend().put("defendername", label.getText().toString());
                 httpCommand.getSend().put("message", "20");
                 httpCommand.sendCommand();
+                httpCommand.getSend().put("message", "10");
             }
         });
         list.addListener(new ChangeListener() {
