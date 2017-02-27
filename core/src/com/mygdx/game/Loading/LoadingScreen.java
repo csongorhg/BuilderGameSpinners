@@ -105,4 +105,9 @@ public class LoadingScreen extends MyScreen {
 	public void init() {
 		setBackGroundColor(0f, 0f, 0f);
 	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+	}
 }

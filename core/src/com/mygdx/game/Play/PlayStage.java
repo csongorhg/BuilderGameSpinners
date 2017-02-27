@@ -813,10 +813,10 @@ abstract public class PlayStage extends MyStage implements GestureDetector.Gestu
 
     @Override
     public void dispose() {
-        super.dispose();
         statisticSave();
         barbarianAttackStage.dispose();
         ingameMenu.dispose();
         tipStage.dispose();
+        super.dispose();
     }
 }

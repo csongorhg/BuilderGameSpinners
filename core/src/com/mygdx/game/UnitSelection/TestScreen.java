@@ -14,7 +14,7 @@ import com.mygdx.game.MyGdxGame;
 
 public class TestScreen extends MyScreen {
 
-    protected TestStage otherStage;
+    protected TestStage testStage;
     private MyStage bgStage;
 
     public TestScreen(MyGdxGame game) {
@@ -28,8 +28,8 @@ public class TestScreen extends MyScreen {
         bgStage.act();
         bgStage.draw();
 
-        otherStage.act(delta);
-        otherStage.draw();
+        testStage.act(delta);
+        testStage.draw();
 
 
     }
@@ -65,13 +65,14 @@ public class TestScreen extends MyScreen {
             }
         };
 
-        otherStage = new TestStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(otherStage);
+        testStage = new TestStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
+        Gdx.input.setInputProcessor(testStage);
 
     }
 
     @Override
     public void dispose() {
+        testStage.dispose();
         super.dispose();
     }
 }

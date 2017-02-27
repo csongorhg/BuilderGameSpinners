@@ -74,11 +74,11 @@ public class IngameMenu extends MyStage {
         etelLabel = new MyLabel(""+Statistics.kaja, game.getLabelStyle(25,Color.WHITE));
         katonaLabel = new MyLabel(""+Units.getEro(), game.getLabelStyle(25,Color.WHITE));
 
-        faLabelValt = new MyLabel(""+Statistics.faValt, game.getLabelStyle(25,(Statistics.faValt>=0?Color.GREEN:Color.RED)));
-        koLabelValt = new MyLabel(""+Statistics.koValt, game.getLabelStyle(25,(Statistics.koValt>=0?Color.GREEN:Color.RED)));
-        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, game.getLabelStyle(25,(Statistics.aranyValt>=0?Color.GREEN:Color.RED)));
-        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, game.getLabelStyle(25,(Statistics.lakosokszamaValt>=0?Color.GREEN:Color.RED)));
-        etelLabelValt = new MyLabel(""+Statistics.kajaValt, game.getLabelStyle(25,(Statistics.kajaValt>=0?Color.GREEN:Color.RED)));
+        faLabelValt = new MyLabel(""+Statistics.faValt, game.getLabelStyle(25,(Statistics.faValt>=0?Color.GREEN:Color.BLACK)));
+        koLabelValt = new MyLabel(""+Statistics.koValt, game.getLabelStyle(25,(Statistics.koValt>=0?Color.GREEN:Color.BLACK)));
+        aranyLabelValt = new MyLabel(""+Statistics.aranyValt, game.getLabelStyle(25,(Statistics.aranyValt>=0?Color.GREEN:Color.BLACK)));
+        nepLabelValt = new MyLabel(""+Statistics.lakosokszamaValt, game.getLabelStyle(25,(Statistics.lakosokszamaValt>=0?Color.GREEN:Color.BLACK)));
+        etelLabelValt = new MyLabel(""+Statistics.kajaValt, game.getLabelStyle(25,(Statistics.kajaValt>=0?Color.GREEN:Color.BLACK)));
 
         addActor(faLabel);
         addActor(koLabel);
@@ -156,11 +156,11 @@ public class IngameMenu extends MyStage {
         etelLabelValt.setText((Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam())+"");
         nepLabelValt.setText(Statistics.lakosokszamaValt-Statistics.getlakosValt()+"");
 
-        faLabelValt.setColor((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama- Units.getLetszam()))>=0?Color.GREEN:Color.RED);
-        koLabelValt.setColor(Statistics.koValt>=0?Color.GREEN:Color.RED);
-        aranyLabelValt.setColor(Statistics.aranyValt>=0?Color.GREEN:Color.RED);
-        etelLabelValt.setColor(Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam()>=0?Color.GREEN:Color.RED);
-        nepLabelValt.setColor(Statistics.lakosokszamaValt-Statistics.getlakosValt()>=0?Color.GREEN:Color.RED);
+        faLabelValt.setColor((TimeStepper.nyarvan?Statistics.faValt:(Statistics.faValt-Statistics.lakosokszama- Units.getLetszam()))>=0?Color.GREEN:Color.BLACK);
+        koLabelValt.setColor(Statistics.koValt>=0?Color.GREEN:Color.BLACK);
+        aranyLabelValt.setColor(Statistics.aranyValt>=0?Color.GREEN:Color.BLACK);
+        etelLabelValt.setColor(Statistics.kajaValt-Statistics.lakosokszama-Units.getLetszam()>=0?Color.GREEN:Color.BLACK);
+        nepLabelValt.setColor(Statistics.lakosokszamaValt-Statistics.getlakosValt()>=0?Color.GREEN:Color.BLACK);
 
 
         katonaLabel.setText(Units.getEro()+"");

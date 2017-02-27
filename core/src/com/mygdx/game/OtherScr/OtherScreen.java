@@ -72,6 +72,7 @@ public class OtherScreen extends MyScreen {
 
     @Override
     public void dispose() {
+        otherStage.dispose();
         super.dispose();
     }
 }

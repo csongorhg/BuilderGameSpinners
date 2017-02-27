@@ -72,6 +72,7 @@ public class LostConnectionScreen extends MyScreen {
 
     @Override
     public void dispose() {
+        lostConnectionStage.dispose();
         super.dispose();
     }
 }
