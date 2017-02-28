@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class ResultStage extends MyStage {
     private HttpCommand httpCommand = null;
     private Preferences pref_user_pw;
-    private boolean refresh = false;
+    private volatile boolean refresh = false;
     int nextScreen = 0;
 
     public ResultStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -54,7 +54,7 @@ public class ResultStage extends MyStage {
                     case 101010:
                         nextScreen = 101010;
                         break;
-                    case 50:
+                    case 51:
                         refresh = true;
                         break;
                 }
