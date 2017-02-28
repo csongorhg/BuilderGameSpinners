@@ -88,7 +88,7 @@ public class TestStage extends MyStage {
         textBackground = new OneSpriteStaticActor(Assets.manager.get(Assets.TEXT_BG));
         addActor(textBackground);
         textBackground.setZIndex(osszesites.getZIndex()-1);
-        textBackground.setSize(osszesites.getWidth()+osszesites.getWidth()/4,osszesites.getHeight());
+        textBackground.setSize(osszesites.getWidth()+osszesites.getWidth()/2,osszesites.getHeight());
         textBackground.setPosition(osszesites.getX()+osszesites.getWidth()/2 -textBackground.getWidth()/2,osszesites.getY());
     }
 
