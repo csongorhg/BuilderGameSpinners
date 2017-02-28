@@ -92,6 +92,9 @@ public class ConnectionStage extends MyStage {
 
                     info = "";
                     informLabel.setText("Connecting...");
+                    pref_user_pw.putString("user", user.getText());
+                    pref_user_pw.putString("password", password.getText());
+                    pref_user_pw.flush();
                     informLabel.setPosition(getViewport().getWorldWidth() / 2 - informLabel.getWidth() / 2, submit.getY() + submit.getHeight() + informLabel.getHeight());
                     informLabel.setAlignment(Align.center);
                     //httpCommand = new HttpCommand("http://spinner.localhost/index.php"){
@@ -135,8 +138,6 @@ public class ConnectionStage extends MyStage {
                     httpCommand.getSend().put("stone", Statistics.ko+"");
                     httpCommand.getSend().put("food", Statistics.kaja+"");
                     httpCommand.sendCommand();
-                    pref_user_pw.putString("user", user.getText());
-                    pref_user_pw.putString("password", password.getText());
                 } else {
                     informLabel.setText("Bad incredential(s)!");
                     informLabel.setPosition(getViewport().getWorldWidth() / 2 - informLabel.getWidth() / 2, submit.getY() + submit.getHeight() + informLabel.getHeight());
