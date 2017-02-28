@@ -53,13 +53,6 @@ public class EndStage extends MyStage {
         myLabel.setPosition(0,getViewport().getWorldHeight()/5*3);
         addActor(myLabel);
 
-        labelStyle();
-        myLabel1 = new MyLabel("Highest population: "+Statistics.legtobblakos+" people",style);
-        myLabel1.setAlignment(Align.center);
-        myLabel1.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight()/5);
-        myLabel1.setPosition(0,getViewport().getWorldHeight()/5*2);
-        addActor(myLabel1);
-
         button = new MyButton("Back To Menu", game.getTextButtonStyle(100));
         button.addListener(new ClickListener(){
             @Override
