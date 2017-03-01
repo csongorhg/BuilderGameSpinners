@@ -18,7 +18,9 @@ import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Play.PlayScreen;
 import com.mygdx.game.PlayingMechanism.Statistics;
+import com.mygdx.game.PlayingMechanism.TimeStepper;
 import com.mygdx.game.PlayingMechanism.Units;
 
 import java.util.HashMap;
@@ -31,13 +33,16 @@ public class ResultStage extends MyStage {
     private Preferences pref_user_pw;
     private volatile boolean refresh = false;
     int nextScreen = 0;
-    private boolean tamado_e, nyert;
     private int wood, gold, stone, food;
     MyLabel foodLabel, woodLabel, stoneLabel, goldLabel;
+
+    private Preferences prefstatistic;
+    private static String saveStatistic ="";
 
     public ResultStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
         pref_user_pw = Gdx.app.getPreferences(ConnectionScreen.PREFS);
+        prefstatistic = Gdx.app.getPreferences(PlayScreen.PREFstatistic);
         httpCommand = new HttpCommand("http://193.224.143.135:9999"){
             @Override
             protected void failed(HttpErrors httpErrors) {
@@ -56,7 +61,6 @@ public class ResultStage extends MyStage {
 
                 Units.katonaNullazas();
                 tartalom();
-
                 refresh = true;
             }
         };
@@ -77,11 +81,13 @@ public class ResultStage extends MyStage {
                 Statistics.fa += wood;
                 Statistics.kaja += food;
                 Statistics.ko += stone;
+                statisticSave();
             } else{
                 Statistics.arany -= gold;
                 Statistics.fa -= wood;
                 Statistics.kaja -= food;
                 Statistics.ko -= stone;
+                statisticSave();
             }
             if(goldLabel != null)goldLabel.setText(gold+"");
             if(woodLabel != null)woodLabel.setText(wood+"");
@@ -119,8 +125,17 @@ public class ResultStage extends MyStage {
             }
         });
         addActor(button);
+    }
 
-        refresh = true;
+    private void statisticSave(){
+        saveStatistic = "" ;
+        saveStatistic = Statistics.legtobblakos+";"+Statistics.lakosokszama+";"
+                +Statistics.fa+";"+Statistics.ko+";"+Statistics.arany+";"+Statistics.kaja+";"
+                +Statistics.lakosokszamaValt+";"+Statistics.faValt+";"+Statistics.koValt+";"+Statistics.aranyValt+";"+Statistics.kajaValt+";"
+                +Statistics.epuletekszama+";"+Statistics.kutakszama+";"+ TimeStepper.elteltnap+";"+TimeStepper.elteltido+";"
+                +0+";"+0+";"+0+";"+0+";"+0;
+        prefstatistic.putString(PlayScreen.PREFstatistic,saveStatistic);
+        prefstatistic.flush();
     }
 
     private void tartalom(){
@@ -224,6 +239,7 @@ public class ResultStage extends MyStage {
     @Override
     public void dispose() {
         pref_user_pw.flush();
+        prefstatistic.flush();
         super.dispose();
     }
 }
