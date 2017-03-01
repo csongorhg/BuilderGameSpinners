@@ -30,6 +30,7 @@ public class ResultStage extends MyStage {
     private volatile boolean refresh = false;
     int nextScreen = 0;
     private boolean tamado_e, nyert;
+    MyLabel foodLabel, woodLabel, stoneLabel, goldLabel;
 
     public ResultStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -79,9 +80,11 @@ public class ResultStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         if (refresh){
-
-
-
+            refresh = false;
+            woodLabel.setText("param");
+            goldLabel.setText("param");
+            foodLabel.setText("param");
+            stoneLabel.setText("param");
         }
 
         if (nextScreen != 0) {
@@ -111,10 +114,10 @@ public class ResultStage extends MyStage {
                 label.setSize(getViewport().getWorldWidth(),label.getHeight());
                 label.setPosition(0, getViewport().getWorldHeight()-label.getHeight()-20);
                 addActor(label);
-                MyLabel rev = new MyLabel("Your revards: ",game.getLabelStyle(50));
+                MyLabel rev = new MyLabel("Your rewards: ",game.getLabelStyle(50));
                 rev.setPosition(getViewport().getWorldWidth()/2-rev.getWidth()/2, getViewport().getWorldHeight()/2);
                 addActor(rev);
-                revards(rev.getY());
+                rewards(rev.getY());
             }
             else{
                 MyLabel label = new MyLabel("You have lost your battle!", game.getLabelStyle(80));
@@ -141,7 +144,7 @@ public class ResultStage extends MyStage {
                 MyLabel rev = new MyLabel("You have lost: ",game.getLabelStyle(80));
                 rev.setPosition(getViewport().getWorldWidth()/2-rev.getWidth()/2, getViewport().getWorldHeight()/2);
                 addActor(rev);
-                revards(rev.getY());
+                rewards(rev.getY());
             }
         }
 
@@ -161,16 +164,16 @@ public class ResultStage extends MyStage {
 
     }
 
-    private void revards(float posY){
+    private void rewards(float posY){
         OneSpriteStaticActor foodSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.MEAT));
         OneSpriteStaticActor woodSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.WOOD));
         OneSpriteStaticActor stoneSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.STONE));
         OneSpriteStaticActor goldSprite = new OneSpriteStaticActor(Assets.manager.get(Assets.ARANY));
 
-        MyLabel foodLabel = new MyLabel("1000",game.getLabelStyle(50));
-        MyLabel woodLabel = new MyLabel("1000",game.getLabelStyle(50));
-        MyLabel stoneLabel = new MyLabel("1000",game.getLabelStyle(50));
-        MyLabel goldLabel = new MyLabel("1000",game.getLabelStyle(50));
+        foodLabel = new MyLabel("1000",game.getLabelStyle(50));
+        woodLabel = new MyLabel("1000",game.getLabelStyle(50));
+        stoneLabel = new MyLabel("1000",game.getLabelStyle(50));
+        goldLabel = new MyLabel("1000",game.getLabelStyle(50));
 
         foodSprite.setSize(foodLabel.getHeight(),foodLabel.getHeight());
         woodSprite.setSize(foodSprite.getWidth(),foodSprite.getHeight());

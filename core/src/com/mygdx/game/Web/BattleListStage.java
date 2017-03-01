@@ -139,12 +139,12 @@ private MyTimerActor myTimerActor;
         myTimerActor.setInterval(4);
 
 
-        label.setPosition(700,500);
+        label.setPosition(getViewport().getWorldWidth()/4*3-button.getWidth()/2,getViewport().getWorldHeight()/4*3);
         label.setVisible(false);
 
 
         button.setSize(300,160);
-        button.setPosition(700,300);
+        button.setPosition(getViewport().getWorldWidth()/4*3-button.getWidth()/2,getViewport().getWorldHeight()/2-button.getHeight()/2);
         button.setVisible(false);
         button.addListener(new ClickListener(){
             @Override
@@ -166,7 +166,7 @@ private MyTimerActor myTimerActor;
             }
         });
         ScrollPane scrollPane = new ScrollPane(list, game.getScrollPaneStyle());
-        scrollPane.setSize(640,720);
+        scrollPane.setSize(getViewport().getWorldWidth()/2,getViewport().getWorldHeight());
         scrollPane.setScrollingDisabled(true, false);
         //scrollPane.setOverscroll(false, false);
         addActor(scrollPane);
