@@ -9,10 +9,10 @@ public class Statistics {
     public static int legtobblakos = 10;
 
     public static int lakosokszama = 10;
-    public static int fa = 4000;
-    public static int ko = 4000;
-    public static int arany = 2000;
-    public static int kaja = 8000;
+    public static int fa = 40;
+    public static int ko = 40;
+    public static int arany = 40;
+    public static int kaja = 80;
 
     public static int lakosokszamaValt = 0;
     public static int faValt = 0;
@@ -28,10 +28,10 @@ public class Statistics {
         legtobblakos = 10;
 
         lakosokszama = 10;
-        fa = 4000;
-        ko = 4000;
-        arany = 2000;
-        kaja = 8000;
+        fa = 40;
+        ko = 40;
+        arany = 40;
+        kaja = 80;
 
         lakosokszamaValt = 0;
         faValt = 0;

@@ -16,6 +16,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Play.PlayScreen;
 import com.mygdx.game.Web.BattleListScreen;
 import com.mygdx.game.Web.ConnectionScreen;
+import com.mygdx.game.Web.LostConnectionScreen;
 
 /**
  * Created by tuskeb on 2016. 09. 30..
@@ -223,10 +224,7 @@ public class MenuStage extends MyStage {
                 switch (enumButton) {
                     case PLAY: game.setScreen(new PlayScreen(game)); break;
                     case MAPS: game.setScreen(new OtherScreen(game)); break;
-                    case QUIT: //game.dispose(); System.exit(0);
-                        //game.setScreen(new BattleListScreen(game));
-                        game.setScreen(new ConnectionScreen(game));
-                        break;
+                    case QUIT: game.dispose(); System.exit(0); break;
                 }
             }
 
