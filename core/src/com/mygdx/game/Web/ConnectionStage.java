@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.MyBaseClasses.HttpCommand;
 import com.mygdx.game.MyBaseClasses.HttpErrors;
@@ -32,6 +33,7 @@ public class ConnectionStage extends MyStage {
     private MyLabel userLabel, passwordLabel, title;
     private MyButton submit;
     private volatile String info = "";
+    public static String staticUser;
 
     private int nextScreen = 0;
 
@@ -94,6 +96,7 @@ public class ConnectionStage extends MyStage {
                     informLabel.setText("Connecting...");
                     pref_user_pw.putString("user", user.getText());
                     pref_user_pw.putString("password", password.getText());
+                    staticUser = user.getText();
                     pref_user_pw.flush();
                     informLabel.setPosition(getViewport().getWorldWidth() / 2 - informLabel.getWidth() / 2, submit.getY() + submit.getHeight() + informLabel.getHeight());
                     informLabel.setAlignment(Align.center);

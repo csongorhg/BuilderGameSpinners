@@ -18,6 +18,8 @@ import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayingMechanism.Statistics;
+import com.mygdx.game.PlayingMechanism.Units;
 
 import java.util.HashMap;
 
@@ -30,6 +32,7 @@ public class ResultStage extends MyStage {
     private volatile boolean refresh = false;
     int nextScreen = 0;
     private boolean tamado_e, nyert;
+    private int wood, gold, stone, food;
     MyLabel foodLabel, woodLabel, stoneLabel, goldLabel;
 
     public ResultStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -45,28 +48,16 @@ public class ResultStage extends MyStage {
             protected void responsed() {
 
                 HashMap<String, String> hm = getReceive();
-                int m = Integer.valueOf(getReceive().get("message"));
-                switch (m) {
-                    case 60:
-                        nextScreen = 60;
-                        break;
-                    case 62:
-                        nextScreen = 62;
-                        break;
-                    case 42:
-                        nextScreen = 42;
-                        break;
-                    case 404:
-                        nextScreen = 404;
-                        break;
-                    case 101010:
-                        nextScreen = 101010;
-                        break;
-                    case 51:
-                        refresh = true;
-                        break;
-                }
 
+                wood = Integer.valueOf(getReceive().get("wood"));
+                gold = Integer.valueOf(getReceive().get("gold"));
+                stone = Integer.valueOf(getReceive().get("stone"));
+                food = Integer.valueOf(getReceive().get("food"));
+
+                Units.katonaNullazas();
+                tartalom();
+
+                refresh = true;
             }
         };
         httpCommand.getSend().put("user",pref_user_pw.getString("user"));
@@ -81,10 +72,21 @@ public class ResultStage extends MyStage {
         super.act(delta);
         if (refresh){
             refresh = false;
-            woodLabel.setText("param");
-            goldLabel.setText("param");
-            foodLabel.setText("param");
-            stoneLabel.setText("param");
+            if(BattleListStage.defName != null){
+                Statistics.arany += gold;
+                Statistics.fa += wood;
+                Statistics.kaja += food;
+                Statistics.ko += stone;
+            } else{
+                Statistics.arany -= gold;
+                Statistics.fa -= wood;
+                Statistics.kaja -= food;
+                Statistics.ko -= stone;
+            }
+            if(goldLabel != null)goldLabel.setText(gold+"");
+            if(woodLabel != null)woodLabel.setText(wood+"");
+            if(foodLabel != null)foodLabel.setText(food+"");
+            if(stoneLabel != null)stoneLabel.setText(stone+"");
         }
 
         if (nextScreen != 0) {
@@ -104,50 +106,6 @@ public class ResultStage extends MyStage {
     public void init() {
         addBackEventStackListener();
 
-        tamado_e = true;
-        nyert = true;
-
-        if(tamado_e){
-            if(nyert){
-                MyLabel label = new MyLabel("Congratulations!\nYou won your battle!", game.getLabelStyle(80));
-                label.setAlignment(Align.center);
-                label.setSize(getViewport().getWorldWidth(),label.getHeight());
-                label.setPosition(0, getViewport().getWorldHeight()-label.getHeight()-20);
-                addActor(label);
-                MyLabel rev = new MyLabel("Your rewards: ",game.getLabelStyle(50));
-                rev.setPosition(getViewport().getWorldWidth()/2-rev.getWidth()/2, getViewport().getWorldHeight()/2);
-                addActor(rev);
-                rewards(rev.getY());
-            }
-            else{
-                MyLabel label = new MyLabel("You have lost your battle!", game.getLabelStyle(80));
-                label.setAlignment(Align.center);
-                label.setSize(getViewport().getWorldWidth(),label.getHeight());
-                label.setPosition(0, getViewport().getWorldHeight()/2);
-                addActor(label);
-            }
-        }
-        else{
-            if(nyert){
-                MyLabel label = new MyLabel("Congratulations!\nYou have defended your city!", game.getLabelStyle(80));
-                label.setAlignment(Align.center);
-                label.setSize(getViewport().getWorldWidth(),label.getHeight());
-                label.setPosition(0, getViewport().getWorldHeight()-label.getHeight()/2);
-                addActor(label);
-            }
-            else{
-                MyLabel label = new MyLabel("You have lost your battle!", game.getLabelStyle(80));
-                label.setAlignment(Align.center);
-                label.setSize(getViewport().getWorldWidth(),label.getHeight());
-                label.setPosition(0, getViewport().getWorldHeight()-label.getHeight()-20);
-                addActor(label);
-                MyLabel rev = new MyLabel("You have lost: ",game.getLabelStyle(80));
-                rev.setPosition(getViewport().getWorldWidth()/2-rev.getWidth()/2, getViewport().getWorldHeight()/2);
-                addActor(rev);
-                rewards(rev.getY());
-            }
-        }
-
         MyButton button = new MyButton("Back to menu",game.getTextButtonStyle(100));
         button.setSize(button.getWidth()+button.getWidth()/4,button.getHeight());
         button.setPosition(getViewport().getWorldWidth()/2 - button.getWidth()/2, 10);
@@ -162,6 +120,51 @@ public class ResultStage extends MyStage {
         });
         addActor(button);
 
+        refresh = true;
+    }
+
+    private void tartalom(){
+        if(BattleListStage.defName != null){
+            System.out.println("VÉDŐNÉV: "+BattleListStage.defName);
+            if(food != 0 || wood != 0 || stone != 0 || gold != 0){
+                MyLabel label = new MyLabel("Congratulations!\nYou won your battle!", game.getLabelStyle(80));
+                label.setAlignment(Align.center);
+                label.setSize(getViewport().getWorldWidth(),label.getHeight());
+                label.setPosition(0, getViewport().getWorldHeight()-label.getHeight()-20);
+                addActor(label);
+                MyLabel rev = new MyLabel("Your rewards: ",game.getLabelStyle(50));
+                rev.setPosition(getViewport().getWorldWidth()/2-rev.getWidth()/2, getViewport().getWorldHeight()/2);
+                addActor(rev);
+                rewards(rev.getY());
+            }
+            else{
+                MyLabel label = new MyLabel("You have lost your battle!", game.getLabelStyle(80));
+                label.setAlignment(Align.center);
+                label.setSize(getViewport().getWorldWidth(),label.getHeight());
+                label.setPosition(0, getViewport().getWorldHeight()/2-label.getHeight()/2);
+                addActor(label);
+            }
+        }
+        else{
+            if(food != 0 || wood != 0 || stone != 0 || gold != 0){
+                MyLabel label = new MyLabel("You have lost your battle!", game.getLabelStyle(80));
+                label.setAlignment(Align.center);
+                label.setSize(getViewport().getWorldWidth(),label.getHeight());
+                label.setPosition(0, getViewport().getWorldHeight()-label.getHeight()-20);
+                addActor(label);
+                MyLabel rev = new MyLabel("You have lost: ",game.getLabelStyle(80));
+                rev.setPosition(getViewport().getWorldWidth()/2-rev.getWidth()/2, getViewport().getWorldHeight()/2);
+                addActor(rev);
+                rewards(rev.getY());
+            }
+            else{
+                MyLabel label = new MyLabel("Congratulations!\nYou have defended your city!", game.getLabelStyle(80));
+                label.setAlignment(Align.center);
+                label.setSize(getViewport().getWorldWidth(),label.getHeight());
+                label.setPosition(0, getViewport().getWorldHeight()/2-label.getHeight()/2);
+                addActor(label);
+            }
+        }
     }
 
     private void rewards(float posY){

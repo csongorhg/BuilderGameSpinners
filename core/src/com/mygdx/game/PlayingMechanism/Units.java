@@ -153,6 +153,13 @@ public class Units {
         attack = a;
     }
 
+    public static void katonaNullazas(){
+        kardosLetszam = 0;
+        ijjaszLetszam = 0;
+        lovasLetszam = 0;
+        agyusLetszam = 0;
+    }
+
     public static int getAttack(){
         return attack;
     }

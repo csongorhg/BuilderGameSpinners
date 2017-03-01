@@ -50,6 +50,7 @@ private MyTimerActor myTimerActor;
     List<String> list = new List<String>(game.getListStyle());
     final MyLabel label = new MyLabel("", game.getLabelStyle());
     final MyButton button = new MyButton("Play", game.getTextButtonStyle(140));
+    public static String defName;
     int nextScreen = 0;
 
     public BattleListStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -150,6 +151,7 @@ private MyTimerActor myTimerActor;
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                defName = label.getText().toString();
                 httpCommand.getSend().put("defendername", label.getText().toString());
                 httpCommand.getSend().put("message", "20");
                 httpCommand.sendCommand();
